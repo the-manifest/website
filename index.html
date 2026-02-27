@@ -224,7 +224,9 @@ section { padding: 100px 0; }
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   box-sizing: border-box;
+  padding: 60px 0;
 }
 
 #contact {
@@ -437,28 +439,33 @@ section { padding: 100px 0; }
 #team { background: var(--bg-soft); }
 
 .team-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 180px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 36px;
+  width: 100%;
+}
+.team-row {
+  display: flex;
   justify-content: center;
   gap: 16px;
-  margin-top: 48px;
+  flex-wrap: wrap;
 }
-.team-card:nth-child(5) { grid-column: 2; }
-.team-card:nth-child(6) { grid-column: 3; }
 .team-card {
-  width: 180px;
+  width: 200px;
 }
 
 .team-card {
   text-align: center;
-  padding: 36px 12px;
+  padding: 24px 12px;
   background: var(--bg);
   border-radius: 8px;
 }
 
 .team-avatar {
-  width: 96px;
-  height: 96px;
+  width: 112px;
+  height: 112px;
   border-radius: 50%;
   background: var(--bg-soft);
   border: 1px solid var(--border);
@@ -504,7 +511,7 @@ section { padding: 100px 0; }
 
 /* ── Contact ── */
 #contact {
-  background: var(--bg);
+  background: #111111;
   padding: 80px 0;
 }
 
@@ -595,11 +602,34 @@ section { padding: 100px 0; }
 }
 .submit-btn:hover { opacity: 0.85; }
 
+/* ── Contact dark theme ── */
+#contact .section-title { color: #ffffff; }
+#contact .section-body { color: rgba(255,255,255,0.65); }
+#contact .contact-meta { color: rgba(255,255,255,0.45); }
+#contact .contact-form label { color: rgba(255,255,255,0.55); }
+#contact .contact-form input,
+#contact .contact-form textarea,
+#contact .contact-form select {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.12);
+  color: #ffffff;
+}
+#contact .contact-form input::placeholder,
+#contact .contact-form textarea::placeholder { color: rgba(255,255,255,0.3); }
+#contact .contact-form input:focus,
+#contact .contact-form textarea:focus,
+#contact .contact-form select:focus { border-color: rgba(255,255,255,0.35); }
+#contact .submit-btn { background: #ffffff; color: #111111; }
+#contact .submit-btn:hover { opacity: 0.88; }
+#contact .manifest-linkedin { color: rgba(255,255,255,0.75); }
+#contact .manifest-linkedin:hover { color: #ffffff; }
+footer p { color: rgba(255,255,255,0.35); }
+
 /* ── Footer ── */
 footer {
   padding: 20px 0;
-  border-top: 1px solid var(--border);
-  background: var(--bg);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  background: #111111;
 }
 footer .container {
   display: flex;
@@ -618,8 +648,7 @@ footer p {
   .solution-grid { grid-template-columns: 1fr; }
   .value-grid { grid-template-columns: 1fr; }
   .partners-grid { grid-template-columns: 1fr; }
-  .team-grid { grid-template-columns: repeat(2, 180px); justify-content: center; }
-    .team-card:nth-child(5), .team-card:nth-child(6) { grid-column: auto; }
+  .team-card { width: 160px; }
   .contact-layout { grid-template-columns: 1fr; gap: 40px; }
   .form-row { grid-template-columns: 1fr; }
   .nav-links { display: none; }
@@ -806,41 +835,53 @@ footer p {
       <p class="section-body" style="margin: 0 auto;">An AI-enabled team focused on European safety &amp; security.</p>
     </div>
     <div class="team-grid reveal">
-      <div class="team-card">
-        <div class="team-avatar"><img src="assets/images/charles.jpg" alt="Charles-Henri"></div>
-        <h3>Charles-Henri</h3>
-        <div class="role">Founder</div>
-        <a href="https://www.linkedin.com/in/charlesblanchet/" class="linkedin-link" target="_blank"><svg viewBox="0 0 24 24" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="4" fill="#0077B5"/><path d="M7.5 10.5h-2v7h2v-7zM6.5 9.5a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5zM10.5 10.5h2v.9c.4-.6 1.2-1.1 2.2-1.1 2.1 0 2.8 1.4 2.8 3.3v3.9h-2V14c0-.9-.3-1.7-1.2-1.7s-1.3.8-1.3 1.7v3.5h-2v-7z" fill="white"/></svg> LinkedIn</a>
+      <!-- Row 1: Founders & Advisors -->
+      <div class="team-row">
+        <div class="team-card">
+          <div class="team-avatar"><img src="assets/images/charles.jpg" alt="Charles-Henri"></div>
+          <h3>Charles-Henri</h3>
+          <div class="role">Founder</div>
+          <a href="https://www.linkedin.com/in/charlesblanchet/" class="linkedin-link" target="_blank"><svg viewBox="0 0 24 24" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="4" fill="#0077B5"/><path d="M7.5 10.5h-2v7h2v-7zM6.5 9.5a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5zM10.5 10.5h2v.9c.4-.6 1.2-1.1 2.2-1.1 2.1 0 2.8 1.4 2.8 3.3v3.9h-2V14c0-.9-.3-1.7-1.2-1.7s-1.3.8-1.3 1.7v3.5h-2v-7z" fill="white"/></svg> LinkedIn</a>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar"><img src="assets/images/nick.jpg" alt="Nick"></div>
+          <h3>Nick</h3>
+          <div class="role">Financial Services</div>
+          <a href="https://www.linkedin.com/in/maceynick/" class="linkedin-link" target="_blank"><svg viewBox="0 0 24 24" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="4" fill="#0077B5"/><path d="M7.5 10.5h-2v7h2v-7zM6.5 9.5a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5zM10.5 10.5h2v.9c.4-.6 1.2-1.1 2.2-1.1 2.1 0 2.8 1.4 2.8 3.3v3.9h-2V14c0-.9-.3-1.7-1.2-1.7s-1.3.8-1.3 1.7v3.5h-2v-7z" fill="white"/></svg> LinkedIn</a>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar"><img src="assets/images/tom.jpg" alt="Tom"></div>
+          <h3>Tom</h3>
+          <div class="role">Advisor &amp; Investor</div>
+          <a href="https://www.linkedin.com/in/tomspengler/" class="linkedin-link" target="_blank"><svg viewBox="0 0 24 24" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="4" fill="#0077B5"/><path d="M7.5 10.5h-2v7h2v-7zM6.5 9.5a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5zM10.5 10.5h2v.9c.4-.6 1.2-1.1 2.2-1.1 2.1 0 2.8 1.4 2.8 3.3v3.9h-2V14c0-.9-.3-1.7-1.2-1.7s-1.3.8-1.3 1.7v3.5h-2v-7z" fill="white"/></svg> LinkedIn</a>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar"><img src="assets/images/christophe.jpg" alt="Christophe"></div>
+          <h3>Christophe</h3>
+          <div class="role">Advisor</div>
+          <a href="https://www.linkedin.com/in/christophe-camperi-ginestet-1b15932/" class="linkedin-link" target="_blank"><svg viewBox="0 0 24 24" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="4" fill="#0077B5"/><path d="M7.5 10.5h-2v7h2v-7zM6.5 9.5a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5zM10.5 10.5h2v.9c.4-.6 1.2-1.1 2.2-1.1 2.1 0 2.8 1.4 2.8 3.3v3.9h-2V14c0-.9-.3-1.7-1.2-1.7s-1.3.8-1.3 1.7v3.5h-2v-7z" fill="white"/></svg> LinkedIn</a>
+        </div>
       </div>
-      <div class="team-card">
-        <div class="team-avatar"><img src="assets/images/nick.jpg" alt="Nick"></div>
-        <h3>Nick</h3>
-        <div class="role">Financial Services</div>
-        <a href="https://www.linkedin.com/in/maceynick/" class="linkedin-link" target="_blank"><svg viewBox="0 0 24 24" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="4" fill="#0077B5"/><path d="M7.5 10.5h-2v7h2v-7zM6.5 9.5a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5zM10.5 10.5h2v.9c.4-.6 1.2-1.1 2.2-1.1 2.1 0 2.8 1.4 2.8 3.3v3.9h-2V14c0-.9-.3-1.7-1.2-1.7s-1.3.8-1.3 1.7v3.5h-2v-7z" fill="white"/></svg> LinkedIn</a>
-      </div>
-      <div class="team-card">
-        <div class="team-avatar"><img src="assets/images/tom.jpg" alt="Tom Spengler"></div>
-        <h3>Tom</h3>
-        <div class="role">Advisor &amp; Investor</div>
-        <a href="https://www.linkedin.com/in/tomspengler/" class="linkedin-link" target="_blank"><svg viewBox="0 0 24 24" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="4" fill="#0077B5"/><path d="M7.5 10.5h-2v7h2v-7zM6.5 9.5a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5zM10.5 10.5h2v.9c.4-.6 1.2-1.1 2.2-1.1 2.1 0 2.8 1.4 2.8 3.3v3.9h-2V14c0-.9-.3-1.7-1.2-1.7s-1.3.8-1.3 1.7v3.5h-2v-7z" fill="white"/></svg> LinkedIn</a>
-      </div>
-      <div class="team-card">
-        <div class="team-avatar"><img src="assets/images/christophe.jpg" alt="Christophe"></div>
-        <h3>Christophe</h3>
-        <div class="role">Advisor</div>
-        <a href="https://www.linkedin.com/in/christophe-camperi-ginestet-1b15932/" class="linkedin-link" target="_blank"><svg viewBox="0 0 24 24" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="4" fill="#0077B5"/><path d="M7.5 10.5h-2v7h2v-7zM6.5 9.5a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5zM10.5 10.5h2v.9c.4-.6 1.2-1.1 2.2-1.1 2.1 0 2.8 1.4 2.8 3.3v3.9h-2V14c0-.9-.3-1.7-1.2-1.7s-1.3.8-1.3 1.7v3.5h-2v-7z" fill="white"/></svg> LinkedIn</a>
-      </div>
-      <div class="team-card">
-        <div class="team-avatar"><img src="assets/images/oussama.jpg" alt="Oussama"></div>
-        <h3>Oussama</h3>
-        <div class="role">Founding Engineer</div>
-        <a href="https://www.linkedin.com/in/oussamala/" class="linkedin-link" target="_blank"><svg viewBox="0 0 24 24" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="4" fill="#0077B5"/><path d="M7.5 10.5h-2v7h2v-7zM6.5 9.5a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5zM10.5 10.5h2v.9c.4-.6 1.2-1.1 2.2-1.1 2.1 0 2.8 1.4 2.8 3.3v3.9h-2V14c0-.9-.3-1.7-1.2-1.7s-1.3.8-1.3 1.7v3.5h-2v-7z" fill="white"/></svg> LinkedIn</a>
-      </div>
-      <div class="team-card">
-        <div class="team-avatar"><img src="assets/images/clement.jpg" alt="Clément"></div>
-        <h3>Clément</h3>
-        <div class="role">Founding Engineer</div>
-        <a href="https://www.linkedin.com/in/clement-guigon/" class="linkedin-link" target="_blank"><svg viewBox="0 0 24 24" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="4" fill="#0077B5"/><path d="M7.5 10.5h-2v7h2v-7zM6.5 9.5a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5zM10.5 10.5h2v.9c.4-.6 1.2-1.1 2.2-1.1 2.1 0 2.8 1.4 2.8 3.3v3.9h-2V14c0-.9-.3-1.7-1.2-1.7s-1.3.8-1.3 1.7v3.5h-2v-7z" fill="white"/></svg> LinkedIn</a>
+      <!-- Row 2: Financial Advisor + Engineers (centered) -->
+      <div class="team-row">
+        <div class="team-card">
+          <div class="team-avatar"><img src="assets/images/geoffrey.jpg" alt="Geoffrey"></div>
+          <h3>Geoffrey</h3>
+          <div class="role">Financial Advisor</div>
+          <a href="https://www.linkedin.com/in/geoffrey-laurendeau-10b78478/" class="linkedin-link" target="_blank"><svg viewBox="0 0 24 24" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="4" fill="#0077B5"/><path d="M7.5 10.5h-2v7h2v-7zM6.5 9.5a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5zM10.5 10.5h2v.9c.4-.6 1.2-1.1 2.2-1.1 2.1 0 2.8 1.4 2.8 3.3v3.9h-2V14c0-.9-.3-1.7-1.2-1.7s-1.3.8-1.3 1.7v3.5h-2v-7z" fill="white"/></svg> LinkedIn</a>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar"><img src="assets/images/oussama.jpg" alt="Oussama"></div>
+          <h3>Oussama</h3>
+          <div class="role">Founding Engineer</div>
+          <a href="https://www.linkedin.com/in/oussamala/" class="linkedin-link" target="_blank"><svg viewBox="0 0 24 24" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="4" fill="#0077B5"/><path d="M7.5 10.5h-2v7h2v-7zM6.5 9.5a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5zM10.5 10.5h2v.9c.4-.6 1.2-1.1 2.2-1.1 2.1 0 2.8 1.4 2.8 3.3v3.9h-2V14c0-.9-.3-1.7-1.2-1.7s-1.3.8-1.3 1.7v3.5h-2v-7z" fill="white"/></svg> LinkedIn</a>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar"><img src="assets/images/clement.jpg" alt="Clément"></div>
+          <h3>Clément</h3>
+          <div class="role">Founding Engineer</div>
+          <a href="https://www.linkedin.com/in/clement-guigon/" class="linkedin-link" target="_blank"><svg viewBox="0 0 24 24" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="4" fill="#0077B5"/><path d="M7.5 10.5h-2v7h2v-7zM6.5 9.5a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5zM10.5 10.5h2v.9c.4-.6 1.2-1.1 2.2-1.1 2.1 0 2.8 1.4 2.8 3.3v3.9h-2V14c0-.9-.3-1.7-1.2-1.7s-1.3.8-1.3 1.7v3.5h-2v-7z" fill="white"/></svg> LinkedIn</a>
+        </div>
       </div>
     </div>
     </div>
