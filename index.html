@@ -857,8 +857,8 @@ footer p {
 
 <section class="hero">
   <div class="hero-video-wrap">
-    <video autoplay muted loop playsinline>
-      <source src="assets/video/hero.mp4" type="video/mp4">
+    <video autoplay muted loop playsinline id="hero-video">
+      <source id="hero-video-src" src="assets/video/hero.mp4" type="video/mp4">
     </video>
     <div class="hero-overlay"></div>
   </div>
@@ -946,56 +946,30 @@ footer p {
       </div>
     </div>
 
-    <!-- Three columns: Sensors, Data, AI Brain -->
+    <!-- Cards title -->
+    <div class="reveal" style="text-align: center; margin-bottom: 32px;">
+      <h2 style="font-size: clamp(1.4rem, 2.4vw, 2rem); font-weight: 700; color: #ffffff; letter-spacing: -0.02em; line-height: 1.2; margin: 0;">Humanoids are Well Suited for Inspection</h2>
+    </div>
+
+    <!-- Three columns -->
     <div class="reveal" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-bottom: 48px;">
 
-      <!-- Sensors -->
-      <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 36px 32px; display: flex; flex-direction: column; gap: 20px; position: relative;">
-        <div style="position: absolute; top: 24px; right: 24px; width: 72px; height: 72px; background: rgba(255,255,255,0.08); border-radius: 14px; display: flex; align-items: center; justify-content: center;">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"/>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-            <circle cx="11" cy="11" r="3"/>
-          </svg>
-        </div>
-        <div style="padding-right: 88px;">
-          <div style="font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #ffffff; margin-bottom: 10px;">Sensors</div>
-          <h3 style="font-size: 1.2rem; font-weight: 700; color: #ffffff; margin: 0 0 12px 0; line-height: 1.3;">Superhuman Perception</h3>
-        </div>
-        <p style="color: rgba(255,255,255,0.6); font-size: 0.93rem; line-height: 1.65; margin: 0;">We embed inspection sensors directly into our humanoid &mdash; thermal, spectral, and dimensional &mdash; giving it perception no human eye can match.</p>
+      <!-- High Integrity -->
+      <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 36px 32px; display: flex; flex-direction: column; gap: 16px;">
+        <h3 style="font-size: 1.1rem; font-weight: 700; color: #ffffff; margin: 0; line-height: 1.3;">High Integrity</h3>
+        <p style="color: rgba(255,255,255,0.6); font-size: 0.93rem; line-height: 1.65; margin: 0;">Bias-free and immune to coercion, institutional pressure, or calibration drift.</p>
       </div>
 
-      <!-- Data -->
-      <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 36px 32px; display: flex; flex-direction: column; gap: 20px; position: relative;">
-        <div style="position: absolute; top: 24px; right: 24px; width: 72px; height: 72px; background: rgba(255,255,255,0.08); border-radius: 14px; display: flex; align-items: center; justify-content: center;">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-            <polyline points="14 2 14 8 20 8"/>
-            <line x1="16" y1="13" x2="8" y2="13"/>
-            <line x1="16" y1="17" x2="8" y2="17"/>
-            <polyline points="10 9 9 9 8 9"/>
-          </svg>
-        </div>
-        <div style="padding-right: 88px;">
-          <div style="font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #ffffff; margin-bottom: 10px;">Data</div>
-          <h3 style="font-size: 1.2rem; font-weight: 700; color: #ffffff; margin: 0 0 12px 0; line-height: 1.3;">Superhuman Precision</h3>
-        </div>
-        <p style="color: rgba(255,255,255,0.6); font-size: 0.93rem; line-height: 1.65; margin: 0;">We train our humanoid on standards, compliance requirements, and historical inspection data so it understands the full context of every decision.</p>
+      <!-- Superior Quality -->
+      <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 36px 32px; display: flex; flex-direction: column; gap: 16px;">
+        <h3 style="font-size: 1.1rem; font-weight: 700; color: #ffffff; margin: 0; line-height: 1.3;">Superior Quality</h3>
+        <p style="color: rgba(255,255,255,0.6); font-size: 0.93rem; line-height: 1.65; margin: 0;">Advanced sensors and machine-level precision detect defects missed by humans.</p>
       </div>
 
-      <!-- AI Brain -->
-      <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 36px 32px; display: flex; flex-direction: column; gap: 20px; position: relative;">
-        <div style="position: absolute; top: 24px; right: 24px; width: 72px; height: 72px; background: rgba(255,255,255,0.08); border-radius: 14px; display: flex; align-items: center; justify-content: center;">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-1.16z"/>
-            <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-1.16z"/>
-          </svg>
-        </div>
-        <div style="padding-right: 88px;">
-          <div style="font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #ffffff; margin-bottom: 10px;">AI Brain</div>
-          <h3 style="font-size: 1.2rem; font-weight: 700; color: #ffffff; margin: 0 0 12px 0; line-height: 1.3;">Superhuman Decisions</h3>
-        </div>
-        <p style="color: rgba(255,255,255,0.6); font-size: 0.93rem; line-height: 1.65; margin: 0;">An AI that fuses and processes all sensor data for high-precision inspection &mdash; bias-free, without coercion or calibration drift.</p>
+      <!-- Available On-Demand -->
+      <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 36px 32px; display: flex; flex-direction: column; gap: 16px;">
+        <h3 style="font-size: 1.1rem; font-weight: 700; color: #ffffff; margin: 0; line-height: 1.3;">Available On-Demand</h3>
+        <p style="color: rgba(255,255,255,0.6); font-size: 0.93rem; line-height: 1.65; margin: 0;">Deploy without recruitment cycles, security clearance delays, or training pipelines.</p>
       </div>
 
     </div>
@@ -1149,6 +1123,23 @@ revealEls.forEach(el => obs.observe(el));
 
 const nav = document.getElementById('nav');
 // nav is part of the hero — scrolls away naturally
+
+// Swap hero video source based on viewport width
+(function() {
+  const video = document.getElementById('hero-video');
+  const src = document.getElementById('hero-video-src');
+  function loadHeroVideo() {
+    const isMobile = window.innerWidth <= 768;
+    const desired = isMobile ? 'assets/video/hero-phone.mp4' : 'assets/video/hero.mp4';
+    if (src.getAttribute('src') !== desired) {
+      src.setAttribute('src', desired);
+      video.load();
+      video.play();
+    }
+  }
+  loadHeroVideo();
+  window.addEventListener('resize', loadHeroVideo);
+})();
 
 document.querySelectorAll('.nav-links a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
