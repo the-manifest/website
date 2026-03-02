@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Manifest — Humanoids for European Defence</title>
+<title>Manifest</title>
+<link rel="icon" type="image/png" href="/favicon-dark.png" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/png" href="/favicon-light.png" media="(prefers-color-scheme: dark)">
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -442,23 +444,23 @@ section { padding: 100px 0; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
-  margin-top: 36px;
+  gap: 12px;
+  margin-top: 24px;
   width: 100%;
 }
 .team-row {
   display: flex;
   justify-content: center;
-  gap: 16px;
-  flex-wrap: wrap;
+  gap: 12px;
+  flex-wrap: nowrap;
 }
 .team-card {
-  width: 200px;
+  width: 172px;
 }
 
 .team-card {
   text-align: center;
-  padding: 24px 12px;
+  padding: 16px 8px;
   background: var(--bg);
   border-radius: 8px;
 }
@@ -472,8 +474,8 @@ section { padding: 100px 0; }
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 16px;
-  font-size: 1.1rem;
+  margin: 0 auto 10px;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--text-secondary);
   overflow: hidden;
@@ -498,13 +500,13 @@ section { padding: 100px 0; }
 .linkedin-link:hover { opacity: 1; }
 
 .team-card h3 {
-  font-size: 0.88rem;
+  font-size: 0.78rem;
   font-weight: 500;
-  margin-bottom: 3px;
+  margin-bottom: 2px;
 }
 
 .team-card .role {
-  font-size: 0.72rem;
+  font-size: 0.65rem;
   color: var(--text-muted);
   line-height: 1.4;
 }
@@ -984,27 +986,27 @@ footer p {
     <div class="partners-grid">
       <div class="partner-card reveal">
         <div class="partner-logo"><img src="assets/images/partner-0.png" alt="NVIDIA"></div>
-        <p>Accelerated computing, simulation tools, and hardware support for our humanoid platform through the NVIDIA Inception program.</p>
+        <p>Powering our open-source, French-hosted, defense-compliant humanoid brain with the world's leading AI computing platform.</p>
       </div>
       <div class="partner-card reveal">
         <div class="partner-logo"><img src="assets/images/partner-1.png" alt="SecNumCloud"></div>
-        <p>Sovereign cloud infrastructure certified by ANSSI, ensuring compliance with French defence security standards.</p>
+        <p>Cloud infrastructure certified by ANSSI, ensuring our AI, data, and operations meet French defense security standards.</p>
       </div>
       <div class="partner-card reveal">
         <div class="partner-logo"><img src="assets/images/partner-2.png" alt="Aerospace Valley Member"></div>
-        <p>Connecting Manifest to industry experts, suppliers, and partners within Europe's aerospace and defence ecosystem.</p>
+        <p>Access to France and Europe's aerospace and defense industrial network, supporting supply chain development and regulatory navigation.</p>
       </div>
       <div class="partner-card reveal">
         <div class="partner-logo"><img src="assets/images/partner-3.png" alt="Robotics Place"></div>
-        <p>Access to a thriving community of robotics experts, technology partners, and potential customers across France and beyond.</p>
+        <p>France's premier robotics cluster connects Manifest to robotics experts and technology partners across France and beyond.</p>
       </div>
       <div class="partner-card reveal">
         <div class="partner-logo"><img src="assets/images/partner-4.png" alt="Aktantis Member"></div>
-        <p>A powerful community of European deeptech experts, technology partners, and valuable resources.</p>
+        <p>A leading deeptech cluster connecting Manifest to industrial partners, research institutions, and the French defense innovation ecosystem.</p>
       </div>
       <div class="partner-card reveal">
         <div class="partner-logo"><img src="assets/images/partner-5.png" alt="Manifest Ecosystem" style="height: 90px; max-width: 200px;"></div>
-        <p>We are building an ecosystem of partners who will provide consulting, transportation, MRO, and end-of-life services.</p>
+        <p>A growing network of partners providing the services required to deploy and sustain humanoid capabilities at national scale.</p>
       </div>
     </div>
   </div>
@@ -1073,13 +1075,15 @@ footer p {
 <script>
 // ── Team grid ──
 const TEAM = [
-  { row: 1, img: 'charles.jpg',    name: 'Charles-Henri', role: 'Founder',           url: 'https://www.linkedin.com/in/charlesblanchet/' },
-  { row: 1, img: 'oussama.jpg',    name: 'Oussama',       role: 'Founding Engineer', url: 'https://www.linkedin.com/in/oussamala/' },
-  { row: 1, img: 'clement.jpg',    name: 'Clément',       role: 'Founding Engineer', url: 'https://www.linkedin.com/in/clement-guigon/' },
-  { row: 2, img: 'nick.jpg',       name: 'Nick',          role: 'Financial Services',url: 'https://www.linkedin.com/in/maceynick/' },
-  { row: 2, img: 'tom.jpg',        name: 'Tom',           role: 'Advisor & Investor',url: 'https://www.linkedin.com/in/tomspengler/' },
-  { row: 2, img: 'christophe.jpg', name: 'Christophe',    role: 'Advisor',           url: 'https://www.linkedin.com/in/christophe-camperi-ginestet-1b15932/' },
-  { row: 2, img: 'geoffrey.jpg',   name: 'Geoffrey',      role: 'Financial Advisor', url: 'https://www.linkedin.com/in/geoffrey-laurendeau-10b78478/' },
+  { row: 1, img: 'charles.jpg',      name: 'Charles-Henri',  role: 'Founder',           url: 'https://www.linkedin.com/in/charlesblanchet/' },
+  { row: 1, img: 'oussama.jpg',      name: 'Oussama',        role: 'Founding Engineer', url: 'https://www.linkedin.com/in/oussamala/' },
+  { row: 1, img: 'clement.jpg',      name: 'Clément',        role: 'Founding Engineer', url: 'https://www.linkedin.com/in/clement-guigon/' },
+  { row: 1, img: 'nick.jpg',         name: 'Nick',           role: 'Financial Services',url: 'https://www.linkedin.com/in/maceynick/' },
+  { row: 1, img: 'christophe.jpg',   name: 'Christophe',     role: 'Advisor',           url: 'https://www.linkedin.com/in/christophe-camperi-ginestet-1b15932/' },
+  { row: 2, img: 'tom.jpg',          name: 'Tom',            role: 'Advisor & Investor',url: 'https://www.linkedin.com/in/tomspengler/' },
+  { row: 2, img: 'geoffrey.jpg',     name: 'Geoffrey',       role: 'Financial Advisor', url: 'https://www.linkedin.com/in/geoffrey-laurendeau-10b78478/' },
+  { row: 2, img: 'christophe-2.png', name: 'Christophe',     role: 'Defence Advisor',   url: 'https://www.linkedin.com/in/christopheysewyn/?locale=en_US' },
+  { row: 2, img: 'jean-philippe.png',name: 'Jean-Philippe',  role: 'Defence Advisor',   url: 'https://www.linkedin.com/in/jean-philippe-de-hauteclocque-6ab700201/' },
 ];
 
 const LI_SVG = `<svg viewBox="0 0 24 24" width="14" height="14" style="flex-shrink:0"><rect x="2" y="2" width="20" height="20" rx="4" fill="#0077B5"/><path d="M7 10h2v7H7zM8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM11 10h2v1h.03C13.4 10.4 14.2 10 15.2 10c2.1 0 2.8 1.4 2.8 3.2V17h-2v-3.5c0-.8-.3-1.5-1.1-1.5s-1.4.7-1.4 1.5V17h-2v-7z" fill="white"/></svg>`;
