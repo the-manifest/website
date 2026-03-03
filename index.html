@@ -98,9 +98,14 @@ nav.scrolled::before {
 nav .container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   max-width: 100%;
   padding: 0 40px;
+}
+
+/* Keep nav links/hamburger vertically aligned at their original position */
+.nav-links, .hamburger {
+  margin-top: 14px;
 }
 
 .nav-logo {
@@ -110,7 +115,7 @@ nav .container {
 }
 
 .nav-logo-img {
-  height: 44px;
+  height: 80px;
   width: auto;
   transition: opacity 0.3s, filter 0.3s;
 }
@@ -796,9 +801,12 @@ footer p {
   #inspection-job [style*="font-size: clamp(3rem"] { font-size: clamp(2.2rem, 11vw, 3.2rem) !important; }
 
   /* Value */
-  .value-grid { grid-template-columns: 1fr; }
-  .value-card .tag { font-size: 0.95rem; }
-  .value-card p { font-size: 0.88rem; }
+  #value [style*="grid-template-columns: 2fr 3fr"] {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 40px !important;
+  }
+  #value [style*="position: sticky"] { position: static !important; }
 
   /* Partners */
   .partners-grid { grid-template-columns: 1fr; }
@@ -834,7 +842,7 @@ footer p {
     <a href="#" class="nav-logo"><img src="assets/images/logo.png" alt="Manifest" class="nav-logo-img"></a>
     <ul class="nav-links">
       <li><a href="#value">Strategic Autonomy</a></li>
-      <li><a href="#inspection-job">First Use Case</a></li>
+      <li><a href="#inspection-job">Inspection</a></li>
       <li><a href="#partners">Partners</a></li>
       <li><a href="#team">Team</a></li>
       <li><a href="#contact" class="nav-cta">Contact</a></li>
@@ -849,7 +857,7 @@ footer p {
 <div class="mobile-drawer" id="mobile-drawer">
   <button class="drawer-close" id="drawer-close" aria-label="Close menu">&#x2715;</button>
   <a href="#value" class="drawer-link">Strategic Autonomy</a>
-  <a href="#inspection-job" class="drawer-link">First Use Case</a>
+  <a href="#inspection-job" class="drawer-link">Inspection</a>
   <a href="#partners" class="drawer-link">Partners</a>
   <a href="#team" class="drawer-link">Team</a>
   <a href="#contact" class="drawer-link drawer-cta">Contact</a>
@@ -865,71 +873,45 @@ footer p {
   <h1>Humanoids for European Defence</h1>
 </section>
 
-<section id="mission">
-  <div class="container reveal">
-    <p class="mission-statement"><span style="display:block">Manifest is the first Humanoid Solution</span><span style="display:block">Purpose Built for European Defence</span></p>
-  </div>
-</section>
-
-<section id="value">
+<section id="value" style="background: var(--bg-soft); padding: 80px 0;">
   <div class="container">
-    <div class="reveal" style="text-align: center; margin-bottom: 48px;">
-      <h2 class="section-title">Enabling Strategic Autonomy</h2>
+
+    <!-- Mission — centered -->
+    <div class="reveal" style="text-align: center; margin-bottom: 72px;">
+      <p class="mission-statement"><span style="display:block">Manifest is the first Humanoid Solution</span><span style="display:block">Purpose-Built for European Defence</span></p>
     </div>
-    <div class="reveal" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
 
-      <div style="background: var(--bg); border: 1px solid var(--border); border-top: 3px solid var(--text); border-radius: 12px; padding: 36px 28px; display: flex; flex-direction: column; gap: 20px; min-height: 280px; transition: box-shadow 0.3s; box-shadow: 0 2px 12px rgba(0,0,0,0.04);">
-        <div style="width: 72px; height: 72px; background: var(--bg-soft); border-radius: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 21s7-3.5 7-8.5V5.5l-7-2.5-7 2.5V12.5c0 5 7 8.5 7 8.5z"/><path d="M12 18s4.5-2.5 4.5-6V8l-4.5-1.5L7.5 8v4c0 3.5 4.5 6 4.5 6z"/>
-          </svg>
+    <!-- Heading left / pillars right — fits in one viewport -->
+    <div class="reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+
+      <!-- Left: large heading -->
+      <h2 style="font-size: clamp(2.4rem, 4vw, 3.4rem); font-weight: 700; color: var(--text); letter-spacing: -0.03em; line-height: 1.1; margin: 0;">Enabling<br>Strategic<br>Autonomy</h2>
+
+      <!-- Right: three pillars as pure text, accent dot separator -->
+      <div style="display: flex; flex-direction: column; gap: 32px;">
+
+        <div>
+          <div style="font-size: 1.05rem; font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin-bottom: 8px;">Deploy Next Generation Military Forces</div>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.75; margin: 0;">From inspection to complex combat functions, humanoids will reduce dependence on foreign forces.</p>
         </div>
-        <div style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
-          <div style="font-size: 1.05rem; font-weight: 700; color: var(--text); line-height: 1.3;">Deploy Next Generation Military Forces</div>
-          <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7; margin: 0;">From inspection to complex combat functions, humanoids will reduce dependence on foreign forces.</p>
+
+        <div style="width: 100%; height: 1px; background: var(--border); opacity: 0.5;"></div>
+
+        <div>
+          <div style="font-size: 1.05rem; font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin-bottom: 8px;">Increase Defense Industrial Capacity</div>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.75; margin: 0;">Deploy Manifest humanoids into defense production to meet rearmament commitments.</p>
         </div>
+
+        <div style="width: 100%; height: 1px; background: var(--border); opacity: 0.5;"></div>
+
+        <div>
+          <div style="font-size: 1.05rem; font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin-bottom: 8px;">Guarantee Compliance with Defense Standards</div>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.75; margin: 0;">All components are certified as compliant with French procurement and national security standards.</p>
+        </div>
+
       </div>
-
-      <div style="background: var(--bg); border: 1px solid var(--border); border-top: 3px solid var(--text); border-radius: 12px; padding: 36px 28px; display: flex; flex-direction: column; gap: 20px; min-height: 280px; transition: box-shadow 0.3s; box-shadow: 0 2px 12px rgba(0,0,0,0.04);">
-        <div style="width: 72px; height: 72px; background: var(--bg-soft); border-radius: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <!-- Main factory body -->
-            <rect x="2" y="13" width="14" height="9"/>
-            <!-- Tall tower on right -->
-            <rect x="16" y="8" width="6" height="14"/>
-            <!-- Left chimney -->
-            <rect x="4" y="7" width="2" height="6"/>
-            <!-- Right chimney -->
-            <rect x="8" y="9" width="2" height="4"/>
-            <!-- Windows on main body -->
-            <rect x="4" y="16" width="2" height="3"/>
-            <rect x="8" y="16" width="2" height="3"/>
-            <rect x="12" y="16" width="2" height="3"/>
-            <!-- Window on tower -->
-            <rect x="18" y="11" width="2" height="2"/>
-            <!-- Ground line -->
-            <line x1="1" y1="22" x2="23" y2="22"/>
-          </svg>
-        </div>
-        <div style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
-          <div style="font-size: 1.05rem; font-weight: 700; color: var(--text); line-height: 1.3;">Increase Defense Industrial Capacity</div>
-          <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7; margin: 0;">Deploy Manifest humanoids into defense production to meet rearmament commitments.</p>
-        </div>
-      </div>
-
-      <div style="background: var(--bg); border: 1px solid var(--border); border-top: 3px solid var(--text); border-radius: 12px; padding: 36px 28px; display: flex; flex-direction: column; gap: 20px; min-height: 280px; transition: box-shadow 0.3s; box-shadow: 0 2px 12px rgba(0,0,0,0.04);">
-        <div style="width: 72px; height: 72px; background: var(--bg-soft); border-radius: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/><polyline points="9.5 8 11 9.5 14.5 6.5"/>
-          </svg>
-        </div>
-        <div style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
-          <div style="font-size: 1.05rem; font-weight: 700; color: var(--text); line-height: 1.3;">Guarantee Compliance with Defense Standards</div>
-          <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7; margin: 0;">All components are certified as compliant with French procurement and national security standards.</p>
-        </div>
-      </div>
-
     </div>
+
   </div>
 </section>
 
@@ -939,7 +921,7 @@ footer p {
     <!-- Hero: header left, image right -->
     <div class="reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-bottom: 64px;">
       <div>
-        <h2 style="font-size: clamp(1.8rem, 3.2vw, 2.6rem); font-weight: 700; color: #ffffff; letter-spacing: -0.03em; line-height: 1.2; margin: 0;">Our First Use Case is Inspection</h2>
+        <h2 style="font-size: clamp(1.8rem, 3.2vw, 2.6rem); font-weight: 700; color: #ffffff; letter-spacing: -0.03em; line-height: 1.2; margin: 0;">Inspection</h2>
       </div>
       <div style="border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 0 40px rgba(255,255,255,0.08), 0 8px 32px rgba(0,0,0,0.6);">
         <img src="assets/images/humanoid-inspecting.png" alt="Humanoid Inspector" style="width: 100%; display: block; object-fit: cover;">
@@ -966,9 +948,9 @@ footer p {
         <p style="color: rgba(255,255,255,0.6); font-size: 0.93rem; line-height: 1.65; margin: 0;">Advanced sensors and machine-level precision detect defects missed by humans.</p>
       </div>
 
-      <!-- Available On-Demand -->
+      <!-- On-Demand -->
       <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 36px 32px; display: flex; flex-direction: column; gap: 16px;">
-        <h3 style="font-size: 1.1rem; font-weight: 700; color: #ffffff; margin: 0; line-height: 1.3;">Available On-Demand</h3>
+        <h3 style="font-size: 1.1rem; font-weight: 700; color: #ffffff; margin: 0; line-height: 1.3;">On-Demand</h3>
         <p style="color: rgba(255,255,255,0.6); font-size: 0.93rem; line-height: 1.65; margin: 0;">Deploy without recruitment cycles, security clearance delays, or training pipelines.</p>
       </div>
 
@@ -980,8 +962,8 @@ footer p {
 <section id="partners">
   <div class="container">
     <div class="reveal" style="text-align: center;">
-      <div class="section-label">Our Partners</div>
-      <h2 class="section-title">A Coalition of Technology, Services, and Defence Experts</h2>
+
+      <h2 class="section-title">A Coalition of Technology, Services, and Defence Partners</h2>
     </div>
     <div class="partners-grid">
       <div class="partner-card reveal">
@@ -1009,16 +991,27 @@ footer p {
         <p>A growing network of partners providing the services required to deploy and sustain humanoid capabilities at national scale.</p>
       </div>
     </div>
+    <div class="reveal" style="text-align: center; margin-top: 48px;">
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0 0 14px;">Looking to be part of Europe's defence technology ecosystem?</p>
+      <a href="#contact" style="display: inline-flex; align-items: center; gap: 8px; color: var(--text); font-size: 0.9rem; font-weight: 500; text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: opacity 0.2s;">
+        Become a partner <span style="font-size: 1rem;">→</span>
+      </a>
+    </div>
   </div>
 </section>
 
 <section id="team">
   <div class="container">
     <div class="reveal" style="text-align: center;">
-      <div class="section-label">Team</div>
-      <h2 class="section-title">Committed to European Safety &amp; Security</h2>
+      <h2 class="section-title">A Team Committed to European Safety &amp; Security</h2>
     </div>
     <div class="team-grid reveal" id="team-grid"></div>
+    <div class="reveal" style="text-align: center; margin-top: 56px;">
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0 0 14px;">Passionate about European defence and autonomous systems?</p>
+      <a href="#contact" style="display: inline-flex; align-items: center; gap: 8px; color: var(--text); font-size: 0.9rem; font-weight: 500; text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: opacity 0.2s;">
+        Join the team <span style="font-size: 1rem;">→</span>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -1026,7 +1019,7 @@ footer p {
   <div class="container">
     <div class="contact-layout">
       <div class="contact-info reveal">
-        <h2 class="section-title">Get in touch</h2>
+        <h2 class="section-title">Get In Touch</h2>
         <p class="section-body">Have a question or want to learn more about what we're building?</p>
         <div class="contact-meta">
           Hello@the-manifest.com<br>
@@ -1075,7 +1068,7 @@ footer p {
 <script>
 // ── Team grid ──
 const TEAM = [
-  { row: 1, img: 'charles.jpg',      name: 'Charles-Henri',  role: 'Founder',           url: 'https://www.linkedin.com/in/charlesblanchet/' },
+  { row: 1, img: 'charles.jpg',      name: 'Charles-Henri',  role: 'CEO & Founder',     url: 'https://www.linkedin.com/in/charlesblanchet/' },
   { row: 1, img: 'oussama.jpg',      name: 'Oussama',        role: 'Founding Engineer', url: 'https://www.linkedin.com/in/oussamala/' },
   { row: 1, img: 'clement.jpg',      name: 'Clément',        role: 'Founding Engineer', url: 'https://www.linkedin.com/in/clement-guigon/' },
   { row: 1, img: 'nick.jpg',         name: 'Nick',           role: 'Financial Services',url: 'https://www.linkedin.com/in/maceynick/' },
@@ -1149,13 +1142,42 @@ document.querySelectorAll('.nav-links a[href^="#"]').forEach(a => {
   });
 });
 
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 20) {
+const navLogoImg = document.querySelector('.nav-logo-img');
+const navLogoEl  = document.querySelector('.nav-logo');
+const LOGO_MAX = 80;
+const LOGO_MIN = 44;
+const PAD_MAX  = 24; // extra top margin at full size
+const SHRINK_OVER = 160; // px of scroll over which logo shrinks
+
+let rafPending = false;
+
+function updateNav() {
+  const scrollY = window.scrollY;
+  const t = Math.min(1, scrollY / SHRINK_OVER);
+  // Ease out cubic for smooth deceleration (works symmetrically on scroll-up too)
+  const eased = 1 - Math.pow(1 - t, 3);
+  const logoHeight   = LOGO_MAX - eased * (LOGO_MAX - LOGO_MIN);
+  const logoMarginTop = PAD_MAX - eased * PAD_MAX;
+  if (navLogoImg) navLogoImg.style.height = logoHeight + 'px';
+  if (navLogoEl)  navLogoEl.style.marginTop = logoMarginTop + 'px';
+
+  if (scrollY > 20) {
     nav.classList.add('scrolled');
   } else {
     nav.classList.remove('scrolled');
   }
-});
+  rafPending = false;
+}
+
+// Apply initial state immediately on load
+updateNav();
+
+window.addEventListener('scroll', () => {
+  if (!rafPending) {
+    rafPending = true;
+    requestAnimationFrame(updateNav);
+  }
+}, { passive: true });
 
 // ── Hamburger menu ──
 const hamburger = document.getElementById('hamburger');
