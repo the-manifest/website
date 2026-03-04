@@ -593,6 +593,42 @@ section { padding: 100px 0; }
 
 .form-field { display: flex; flex-direction: column; }
 
+.form-field .field-error {
+  color: #ff6b6b;
+  font-size: 0.75rem;
+  margin-top: 4px;
+  display: none;
+}
+.form-field.has-error input,
+.form-field.has-error textarea {
+  border-color: #ff6b6b !important;
+  outline: none;
+}
+.form-field.has-error .field-error { display: block; }
+
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 40px 24px;
+  color: #ffffff;
+}
+.form-success svg { margin-bottom: 16px; }
+.form-success h3 { font-size: 1.2rem; font-weight: 600; margin: 0 0 8px; }
+.form-success p { color: rgba(255,255,255,0.6); font-size: 0.9rem; margin: 0; }
+
+.form-error-banner {
+  display: none;
+  background: rgba(255,107,107,0.12);
+  border: 1px solid rgba(255,107,107,0.4);
+  border-radius: 6px;
+  padding: 10px 14px;
+  color: #ff6b6b;
+  font-size: 0.82rem;
+  margin-bottom: 12px;
+}
+
+.submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
 .submit-btn {
   padding: 13px 32px;
   background: var(--text);
@@ -885,7 +921,7 @@ footer p {
     <div class="reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
 
       <!-- Left: large heading -->
-      <h2 style="font-size: clamp(2.4rem, 4vw, 3.4rem); font-weight: 700; color: var(--text); letter-spacing: -0.03em; line-height: 1.1; margin: 0;">Enabling<br>Strategic<br>Autonomy</h2>
+      <h2 style="font-size: min(3.5vw, 2.4rem); font-weight: 600; color: var(--text); letter-spacing: -0.02em; line-height: 1.5; margin: 0;">Enabling Strategic Autonomy</h2>
 
       <!-- Right: three pillars as pure text, accent dot separator -->
       <div style="display: flex; flex-direction: column; gap: 32px;">
@@ -921,7 +957,7 @@ footer p {
     <!-- Hero: header left, image right -->
     <div class="reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-bottom: 64px;">
       <div>
-        <h2 style="font-size: clamp(1.8rem, 3.2vw, 2.6rem); font-weight: 700; color: #ffffff; letter-spacing: -0.03em; line-height: 1.2; margin: 0;">Inspection</h2>
+        <h2 style="font-size: clamp(1.8rem, 3.2vw, 2.6rem); font-weight: 700; color: #ffffff; letter-spacing: -0.03em; line-height: 1.2; margin: 0;">Inspection is our first use case</h2>
       </div>
       <div style="border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 0 40px rgba(255,255,255,0.08), 0 8px 32px rgba(0,0,0,0.6);">
         <img src="assets/images/humanoid-inspecting.png" alt="Humanoid Inspector" style="width: 100%; display: block; object-fit: cover;">
@@ -930,7 +966,7 @@ footer p {
 
     <!-- Cards title -->
     <div class="reveal" style="text-align: center; margin-bottom: 32px;">
-      <h2 style="font-size: clamp(1.4rem, 2.4vw, 2rem); font-weight: 700; color: #ffffff; letter-spacing: -0.02em; line-height: 1.2; margin: 0;">Humanoids are Well Suited for Inspection</h2>
+      <h2 style="font-size: clamp(1.4rem, 2.4vw, 2rem); font-weight: 700; color: #ffffff; letter-spacing: -0.02em; line-height: 1.2; margin: 0;">20% of Defence is Inspection</h2>
     </div>
 
     <!-- Three columns -->
@@ -1033,28 +1069,39 @@ footer p {
           <span>Follow Manifest on LinkedIn</span>
         </a>
       </div>
-      <form class="contact-form reveal" onsubmit="event.preventDefault();">
-        <div class="form-row">
-          <div class="form-field">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Your name">
+      <div id="contact-form-wrapper">
+        <form class="contact-form reveal" id="contact-form" novalidate>
+          <div class="form-error-banner" id="form-error-banner">Something went wrong. Please try again or email us directly.</div>
+          <div class="form-row">
+            <div class="form-field" id="field-name">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name">
+              <span class="field-error">Please enter your name.</span>
+            </div>
+            <div class="form-field" id="field-email">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email">
+              <span class="field-error" id="email-error">Please enter a valid email address.</span>
+            </div>
           </div>
-          <div class="form-field">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="you@company.com">
+          <div class="form-field" id="field-org">
+            <label for="org">Organization</label>
+            <input type="text" id="org" name="org" placeholder="Company or unit">
+            <span class="field-error">Please enter your organization.</span>
           </div>
+          <div class="form-field" id="field-message">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="What would you like to discuss?"></textarea>
+            <span class="field-error">Please enter a message.</span>
+          </div>
+          <button type="submit" class="submit-btn" id="submit-btn">Send Message</button>
+        </form>
+        <div class="form-success" id="form-success">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          <h3>Message sent!</h3>
+          <p>We'll get back to you at hello@the-manifest.com</p>
         </div>
-        <div class="form-field">
-          <label for="org">Organization</label>
-          <input type="text" id="org" name="org" placeholder="Company or unit">
-        </div>
-
-        <div class="form-field">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" placeholder="What would you like to discuss?"></textarea>
-        </div>
-        <button type="submit" class="submit-btn">Send Message</button>
-      </form>
+      </div>
     </div>
   </div>
 </section>
@@ -1207,6 +1254,76 @@ drawer.addEventListener('click', (e) => {
 drawer.querySelectorAll('a').forEach(a => {
   a.addEventListener('click', closeDrawer);
 });
+
+// ── Contact Form Validation & Submission ──
+(function() {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+
+  const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  function validateField(fieldId, inputId, customCheck) {
+    const field = document.getElementById(fieldId);
+    const input = document.getElementById(inputId);
+    const valid = customCheck ? customCheck(input.value.trim()) : input.value.trim() !== '';
+    field.classList.toggle('has-error', !valid);
+    return valid;
+  }
+
+  // Live-clear errors on input
+  ['name', 'email', 'org', 'message'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', function() {
+      const field = document.getElementById('field-' + id);
+      if (field) field.classList.remove('has-error');
+      document.getElementById('form-error-banner').style.display = 'none';
+    });
+  });
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    // Validate all fields
+    const validName    = validateField('field-name',    'name');
+    const validEmail   = validateField('field-email',   'email',   v => EMAIL_REGEX.test(v));
+    const validOrg     = validateField('field-org',     'org');
+    const validMessage = validateField('field-message', 'message');
+
+    if (!validName || !validEmail || !validOrg || !validMessage) return;
+
+    const confirmed = confirm('Ready to send your message to Manifest?');
+    if (!confirmed) return;
+
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: '7c78fe94-7e16-4619-9da0-a0d1c301bb6c',
+          name:    document.getElementById('name').value.trim(),
+          email:   document.getElementById('email').value.trim(),
+          org:     document.getElementById('org').value.trim(),
+          message: document.getElementById('message').value.trim()
+        })
+      });
+
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      } else {
+        throw new Error('Server error');
+      }
+    } catch {
+      document.getElementById('form-error-banner').style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Send Message';
+    }
+  });
+})();
 </script>
 </body>
 </html>
