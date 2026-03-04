@@ -457,7 +457,7 @@ section { padding: 100px 0; }
   display: flex;
   justify-content: center;
   gap: 12px;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 .team-card {
   width: 172px;
@@ -837,20 +837,25 @@ footer p {
   #inspection-job [style*="font-size: clamp(3rem"] { font-size: clamp(2.2rem, 11vw, 3.2rem) !important; }
 
   /* Value */
-  #value [style*="grid-template-columns: 2fr 3fr"] {
+  #value [style*="grid-template-columns: 2fr 3fr"],
+  #value [style*="grid-template-columns: 1fr 1fr"] {
     display: flex !important;
     flex-direction: column !important;
     gap: 40px !important;
   }
   #value [style*="position: sticky"] { position: static !important; }
 
+  /* Value heading font size */
+  #value h2[style] { font-size: clamp(1.4rem, 6vw, 2rem) !important; }
+
   /* Partners */
   .partners-grid { grid-template-columns: 1fr; }
   .partner-card p { font-size: 0.82rem; }
 
   /* Team */
-  .team-row { gap: 12px; }
-  .team-card { width: calc(50% - 6px); }
+  .team-row { gap: 10px; width: 100%; }
+  .team-card { width: calc(50% - 5px); }
+  .team-avatar { width: 88px; height: 88px; }
   .team-card h3 { font-size: 0.82rem; }
   .team-card .role { font-size: 0.68rem; }
 
