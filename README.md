@@ -20,3 +20,11 @@ Open `index.html` in a browser, or run:
 ```
 npx serve .
 ```
+
+## Debugging
+
+**Reset the language popup** (forces it to reappear on next page load):
+```js
+localStorage.removeItem('manifest-lang'); location.reload();
+```
+Run this in the browser DevTools Console (F12 → Console tab).

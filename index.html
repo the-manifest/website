@@ -45,6 +45,105 @@ body {
 .reveal.hidden { opacity: 0; transform: translateY(16px); }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
+/* ── Language Popup ── */
+.language-popup {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(8, 8, 8, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 1;
+  pointer-events: all;
+  transition: opacity 0.3s ease;
+}
+
+.language-popup.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.language-popup-card {
+  background: rgba(12, 12, 12, 0.72);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 10px;
+  padding: 28px 28px 28px;
+  max-width: 360px;
+  width: 90%;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+  text-align: center;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.language-popup-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin: 0 0 18px 0;
+}
+
+.language-popup-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.language-popup-btn {
+  padding: 10px 16px;
+  border: 1px solid rgba(255,255,255,0.28);
+  border-radius: 6px;
+  background: rgba(255,255,255,0.12);
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+}
+
+.language-popup-btn:hover {
+  background: rgba(255,255,255,0.24);
+  border-color: rgba(255,255,255,0.45);
+}
+.language-popup-btn:hover svg { stroke: #fff; }
+
+.language-popup-flag {
+  color: rgba(255,255,255,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.language-popup-text {
+  font-size: 0.85rem;
+}
+
+.language-popup-lang-code {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  opacity: 0.6;
+}
+
+@media (max-width: 480px) {
+  .language-popup-card { padding: 22px 20px 22px; }
+  .language-popup-buttons { gap: 10px; }
+  .language-popup-btn { padding: 10px 14px; }
+}
+
 /* ── Nav ── */
 nav {
   position: fixed;
@@ -132,6 +231,11 @@ nav.scrolled .nav-logo-img {
   align-items: center;
 }
 
+.nav-links li {
+  display: flex;
+  align-items: center;
+}
+
 .nav-links a {
   color: #ffffff;
   text-decoration: none;
@@ -154,6 +258,36 @@ nav.scrolled .nav-logo-img {
   transition: all 0.2s !important;
 }
 .nav-cta:hover { background: rgba(255,255,255,0.25); }
+
+.lang-switcher {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255,255,255,0.13);
+  border: 1px solid rgba(255,255,255,0.28);
+  border-radius: 20px;
+  line-height: 1;
+  white-space: nowrap;
+}
+.lang-switcher:hover { opacity: 0.75; }
+.lang-switcher svg { flex-shrink: 0; }
+
+/* Mobile nav controls (lang + hamburger side by side) */
+.nav-mobile-controls {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  flex-shrink: 0;
+}
 
 nav.scrolled .nav-links a { color: #ffffff; }
 nav.scrolled .nav-links a:hover { opacity: 0.75; }
@@ -236,13 +370,6 @@ section { padding: 100px 0; }
   padding: 60px 0;
 }
 
-#contact {
-  min-height: calc(100vh - 61px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  box-sizing: border-box;
-}
 
 .manifest-linkedin {
   display: inline-flex;
@@ -516,16 +643,26 @@ section { padding: 100px 0; }
   line-height: 1.4;
 }
 
-/* ── Contact ── */
+/* ── Contact + Footer ── */
+.contact-footer-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 #contact {
+  flex: 1;
   background: #ffffff;
-  padding: 80px 0;
+  padding: 48px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .contact-layout {
   display: grid;
   grid-template-columns: 1fr 1.3fr;
-  gap: 72px;
+  gap: 48px;
   align-items: start;
 }
 
@@ -580,7 +717,7 @@ section { padding: 100px 0; }
 
 .contact-form textarea {
   resize: vertical;
-  min-height: 120px;
+  min-height: 88px;
 }
 
 .contact-form select {
@@ -645,19 +782,50 @@ section { padding: 100px 0; }
 }
 .submit-btn:hover { opacity: 0.85; }
 
-footer p { color: rgba(255,255,255,0.35); }
-
 /* ── Footer ── */
 footer {
-  padding: 20px 0;
+  padding: 24px 0;
   border-top: 1px solid rgba(255,255,255,0.08);
   background: #111111;
 }
 footer .container {
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
+  gap: 16px;
 }
+
+.footer-tagline {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.35);
+  margin: 0;
+  white-space: nowrap;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.footer-links a {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  font-size: 0.72rem;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: rgba(255,255,255,0.8);
+}
+
+.footer-links span {
+  color: rgba(255,255,255,0.3);
+}
+
 footer p {
   font-size: 0.72rem;
   color: var(--text-muted);
@@ -730,6 +898,8 @@ footer p {
   border-radius: 8px;
   font-size: 1rem;
 }
+
+
 .drawer-close {
   position: absolute;
   top: 20px;
@@ -757,8 +927,9 @@ footer p {
 
   /* Nav */
   .nav-links { display: none; }
-  .hamburger { display: flex; }
+  .hamburger { display: flex; margin-top: 0; }
   .mobile-drawer { display: flex; }
+  .nav-mobile-controls { display: flex; }
   nav .container { padding: 0 20px; }
 
   /* Hero — full bleed, video fills screen, text overlaid */
@@ -873,35 +1044,68 @@ footer p {
   #mission { padding: 28px 0; }
   #inspection-job, #value, #partners, #team { min-height: auto; padding: 48px 0; }
   #contact { padding: 48px 0; }
+
+  /* Footer */
+  footer .container {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .footer-tagline { text-align: center; white-space: normal; }
+  .footer-links { justify-content: center; }
+  .footer-links span { display: none; }
 }
 </style>
 </head>
 <body>
 
+<!-- Language Selection Popup -->
+<div class="language-popup" id="language-popup">
+  <div class="language-popup-card">
+    <h2 class="language-popup-title">Language</h2>
+    <div class="language-popup-buttons">
+      <button class="language-popup-btn" id="lang-btn-fr">
+        <span class="language-popup-flag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+        <span class="language-popup-lang-code">FR</span>
+        <span class="language-popup-text" data-i18n="lang-french">Français</span>
+      </button>
+      <button class="language-popup-btn" id="lang-btn-en">
+        <span class="language-popup-flag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+        <span class="language-popup-lang-code">EN</span>
+        <span class="language-popup-text" data-i18n="lang-english">English</span>
+      </button>
+    </div>
+  </div>
+</div>
+
 <nav id="nav">
   <div class="container">
     <a href="#" class="nav-logo"><img src="assets/images/logo.png" alt="Manifest" class="nav-logo-img"></a>
     <ul class="nav-links">
-      <li><a href="#value">Strategic Autonomy</a></li>
-      <li><a href="#inspection-job">Inspection</a></li>
-      <li><a href="#partners">Partners</a></li>
-      <li><a href="#team">Team</a></li>
-      <li><a href="#contact" class="nav-cta">Contact</a></li>
+      <li><a href="#value" data-i18n="nav-strategic-autonomy">Strategic Autonomy</a></li>
+      <li><a href="#inspection-job" data-i18n="nav-inspection">Inspection</a></li>
+      <li><a href="#partners" data-i18n="nav-partners">Partners</a></li>
+      <li><a href="#team" data-i18n="nav-team">Team</a></li>
+      <li><a class="lang-switcher" id="lang-switcher-nav" title="Switch language"></a></li>
+      <li><a href="#contact" class="nav-cta" data-i18n="nav-contact">Contact</a></li>
     </ul>
-    <button class="hamburger" id="hamburger" aria-label="Menu" style="position:relative;z-index:300;">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="nav-mobile-controls">
+      <a class="lang-switcher" id="lang-switcher-topbar" title="Switch language"></a>
+      <button class="hamburger" id="hamburger" aria-label="Menu" style="position:relative;z-index:300;">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </nav>
 
 <!-- Mobile drawer -->
 <div class="mobile-drawer" id="mobile-drawer">
   <button class="drawer-close" id="drawer-close" aria-label="Close menu">&#x2715;</button>
-  <a href="#value" class="drawer-link">Strategic Autonomy</a>
-  <a href="#inspection-job" class="drawer-link">Inspection</a>
-  <a href="#partners" class="drawer-link">Partners</a>
-  <a href="#team" class="drawer-link">Team</a>
-  <a href="#contact" class="drawer-link drawer-cta">Contact</a>
+  <a href="#value" class="drawer-link" data-i18n="nav-strategic-autonomy">Strategic Autonomy</a>
+  <a href="#inspection-job" class="drawer-link" data-i18n="nav-inspection">Inspection</a>
+  <a href="#partners" class="drawer-link" data-i18n="nav-partners">Partners</a>
+  <a href="#team" class="drawer-link" data-i18n="nav-team">Team</a>
+  <a href="#contact" class="drawer-link drawer-cta" data-i18n="nav-contact">Contact</a>
 </div>
 
 <section class="hero">
@@ -911,7 +1115,7 @@ footer p {
     </video>
     <div class="hero-overlay"></div>
   </div>
-  <h1>Humanoids for European Defence</h1>
+  <h1 data-i18n="hero-title">Humanoids for European Defence</h1>
 </section>
 
 <section id="value" style="background: var(--bg-soft); padding: 80px 0;">
@@ -919,35 +1123,35 @@ footer p {
 
     <!-- Mission — centered -->
     <div class="reveal" style="text-align: center; margin-bottom: 72px;">
-      <p class="mission-statement"><span style="display:block">Manifest is the First Humanoid Solution</span><span style="display:block">Purpose-Built for European Defence</span></p>
+      <p class="mission-statement"><span style="display:block" data-i18n="mission-line1">Manifest is the First Humanoid Solution</span><span style="display:block" data-i18n="mission-line2">Purpose-Built for European Defence</span></p>
     </div>
 
     <!-- Heading left / pillars right — fits in one viewport -->
     <div class="reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
 
       <!-- Left: large heading -->
-      <h2 style="font-size: min(3.5vw, 2.4rem); font-weight: 600; color: var(--text); letter-spacing: -0.02em; line-height: 1.5; margin: 0;">Enabling Strategic Autonomy</h2>
+      <h2 style="font-size: min(3.5vw, 2.4rem); font-weight: 600; color: var(--text); letter-spacing: -0.02em; line-height: 1.5; margin: 0;" data-i18n="value-heading">Enabling Strategic Autonomy</h2>
 
       <!-- Right: three pillars as pure text, accent dot separator -->
       <div style="display: flex; flex-direction: column; gap: 32px;">
 
         <div>
-          <div style="font-size: 1.05rem; font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin-bottom: 8px;">Deploy Next Generation Military Forces</div>
-          <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.75; margin: 0;">Increase defense readiness with humanoids built for dull, dirty, and dangerous work.</p>
+          <div style="font-size: 1.05rem; font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin-bottom: 8px;" data-i18n="pillar1-title">Deploy Next Generation Military Forces</div>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.75; margin: 0;" data-i18n="pillar1-desc">Increase defense readiness with humanoids built for dull, dirty, and dangerous work.</p>
         </div>
 
         <div style="width: 100%; height: 1px; background: var(--border); opacity: 0.5;"></div>
 
         <div>
-          <div style="font-size: 1.05rem; font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin-bottom: 8px;">Increase Defense Industrial Capacity</div>
-          <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.75; margin: 0;">Meet rearmament goals with a workforce that delivers exceptional results around the clock.</p>
+          <div style="font-size: 1.05rem; font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin-bottom: 8px;" data-i18n="pillar2-title">Increase Defense Industrial Capacity</div>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.75; margin: 0;" data-i18n="pillar2-desc">Meet rearmament goals with a workforce that delivers exceptional results around the clock.</p>
         </div>
 
         <div style="width: 100%; height: 1px; background: var(--border); opacity: 0.5;"></div>
 
         <div>
-          <div style="font-size: 1.05rem; font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin-bottom: 8px;">Guarantee Compliance with Defense Standards</div>
-          <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.75; margin: 0;">Implement humanoids designed to meet the rigorous standards of modern defense operations.</p>
+          <div style="font-size: 1.05rem; font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin-bottom: 8px;" data-i18n="pillar3-title">Guarantee Compliance with Defense Standards</div>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.75; margin: 0;" data-i18n="pillar3-desc">Implement humanoids designed to meet the rigorous standards of modern defense operations.</p>
         </div>
 
       </div>
@@ -962,7 +1166,7 @@ footer p {
     <!-- Hero: header left, image right -->
     <div class="reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-bottom: 64px;">
       <div>
-        <h2 style="font-size: clamp(1.8rem, 3.2vw, 2.6rem); font-weight: 700; color: #ffffff; letter-spacing: -0.03em; line-height: 1.2; margin: 0;">Inspection is our<br>First Use Case</h2>
+        <h2 style="font-size: clamp(1.8rem, 3.2vw, 2.6rem); font-weight: 700; color: #ffffff; letter-spacing: -0.03em; line-height: 1.2; margin: 0;" data-i18n="inspection-title">Inspection is our<br>First Use Case</h2>
       </div>
       <div style="border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 0 40px rgba(255,255,255,0.08), 0 8px 32px rgba(0,0,0,0.6);">
         <img src="assets/images/humanoid-inspecting.png" alt="Humanoid Inspector" style="width: 100%; display: block; object-fit: cover;">
@@ -971,7 +1175,7 @@ footer p {
 
     <!-- Cards title -->
     <div class="reveal" style="text-align: center; margin-bottom: 32px;">
-      <h2 style="font-size: clamp(1.4rem, 2.4vw, 2rem); font-weight: 700; color: #ffffff; letter-spacing: -0.02em; line-height: 1.2; margin: 0;">20% of Defence is Inspection</h2>
+      <h2 style="font-size: clamp(1.4rem, 2.4vw, 2rem); font-weight: 700; color: #ffffff; letter-spacing: -0.02em; line-height: 1.2; margin: 0;" data-i18n="inspection-subtitle">20% of Defence is Inspection</h2>
     </div>
 
     <!-- Three columns -->
@@ -979,20 +1183,20 @@ footer p {
 
       <!-- High Integrity -->
       <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 36px 32px; display: flex; flex-direction: column; gap: 16px;">
-        <h3 style="font-size: 1.1rem; font-weight: 700; color: #ffffff; margin: 0; line-height: 1.3;">High Integrity</h3>
-        <p style="color: rgba(255,255,255,0.6); font-size: 0.93rem; line-height: 1.65; margin: 0;">Bias-free and immune to coercion, institutional pressure, or calibration drift.</p>
+        <h3 style="font-size: 1.1rem; font-weight: 700; color: #ffffff; margin: 0; line-height: 1.3;" data-i18n="integrity-title">High Integrity</h3>
+        <p style="color: rgba(255,255,255,0.6); font-size: 0.93rem; line-height: 1.65; margin: 0;" data-i18n="integrity-desc">Bias-free and immune to coercion, institutional pressure, or calibration drift.</p>
       </div>
 
       <!-- Superior Quality -->
       <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 36px 32px; display: flex; flex-direction: column; gap: 16px;">
-        <h3 style="font-size: 1.1rem; font-weight: 700; color: #ffffff; margin: 0; line-height: 1.3;">Superior Quality</h3>
-        <p style="color: rgba(255,255,255,0.6); font-size: 0.93rem; line-height: 1.65; margin: 0;">Advanced sensors and machine-level precision detect defects missed by humans.</p>
+        <h3 style="font-size: 1.1rem; font-weight: 700; color: #ffffff; margin: 0; line-height: 1.3;" data-i18n="quality-title">Superior Quality</h3>
+        <p style="color: rgba(255,255,255,0.6); font-size: 0.93rem; line-height: 1.65; margin: 0;" data-i18n="quality-desc">Advanced sensors and machine-level precision detect defects missed by humans.</p>
       </div>
 
       <!-- On-Demand -->
       <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 36px 32px; display: flex; flex-direction: column; gap: 16px;">
-        <h3 style="font-size: 1.1rem; font-weight: 700; color: #ffffff; margin: 0; line-height: 1.3;">On-Demand</h3>
-        <p style="color: rgba(255,255,255,0.6); font-size: 0.93rem; line-height: 1.65; margin: 0;">Deploy without recruitment cycles, security clearance delays, or training pipelines.</p>
+        <h3 style="font-size: 1.1rem; font-weight: 700; color: #ffffff; margin: 0; line-height: 1.3;" data-i18n="ondemand-title">On-Demand</h3>
+        <p style="color: rgba(255,255,255,0.6); font-size: 0.93rem; line-height: 1.65; margin: 0;" data-i18n="ondemand-desc">Deploy without recruitment cycles, security clearance delays, or training pipelines.</p>
       </div>
 
     </div>
@@ -1004,36 +1208,36 @@ footer p {
   <div class="container">
     <div class="reveal" style="text-align: center;">
 
-      <h2 class="section-title">A Coalition of Technology, Services, and Defence Partners</h2>
+      <h2 class="section-title" data-i18n="partners-title">A Coalition of Technology, Services, and Defence Partners</h2>
     </div>
     <div class="partners-grid">
       <div class="partner-card reveal">
         <div class="partner-logo"><img src="assets/images/partner-0.png" alt="NVIDIA"></div>
-        <p>Powering our open-source, French-hosted, defense-compliant humanoid brain with the world's leading AI computing platform.</p>
+        <p data-i18n="partner-0">Powering our open-source, French-hosted, defense-compliant humanoid brain with the world's leading AI computing platform.</p>
       </div>
       <div class="partner-card reveal">
         <div class="partner-logo"><img src="assets/images/partner-1.png" alt="SecNumCloud"></div>
-        <p>Cloud infrastructure certified by ANSSI, ensuring our AI, data, and operations meet French defense security standards.</p>
+        <p data-i18n="partner-1">Cloud infrastructure certified by ANSSI, ensuring our AI, data, and operations meet French defense security standards.</p>
       </div>
       <div class="partner-card reveal">
         <div class="partner-logo"><img src="assets/images/partner-2.png" alt="Aerospace Valley Member"></div>
-        <p>Access to France and Europe's defense industrial network, supporting supply chain development and regulatory navigation.</p>
+        <p data-i18n="partner-2">Access to France and Europe's defense industrial network, supporting supply chain development and regulatory navigation.</p>
       </div>
       <div class="partner-card reveal">
         <div class="partner-logo"><img src="assets/images/partner-3.png" alt="Robotics Place"></div>
-        <p>France's premier robotics cluster connects Manifest to robotics experts and technology partners across France and beyond.</p>
+        <p data-i18n="partner-3">France's premier robotics cluster connects Manifest to robotics experts and technology partners across France and beyond.</p>
       </div>
       <div class="partner-card reveal">
         <div class="partner-logo"><img src="assets/images/partner-4.png" alt="Aktantis Member"></div>
-        <p>A leading deeptech cluster connecting Manifest to industrial partners, research institutions, and the French defense innovation ecosystem.</p>
+        <p data-i18n="partner-4">A leading deeptech cluster connecting Manifest to industrial partners, research institutions, and the French defense innovation ecosystem.</p>
       </div>
       <div class="partner-card reveal">
         <div class="partner-logo"><img src="assets/images/partner-5.png" alt="Manifest Ecosystem" style="height: 90px; max-width: 200px;"></div>
-        <p>A growing network of partners providing the services required to deploy and sustain humanoid capabilities at national scale.</p>
+        <p data-i18n="partner-5">A growing network of partners providing the services required to deploy and sustain humanoid capabilities at national scale.</p>
       </div>
     </div>
     <div class="reveal" style="text-align: center; margin-top: 48px;">
-      <a href="#contact" style="display: inline-flex; align-items: center; gap: 8px; color: var(--text); font-size: 0.9rem; font-weight: 500; text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: opacity 0.2s;">
+      <a href="#contact" style="display: inline-flex; align-items: center; gap: 8px; color: var(--text); font-size: 0.9rem; font-weight: 500; text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: opacity 0.2s;" data-i18n="become-partner">
         Become a partner <span style="font-size: 1rem;">→</span>
       </a>
     </div>
@@ -1043,23 +1247,24 @@ footer p {
 <section id="team">
   <div class="container">
     <div class="reveal" style="text-align: center;">
-      <h2 class="section-title">A Team Committed to European Safety &amp; Security</h2>
+      <h2 class="section-title" data-i18n="team-title">A Team Committed to European Safety &amp; Security</h2>
     </div>
     <div class="team-grid reveal" id="team-grid"></div>
     <div class="reveal" style="text-align: center; margin-top: 56px;">
-      <a href="#contact" style="display: inline-flex; align-items: center; gap: 8px; color: var(--text); font-size: 0.9rem; font-weight: 500; text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: opacity 0.2s;">
+      <a href="#contact" style="display: inline-flex; align-items: center; gap: 8px; color: var(--text); font-size: 0.9rem; font-weight: 500; text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: opacity 0.2s;" data-i18n="join-team">
         Join the team <span style="font-size: 1rem;">→</span>
       </a>
     </div>
   </div>
 </section>
 
+<div class="contact-footer-wrapper">
 <section id="contact">
   <div class="container">
     <div class="contact-layout">
       <div class="contact-info reveal">
-        <h2 class="section-title">Get In Touch</h2>
-        <p class="section-body">Have a question or want to learn more about what we're building?</p>
+        <h2 class="section-title" data-i18n="contact-title">Get In Touch</h2>
+        <p class="section-body" data-i18n="contact-subtitle">Have a question or want to learn more about what we're building?</p>
         <div class="contact-meta">
           Hello@the-manifest.com<br>
           7 Rue Saint Antoine du T, 31000 Toulouse, France
@@ -1069,40 +1274,40 @@ footer p {
             <rect x="2" y="2" width="20" height="20" rx="4" fill="#0077B5"/>
             <path d="M7 10h2v7H7zM8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM11 10h2v1h.03C13.4 10.4 14.2 10 15.2 10c2.1 0 2.8 1.4 2.8 3.2V17h-2v-3.5c0-.8-.3-1.5-1.1-1.5s-1.4.7-1.4 1.5V17h-2v-7z" fill="white"/>
           </svg>
-          <span>Follow Manifest on LinkedIn</span>
+          <span data-i18n="follow-linkedin">Follow Manifest on LinkedIn</span>
         </a>
       </div>
       <div id="contact-form-wrapper">
         <form class="contact-form reveal" id="contact-form" novalidate>
-          <div class="form-error-banner" id="form-error-banner">Something went wrong. Please try again or email us directly.</div>
+          <div class="form-error-banner" id="form-error-banner" data-i18n="form-error-general">Something went wrong. Please try again or email us directly.</div>
           <div class="form-row">
             <div class="form-field" id="field-name">
-              <label for="name">Name</label>
-              <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name">
-              <span class="field-error">Please enter your name.</span>
+              <label for="name" data-i18n="form-label-name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" data-i18n-placeholder="form-placeholder-name">
+              <span class="field-error" data-i18n="form-error-name">Please enter your name.</span>
             </div>
             <div class="form-field" id="field-email">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email">
-              <span class="field-error" id="email-error">Please enter a valid email address.</span>
+              <label for="email" data-i18n="form-label-email">Email</label>
+              <input type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email" data-i18n-placeholder="form-placeholder-email">
+              <span class="field-error" id="email-error" data-i18n="form-error-email">Please enter a valid email address.</span>
             </div>
           </div>
           <div class="form-field" id="field-org">
-            <label for="org">Organization</label>
-            <input type="text" id="org" name="org" placeholder="Company or unit">
-            <span class="field-error">Please enter your organization.</span>
+            <label for="org" data-i18n="form-label-org">Organization</label>
+            <input type="text" id="org" name="org" placeholder="Company or unit" data-i18n-placeholder="form-placeholder-org">
+            <span class="field-error" data-i18n="form-error-org">Please enter your organization.</span>
           </div>
           <div class="form-field" id="field-message">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="What would you like to discuss?"></textarea>
-            <span class="field-error">Please enter a message.</span>
+            <label for="message" data-i18n="form-label-message">Message</label>
+            <textarea id="message" name="message" placeholder="What would you like to discuss?" data-i18n-placeholder="form-placeholder-message"></textarea>
+            <span class="field-error" data-i18n="form-error-message">Please enter a message.</span>
           </div>
-          <button type="submit" class="submit-btn" id="submit-btn">Send Message</button>
+          <button type="submit" class="submit-btn" id="submit-btn" data-i18n="form-submit">Send Message</button>
         </form>
         <div class="form-success" id="form-success">
           <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-          <h3>Message sent!</h3>
-          <p>We'll get back to you at hello@the-manifest.com</p>
+          <h3 data-i18n="form-success-title">Message sent!</h3>
+          <p data-i18n="form-success-message">We'll get back to you at hello@the-manifest.com</p>
         </div>
       </div>
     </div>
@@ -1111,11 +1316,235 @@ footer p {
 
 <footer>
   <div class="container">
-    <p>Humanoids for European Defence</p>
+    <p class="footer-tagline" data-i18n="footer-tagline">Manifest: Humanoids for European Defence</p>
+    <div class="footer-links">
+      <a href="legal-notice.html" data-i18n="footer-legal-notice">Legal Notice</a>
+      <span>|</span>
+      <a href="terms.html" data-i18n="footer-terms">Terms & Conditions</a>
+      <span>|</span>
+      <a href="privacy-policy.html" data-i18n="footer-privacy">Privacy Policy</a>
+    </div>
   </div>
 </footer>
+</div><!-- /.contact-footer-wrapper -->
 
 <script>
+// ── Translations ──
+const TRANSLATIONS = {
+  en: {
+    'popup-title': 'Welcome / Bienvenue',
+    'lang-english': 'English',
+    'lang-french': 'Français',
+    'nav-strategic-autonomy': 'Strategic Autonomy',
+    'nav-inspection': 'Inspection',
+    'nav-partners': 'Partners',
+    'nav-team': 'Team',
+    'nav-contact': 'Contact',
+    'hero-title': 'Humanoids for European Defence',
+    'mission-line1': 'Manifest is the First Humanoid Solution',
+    'mission-line2': 'Purpose-Built for European Defence',
+    'value-heading': 'Enabling Strategic Autonomy',
+    'pillar1-title': 'Deploy Next Generation Military Forces',
+    'pillar1-desc': 'Increase defense readiness with humanoids built for dull, dirty, and dangerous work.',
+    'pillar2-title': 'Increase Defense Industrial Capacity',
+    'pillar2-desc': 'Meet rearmament goals with a workforce that delivers exceptional results around the clock.',
+    'pillar3-title': 'Guarantee Compliance with Defense Standards',
+    'pillar3-desc': 'Implement humanoids designed to meet the rigorous standards of modern defense operations.',
+    'inspection-title': 'Inspection is our First Use Case',
+    'inspection-subtitle': '20% of Defence is Inspection',
+    'integrity-title': 'High Integrity',
+    'integrity-desc': 'Bias-free and immune to coercion, institutional pressure, or calibration drift.',
+    'quality-title': 'Superior Quality',
+    'quality-desc': 'Advanced sensors and machine-level precision detect defects missed by humans.',
+    'ondemand-title': 'On-Demand',
+    'ondemand-desc': 'Deploy without recruitment cycles, security clearance delays, or training pipelines.',
+    'partners-title': 'A Coalition of Technology, Services, and Defence Partners',
+    'partner-0': 'Powering our open-source, French-hosted, defense-compliant humanoid brain with the world\'s leading AI computing platform.',
+    'partner-1': 'Cloud infrastructure certified by ANSSI, ensuring our AI, data, and operations meet French defense security standards.',
+    'partner-2': 'Access to France and Europe\'s defense industrial network, supporting supply chain development and regulatory navigation.',
+    'partner-3': 'France\'s premier robotics cluster connects Manifest to robotics experts and technology partners across France and beyond.',
+    'partner-4': 'A leading deeptech cluster connecting Manifest to industrial partners, research institutions, and the French defense innovation ecosystem.',
+    'partner-5': 'A growing network of partners providing the services required to deploy and sustain humanoid capabilities at national scale.',
+    'become-partner': 'Become a partner',
+    'team-title': 'A Team Committed to European Safety & Security',
+    'join-team': 'Join the team',
+    'contact-title': 'Get In Touch',
+    'contact-subtitle': 'Have a question or want to learn more about what we\'re building?',
+    'follow-linkedin': 'Follow Manifest on LinkedIn',
+    'form-label-name': 'Name',
+    'form-placeholder-name': 'Your name',
+    'form-label-email': 'Email',
+    'form-placeholder-email': 'you@company.com',
+    'form-label-org': 'Organization',
+    'form-placeholder-org': 'Company or unit',
+    'form-label-message': 'Message',
+    'form-placeholder-message': 'What would you like to discuss?',
+    'form-submit': 'Send Message',
+    'form-error-name': 'Please enter your name.',
+    'form-error-email': 'Please enter a valid email address.',
+    'form-error-org': 'Please enter your organization.',
+    'form-error-message': 'Please enter a message.',
+    'form-error-general': 'Something went wrong. Please try again or email us directly.',
+    'form-confirm': 'Ready to send your message to Manifest?',
+    'form-success-title': 'Message sent!',
+    'form-success-message': 'We\'ll get back to you at hello@the-manifest.com',
+    'footer-legal-notice': 'Legal Notice',
+    'footer-terms': 'Terms & Conditions',
+    'footer-privacy': 'Privacy Policy',
+    'footer-tagline': 'Manifest: Humanoids for European Defence',
+    'role-ceo-founder': 'CEO & Founder',
+    'role-founding-engineer': 'Founding Engineer',
+    'role-financial-services': 'Financial Services',
+    'role-advisor': 'Advisor',
+    'role-advisor-investor': 'Advisor & Investor',
+    'role-financial-advisor': 'Financial Advisor',
+    'role-defence-advisor': 'Defence Advisor',
+  },
+  fr: {
+    'popup-title': 'Bienvenue / Welcome',
+    'lang-english': 'English',
+    'lang-french': 'Français',
+    'nav-strategic-autonomy': 'Autonomie Stratégique',
+    'nav-inspection': 'Inspection',
+    'nav-partners': 'Partenaires',
+    'nav-team': 'Équipe',
+    'nav-contact': 'Contact',
+    'hero-title': 'Humanoïdes pour la Défense Européenne',
+    'mission-line1': 'Manifest est la Première Solution Humanoïde',
+    'mission-line2': 'Conçue pour la Défense Européenne',
+    'value-heading': 'Garantir l\'Autonomie Stratégique',
+    'pillar1-title': 'Déployer les Forces Militaires de Nouvelle Génération',
+    'pillar1-desc': 'Augmenter la capacité de défense avec des humanoïdes conçus pour les missions ingrates, insalubres et dangereuses.',
+    'pillar2-title': 'Augmenter la Capacité Industrielle de Défense',
+    'pillar2-desc': 'Atteindre les objectifs de réarmement avec une force de travail qui délivre des résultats exceptionnels 24h/24.',
+    'pillar3-title': 'Garantir la Conformité aux Standards de Défense',
+    'pillar3-desc': 'Déployer des humanoïdes conçus pour répondre aux standards rigoureux des opérations de défense modernes.',
+    'inspection-title': 'L\'Inspection est notre Premier Cas d\'Usage',
+    'inspection-subtitle': '20% de la Défense est de l\'Inspection',
+    'integrity-title': 'Haute Intégrité',
+    'integrity-desc': 'Sans biais et immunisé contre la coercition, la pression institutionnelle ou la dérive de calibration.',
+    'quality-title': 'Qualité Supérieure',
+    'quality-desc': 'Des capteurs avancés et une précision machinale détectent les défauts invisibles à l\'œil humain.',
+    'ondemand-title': 'À la Demande',
+    'ondemand-desc': 'Déploiement sans cycles de recrutement, délais d\'habilitation ou processus de formation.',
+    'partners-title': 'Une Coalition de Partenaires Technologiques, de Services et de Défense',
+    'partner-0': 'Alimenter notre cerveau humanoïde open-source, hébergé en France et conforme à la défense, avec la plateforme d\'IA de référence mondiale.',
+    'partner-1': 'Infrastructure cloud certifiée par l\'ANSSI, garantissant que notre IA, nos données et nos opérations répondent aux normes de sécurité de la défense française.',
+    'partner-2': 'Accès au réseau industriel de défense français et européen, soutenant le développement de la chaîne d\'approvisionnement et la navigation réglementaire.',
+    'partner-3': 'Le premier cluster robotique de France connecte Manifest aux experts en robotique et partenaires technologiques en France et au-delà.',
+    'partner-4': 'Un cluster deeptech de premier plan connectant Manifest aux partenaires industriels, institutions de recherche et à l\'écosystème d\'innovation de la défense française.',
+    'partner-5': 'Un réseau croissant de partenaires fournissant les services nécessaires au déploiement et au maintien des capacités humanoïdes à l\'échelle nationale.',
+    'become-partner': 'Devenir partenaire',
+    'team-title': 'Une Équipe Engagée pour la Sécurité Européenne',
+    'join-team': 'Rejoindre l\'équipe',
+    'contact-title': 'Contactez-Nous',
+    'contact-subtitle': 'Une question ou envie d\'en savoir plus sur ce que nous construisons ?',
+    'follow-linkedin': 'Suivez Manifest sur LinkedIn',
+    'form-label-name': 'Nom',
+    'form-placeholder-name': 'Votre nom',
+    'form-label-email': 'Email',
+    'form-placeholder-email': 'vous@entreprise.com',
+    'form-label-org': 'Organisation',
+    'form-placeholder-org': 'Entreprise ou unité',
+    'form-label-message': 'Message',
+    'form-placeholder-message': 'De quoi souhaitez-vous discuter ?',
+    'form-submit': 'Envoyer le Message',
+    'form-error-name': 'Veuillez entrer votre nom.',
+    'form-error-email': 'Veuillez entrer une adresse email valide.',
+    'form-error-org': 'Veuillez entrer votre organisation.',
+    'form-error-message': 'Veuillez entrer un message.',
+    'form-error-general': 'Une erreur s\'est produite. Veuillez réessayer ou nous écrire directement.',
+    'form-confirm': 'Prêt à envoyer votre message à Manifest ?',
+    'form-success-title': 'Message envoyé !',
+    'form-success-message': 'Nous vous répondrons à hello@the-manifest.com',
+    'footer-legal-notice': 'Mentions Légales',
+    'footer-terms': 'CGV',
+    'footer-privacy': 'Politique de Confidentialité',
+    'footer-tagline': 'Manifest : Humanoïdes pour la Défense Européenne',
+    'role-ceo-founder': 'PDG & Fondateur',
+    'role-founding-engineer': 'Ingénieur Fondateur',
+    'role-financial-services': 'Services Financiers',
+    'role-advisor': 'Conseiller',
+    'role-advisor-investor': 'Conseiller & Investisseur',
+    'role-financial-advisor': 'Conseiller Financier',
+    'role-defence-advisor': 'Conseiller Défense',
+  }
+};
+
+// ── Language Management ──
+let currentLanguage = localStorage.getItem('manifest-lang') || null;
+
+function setLanguage(lang) {
+  if (!['en', 'fr'].includes(lang)) return;
+
+  currentLanguage = lang;
+  localStorage.setItem('manifest-lang', lang);
+  document.documentElement.lang = lang;
+
+  // Update all elements with data-i18n attributes
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) {
+      el.textContent = TRANSLATIONS[lang][key];
+    }
+  });
+
+  // Update placeholders
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) {
+      el.placeholder = TRANSLATIONS[lang][key];
+    }
+  });
+
+  // Update team roles
+  updateTeamRoles(lang);
+
+  // Update language switcher
+  updateLanguageSwitcher(lang);
+
+  // Hide popup if showing
+  const popup = document.getElementById('language-popup');
+  if (popup) {
+    popup.classList.add('hidden');
+  }
+}
+
+function updateLanguageSwitcher(lang) {
+  const otherLang = lang === 'en' ? 'fr' : 'en';
+  const langCode = otherLang === 'en' ? 'EN' : 'FR';
+  const globeSVG = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`;
+  const html = globeSVG + langCode;
+  ['lang-switcher-nav', 'lang-switcher-topbar'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = html;
+  });
+}
+
+function updateTeamRoles(lang) {
+  const roleMap = {
+    'CEO & Founder': 'role-ceo-founder',
+    'Founding Engineer': 'role-founding-engineer',
+    'Financial Services': 'role-financial-services',
+    'Advisor': 'role-advisor',
+    'Advisor & Investor': 'role-advisor-investor',
+    'Financial Advisor': 'role-financial-advisor',
+    'Defence Advisor': 'role-defence-advisor',
+  };
+
+  document.querySelectorAll('.team-card .role').forEach(el => {
+    const originalRole = el.getAttribute('data-original-role') || el.textContent;
+    if (!el.getAttribute('data-original-role')) {
+      el.setAttribute('data-original-role', originalRole);
+    }
+
+    const translationKey = roleMap[originalRole];
+    if (translationKey && TRANSLATIONS[lang] && TRANSLATIONS[lang][translationKey]) {
+      el.textContent = TRANSLATIONS[lang][translationKey];
+    }
+  });
+}
+
 // ── Team grid ──
 const TEAM = [
   { row: 1, img: 'charles.jpg',      name: 'Charles-Henri',  role: 'CEO & Founder',     url: 'https://www.linkedin.com/in/charlesblanchet/' },
@@ -1135,7 +1564,7 @@ function buildCard(m) {
   return `<div class="team-card">
     <div class="team-avatar"><img src="assets/images/${m.img}" alt="${m.name}" loading="lazy"></div>
     <h3>${m.name}</h3>
-    <div class="role">${m.role}</div>
+    <div class="role" data-original-role="${m.role}">${m.role}</div>
     <a href="${m.url}" class="linkedin-link" target="_blank" rel="noopener">${LI_SVG}<span>LinkedIn</span></a>
   </div>`;
 }
@@ -1148,7 +1577,39 @@ function buildCard(m) {
     const cards = TEAM.filter(m => m.row === r).map(buildCard).join('');
     return `<div class="team-row">${cards}</div>`;
   }).join('');
+
+  // Update team roles for current language
+  if (currentLanguage) {
+    updateTeamRoles(currentLanguage);
+  }
 })();
+
+// ── Initialize Language on Page Load ──
+window.addEventListener('DOMContentLoaded', function() {
+  if (!currentLanguage) {
+    // Show language popup
+    const popup = document.getElementById('language-popup');
+    if (popup) {
+      popup.classList.remove('hidden');
+    }
+  } else {
+    // Apply stored language
+    setLanguage(currentLanguage);
+  }
+});
+
+// ── Language Popup Buttons ──
+document.getElementById('lang-btn-en').addEventListener('click', () => setLanguage('en'));
+document.getElementById('lang-btn-fr').addEventListener('click', () => setLanguage('fr'));
+
+// ── Language Switcher ──
+['lang-switcher-nav', 'lang-switcher-topbar'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('click', function(e) {
+    e.preventDefault();
+    setLanguage(currentLanguage === 'en' ? 'fr' : 'en');
+  });
+});
 
 // ── Scroll reveal ──
 const revealEls = document.querySelectorAll('.reveal');
@@ -1165,7 +1626,6 @@ const obs = new IntersectionObserver(entries => {
 revealEls.forEach(el => obs.observe(el));
 
 const nav = document.getElementById('nav');
-// nav is part of the hero — scrolls away naturally
 
 // Swap hero video source based on viewport width
 (function() {
@@ -1186,6 +1646,16 @@ const nav = document.getElementById('nav');
 
 document.querySelectorAll('.nav-links a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
+    if (a.classList.contains('lang-switcher')) return;
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+document.querySelectorAll('.drawer-link').forEach(a => {
+  a.addEventListener('click', e => {
+    if (a.classList.contains('mobile-drawer-lang-switcher')) return;
     e.preventDefault();
     const target = document.querySelector(a.getAttribute('href'));
     if (target) target.scrollIntoView({ behavior: 'smooth' });
@@ -1196,15 +1666,14 @@ const navLogoImg = document.querySelector('.nav-logo-img');
 const navLogoEl  = document.querySelector('.nav-logo');
 const LOGO_MAX = 80;
 const LOGO_MIN = 44;
-const PAD_MAX  = 24; // extra top margin at full size
-const SHRINK_OVER = 160; // px of scroll over which logo shrinks
+const PAD_MAX  = 24;
+const SHRINK_OVER = 160;
 
 let rafPending = false;
 
 function updateNav() {
   const scrollY = window.scrollY;
   const t = Math.min(1, scrollY / SHRINK_OVER);
-  // Ease out cubic for smooth deceleration (works symmetrically on scroll-up too)
   const eased = 1 - Math.pow(1 - t, 3);
   const logoHeight   = LOGO_MAX - eased * (LOGO_MAX - LOGO_MIN);
   const logoMarginTop = PAD_MAX - eased * PAD_MAX;
@@ -1219,7 +1688,6 @@ function updateNav() {
   rafPending = false;
 }
 
-// Apply initial state immediately on load
 updateNav();
 
 window.addEventListener('scroll', () => {
@@ -1245,15 +1713,12 @@ hamburger.addEventListener('click', () => {
   document.body.style.overflow = isOpen ? 'hidden' : '';
 });
 
-// Close button inside drawer
 document.getElementById('drawer-close').addEventListener('click', closeDrawer);
 
-// Close when clicking the backdrop (not the links)
 drawer.addEventListener('click', (e) => {
   if (e.target === drawer) closeDrawer();
 });
 
-// Close on any nav link click
 drawer.querySelectorAll('a').forEach(a => {
   a.addEventListener('click', closeDrawer);
 });
@@ -1273,7 +1738,6 @@ drawer.querySelectorAll('a').forEach(a => {
     return valid;
   }
 
-  // Live-clear errors on input
   ['name', 'email', 'org', 'message'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.addEventListener('input', function() {
@@ -1286,7 +1750,6 @@ drawer.querySelectorAll('a').forEach(a => {
   form.addEventListener('submit', async function(e) {
     e.preventDefault();
 
-    // Validate all fields
     const validName    = validateField('field-name',    'name');
     const validEmail   = validateField('field-email',   'email',   v => EMAIL_REGEX.test(v));
     const validOrg     = validateField('field-org',     'org');
@@ -1294,12 +1757,13 @@ drawer.querySelectorAll('a').forEach(a => {
 
     if (!validName || !validEmail || !validOrg || !validMessage) return;
 
-    const confirmed = confirm('Ready to send your message to Manifest?');
+    const confirmMsg = TRANSLATIONS[currentLanguage || 'en']['form-confirm'] || 'Ready to send your message to Manifest?';
+    const confirmed = confirm(confirmMsg);
     if (!confirmed) return;
 
     const btn = document.getElementById('submit-btn');
     btn.disabled = true;
-    btn.textContent = 'Sending…';
+    btn.textContent = currentLanguage === 'fr' ? 'Envoi...' : 'Sending…';
 
     try {
       const res = await fetch('https://api.web3forms.com/submit', {
@@ -1323,7 +1787,7 @@ drawer.querySelectorAll('a').forEach(a => {
     } catch {
       document.getElementById('form-error-banner').style.display = 'block';
       btn.disabled = false;
-      btn.textContent = 'Send Message';
+      btn.textContent = TRANSLATIONS[currentLanguage || 'en']['form-submit'] || 'Send Message';
     }
   });
 })();

@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Politique de Confidentialité - Manifest Forge">
+    <title data-i18n="privacy_policy">Politique de Confidentialité</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Lexend', sans-serif;
+            background-color: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #f0f0f0;
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #000;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .language-switcher {
+            display: flex;
+            gap: 0.75rem;
+            background-color: #f5f5f5;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+            padding: 0.25rem 0.5rem;
+        }
+
+        .lang-btn.active {
+            opacity: 1;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem 3rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        li {
+            margin-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        strong {
+            font-weight: 600;
+            color: #000;
+        }
+
+        a {
+            color: #0066cc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #0052a3;
+            text-decoration: underline;
+        }
+
+        .info-box {
+            background-color: #f9f9f9;
+            padding: 1rem;
+            border-left: 4px solid #0066cc;
+            margin: 1rem 0;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            color: #0066cc;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            border-top: 1px solid #f0f0f0;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            margin-left: 2rem;
+            margin-right: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            color: #0066cc;
+        }
+
+        .footer-copyright {
+            font-size: 0.85rem;
+            color: #999;
+            padding-bottom: 1rem;
+        }
+
+        @media (max-width: 640px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.1rem;
+            }
+
+            main {
+                padding: 0 1rem 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/index.html" class="logo">Manifest Forge</a>
+        <div class="header-right">
+            <div class="language-switcher">
+                <button class="lang-btn active" data-lang="fr">🇫🇷</button>
+                <button class="lang-btn" data-lang="en">🇬🇧</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <a href="/index.html" class="back-link" data-i18n="back_to_home">← Retour à l'accueil</a>
+
+        <h1 data-i18n="privacy_policy">Politique de Confidentialité</h1>
+        <p class="subtitle" data-i18n="privacy_subtitle">Conditions de traitement de vos données personnelles</p>
+
+        <h2 data-i18n="article_1">1. Responsable du traitement</h2>
+        <p data-i18n="article_1_text">Le responsable du traitement de vos données personnelles est :</p>
+        <div class="info-box">
+            <p><strong>Manifest Forge</strong><br>
+            7 Rue Saint Antoine du T<br>
+            31000 Toulouse, FRANCE<br>
+            Email : <a href="mailto:Hello@the-manifest.com">Hello@the-manifest.com</a><br>
+            SIREN : 942 164 930</p>
+        </div>
+
+        <h2 data-i18n="article_2">2. Données collectées</h2>
+        <p data-i18n="article_2_intro">Nous collectons les données personnelles suivantes :</p>
+
+        <h3 data-i18n="contact_form">Via le formulaire de contact :</h3>
+        <ul>
+            <li data-i18n="data_name">Nom et prénom</li>
+            <li data-i18n="data_email">Adresse email</li>
+            <li data-i18n="data_organization">Nom de l'organisation ou entreprise</li>
+            <li data-i18n="data_message">Contenu du message</li>
+        </ul>
+
+
+        <h2 data-i18n="article_3">3. Finalités du traitement</h2>
+        <p data-i18n="article_3_text">Vos données personnelles sont collectées et traitées pour :</p>
+        <ul>
+            <li data-i18n="purpose_1">Répondre à vos demandes de contact</li>
+            <li data-i18n="purpose_2">Gérer votre relation commerciale avec Manifest Forge</li>
+            <li data-i18n="purpose_3">Fournir les services demandés</li>
+            <li data-i18n="purpose_4">Améliorer l'expérience utilisateur du site</li>
+            <li data-i18n="purpose_5">Assurer la sécurité et la conformité légale</li>
+        </ul>
+
+        <h2 data-i18n="article_4">4. Base juridique</h2>
+        <p data-i18n="article_4_text">Le traitement de vos données est fondé sur :</p>
+        <ul>
+            <li data-i18n="legal_basis_1">Votre consentement explicite (formulaire de contact)</li>
+            <li data-i18n="legal_basis_2">Notre intérêt légitime à améliorer nos services</li>
+            <li data-i18n="legal_basis_3">L'exécution ou la préparation d'un contrat</li>
+            <li data-i18n="legal_basis_4">Le respect d'obligations légales</li>
+        </ul>
+
+        <h2 data-i18n="article_5">5. Durée de conservation</h2>
+        <ul>
+            <li data-i18n="retention_contact">Données de contact : 3 ans à compter du dernier contact ou jusqu'à résiliation de la relation commerciale</li>
+            <li data-i18n="retention_logs">Logs serveur : 30 jours</li>
+            <li data-i18n="retention_legal">Données à fins légales : durée requise par la loi</li>
+        </ul>
+
+        <h2 data-i18n="article_6">6. Destinataires des données</h2>
+        <p data-i18n="article_6_text">Vos données peuvent être communiquées à :</p>
+        <ul>
+            <li data-i18n="recipient_1">Notre équipe interne pour le traitement de votre demande</li>
+            <li data-i18n="recipient_2">Les prestataires techniques (hébergeur Vercel, formulaires Web3Forms)</li>
+            <li data-i18n="recipient_3">Les autorités compétentes en cas de demande légale</li>
+        </ul>
+        <p data-i18n="article_6_additional">Nous ne vendons jamais vos données à des tiers.</p>
+
+        <h2 data-i18n="article_7">7. Droits des personnes</h2>
+        <p data-i18n="article_7_intro">Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez des droits suivants :</p>
+        <ul>
+            <li data-i18n="right_1">Droit d'accès : obtenir une copie de vos données</li>
+            <li data-i18n="right_2">Droit de rectification : corriger les données inexactes</li>
+            <li data-i18n="right_3">Droit à l'effacement : supprimer vos données (« droit à l'oubli »)</li>
+            <li data-i18n="right_4">Droit à la limitation : limiter le traitement de vos données</li>
+            <li data-i18n="right_5">Droit à la portabilité : recevoir vos données dans un format structuré</li>
+            <li data-i18n="right_6">Droit d'opposition : vous opposer au traitement</li>
+            <li data-i18n="right_7">Droit de ne pas être soumis à une décision automatisée</li>
+        </ul>
+        <p data-i18n="article_7_exercise">Pour exercer ces droits, contactez-nous à <a href="mailto:Hello@the-manifest.com">Hello@the-manifest.com</a> avec l'objet "RGPD - [Votre demande]".</p>
+
+        <h2 data-i18n="article_8">8. Stockage local</h2>
+        <p data-i18n="article_8_text">Notre site utilise le stockage local du navigateur (localStorage) uniquement pour mémoriser votre préférence de langue. Aucun cookie analytique ou de suivi n'est utilisé.</p>
+
+        <h2 data-i18n="article_9">9. Transferts hors UE</h2>
+        <p data-i18n="article_9_text">Certaines de vos données peuvent être transférées en dehors de l'Union Européenne :</p>
+        <ul>
+            <li data-i18n="transfer_1">Vercel Inc. (hébergeur) : États-Unis</li>
+            <li data-i18n="transfer_2">Web3Forms (traitement des formulaires) : États-Unis</li>
+        </ul>
+        <p data-i18n="article_9_additional">Ces transferts sont effectués conformément à la loi applicable, notamment par le biais de clauses contractuelles types approuvées par la Commission Européenne.</p>
+
+        <h2 data-i18n="article_10">10. Sécurité des données</h2>
+        <p data-i18n="article_10_text">Nous mettons en œuvre des mesures de sécurité appropriées pour protéger vos données personnelles contre l'accès non autorisé, la modification, la divulgation ou la destruction. Cependant, aucune transmission de données sur Internet ne peut être garantie comme entièrement sécurisée.</p>
+
+        <h2 data-i18n="article_11">11. Modifications de la politique</h2>
+        <p data-i18n="article_11_text">Nous pouvons modifier cette Politique de Confidentialité à tout moment. Les modifications seront publiées sur cette page avec une mise à jour de la date de dernière modification. Votre utilisation continue du site après les modifications constitue votre acceptation des modifications.</p>
+
+        <h2 data-i18n="article_12">12. Plainte auprès d'une autorité de surveillance</h2>
+        <p data-i18n="article_12_text">Si vous considérez que le traitement de vos données personnelles viole vos droits, vous pouvez adresser une plainte à l'autorité compétente de votre pays. En France, il s'agit de la <strong>Commission Nationale de l'Informatique et des Libertés (CNIL)</strong>.</p>
+        <p>
+            CNIL<br>
+            3 Place de Fontenoy<br>
+            75007 Paris, FRANCE<br>
+            <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer">www.cnil.fr</a>
+        </p>
+
+        <h2 data-i18n="article_13">13. Contact</h2>
+        <p data-i18n="article_13_text">Pour toute question ou demande concernant cette Politique de Confidentialité ou vos données personnelles, contactez-nous :</p>
+        <p>
+            Email : <a href="mailto:Hello@the-manifest.com">Hello@the-manifest.com</a><br>
+            Adresse : 7 Rue Saint Antoine du T, 31000 Toulouse, FRANCE
+        </p>
+
+        <div class="info-box">
+            <p data-i18n="last_updated">Dernière mise à jour : 5 mars 2026</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="/legal-notice.html" data-i18n="legal_notice">Mentions Légales</a>
+            <a href="/terms.html" data-i18n="terms_conditions">Conditions Générales de Vente</a>
+            <a href="/privacy-policy.html" data-i18n="privacy_policy">Politique de Confidentialité</a>
+        </div>
+        <div class="footer-copyright" data-i18n="copyright">© 2026 Manifest Forge. Tous droits réservés.</div>
+    </footer>
+
+    <script>
+        const translations = {
+            fr: {
+                privacy_policy: 'Politique de Confidentialité',
+                privacy_subtitle: 'Conditions de traitement de vos données personnelles',
+                back_to_home: '← Retour à l\'accueil',
+                article_1: '1. Responsable du traitement',
+                article_1_text: 'Le responsable du traitement de vos données personnelles est :',
+                article_2: '2. Données collectées',
+                article_2_intro: 'Nous collectons les données personnelles suivantes :',
+                contact_form: 'Via le formulaire de contact :',
+                data_name: 'Nom et prénom',
+                data_email: 'Adresse email',
+                data_organization: 'Nom de l\'organisation ou entreprise',
+                data_message: 'Contenu du message',
+                article_3: '3. Finalités du traitement',
+                article_3_text: 'Vos données personnelles sont collectées et traitées pour :',
+                purpose_1: 'Répondre à vos demandes de contact',
+                purpose_2: 'Gérer votre relation commerciale avec Manifest Forge',
+                purpose_3: 'Fournir les services demandés',
+                purpose_4: 'Améliorer l\'expérience utilisateur du site',
+                purpose_5: 'Assurer la sécurité et la conformité légale',
+                article_4: '4. Base juridique',
+                article_4_text: 'Le traitement de vos données est fondé sur :',
+                legal_basis_1: 'Votre consentement explicite (formulaire de contact)',
+                legal_basis_2: 'Notre intérêt légitime à améliorer nos services',
+                legal_basis_3: 'L\'exécution ou la préparation d\'un contrat',
+                legal_basis_4: 'Le respect d\'obligations légales',
+                article_5: '5. Durée de conservation',
+                retention_contact: 'Données de contact : 3 ans à compter du dernier contact ou jusqu\'à résiliation de la relation commerciale',
+                retention_logs: 'Logs serveur : 30 jours',
+                retention_legal: 'Données à fins légales : durée requise par la loi',
+                article_6: '6. Destinataires des données',
+                article_6_text: 'Vos données peuvent être communiquées à :',
+                recipient_1: 'Notre équipe interne pour le traitement de votre demande',
+                recipient_2: 'Les prestataires techniques (hébergeur Vercel, formulaires Web3Forms)',
+                recipient_3: 'Les autorités compétentes en cas de demande légale',
+                article_6_additional: 'Nous ne vendons jamais vos données à des tiers.',
+                article_7: '7. Droits des personnes',
+                article_7_intro: 'Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez des droits suivants :',
+                right_1: 'Droit d\'accès : obtenir une copie de vos données',
+                right_2: 'Droit de rectification : corriger les données inexactes',
+                right_3: 'Droit à l\'effacement : supprimer vos données (« droit à l\'oubli »)',
+                right_4: 'Droit à la limitation : limiter le traitement de vos données',
+                right_5: 'Droit à la portabilité : recevoir vos données dans un format structuré',
+                right_6: 'Droit d\'opposition : vous opposer au traitement',
+                right_7: 'Droit de ne pas être soumis à une décision automatisée',
+                article_7_exercise: 'Pour exercer ces droits, contactez-nous à Hello@the-manifest.com avec l\'objet "RGPD - [Votre demande]".',
+                article_8: '8. Stockage local',
+                article_8_text: 'Notre site utilise le stockage local du navigateur (localStorage) uniquement pour mémoriser votre préférence de langue. Aucun cookie analytique ou de suivi n\'est utilisé.',
+                article_9: '9. Transferts hors UE',
+                article_9_text: 'Certaines de vos données peuvent être transférées en dehors de l\'Union Européenne :',
+                transfer_1: 'Vercel Inc. (hébergeur) : États-Unis',
+                transfer_2: 'Web3Forms (traitement des formulaires) : États-Unis',
+                article_9_additional: 'Ces transferts sont effectués conformément à la loi applicable, notamment par le biais de clauses contractuelles types approuvées par la Commission Européenne.',
+                article_10: '10. Sécurité des données',
+                article_10_text: 'Nous mettons en œuvre des mesures de sécurité appropriées pour protéger vos données personnelles contre l\'accès non autorisé, la modification, la divulgation ou la destruction. Cependant, aucune transmission de données sur Internet ne peut être garantie comme entièrement sécurisée.',
+                article_11: '11. Modifications de la politique',
+                article_11_text: 'Nous pouvons modifier cette Politique de Confidentialité à tout moment. Les modifications seront publiées sur cette page avec une mise à jour de la date de dernière modification. Votre utilisation continue du site après les modifications constitue votre acceptation des modifications.',
+                article_12: '12. Plainte auprès d\'une autorité de surveillance',
+                article_12_text: 'Si vous considérez que le traitement de vos données personnelles viole vos droits, vous pouvez adresser une plainte à l\'autorité compétente de votre pays. En France, il s\'agit de la Commission Nationale de l\'Informatique et des Libertés (CNIL).',
+                article_13: '13. Contact',
+                article_13_text: 'Pour toute question ou demande concernant cette Politique de Confidentialité ou vos données personnelles, contactez-nous :',
+                last_updated: 'Dernière mise à jour : 5 mars 2026',
+                legal_notice: 'Mentions Légales',
+                terms_conditions: 'Conditions Générales de Vente',
+                copyright: '© 2026 Manifest Forge. Tous droits réservés.'
+            },
+            en: {
+                privacy_policy: 'Privacy Policy',
+                privacy_subtitle: 'Terms of processing your personal data',
+                back_to_home: '← Back to home',
+                article_1: '1. Data Controller',
+                article_1_text: 'The responsible party for the processing of your personal data is:',
+                article_2: '2. Data Collected',
+                article_2_intro: 'We collect the following personal data:',
+                contact_form: 'Via the contact form:',
+                data_name: 'First and last name',
+                data_email: 'Email address',
+                data_organization: 'Organization or company name',
+                data_message: 'Message content',
+                article_3: '3. Processing Purposes',
+                article_3_text: 'Your personal data is collected and processed for:',
+                purpose_1: 'Responding to your contact requests',
+                purpose_2: 'Managing your business relationship with Manifest Forge',
+                purpose_3: 'Providing requested services',
+                purpose_4: 'Improving user experience on the site',
+                purpose_5: 'Ensuring security and legal compliance',
+                article_4: '4. Legal Basis',
+                article_4_text: 'The processing of your data is based on:',
+                legal_basis_1: 'Your explicit consent (contact form)',
+                legal_basis_2: 'Our legitimate interest in improving our services',
+                legal_basis_3: 'The execution or preparation of a contract',
+                legal_basis_4: 'Compliance with legal obligations',
+                article_5: '5. Retention Period',
+                retention_contact: 'Contact data: 3 years from last contact or until termination of business relationship',
+                retention_logs: 'Server logs: 30 days',
+                retention_legal: 'Data for legal purposes: duration required by law',
+                article_6: '6. Data Recipients',
+                article_6_text: 'Your data may be shared with:',
+                recipient_1: 'Our internal team for processing your request',
+                recipient_2: 'Technical service providers (Vercel hosting provider, Web3Forms for forms)',
+                recipient_3: 'Competent authorities in case of legal request',
+                article_6_additional: 'We never sell your data to third parties.',
+                article_7: '7. Individual Rights',
+                article_7_intro: 'In accordance with the General Data Protection Regulation (GDPR), you have the following rights:',
+                right_1: 'Right of access: obtain a copy of your data',
+                right_2: 'Right of rectification: correct inaccurate data',
+                right_3: 'Right to erasure: delete your data ("right to be forgotten")',
+                right_4: 'Right to restrict processing: limit the processing of your data',
+                right_5: 'Right to data portability: receive your data in a structured format',
+                right_6: 'Right to object: object to the processing',
+                right_7: 'Right not to be subject to automated decision-making',
+                article_7_exercise: 'To exercise these rights, contact us at Hello@the-manifest.com with the subject "GDPR - [Your request]".',
+                article_8: '8. Local Storage',
+                article_8_text: 'Our site uses browser local storage (localStorage) solely to remember your language preference. No analytics or tracking cookies are used.',
+                article_9: '9. Transfers Outside the EU',
+                article_9_text: 'Some of your data may be transferred outside the European Union:',
+                transfer_1: 'Vercel Inc. (hosting provider): United States',
+                transfer_2: 'Web3Forms (form processing): United States',
+                article_9_additional: 'These transfers are carried out in accordance with applicable law, in particular through standard contractual clauses approved by the European Commission.',
+                article_10: '10. Data Security',
+                article_10_text: 'We implement appropriate security measures to protect your personal data against unauthorized access, modification, disclosure or destruction. However, no data transmission over the Internet can be guaranteed to be completely secure.',
+                article_11: '11. Policy Changes',
+                article_11_text: 'We may modify this Privacy Policy at any time. Changes will be published on this page with an updated date of last modification. Your continued use of the site after changes constitutes your acceptance of the changes.',
+                article_12: '12. Complaint to a Supervisory Authority',
+                article_12_text: 'If you believe that the processing of your personal data violates your rights, you may file a complaint with the competent authority in your country. In France, this is the National Commission for Computing and Liberties (CNIL).',
+                article_13: '13. Contact',
+                article_13_text: 'For any questions or requests regarding this Privacy Policy or your personal data, please contact us:',
+                last_updated: 'Last updated: March 5, 2026',
+                legal_notice: 'Legal Notice',
+                terms_conditions: 'General Terms of Sale',
+                copyright: '© 2026 Manifest Forge. All rights reserved.'
+            }
+        };
+
+        function initLanguage() {
+            const savedLang = localStorage.getItem('manifest-lang') || 'fr';
+            setLanguage(savedLang);
+        }
+
+        function setLanguage(lang) {
+            localStorage.setItem('manifest-lang', lang);
+            document.documentElement.lang = lang;
+
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
+        }
+
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.getAttribute('data-lang');
+                setLanguage(lang);
+            });
+        });
+
+        initLanguage();
+    </script>
+</body>
+</html>

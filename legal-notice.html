@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mentions légales - Manifest Forge">
+    <title data-i18n="legal_notice">Mentions Légales</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Lexend', sans-serif;
+            background-color: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #f0f0f0;
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #000;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .language-switcher {
+            display: flex;
+            gap: 0.75rem;
+            background-color: #f5f5f5;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+            padding: 0.25rem 0.5rem;
+        }
+
+        .lang-btn.active {
+            opacity: 1;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem 3rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        strong {
+            font-weight: 600;
+            color: #000;
+        }
+
+        a {
+            color: #0066cc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #0052a3;
+            text-decoration: underline;
+        }
+
+        .company-info {
+            background-color: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .company-info p {
+            margin-bottom: 0.5rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            color: #0066cc;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            border-top: 1px solid #f0f0f0;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            margin-left: 2rem;
+            margin-right: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            color: #0066cc;
+        }
+
+        .footer-copyright {
+            font-size: 0.85rem;
+            color: #999;
+            padding-bottom: 1rem;
+        }
+
+        @media (max-width: 640px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.1rem;
+            }
+
+            main {
+                padding: 0 1rem 2rem;
+            }
+
+            .company-info {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/index.html" class="logo">Manifest Forge</a>
+        <div class="header-right">
+            <div class="language-switcher">
+                <button class="lang-btn active" data-lang="fr">🇫🇷</button>
+                <button class="lang-btn" data-lang="en">🇬🇧</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <a href="/index.html" class="back-link" data-i18n="back_to_home">← Retour à l'accueil</a>
+
+        <h1 data-i18n="legal_notice">Mentions Légales</h1>
+        <p class="subtitle" data-i18n="legal_notice_subtitle">Informations légales concernant le site the-manifest.com</p>
+
+        <h2 data-i18n="publisher">Éditeur du site</h2>
+        <div class="company-info">
+            <p><strong data-i18n="company_name">Manifest Forge</strong></p>
+            <p data-i18n="company_form">Forme juridique : SASU (Société par actions simplifiée unipersonnelle)</p>
+            <p><span data-i18n="capital">Capital social</span> : 245 EUR</p>
+            <p><span data-i18n="address">Adresse</span> : 7 Rue Saint Antoine du T, 31000 Toulouse, FRANCE</p>
+            <p><span data-i18n="siren">SIREN</span> : 942 164 930</p>
+            <p><span data-i18n="siret">SIRET</span> : 94216493000011</p>
+            <p><span data-i18n="ape_code">Code APE</span> : 6202A - <span data-i18n="ape_activity">Conseil en systèmes et logiciels informatiques</span></p>
+            <p><span data-i18n="president">Président</span> : Charles-Henri Blanchet</p>
+            <p><span data-i18n="email">Email</span> : <a href="mailto:Hello@the-manifest.com">Hello@the-manifest.com</a></p>
+        </div>
+
+        <h2 data-i18n="hosting_provider">Hébergeur</h2>
+        <p data-i18n="hosting_info">Le site est hébergé par Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA.</p>
+        <p><a href="https://vercel.com" target="_blank" rel="noopener noreferrer">vercel.com</a></p>
+
+        <h2 data-i18n="intellectual_property">Propriété intellectuelle</h2>
+        <p data-i18n="ip_text">Tous les contenus présents sur le site the-manifest.com, incluant mais non limités aux textes, images, logos, graphiques, vidéos et éléments de design, sont la propriété exclusive de Manifest Forge ou sont utilisés avec autorisation. Toute reproduction, distribution, transmission, affichage, modification ou utilisation de ces contenus sans l'autorisation écrite préalable de Manifest Forge est strictement interdite.</p>
+
+        <h2 data-i18n="liability">Limitation de responsabilité</h2>
+        <p data-i18n="liability_text">Manifest Forge s'efforce de maintenir l'exactitude et la complétude des informations disponibles sur le site. Cependant, nous ne garantissons pas l'absence d'erreurs ou d'omissions. Les informations sont fournies à titre informatif et ne constituent pas un engagement contractuel. Manifest Forge ne peut être tenue responsable des dommages directs ou indirects résultant de l'utilisation du site ou des informations qui y sont contenues.</p>
+
+        <h2 data-i18n="contact_title">Contact</h2>
+        <p data-i18n="contact_info">Pour toute question concernant ces mentions légales, vous pouvez nous contacter à l'adresse email suivante : <a href="mailto:Hello@the-manifest.com">Hello@the-manifest.com</a></p>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="/legal-notice.html" data-i18n="legal_notice">Mentions Légales</a>
+            <a href="/terms.html" data-i18n="terms_conditions">Conditions Générales de Vente</a>
+            <a href="/privacy-policy.html" data-i18n="privacy_policy">Politique de Confidentialité</a>
+        </div>
+        <div class="footer-copyright" data-i18n="copyright">© 2026 Manifest Forge. Tous droits réservés.</div>
+    </footer>
+
+    <script>
+        const translations = {
+            fr: {
+                legal_notice: 'Mentions Légales',
+                legal_notice_subtitle: 'Informations légales concernant le site the-manifest.com',
+                back_to_home: '← Retour à l\'accueil',
+                publisher: 'Éditeur du site',
+                company_name: 'Manifest Forge',
+                company_form: 'Forme juridique : SASU (Société par actions simplifiée unipersonnelle)',
+                capital: 'Capital social',
+                address: 'Adresse',
+                siren: 'SIREN',
+                siret: 'SIRET',
+                ape_code: 'Code APE',
+                ape_activity: 'Conseil en systèmes et logiciels informatiques',
+                president: 'Président',
+                email: 'Email',
+                hosting_provider: 'Hébergeur',
+                hosting_info: 'Le site est hébergé par Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA.',
+                intellectual_property: 'Propriété intellectuelle',
+                ip_text: 'Tous les contenus présents sur le site the-manifest.com, incluant mais non limités aux textes, images, logos, graphiques, vidéos et éléments de design, sont la propriété exclusive de Manifest Forge ou sont utilisés avec autorisation. Toute reproduction, distribution, transmission, affichage, modification ou utilisation de ces contenus sans l\'autorisation écrite préalable de Manifest Forge est strictement interdite.',
+                liability: 'Limitation de responsabilité',
+                liability_text: 'Manifest Forge s\'efforce de maintenir l\'exactitude et la complétude des informations disponibles sur le site. Cependant, nous ne garantissons pas l\'absence d\'erreurs ou d\'omissions. Les informations sont fournies à titre informatif et ne constituent pas un engagement contractuel. Manifest Forge ne peut être tenue responsable des dommages directs ou indirects résultant de l\'utilisation du site ou des informations qui y sont contenues.',
+                contact_title: 'Contact',
+                contact_info: 'Pour toute question concernant ces mentions légales, vous pouvez nous contacter à l\'adresse email suivante :',
+                legal_notice: 'Mentions Légales',
+                terms_conditions: 'Conditions Générales de Vente',
+                privacy_policy: 'Politique de Confidentialité',
+                copyright: '© 2026 Manifest Forge. Tous droits réservés.'
+            },
+            en: {
+                legal_notice: 'Legal Notice',
+                legal_notice_subtitle: 'Legal information regarding the website the-manifest.com',
+                back_to_home: '← Back to home',
+                publisher: 'Website Publisher',
+                company_name: 'Manifest Forge',
+                company_form: 'Legal form: SASU (Simplified Joint Stock Company with Single Shareholder)',
+                capital: 'Capital stock',
+                address: 'Address',
+                siren: 'SIREN',
+                siret: 'SIRET',
+                ape_code: 'Code APE',
+                ape_activity: 'Business and software systems consulting',
+                president: 'President',
+                email: 'Email',
+                hosting_provider: 'Hosting Provider',
+                hosting_info: 'The website is hosted by Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA.',
+                intellectual_property: 'Intellectual Property',
+                ip_text: 'All content on the website the-manifest.com, including but not limited to texts, images, logos, graphics, videos and design elements, are the exclusive property of Manifest Forge or are used with permission. Any reproduction, distribution, transmission, display, modification or use of this content without prior written authorization from Manifest Forge is strictly prohibited.',
+                liability: 'Limitation of Liability',
+                liability_text: 'Manifest Forge endeavors to maintain the accuracy and completeness of information available on the website. However, we make no guarantee of freedom from errors or omissions. Information is provided for informational purposes and does not constitute a contractual commitment. Manifest Forge cannot be held responsible for direct or indirect damages resulting from the use of the website or the information contained therein.',
+                contact_title: 'Contact',
+                contact_info: 'For any questions regarding these legal notices, you can contact us at the following email address:',
+                terms_conditions: 'General Terms of Sale',
+                privacy_policy: 'Privacy Policy',
+                copyright: '© 2026 Manifest Forge. All rights reserved.'
+            }
+        };
+
+        function initLanguage() {
+            const savedLang = localStorage.getItem('manifest-lang') || 'fr';
+            setLanguage(savedLang);
+        }
+
+        function setLanguage(lang) {
+            localStorage.setItem('manifest-lang', lang);
+            document.documentElement.lang = lang;
+
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
+        }
+
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.getAttribute('data-lang');
+                setLanguage(lang);
+            });
+        });
+
+        initLanguage();
+    </script>
+</body>
+</html>
