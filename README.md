@@ -14,13 +14,6 @@ Single-page marketing website for Manifest.
 └── .gitignore
 ```
 
-## Deploy to Vercel
-
-1. Push this repo to GitHub
-2. Go to [vercel.com](https://vercel.com) → New Project → Import from GitHub
-3. Select this repo — Vercel auto-detects static HTML, no build step needed
-4. Deploy
-
 ## Local preview
 
 Open `index.html` in a browser, or run:
