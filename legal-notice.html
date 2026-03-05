@@ -226,8 +226,11 @@
             <p><span data-i18n="address">Adresse</span> : 7 Rue Saint Antoine du T, 31000 Toulouse, FRANCE</p>
             <p><span data-i18n="siren">SIREN</span> : 942 164 930</p>
             <p><span data-i18n="siret">SIRET</span> : 94216493000011</p>
+            <p><span data-i18n="rcs">RCS</span> : Toulouse 942 164 930</p>
+            <p><span data-i18n="tva">N° TVA intracommunautaire</span> : FR65 942164930</p>
             <p><span data-i18n="ape_code">Code APE</span> : 2899B - <span data-i18n="ape_activity">Fabrication d'autres machines d'usage général</span></p>
             <p><span data-i18n="president">Président</span> : Charles-Henri Blanchet</p>
+            <p><span data-i18n="publication_director">Directeur de la publication</span> : Charles-Henri Blanchet</p>
             <p><span data-i18n="email">Email</span> : <a href="mailto:Hello@the-manifest.com">Hello@the-manifest.com</a></p>
         </div>
 
@@ -242,7 +245,12 @@
         <p data-i18n="liability_text">Manifest Forge s'efforce de maintenir l'exactitude et la complétude des informations disponibles sur le site. Cependant, nous ne garantissons pas l'absence d'erreurs ou d'omissions. Les informations sont fournies à titre informatif et ne constituent pas un engagement contractuel. Manifest Forge ne peut être tenue responsable des dommages directs ou indirects résultant de l'utilisation du site ou des informations qui y sont contenues.</p>
 
         <h2 data-i18n="contact_title">Contact</h2>
-        <p data-i18n="contact_info">Pour toute question concernant ces mentions légales, vous pouvez nous contacter à l'adresse email suivante : <a href="mailto:Hello@the-manifest.com">Hello@the-manifest.com</a></p>
+        <p data-i18n="contact_info">Pour toute question concernant ces mentions légales, vous pouvez nous contacter :</p>
+        <p>
+            <strong>Manifest Forge</strong><br>
+            Email : <a href="mailto:Hello@the-manifest.com">Hello@the-manifest.com</a><br>
+            Adresse : 7 Rue Saint Antoine du T, 31000 Toulouse, FRANCE
+        </p>
     </main>
 
     <footer>
@@ -267,9 +275,12 @@
                 address: 'Adresse',
                 siren: 'SIREN',
                 siret: 'SIRET',
+                rcs: 'RCS',
+                tva: 'N° TVA intracommunautaire',
                 ape_code: 'Code APE',
                 ape_activity: 'Fabrication d\'autres machines d\'usage général',
                 president: 'Président',
+                publication_director: 'Directeur de la publication',
                 email: 'Email',
                 hosting_provider: 'Hébergeur',
                 hosting_info: 'Le site est hébergé par Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA.',
@@ -278,7 +289,7 @@
                 liability: 'Limitation de responsabilité',
                 liability_text: 'Manifest Forge s\'efforce de maintenir l\'exactitude et la complétude des informations disponibles sur le site. Cependant, nous ne garantissons pas l\'absence d\'erreurs ou d\'omissions. Les informations sont fournies à titre informatif et ne constituent pas un engagement contractuel. Manifest Forge ne peut être tenue responsable des dommages directs ou indirects résultant de l\'utilisation du site ou des informations qui y sont contenues.',
                 contact_title: 'Contact',
-                contact_info: 'Pour toute question concernant ces mentions légales, vous pouvez nous contacter à l\'adresse email suivante :',
+                contact_info: 'Pour toute question concernant ces mentions légales, vous pouvez nous contacter :',
                 legal_notice: 'Mentions Légales',
                 terms_conditions: 'Conditions Générales',
                 privacy_policy: 'Politique de Confidentialité',
@@ -295,9 +306,12 @@
                 address: 'Address',
                 siren: 'SIREN',
                 siret: 'SIRET',
+                rcs: 'Trade Register (RCS)',
+                tva: 'EU VAT Number',
                 ape_code: 'Code APE',
                 ape_activity: 'Manufacture of other general-purpose machinery',
                 president: 'President',
+                publication_director: 'Publication Director',
                 email: 'Email',
                 hosting_provider: 'Hosting Provider',
                 hosting_info: 'The website is hosted by Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA.',
@@ -306,7 +320,7 @@
                 liability: 'Limitation of Liability',
                 liability_text: 'Manifest Forge endeavors to maintain the accuracy and completeness of information available on the website. However, we make no guarantee of freedom from errors or omissions. Information is provided for informational purposes and does not constitute a contractual commitment. Manifest Forge cannot be held responsible for direct or indirect damages resulting from the use of the website or the information contained therein.',
                 contact_title: 'Contact',
-                contact_info: 'For any questions regarding these legal notices, you can contact us at the following email address:',
+                contact_info: 'For any questions regarding these legal notices, please contact us:',
                 terms_conditions: 'General Terms',
                 privacy_policy: 'Privacy Policy',
                 copyright: '© 2026 Manifest Forge. All rights reserved.'
@@ -344,5 +358,7 @@
 
         initLanguage();
     </script>
+  <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+  <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

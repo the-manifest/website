@@ -282,8 +282,8 @@
         </ul>
         <p data-i18n="article_7_exercise">Pour exercer ces droits, contactez-nous à <a href="mailto:Hello@the-manifest.com">Hello@the-manifest.com</a> avec l'objet "RGPD - [Votre demande]".</p>
 
-        <h2 data-i18n="article_8">8. Stockage local</h2>
-        <p data-i18n="article_8_text">Notre site utilise le stockage local du navigateur (localStorage) uniquement pour mémoriser votre préférence de langue. Aucun cookie analytique ou de suivi n'est utilisé.</p>
+        <h2 data-i18n="article_8">8. Stockage local et mesure d'audience</h2>
+        <p data-i18n="article_8_text">Notre site utilise le stockage local du navigateur (localStorage) uniquement pour mémoriser votre préférence de langue. Le site utilise également Vercel Analytics, un outil de mesure d'audience sans cookie, qui collecte des données anonymisées sur les pages visitées et les comportements de navigation. Aucune donnée personnelle identifiable n'est collectée par cet outil.</p>
 
         <h2 data-i18n="article_9">9. Transferts hors UE</h2>
         <p data-i18n="article_9_text">Certaines de vos données peuvent être transférées en dehors de l'Union Européenne :</p>
@@ -374,8 +374,8 @@
                 right_6: 'Droit d\'opposition : vous opposer au traitement',
                 right_7: 'Droit de ne pas être soumis à une décision automatisée',
                 article_7_exercise: 'Pour exercer ces droits, contactez-nous à Hello@the-manifest.com avec l\'objet "RGPD - [Votre demande]".',
-                article_8: '8. Stockage local',
-                article_8_text: 'Notre site utilise le stockage local du navigateur (localStorage) uniquement pour mémoriser votre préférence de langue. Aucun cookie analytique ou de suivi n\'est utilisé.',
+                article_8: '8. Stockage local et mesure d\'audience',
+                article_8_text: 'Notre site utilise le stockage local du navigateur (localStorage) uniquement pour mémoriser votre préférence de langue. Le site utilise également Vercel Analytics, un outil de mesure d\'audience sans cookie, qui collecte des données anonymisées sur les pages visitées et les comportements de navigation. Aucune donnée personnelle identifiable n\'est collectée par cet outil.',
                 article_9: '9. Transferts hors UE',
                 article_9_text: 'Certaines de vos données peuvent être transférées en dehors de l\'Union Européenne :',
                 transfer_1: 'Vercel Inc. (hébergeur) : États-Unis',
@@ -437,8 +437,8 @@
                 right_6: 'Right to object: object to the processing',
                 right_7: 'Right not to be subject to automated decision-making',
                 article_7_exercise: 'To exercise these rights, contact us at Hello@the-manifest.com with the subject "GDPR - [Your request]".',
-                article_8: '8. Local Storage',
-                article_8_text: 'Our site uses browser local storage (localStorage) solely to remember your language preference. No analytics or tracking cookies are used.',
+                article_8: '8. Local Storage & Analytics',
+                article_8_text: 'Our site uses browser local storage (localStorage) solely to remember your language preference. The site also uses Vercel Analytics, a cookieless audience measurement tool that collects anonymized data on visited pages and browsing behavior. No personally identifiable information is collected by this tool.',
                 article_9: '9. Transfers Outside the EU',
                 article_9_text: 'Some of your data may be transferred outside the European Union:',
                 transfer_1: 'Vercel Inc. (hosting provider): United States',
@@ -490,5 +490,7 @@
 
         initLanguage();
     </script>
+  <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+  <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
