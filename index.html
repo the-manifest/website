@@ -358,7 +358,6 @@ section { padding: 100px 0; }
 
 /* Full-viewport sections */
 #inspection-job,
-#value,
 #partners,
 #team {
   min-height: 100vh;
@@ -412,7 +411,7 @@ section { padding: 100px 0; }
 
 /* ── Mission ── */
 #mission {
-  background: var(--bg);
+  background: var(--bg-soft);
   padding: 32px 0;
   text-align: center;
 }
@@ -442,7 +441,7 @@ section { padding: 100px 0; }
 }
 
 /* ── Value (2-col grid) ── */
-#value { background: var(--bg-soft); }
+#value { background: var(--bg); }
 
 .value-grid {
   margin-top: 40px;
@@ -1086,7 +1085,7 @@ footer p {
   <div class="container">
     <a href="#" class="nav-logo"><img src="assets/images/logo.png" alt="Manifest" class="nav-logo-img"></a>
     <ul class="nav-links">
-      <li><a href="#value" data-i18n="nav-strategic-autonomy">Strategic Autonomy</a></li>
+      <li><a href="#mission" data-i18n="nav-strategic-autonomy">Strategic Autonomy</a></li>
       <li><a href="#inspection-job" data-i18n="nav-inspection">Inspection</a></li>
       <li><a href="#partners" data-i18n="nav-partners">Partners</a></li>
       <li><a href="#team" data-i18n="nav-team">Team</a></li>
@@ -1105,7 +1104,7 @@ footer p {
 <!-- Mobile drawer -->
 <div class="mobile-drawer" id="mobile-drawer">
   <button class="drawer-close" id="drawer-close" aria-label="Close menu">&#x2715;</button>
-  <a href="#value" class="drawer-link" data-i18n="nav-strategic-autonomy">Strategic Autonomy</a>
+  <a href="#mission" class="drawer-link" data-i18n="nav-strategic-autonomy">Strategic Autonomy</a>
   <a href="#inspection-job" class="drawer-link" data-i18n="nav-inspection">Inspection</a>
   <a href="#partners" class="drawer-link" data-i18n="nav-partners">Partners</a>
   <a href="#team" class="drawer-link" data-i18n="nav-team">Team</a>
@@ -1122,13 +1121,17 @@ footer p {
   <h1 data-i18n="hero-title">Humanoids for European Defence</h1>
 </section>
 
-<section id="value" style="background: var(--bg-soft); padding: 80px 0;">
-  <div class="container">
-
-    <!-- Mission — centered -->
-    <div class="reveal" style="text-align: center; margin-bottom: 72px;">
-      <p class="mission-statement"><span style="display:block" data-i18n="mission-line1">Manifest is the First Humanoid Solution</span><span style="display:block" data-i18n="mission-line2">Purpose-Built for European Defence</span></p>
+<div style="min-height: 100vh; display: flex; flex-direction: column;">
+  <section id="mission" style="padding: 40px 0; display: flex; align-items: center; justify-content: center;">
+    <div class="container">
+      <div class="reveal" style="text-align: center;">
+        <p class="mission-statement"><span style="display:block" data-i18n="mission-line1">Manifest is the First Humanoid Solution</span><span style="display:block" data-i18n="mission-line2">Purpose-Built for European Defence</span></p>
+      </div>
     </div>
+  </section>
+
+  <section id="value" style="background: var(--bg); padding: 40px 0; flex: 1; display: flex; align-items: center;">
+  <div class="container">
 
     <!-- Heading left / pillars right — fits in one viewport -->
     <div class="reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
@@ -1163,6 +1166,7 @@ footer p {
 
   </div>
 </section>
+</div>
 
 <section id="inspection-job" style="background: #111111;">
   <div class="container">
@@ -1479,13 +1483,15 @@ const TRANSLATIONS = {
 const _pathLang = location.pathname.replace(/^\//, '');
 let currentLanguage = (['en', 'fr'].includes(_pathLang) ? _pathLang : null) || localStorage.getItem('manifest-lang') || null;
 
-function setLanguage(lang) {
+function setLanguage(lang, updateUrl = false) {
   if (!['en', 'fr'].includes(lang)) return;
 
   currentLanguage = lang;
   localStorage.setItem('manifest-lang', lang);
   document.documentElement.lang = lang;
-  history.replaceState(null, '', '/' + lang);
+  if (updateUrl || ['en', 'fr'].includes(location.pathname.replace(/^\//, ''))) {
+    history.replaceState(null, '', '/' + lang);
+  }
 
   // Update all elements with data-i18n attributes
   document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -1605,15 +1611,15 @@ window.addEventListener('DOMContentLoaded', function() {
 });
 
 // ── Language Popup Buttons ──
-document.getElementById('lang-btn-en').addEventListener('click', () => setLanguage('en'));
-document.getElementById('lang-btn-fr').addEventListener('click', () => setLanguage('fr'));
+document.getElementById('lang-btn-en').addEventListener('click', () => setLanguage('en', true));
+document.getElementById('lang-btn-fr').addEventListener('click', () => setLanguage('fr', true));
 
 // ── Language Switcher ──
 ['lang-switcher-nav', 'lang-switcher-topbar'].forEach(id => {
   const el = document.getElementById(id);
   if (el) el.addEventListener('click', function(e) {
     e.preventDefault();
-    setLanguage(currentLanguage === 'en' ? 'fr' : 'en');
+    setLanguage(currentLanguage === 'en' ? 'fr' : 'en', true);
   });
 });
 
