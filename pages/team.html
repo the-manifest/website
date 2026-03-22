@@ -200,7 +200,7 @@ const TEAM = [
 
 function buildCard(m) {
   const avatarInner = m.img
-    ? `<img src="/assets/images/team/${m.img}" alt="${m.name}" loading="lazy">`
+    ? `<img src="/team/${m.img}" alt="${m.name}" loading="lazy">`
     : m.name.charAt(0);
   return `<div class="team-card">
     <div class="team-avatar">${avatarInner}</div>
