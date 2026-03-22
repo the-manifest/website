@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Manifest</title>
-<link rel="icon" type="image/png" href="/favicon-dark.png" media="(prefers-color-scheme: light)">
-<link rel="icon" type="image/png" href="/favicon-light.png" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/png" href="/public/favicon-dark.png" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/png" href="/public/favicon-light.png" media="(prefers-color-scheme: dark)">
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -1083,7 +1083,7 @@ footer p {
 
 <nav id="nav">
   <div class="container">
-    <a href="#" class="nav-logo"><img src="assets/images/logo.png" alt="Manifest" class="nav-logo-img"></a>
+    <a href="#" class="nav-logo"><img src="public/assets/images/logo.png" alt="Manifest" class="nav-logo-img"></a>
     <ul class="nav-links">
       <li><a href="#mission" data-i18n="nav-strategic-autonomy">Strategic Autonomy</a></li>
       <li><a href="#inspection-job" data-i18n="nav-inspection">Inspection</a></li>
@@ -1114,7 +1114,7 @@ footer p {
 <section class="hero">
   <div class="hero-video-wrap">
     <video autoplay muted loop playsinline id="hero-video">
-      <source id="hero-video-src" src="assets/video/hero.mp4" type="video/mp4">
+      <source id="hero-video-src" src="public/assets/video/hero.mp4" type="video/mp4">
     </video>
     <div class="hero-overlay"></div>
   </div>
@@ -1177,7 +1177,7 @@ footer p {
         <h2 style="font-size: clamp(1.8rem, 3.2vw, 2.6rem); font-weight: 700; color: #ffffff; letter-spacing: -0.03em; line-height: 1.2; margin: 0;" data-i18n="inspection-title">20% of Defence is Inspection</h2>
       </div>
       <div style="border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 0 40px rgba(255,255,255,0.08), 0 8px 32px rgba(0,0,0,0.6);">
-        <img src="assets/images/humanoid-inspecting.png" alt="Humanoid Inspector" style="width: 100%; display: block; object-fit: cover;">
+        <img src="public/assets/images/humanoid-inspecting.png" alt="Humanoid Inspector" style="width: 100%; display: block; object-fit: cover;">
       </div>
     </div>
 
@@ -1215,27 +1215,27 @@ footer p {
     </div>
     <div class="partners-grid">
       <div class="partner-card reveal">
-        <div class="partner-logo"><img src="assets/images/partner-0.png" alt="NVIDIA"></div>
+        <div class="partner-logo"><img src="public/assets/images/partners/nvidia.png" alt="NVIDIA"></div>
         <p data-i18n="partner-0">Powering our open-source, French-hosted, defence-compliant humanoid brain with the world's leading AI computing platform.</p>
       </div>
       <div class="partner-card reveal">
-        <div class="partner-logo"><img src="assets/logos/icam.png" alt="SecNumCloud"></div>
+        <div class="partner-logo"><img src="public/assets/images/partners/icam.png" alt="SecNumCloud"></div>
         <p data-i18n="partner-1">A precision engineering partner whose experienced teams and advanced facilities support the development of our humanoid solution.</p>
       </div>
       <div class="partner-card reveal">
-        <div class="partner-logo"><img src="assets/images/partner-2.png" alt="Aerospace Valley Member"></div>
+        <div class="partner-logo"><img src="public/assets/images/partners/aerospace-valley.png" alt="Aerospace Valley Member"></div>
         <p data-i18n="partner-2">Access to France and Europe's defence industrial network, supporting supply chain development and regulatory navigation.</p>
       </div>
       <div class="partner-card reveal">
-        <div class="partner-logo"><img src="assets/images/partner-3.png" alt="Robotics Place"></div>
+        <div class="partner-logo"><img src="public/assets/images/partners/robotics-place.png" alt="Robotics Place"></div>
         <p data-i18n="partner-3">France's premier robotics cluster connects Manifest to robotics experts and technology partners across France and beyond.</p>
       </div>
       <div class="partner-card reveal">
-        <div class="partner-logo"><img src="assets/images/partner-4.png" alt="Aktantis Member"></div>
+        <div class="partner-logo"><img src="public/assets/images/partners/aktantis.png" alt="Aktantis Member"></div>
         <p data-i18n="partner-4">A leading deeptech cluster connecting Manifest to industrial partners, research institutions, and the French defence innovation ecosystem.</p>
       </div>
       <div class="partner-card reveal">
-        <div class="partner-logo"><img src="assets/images/partner-5.png" alt="Manifest Ecosystem" style="height: 90px; max-width: 200px;"></div>
+        <div class="partner-logo"><img src="public/assets/images/partners/manifest-ecosystem.png" alt="Manifest Ecosystem" style="height: 90px; max-width: 200px;"></div>
         <p data-i18n="partner-5">A growing network of partners providing the services required to deploy and sustain humanoid capabilities at national scale.</p>
       </div>
     </div>
@@ -1321,11 +1321,11 @@ footer p {
   <div class="container">
     <p class="footer-tagline" data-i18n="footer-tagline">Manifest: Humanoids for European Defence</p>
     <div class="footer-links">
-      <a href="legal-notice.html" data-i18n="footer-legal-notice">Legal Notice</a>
+      <a href="pages/legal-notice.html" data-i18n="footer-legal-notice">Legal Notice</a>
       <span>|</span>
-      <a href="terms.html" data-i18n="footer-terms">Terms & Conditions</a>
+      <a href="pages/terms.html" data-i18n="footer-terms">Terms & Conditions</a>
       <span>|</span>
-      <a href="privacy-policy.html" data-i18n="footer-privacy">Privacy Policy</a>
+      <a href="pages/privacy-policy.html" data-i18n="footer-privacy">Privacy Policy</a>
     </div>
   </div>
 </footer>
@@ -1559,7 +1559,7 @@ const TEAM = [
   { row: 2, img: 'christophe.jpg',   name: 'Christophe',     role: 'Advisor',           url: 'https://www.linkedin.com/in/christophe-camperi-ginestet-1b15932/' },
   { row: 2, img: 'tom.jpg',          name: 'Tom',            role: 'Advisor & Investor',url: 'https://www.linkedin.com/in/tomspengler/' },
   { row: 2, img: 'geoffrey.jpg',     name: 'Geoffrey',       role: 'Financial Advisor', url: 'https://www.linkedin.com/in/geoffrey-laurendeau-10b78478/' },
-  { row: 2, img: 'christophe-2.png', name: 'Christophe',     role: 'Defence Advisor',   url: 'https://www.linkedin.com/in/christopheysewyn/?locale=en_US' },
+  { row: 2, img: 'christophe-ysewyn.png', name: 'Christophe',     role: 'Defence Advisor',   url: 'https://www.linkedin.com/in/christopheysewyn/?locale=en_US' },
   { row: 2, img: 'jean-philippe.png',name: 'Jean-Philippe',  role: 'Defence Advisor',   url: 'https://www.linkedin.com/in/jean-philippe-de-hauteclocque-6ab700201/' },
 ];
 
@@ -1567,7 +1567,7 @@ const LI_SVG = `<svg viewBox="0 0 24 24" width="14" height="14" style="flex-shri
 
 function buildCard(m) {
   return `<div class="team-card">
-    <div class="team-avatar"><img src="assets/images/${m.img}" alt="${m.name}" loading="lazy"></div>
+    <div class="team-avatar"><img src="public/assets/images/team/${m.img}" alt="${m.name}" loading="lazy"></div>
     <h3>${m.name}</h3>
     <div class="role" data-original-role="${m.role}">${m.role}</div>
     <a href="${m.url}" class="linkedin-link" target="_blank" rel="noopener">${LI_SVG}<span>LinkedIn</span></a>
@@ -1638,7 +1638,7 @@ const nav = document.getElementById('nav');
   const src = document.getElementById('hero-video-src');
   function loadHeroVideo() {
     const isMobile = window.innerWidth <= 768;
-    const desired = isMobile ? 'assets/video/hero-phone.mp4' : 'assets/video/hero.mp4';
+    const desired = isMobile ? 'public/assets/video/hero-phone.mp4' : 'public/assets/video/hero.mp4';
     if (src.getAttribute('src') !== desired) {
       src.setAttribute('src', desired);
       video.load();

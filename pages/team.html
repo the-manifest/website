@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Team — Manifest</title>
-<link rel="icon" type="image/png" href="/favicon-dark.png" media="(prefers-color-scheme: light)">
-<link rel="icon" type="image/png" href="/favicon-light.png" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/png" href="/public/favicon-dark.png" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/png" href="/public/favicon-light.png" media="(prefers-color-scheme: dark)">
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -186,21 +186,21 @@ body {
 const LI_SVG = `<svg viewBox="0 0 24 24" width="14" height="14" style="flex-shrink:0"><rect x="2" y="2" width="20" height="20" rx="4" fill="#0077B5"/><path d="M7 10h2v7H7zM8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM11 10h2v1h.03C13.4 10.4 14.2 10 15.2 10c2.1 0 2.8 1.4 2.8 3.2V17h-2v-3.5c0-.8-.3-1.5-1.1-1.5s-1.4.7-1.4 1.5V17h-2v-7z" fill="white"/></svg>`;
 
 const TEAM = [
-  { row: 1, img: 'assets/images/charles.jpg',      name: 'Charles-Henri',  role: 'CEO & Founder',      url: 'https://www.linkedin.com/in/charlesblanchet/' },
-  { row: 1, img: 'assets/images/oussama.jpg',      name: 'Oussama',        role: 'Founding Engineer',  url: 'https://www.linkedin.com/in/oussamala/' },
-  { row: 1, img: 'assets/images/clement.jpg',      name: 'Clément',        role: 'Founding Engineer',  url: 'https://www.linkedin.com/in/clement-guigon/' },
-  { row: 1, img: 'assets/images/thomas.png',        name: 'Thomas',         role: 'Founding Engineer',  url: 'https://www.linkedin.com/in/thomas-bousquet/' },
-  { row: 1, img: 'assets/images/nick.jpg',         name: 'Nick',           role: 'Financial Services', url: 'https://www.linkedin.com/in/maceynick/' },
-  { row: 2, img: 'assets/images/christophe.jpg',   name: 'Christophe',     role: 'Advisor',            url: 'https://www.linkedin.com/in/christophe-camperi-ginestet-1b15932/' },
-  { row: 2, img: 'assets/images/tom.jpg',          name: 'Tom',            role: 'Advisor & Investor', url: 'https://www.linkedin.com/in/tomspengler/' },
-  { row: 2, img: 'assets/images/geoffrey.jpg',     name: 'Geoffrey',       role: 'Financial Advisor',  url: 'https://www.linkedin.com/in/geoffrey-laurendeau-10b78478/' },
-  { row: 2, img: 'assets/images/christophe-2.png', name: 'Christophe',     role: 'Defence Advisor',    url: 'https://www.linkedin.com/in/christopheysewyn/?locale=en_US' },
-  { row: 2, img: 'assets/images/jean-philippe.png',name: 'Jean-Philippe',  role: 'Defence Advisor',    url: 'https://www.linkedin.com/in/jean-philippe-de-hauteclocque-6ab700201/' },
+  { row: 1, img: 'charles.jpg',      name: 'Charles-Henri',  role: 'CEO & Founder',      url: 'https://www.linkedin.com/in/charlesblanchet/' },
+  { row: 1, img: 'oussama.jpg',      name: 'Oussama',        role: 'Founding Engineer',  url: 'https://www.linkedin.com/in/oussamala/' },
+  { row: 1, img: 'clement.jpg',      name: 'Clément',        role: 'Founding Engineer',  url: 'https://www.linkedin.com/in/clement-guigon/' },
+  { row: 1, img: 'thomas.png',        name: 'Thomas',         role: 'Founding Engineer',  url: 'https://www.linkedin.com/in/thomas-bousquet/' },
+  { row: 1, img: 'nick.jpg',         name: 'Nick',           role: 'Financial Services', url: 'https://www.linkedin.com/in/maceynick/' },
+  { row: 2, img: 'christophe.jpg',   name: 'Christophe',     role: 'Advisor',            url: 'https://www.linkedin.com/in/christophe-camperi-ginestet-1b15932/' },
+  { row: 2, img: 'tom.jpg',          name: 'Tom',            role: 'Advisor & Investor', url: 'https://www.linkedin.com/in/tomspengler/' },
+  { row: 2, img: 'geoffrey.jpg',     name: 'Geoffrey',       role: 'Financial Advisor',  url: 'https://www.linkedin.com/in/geoffrey-laurendeau-10b78478/' },
+  { row: 2, img: 'christophe-ysewyn.png', name: 'Christophe',     role: 'Defence Advisor',    url: 'https://www.linkedin.com/in/christopheysewyn/?locale=en_US' },
+  { row: 2, img: 'jean-philippe.png',name: 'Jean-Philippe',  role: 'Defence Advisor',    url: 'https://www.linkedin.com/in/jean-philippe-de-hauteclocque-6ab700201/' },
 ];
 
 function buildCard(m) {
   const avatarInner = m.img
-    ? `<img src="${m.img}" alt="${m.name}" loading="lazy">`
+    ? `<img src="/public/assets/images/team/${m.img}" alt="${m.name}" loading="lazy">`
     : m.name.charAt(0);
   return `<div class="team-card">
     <div class="team-avatar">${avatarInner}</div>
