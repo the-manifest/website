@@ -1215,27 +1215,27 @@ footer p {
     </div>
     <div class="partners-grid">
       <div class="partner-card reveal">
-        <div class="partner-logo"><img src="assets/images/partner-0.png" alt="NVIDIA"></div>
+        <div class="partner-logo"><img src="assets/images/partners/nvidia.png" alt="NVIDIA"></div>
         <p data-i18n="partner-0">Powering our open-source, French-hosted, defence-compliant humanoid brain with the world's leading AI computing platform.</p>
       </div>
       <div class="partner-card reveal">
-        <div class="partner-logo"><img src="assets/logos/icam.png" alt="SecNumCloud"></div>
+        <div class="partner-logo"><img src="assets/images/partners/icam.png" alt="SecNumCloud"></div>
         <p data-i18n="partner-1">A precision engineering partner whose experienced teams and advanced facilities support the development of our humanoid solution.</p>
       </div>
       <div class="partner-card reveal">
-        <div class="partner-logo"><img src="assets/images/partner-2.png" alt="Aerospace Valley Member"></div>
+        <div class="partner-logo"><img src="assets/images/partners/aerospace-valley.png" alt="Aerospace Valley Member"></div>
         <p data-i18n="partner-2">Access to France and Europe's defence industrial network, supporting supply chain development and regulatory navigation.</p>
       </div>
       <div class="partner-card reveal">
-        <div class="partner-logo"><img src="assets/images/partner-3.png" alt="Robotics Place"></div>
+        <div class="partner-logo"><img src="assets/images/partners/robotics-place.png" alt="Robotics Place"></div>
         <p data-i18n="partner-3">France's premier robotics cluster connects Manifest to robotics experts and technology partners across France and beyond.</p>
       </div>
       <div class="partner-card reveal">
-        <div class="partner-logo"><img src="assets/images/partner-4.png" alt="Aktantis Member"></div>
+        <div class="partner-logo"><img src="assets/images/partners/aktantis.png" alt="Aktantis Member"></div>
         <p data-i18n="partner-4">A leading deeptech cluster connecting Manifest to industrial partners, research institutions, and the French defence innovation ecosystem.</p>
       </div>
       <div class="partner-card reveal">
-        <div class="partner-logo"><img src="assets/images/partner-5.png" alt="Manifest Ecosystem" style="height: 90px; max-width: 200px;"></div>
+        <div class="partner-logo"><img src="assets/images/partners/manifest-ecosystem.png" alt="Manifest Ecosystem" style="height: 90px; max-width: 200px;"></div>
         <p data-i18n="partner-5">A growing network of partners providing the services required to deploy and sustain humanoid capabilities at national scale.</p>
       </div>
     </div>
@@ -1321,11 +1321,11 @@ footer p {
   <div class="container">
     <p class="footer-tagline" data-i18n="footer-tagline">Manifest: Humanoids for European Defence</p>
     <div class="footer-links">
-      <a href="legal-notice.html" data-i18n="footer-legal-notice">Legal Notice</a>
+      <a href="pages/legal-notice.html" data-i18n="footer-legal-notice">Legal Notice</a>
       <span>|</span>
-      <a href="terms.html" data-i18n="footer-terms">Terms & Conditions</a>
+      <a href="pages/terms.html" data-i18n="footer-terms">Terms & Conditions</a>
       <span>|</span>
-      <a href="privacy-policy.html" data-i18n="footer-privacy">Privacy Policy</a>
+      <a href="pages/privacy-policy.html" data-i18n="footer-privacy">Privacy Policy</a>
     </div>
   </div>
 </footer>
@@ -1559,7 +1559,7 @@ const TEAM = [
   { row: 2, img: 'christophe.jpg',   name: 'Christophe',     role: 'Advisor',           url: 'https://www.linkedin.com/in/christophe-camperi-ginestet-1b15932/' },
   { row: 2, img: 'tom.jpg',          name: 'Tom',            role: 'Advisor & Investor',url: 'https://www.linkedin.com/in/tomspengler/' },
   { row: 2, img: 'geoffrey.jpg',     name: 'Geoffrey',       role: 'Financial Advisor', url: 'https://www.linkedin.com/in/geoffrey-laurendeau-10b78478/' },
-  { row: 2, img: 'christophe-2.png', name: 'Christophe',     role: 'Defence Advisor',   url: 'https://www.linkedin.com/in/christopheysewyn/?locale=en_US' },
+  { row: 2, img: 'christophe-ysewyn.png', name: 'Christophe',     role: 'Defence Advisor',   url: 'https://www.linkedin.com/in/christopheysewyn/?locale=en_US' },
   { row: 2, img: 'jean-philippe.png',name: 'Jean-Philippe',  role: 'Defence Advisor',   url: 'https://www.linkedin.com/in/jean-philippe-de-hauteclocque-6ab700201/' },
 ];
 
@@ -1567,7 +1567,7 @@ const LI_SVG = `<svg viewBox="0 0 24 24" width="14" height="14" style="flex-shri
 
 function buildCard(m) {
   return `<div class="team-card">
-    <div class="team-avatar"><img src="assets/images/${m.img}" alt="${m.name}" loading="lazy"></div>
+    <div class="team-avatar"><img src="assets/images/team/${m.img}" alt="${m.name}" loading="lazy"></div>
     <h3>${m.name}</h3>
     <div class="role" data-original-role="${m.role}">${m.role}</div>
     <a href="${m.url}" class="linkedin-link" target="_blank" rel="noopener">${LI_SVG}<span>LinkedIn</span></a>

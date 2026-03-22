@@ -1,7 +1,11 @@
 {
   "rewrites": [
     { "source": "/en", "destination": "/index.html" },
-    { "source": "/fr", "destination": "/index.html" }
+    { "source": "/fr", "destination": "/index.html" },
+    { "source": "/team", "destination": "/pages/team.html" },
+    { "source": "/legal-notice", "destination": "/pages/legal-notice.html" },
+    { "source": "/terms", "destination": "/pages/terms.html" },
+    { "source": "/privacy-policy", "destination": "/pages/privacy-policy.html" }
   ],
   "headers": [
     {
