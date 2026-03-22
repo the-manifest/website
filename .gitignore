@@ -5,5 +5,5 @@ Thumbs.db
 node_modules/
 .claude/worktrees/
 inspection-en.html
-team.html
-icons/
+pages/team.html
+assets/icons/
