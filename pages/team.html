@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Team — Manifest</title>
-<link rel="icon" type="image/png" href="/public/favicon-dark.png" media="(prefers-color-scheme: light)">
-<link rel="icon" type="image/png" href="/public/favicon-light.png" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/png" href="/favicon-dark.png" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/png" href="/favicon-light.png" media="(prefers-color-scheme: dark)">
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -200,7 +200,7 @@ const TEAM = [
 
 function buildCard(m) {
   const avatarInner = m.img
-    ? `<img src="/public/assets/images/team/${m.img}" alt="${m.name}" loading="lazy">`
+    ? `<img src="/assets/images/team/${m.img}" alt="${m.name}" loading="lazy">`
     : m.name.charAt(0);
   return `<div class="team-card">
     <div class="team-avatar">${avatarInner}</div>

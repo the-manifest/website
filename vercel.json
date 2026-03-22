@@ -9,14 +9,14 @@
   ],
   "headers": [
     {
-      "source": "/public/assets/video/(.*)",
+      "source": "/assets/video/(.*)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" },
         { "key": "Accept-Ranges", "value": "bytes" }
       ]
     },
     {
-      "source": "/public/assets/images/(.*)",
+      "source": "/assets/images/(.*)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
