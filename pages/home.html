@@ -62,18 +62,6 @@ body {
 .reveal-left.visible,
 .reveal-right.visible { opacity: 1; transform: translateX(0); }
 
-/* Scroll-progress bar pinned to the top */
-.scroll-progress {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--accent);
-  transform-origin: 0 50%;
-  transform: scaleX(var(--scroll-progress, 0));
-  z-index: 200;
-  pointer-events: none;
-  will-change: transform;
-}
 
 @media (prefers-reduced-motion: reduce) {
   .reveal, .reveal.hidden, .reveal.visible {
@@ -676,8 +664,6 @@ footer .container {
 </head>
 <body>
 
-<div class="scroll-progress" id="scroll-progress"></div>
-
 <nav id="nav">
   <div class="container">
     <a class="nav-logo" data-link="home"><img src="/assets/logo.png" alt="Manifest" class="nav-logo-img"></a>
@@ -948,7 +934,6 @@ const nav = document.getElementById('nav');
 const navLogoImg = document.querySelector('.nav-logo-img');
 const navLogoEl  = document.querySelector('.nav-logo');
 const heroFigure = document.querySelector('.hero figure');
-const progressBar = document.getElementById('scroll-progress');
 const LOGO_MAX = 80;
 const LOGO_MIN = 44;
 const PAD_MAX  = 24;
@@ -975,11 +960,6 @@ function updateNav() {
   nav.classList.toggle('scrolled', scrollY > 20);
 
   if (!reduceMotion) {
-    // Scroll-progress bar (0 → 1 across the page)
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = docHeight > 0 ? Math.min(1, scrollY / docHeight) : 0;
-    if (progressBar) progressBar.style.setProperty('--scroll-progress', progress);
-
     // Hero photo parallax: drifts upward at 0.18× scroll, capped so it never disappears
     if (heroFigure) {
       const parallax = Math.max(-120, -scrollY * 0.18);

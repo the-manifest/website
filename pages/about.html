@@ -61,18 +61,6 @@ body {
   }
 }
 
-/* Scroll-progress bar */
-.scroll-progress {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--accent);
-  transform-origin: 0 50%;
-  transform: scaleX(var(--scroll-progress, 0));
-  z-index: 200;
-  pointer-events: none;
-  will-change: transform;
-}
 
 /* ── Language Popup ── */
 .language-popup {
@@ -1074,8 +1062,6 @@ footer p {
 </head>
 <body>
 
-<div class="scroll-progress" id="scroll-progress"></div>
-
 <!-- Language Selection Popup -->
 <div class="language-popup hidden" id="language-popup" style="display:none">
   <div class="language-popup-card">
@@ -1566,17 +1552,6 @@ const obs = new IntersectionObserver(entries => {
 }, { threshold: 0.18, rootMargin: '0px 0px -12% 0px' });
 revealEls.forEach(el => obs.observe(el));
 
-// Scroll-progress bar
-const progressBar = document.getElementById('scroll-progress');
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-function updateProgress() {
-  if (reduceMotion || !progressBar) return;
-  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const p = docHeight > 0 ? Math.min(1, window.scrollY / docHeight) : 0;
-  progressBar.style.setProperty('--scroll-progress', p);
-}
-updateProgress();
-window.addEventListener('scroll', () => requestAnimationFrame(updateProgress), { passive: true });
 
 const nav = document.getElementById('nav');
 
