@@ -13,7 +13,7 @@
 <link rel="icon" type="image/png" href="/favicon-light.png" media="(prefers-color-scheme: dark)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Lexend:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg: #ffffff;
@@ -238,15 +238,8 @@ nav .container {
 
 .hero h1 .date {
   white-space: nowrap;
-  font-family: 'Caveat', cursive;
-  font-weight: 700;
-  font-size: 1.15em;
-  letter-spacing: 0;
   background: linear-gradient(180deg, transparent 58%, rgba(184,91,31,0.28) 58%, rgba(184,91,31,0.28) 95%, transparent 95%);
-  padding: 0 10px;
-  display: inline-block;
-  rotate: -1.2deg;
-  margin: 0 4px;
+  padding: 0 6px;
 }
 
 .hero-sub {
@@ -448,101 +441,6 @@ h2.section-heading {
 }
 
 .item-body .btn { margin-top: 28px; }
-
-/* ── Excalidraw-style frames (Humanoid Month cards) ── */
-.campaign-items .item {
-  position: relative;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  isolation: isolate;
-  padding: 36px 40px 40px;
-}
-.campaign-items .item > * { position: relative; z-index: 1; }
-.campaign-items .item::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: #fdfaf3;
-  border: 2.5px solid #1a1a1a;
-  border-radius: 16px;
-  filter: url(#hd-wobble);
-  z-index: 0;
-  transition: background 0.3s;
-}
-.campaign-items .item:hover::before { background: #fff5e0; }
-.campaign-items .item:hover { box-shadow: none; border-color: transparent; }
-
-.campaign-items .item:nth-child(1) { rotate: -0.6deg; }
-.campaign-items .item:nth-child(2) { rotate:  0.5deg; }
-.campaign-items .item:nth-child(3) { rotate: -0.4deg; }
-.campaign-items .item:nth-child(4) { rotate:  0.6deg; }
-
-.campaign-items .item-media {
-  border-radius: 6px;
-  border: 2.5px solid #1a1a1a;
-  box-shadow: 4px 4px 0 #1a1a1a;
-}
-
-.campaign-items .item-date .date-text {
-  font-family: 'Caveat', cursive;
-  font-weight: 700;
-  font-size: 2.1rem;
-  background: none;
-  padding: 0;
-  letter-spacing: 0;
-  color: #1a1a1a;
-  line-height: 1;
-}
-
-.campaign-items .item-date .item-place {
-  background: transparent;
-  border: 2px solid #1a1a1a;
-  color: #1a1a1a;
-  font-family: 'Caveat', cursive;
-  font-size: 1.2rem;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  text-transform: none;
-  padding: 4px 14px;
-  box-shadow: 2px 2px 0 #1a1a1a;
-}
-.campaign-items .item:hover .item-date .item-place {
-  background: var(--accent);
-  color: #fff;
-  border-color: #1a1a1a;
-  transform: translate(1px, 1px);
-  box-shadow: 1px 1px 0 #1a1a1a;
-}
-.campaign-items .item-date .item-place::before { background: currentColor; }
-
-.campaign-items .item-body h3 {
-  font-family: 'Caveat', cursive;
-  font-size: 2.6rem;
-  font-weight: 700;
-  letter-spacing: 0;
-  line-height: 1.05;
-  margin-bottom: 14px;
-}
-
-.campaign-items .item-body p { font-family: 'Lexend', sans-serif; }
-
-.campaign-items .btn {
-  background: transparent;
-  color: #1a1a1a;
-  border: 2px solid #1a1a1a;
-  border-radius: 10px;
-  box-shadow: 3px 3px 0 #1a1a1a;
-  font-weight: 700;
-  font-family: 'Lexend', sans-serif;
-  transition: background 0.2s, color 0.2s, transform 0.15s, box-shadow 0.15s;
-}
-.campaign-items .btn:hover {
-  background: #1a1a1a;
-  color: #fff;
-  transform: translate(2px, 2px);
-  box-shadow: 1px 1px 0 #1a1a1a;
-}
 
 /* ── About teaser ── */
 .about-teaser {
@@ -767,15 +665,6 @@ footer .container {
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
-
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <defs>
-    <filter id="hd-wobble">
-      <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="3" result="noise"/>
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3"/>
-    </filter>
-  </defs>
-</svg>
 
 <nav id="nav">
   <div class="container">
