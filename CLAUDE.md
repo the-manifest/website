@@ -41,7 +41,7 @@ The homepage hero ("Meet Pierre") is the single full-screen entry section: dark 
 ### Images
 
 - `assets/partners/`, `assets/team/`, `assets/logo.png` — logo and small site graphics.
-- `assets/campaign/` — Humanoid Month photos. Both the original PNGs and optimized JPEGs are kept; pages reference the `.jpg` versions. When you add a new campaign photo: keep the source PNG and generate a `< 300 KB` JPEG (use `sips -s format jpeg -s formatOptions 82 [-Z 900]`).
+- `assets/campaign/` — Humanoid Month photos. Pages reference the `.jpg` versions; we ship the optimized JPEGs only and keep the source PNGs out of the repo. When you add a new campaign photo: optimize the source to a `< 300 KB` JPEG before committing (use `sips -s format jpeg -s formatOptions 82 [-Z 900]`).
 - The site logo (`assets/logo.png`) is white-on-transparent — it requires a dark backdrop. Don't place it on light backgrounds without inverting.
 
 ### Forms
