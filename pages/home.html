@@ -18,13 +18,13 @@
 :root {
   --bg: #ffffff;
   --bg-soft: #f5f3ef;
-  --bg-warm: #faf7f2;
+  --bg-warm: #ffffff;
   --dark: #0d0d0d;
   --text: #1a1a1a;
   --text-body: #3a3a3a;
   --text-secondary: #555555;
   --text-muted: #7a7a7a;
-  --accent: #b85b1f;
+  --accent: #1a1a1a;
   --border: #e2dfd8;
   --font: 'Lexend', sans-serif;
 }
@@ -104,10 +104,10 @@ nav::before {
   bottom: -120px;
   background: linear-gradient(
     to bottom,
-    rgba(250,247,242,0.95) 0%,
-    rgba(250,247,242,0.80) 30%,
-    rgba(250,247,242,0.40) 65%,
-    rgba(250,247,242,0.00) 100%
+    rgba(255,255,255,0.95) 0%,
+    rgba(255,255,255,0.80) 30%,
+    rgba(255,255,255,0.40) 65%,
+    rgba(255,255,255,0.00) 100%
   );
   pointer-events: none;
   z-index: -1;
@@ -238,7 +238,7 @@ nav .container {
 
 .hero h1 .date {
   white-space: nowrap;
-  background: linear-gradient(180deg, transparent 58%, rgba(184,91,31,0.28) 58%, rgba(184,91,31,0.28) 95%, transparent 95%);
+  background: linear-gradient(180deg, transparent 58%, rgba(0,0,0,0.10) 58%, rgba(0,0,0,0.10) 95%, transparent 95%);
   padding: 0 6px;
 }
 
@@ -306,7 +306,7 @@ nav .container {
   background: transparent;
   color: var(--accent);
   transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(184,91,31,0.22);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.18);
 }
 
 /* ── Sections ── */
@@ -356,7 +356,7 @@ h2.section-heading {
 .item:hover {
   box-shadow: 0 16px 44px rgba(0,0,0,0.08);
   transform: translateY(-4px);
-  border-color: rgba(184,91,31,0.25);
+  border-color: rgba(0,0,0,0.18);
 }
 
 .item-media {
@@ -387,7 +387,7 @@ h2.section-heading {
   font-size: 1.55rem;
   letter-spacing: -0.005em;
   color: var(--text);
-  background: linear-gradient(180deg, transparent 60%, rgba(184,91,31,0.28) 60%, rgba(184,91,31,0.28) 95%, transparent 95%);
+  background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.10) 60%, rgba(0,0,0,0.10) 95%, transparent 95%);
   padding: 0 8px;
 }
 
@@ -395,7 +395,7 @@ h2.section-heading {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(184,91,31,0.12);
+  background: rgba(0,0,0,0.06);
   color: var(--accent);
   font-weight: 700;
   font-size: 0.82rem;
@@ -403,11 +403,11 @@ h2.section-heading {
   border-radius: 999px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  border: 1px solid rgba(184,91,31,0.18);
+  border: 1px solid rgba(0,0,0,0.12);
   transition: background 0.25s, transform 0.25s;
 }
 .item:hover .item-date .item-place {
-  background: rgba(184,91,31,0.18);
+  background: rgba(0,0,0,0.12);
   transform: translateY(-1px);
 }
 
@@ -444,8 +444,8 @@ h2.section-heading {
 
 /* ── About teaser ── */
 .about-teaser {
-  background: #1f2a33;
-  background: linear-gradient(180deg, #1f2a33 0%, #1a242c 100%);
+  background: #1a1a1a;
+  background: linear-gradient(180deg, #1a1a1a 0%, #1a1a1a 100%);
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -459,7 +459,7 @@ h2.section-heading {
   width: 80%;
   height: 200%;
   transform: translateX(-50%);
-  background: radial-gradient(ellipse at center, rgba(184,91,31,0.10), transparent 60%);
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.06), transparent 60%);
   pointer-events: none;
 }
 
@@ -505,7 +505,7 @@ h2.section-heading {
 /* ── Footer ── */
 footer {
   padding: 32px 0;
-  background: #1a242c;
+  background: #1a1a1a;
 }
 footer .container {
   display: flex;
