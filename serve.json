@@ -12,27 +12,5 @@
     { "source": "/fr/conditions", "destination": "/pages/terms.html" },
     { "source": "/en/privacy-policy", "destination": "/pages/privacy-policy.html" },
     { "source": "/fr/confidentialite", "destination": "/pages/privacy-policy.html" }
-  ],
-  "redirects": [
-    { "source": "/about", "destination": "/en/about", "permanent": false },
-    { "source": "/contact", "destination": "/en/contact", "permanent": false },
-    { "source": "/legal-notice", "destination": "/en/legal-notice", "permanent": false },
-    { "source": "/terms", "destination": "/en/terms", "permanent": false },
-    { "source": "/privacy-policy", "destination": "/en/privacy-policy", "permanent": false }
-  ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
-      ]
-    },
-    {
-      "source": "/assets/video/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" },
-        { "key": "Accept-Ranges", "value": "bytes" }
-      ]
-    }
   ]
 }

@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manifest — Contact</title>
+<meta name="description" content="Get in touch with Manifest — humanoids for European defence. Questions about the launch, Humanoid Month, demos, or partnerships.">
+<script>
+  window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
+<link rel="icon" type="image/png" href="/favicon-dark.png" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/png" href="/favicon-light.png" media="(prefers-color-scheme: dark)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #ffffff;
+  --bg-soft: #f5f3ef;
+  --bg-warm: #faf7f2;
+  --dark: #0d0d0d;
+  --text: #1a1a1a;
+  --text-body: #3a3a3a;
+  --text-secondary: #555555;
+  --text-muted: #7a7a7a;
+  --accent: #b85b1f;
+  --border: #e2dfd8;
+  --font: 'Lexend', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg-warm);
+  color: var(--text);
+  font-family: var(--font);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 4.5vw, 64px);
+}
+
+/* ── Nav ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 14px 0;
+  background: transparent;
+}
+
+nav::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  bottom: -120px;
+  background: linear-gradient(
+    to bottom,
+    rgba(250,247,242,0.95) 0%,
+    rgba(250,247,242,0.80) 30%,
+    rgba(250,247,242,0.40) 65%,
+    rgba(250,247,242,0.00) 100%
+  );
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+nav.scrolled::before { opacity: 1; }
+
+nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1520px;
+  padding: 0 clamp(20px, 4.5vw, 64px);
+}
+
+.nav-links, .hamburger { margin-top: 14px; }
+
+.nav-logo { text-decoration: none; display: flex; align-items: center; }
+
+.nav-logo-img {
+  height: 80px;
+  width: auto;
+  filter: brightness(0);
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  align-items: center;
+}
+.nav-links li { display: flex; align-items: center; }
+
+.nav-links a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition: opacity 0.2s;
+}
+.nav-links a:hover { opacity: 0.65; }
+
+.lang-toggle {
+  display: inline-flex;
+  background: rgba(0,0,0,0.05);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 999px;
+  padding: 3px;
+  line-height: 1;
+}
+.lang-opt {
+  padding: 7px 14px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-decoration: none;
+  color: var(--text-muted);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s;
+  display: inline-flex;
+  align-items: center;
+}
+.lang-opt:not(.active):hover { color: var(--text); }
+.lang-opt.active {
+  background: var(--text);
+  color: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+}
+
+.nav-cta {
+  color: #fff !important;
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 600 !important;
+  transition: opacity 0.2s !important;
+}
+.nav-cta:hover { opacity: 0.88; }
+
+/* ── Page hero ── */
+.page-hero {
+  background: var(--bg-warm);
+  padding: clamp(140px, 18vh, 200px) 0 clamp(40px, 6vh, 70px);
+}
+
+.page-hero-kicker {
+  color: var(--accent);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.page-hero h1 {
+  color: var(--text);
+  font-size: clamp(2rem, 4.4vw, 3.6rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  animation: fadeUp 0.8s ease 0.15s both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Contact ── */
+#contact {
+  flex: 1;
+  background: var(--bg-warm);
+  padding: clamp(48px, 7vh, 100px) 0 clamp(80px, 10vh, 140px);
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: clamp(48px, 6vw, 96px);
+  align-items: start;
+}
+
+.contact-info > p {
+  color: var(--text-body);
+  font-size: 1.12rem;
+  line-height: 1.7;
+  max-width: 46ch;
+}
+
+.contact-info .contact-meta {
+  margin-top: 28px;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+.manifest-linkedin {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #0077B5;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-top: 24px;
+  transition: opacity 0.2s;
+}
+.manifest-linkedin:hover { opacity: 0.75; }
+
+.contact-form { display: flex; flex-direction: column; gap: 16px; }
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.contact-form label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+  display: block;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 14px 18px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: var(--font);
+  font-size: 0.98rem;
+  color: var(--text);
+  background: var(--bg);
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus { border-color: var(--text-secondary); }
+
+.contact-form textarea { resize: vertical; min-height: 88px; }
+
+.form-field { display: flex; flex-direction: column; }
+
+.form-field .field-error {
+  color: #e05252;
+  font-size: 0.75rem;
+  margin-top: 4px;
+  display: none;
+}
+.form-field.has-error input,
+.form-field.has-error textarea { border-color: #e05252 !important; }
+.form-field.has-error .field-error { display: block; }
+
+.form-error-banner {
+  display: none;
+  background: rgba(224,82,82,0.08);
+  border: 1px solid rgba(224,82,82,0.4);
+  border-radius: 6px;
+  padding: 10px 14px;
+  color: #e05252;
+  font-size: 0.82rem;
+  margin-bottom: 12px;
+}
+
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 40px 24px;
+  color: var(--text);
+}
+.form-success svg { margin-bottom: 16px; }
+.form-success h3 { font-size: 1.2rem; font-weight: 600; margin: 0 0 8px; }
+.form-success p { color: var(--text-secondary); font-size: 0.9rem; margin: 0; }
+
+.submit-btn {
+  padding: 14px 36px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font);
+  font-size: 0.98rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  align-self: flex-start;
+  margin-top: 4px;
+}
+.submit-btn:hover { opacity: 0.88; }
+.submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── Footer ── */
+footer {
+  padding: 32px 0;
+  background: #1a242c;
+}
+footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.footer-tagline {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.55);
+  margin: 0;
+  white-space: nowrap;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.footer-links a {
+  color: rgba(255,255,255,0.78);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--accent); }
+.footer-links span {
+  color: var(--accent);
+  font-weight: 700;
+  opacity: 0.7;
+}
+
+/* ── Hamburger / mobile drawer ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  background: rgba(0,0,0,0.04);
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 300;
+  flex-shrink: 0;
+}
+.hamburger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  transform-origin: center;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.mobile-drawer {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(8,8,8,0.97);
+  z-index: 250;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 36px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+}
+.mobile-drawer.open { opacity: 1; pointer-events: all; }
+.mobile-drawer a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+.mobile-drawer a:hover { opacity: 1; }
+.mobile-drawer .drawer-cta {
+  margin-top: 8px;
+  padding: 14px 40px;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.drawer-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1.1rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.drawer-close:hover { background: rgba(255,255,255,0.2); }
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  html, body { overflow-x: hidden; width: 100%; }
+
+  .nav-links { display: none; }
+  .hamburger { display: flex; margin-top: 0; }
+  .mobile-drawer { display: flex; }
+  nav .container { padding: 0 20px; align-items: center; }
+  .nav-logo-img { height: 56px; }
+
+  .page-hero { padding: 130px 0 48px; }
+
+  #contact { padding: 56px 0; }
+  .contact-layout { grid-template-columns: 1fr; gap: 40px; }
+  .form-row { grid-template-columns: 1fr; }
+  .submit-btn { width: 100%; }
+
+  footer .container { flex-direction: column; align-items: center; gap: 12px; }
+  .footer-tagline { white-space: normal; text-align: center; }
+  .footer-links { justify-content: center; }
+  .footer-links span { display: none; }
+}
+</style>
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="container">
+    <a class="nav-logo" data-link="home"><img src="/assets/logo.png" alt="Manifest" class="nav-logo-img"></a>
+    <ul class="nav-links">
+      <li><div class="lang-toggle" id="lang-switcher-nav"></div></li>
+      <li><a class="nav-cta" data-link="contact" data-i18n="nav-contact">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile drawer -->
+<div class="mobile-drawer" id="mobile-drawer">
+  <button class="drawer-close" id="drawer-close" aria-label="Close menu">&#x2715;</button>
+  <div class="lang-toggle" id="lang-switcher-drawer"></div>
+  <a class="drawer-cta" data-link="contact" data-i18n="nav-contact">Contact</a>
+</div>
+
+<section class="page-hero">
+  <div class="container">
+    <p class="page-hero-kicker" data-i18n="page-kicker">Contact</p>
+    <h1 data-i18n="page-title">Get In Touch</h1>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="contact-layout">
+      <div class="contact-info">
+        <p data-i18n="contact-intro">Have a question about the launch, Humanoid Month, or want to learn more about what we're building?</p>
+        <div class="contact-meta">
+          hello@the-manifest.com<br>
+          <span data-i18n="contact-address">7 Rue Saint Antoine du T, 31000 Toulouse, France</span>
+        </div>
+        <a href="https://www.linkedin.com/company/humanoid-journey/posts/?feedView=all" class="manifest-linkedin" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="20" height="20">
+            <rect x="2" y="2" width="20" height="20" rx="4" fill="#0077B5"/>
+            <path d="M7 10h2v7H7zM8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM11 10h2v1h.03C13.4 10.4 14.2 10 15.2 10c2.1 0 2.8 1.4 2.8 3.2V17h-2v-3.5c0-.8-.3-1.5-1.1-1.5s-1.4.7-1.4 1.5V17h-2v-7z" fill="white"/>
+          </svg>
+          <span data-i18n="follow-linkedin">Follow Manifest on LinkedIn</span>
+        </a>
+      </div>
+      <div id="contact-form-wrapper">
+        <form class="contact-form" id="contact-form" novalidate>
+          <div class="form-error-banner" id="form-error-banner" data-i18n="form-error-general">Something went wrong. Please try again or email us directly.</div>
+          <div class="form-row">
+            <div class="form-field" id="field-name">
+              <label for="name" data-i18n="form-label-name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" data-i18n-placeholder="form-placeholder-name">
+              <span class="field-error" data-i18n="form-error-name">Please enter your name.</span>
+            </div>
+            <div class="form-field" id="field-email">
+              <label for="email" data-i18n="form-label-email">Email</label>
+              <input type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email" data-i18n-placeholder="form-placeholder-email">
+              <span class="field-error" data-i18n="form-error-email">Please enter a valid email address.</span>
+            </div>
+          </div>
+          <div class="form-field" id="field-org">
+            <label for="org" data-i18n="form-label-org">Organization</label>
+            <input type="text" id="org" name="org" placeholder="Company or unit" data-i18n-placeholder="form-placeholder-org">
+            <span class="field-error" data-i18n="form-error-org">Please enter your organization.</span>
+          </div>
+          <div class="form-field" id="field-message">
+            <label for="message" data-i18n="form-label-message">Message</label>
+            <textarea id="message" name="message" placeholder="What would you like to discuss?" data-i18n-placeholder="form-placeholder-message"></textarea>
+            <span class="field-error" data-i18n="form-error-message">Please enter a message.</span>
+          </div>
+          <button type="submit" class="submit-btn" id="submit-btn" data-i18n="form-submit">Send Message</button>
+        </form>
+        <div class="form-success" id="form-success">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          <h3 data-i18n="form-success-title">Message sent!</h3>
+          <p data-i18n="form-success-body">We'll get back to you at hello@the-manifest.com</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p class="footer-tagline" data-i18n="footer-tagline">Manifest: Humanoids for European Defence</p>
+    <div class="footer-links">
+      <a data-link="about" data-i18n="nav-about">About Us</a>
+      <span>|</span>
+      <a data-link="legal" data-i18n="footer-legal">Legal Notice</a>
+      <span>|</span>
+      <a data-link="terms" data-i18n="footer-terms">Terms &amp; Conditions</a>
+      <span>|</span>
+      <a data-link="privacy" data-i18n="footer-privacy">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Translations ──
+const TRANSLATIONS = {
+  en: {
+    'nav-humanoid-month': 'Humanoid Month',
+    'nav-about': 'About Us',
+    'nav-contact': 'Contact',
+    'page-kicker': 'Contact',
+    'page-title': 'Get In Touch',
+    'contact-intro': 'Have a question about the launch, Humanoid Month, or want to learn more about what we\'re building?',
+    'contact-address': '7 Rue Saint Antoine du T, 31000 Toulouse, France',
+    'follow-linkedin': 'Follow Manifest on LinkedIn',
+    'form-label-name': 'Name',
+    'form-placeholder-name': 'Your name',
+    'form-label-email': 'Email',
+    'form-placeholder-email': 'you@company.com',
+    'form-label-org': 'Organization',
+    'form-placeholder-org': 'Company or unit',
+    'form-label-message': 'Message',
+    'form-placeholder-message': 'What would you like to discuss?',
+    'form-submit': 'Send Message',
+    'form-error-name': 'Please enter your name.',
+    'form-error-email': 'Please enter a valid email address.',
+    'form-error-org': 'Please enter your organization.',
+    'form-error-message': 'Please enter a message.',
+    'form-error-general': 'Something went wrong. Please try again or email us directly.',
+    'form-confirm': 'Ready to send your message to Manifest?',
+    'form-sending': 'Sending…',
+    'form-success-title': 'Message sent!',
+    'form-success-body': 'We\'ll get back to you at hello@the-manifest.com',
+    'footer-tagline': 'Manifest: Humanoids for European Defence',
+    'footer-legal': 'Legal Notice',
+    'footer-terms': 'Terms & Conditions',
+    'footer-privacy': 'Privacy Policy',
+  },
+  fr: {
+    'nav-humanoid-month': 'Mois Humanoïde',
+    'nav-about': 'À propos',
+    'nav-contact': 'Contact',
+    'page-kicker': 'Contact',
+    'page-title': 'Nous contacter',
+    'contact-intro': 'Une question sur le lancement, le Mois Humanoïde, ou envie d\'en savoir plus sur ce que nous construisons ?',
+    'contact-address': '7 Rue Saint Antoine du T, 31000 Toulouse, France',
+    'follow-linkedin': 'Suivez Manifest sur LinkedIn',
+    'form-label-name': 'Nom',
+    'form-placeholder-name': 'Votre nom',
+    'form-label-email': 'Email',
+    'form-placeholder-email': 'vous@entreprise.com',
+    'form-label-org': 'Organisation',
+    'form-placeholder-org': 'Entreprise ou unité',
+    'form-label-message': 'Message',
+    'form-placeholder-message': 'De quoi souhaitez-vous discuter ?',
+    'form-submit': 'Envoyer le message',
+    'form-error-name': 'Veuillez entrer votre nom.',
+    'form-error-email': 'Veuillez entrer une adresse email valide.',
+    'form-error-org': 'Veuillez entrer votre organisation.',
+    'form-error-message': 'Veuillez entrer un message.',
+    'form-error-general': 'Une erreur s\'est produite. Veuillez réessayer ou nous écrire directement.',
+    'form-confirm': 'Prêt à envoyer votre message à Manifest ?',
+    'form-sending': 'Envoi…',
+    'form-success-title': 'Message envoyé !',
+    'form-success-body': 'Nous vous répondrons à hello@the-manifest.com',
+    'footer-tagline': 'Manifest : Humanoïdes pour la Défense européenne',
+    'footer-legal': 'Mentions légales',
+    'footer-terms': 'Conditions générales',
+    'footer-privacy': 'Politique de confidentialité',
+  }
+};
+
+// ── URL routing / language detection ──
+const URL_MAP = {
+  home:     { en: '/en',                  fr: '/fr' },
+  campaign: { en: '/en#campaign',         fr: '/fr#campaign' },
+  about:    { en: '/en/about',            fr: '/fr/a-propos' },
+  contact:  { en: '/en/contact',          fr: '/fr/contact' },
+  legal:    { en: '/en/legal-notice',     fr: '/fr/mentions-legales' },
+  terms:    { en: '/en/terms',            fr: '/fr/conditions' },
+  privacy:  { en: '/en/privacy-policy',   fr: '/fr/confidentialite' },
+};
+const PAGE_ID = 'contact';
+const currentLanguage = location.pathname.startsWith('/fr') ? 'fr' : 'en';
+localStorage.setItem('manifest-lang', currentLanguage);
+document.documentElement.lang = currentLanguage;
+
+const t = TRANSLATIONS[currentLanguage];
+document.querySelectorAll('[data-i18n]').forEach(el => {
+  const key = el.getAttribute('data-i18n');
+  if (t[key]) el.textContent = t[key];
+});
+document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+  const key = el.getAttribute('data-i18n-placeholder');
+  if (t[key]) el.placeholder = t[key];
+});
+document.querySelectorAll('[data-link]').forEach(a => {
+  const target = a.dataset.link;
+  if (URL_MAP[target]) a.href = URL_MAP[target][currentLanguage];
+});
+
+// Language toggle (segmented control)
+function renderLangToggle(container) {
+  container.innerHTML = ['en', 'fr'].map(l =>
+    `<a class="lang-opt${l === currentLanguage ? ' active' : ''}" data-lang="${l}" href="${URL_MAP[PAGE_ID][l]}">${l.toUpperCase()}</a>`
+  ).join('');
+  container.querySelectorAll('.lang-opt').forEach(el => {
+    el.addEventListener('click', (e) => {
+      if (el.dataset.lang === currentLanguage) { e.preventDefault(); return; }
+      localStorage.setItem('manifest-lang', el.dataset.lang);
+    });
+  });
+}
+['lang-switcher-nav', 'lang-switcher-drawer'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) renderLangToggle(el);
+});
+
+// ── Nav shrink + scrim ──
+const nav = document.getElementById('nav');
+const navLogoImg = document.querySelector('.nav-logo-img');
+const navLogoEl  = document.querySelector('.nav-logo');
+const LOGO_MAX = 80;
+const LOGO_MIN = 44;
+const PAD_MAX  = 24;
+const SHRINK_OVER = 160;
+
+let rafPending = false;
+
+function updateNav() {
+  const scrollY = window.scrollY;
+  const t = Math.min(1, scrollY / SHRINK_OVER);
+  const eased = 1 - Math.pow(1 - t, 3);
+  const isMobile = window.innerWidth <= 860;
+  if (!isMobile) {
+    const logoHeight   = LOGO_MAX - eased * (LOGO_MAX - LOGO_MIN);
+    const logoMarginTop = PAD_MAX - eased * PAD_MAX;
+    if (navLogoImg) navLogoImg.style.height = logoHeight + 'px';
+    if (navLogoEl)  navLogoEl.style.marginTop = logoMarginTop + 'px';
+  } else {
+    if (navLogoImg) navLogoImg.style.height = '';
+    if (navLogoEl)  navLogoEl.style.marginTop = '';
+  }
+
+  nav.classList.toggle('scrolled', scrollY > 20);
+  rafPending = false;
+}
+
+updateNav();
+
+window.addEventListener('scroll', () => {
+  if (!rafPending) {
+    rafPending = true;
+    requestAnimationFrame(updateNav);
+  }
+}, { passive: true });
+window.addEventListener('resize', updateNav);
+
+// ── Hamburger menu ──
+const hamburger = document.getElementById('hamburger');
+const drawer = document.getElementById('mobile-drawer');
+
+function closeDrawer() {
+  drawer.classList.remove('open');
+  hamburger.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+hamburger.addEventListener('click', () => {
+  const isOpen = drawer.classList.toggle('open');
+  hamburger.classList.toggle('open', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+});
+
+document.getElementById('drawer-close').addEventListener('click', closeDrawer);
+drawer.addEventListener('click', (e) => { if (e.target === drawer) closeDrawer(); });
+drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
+
+// ── Contact form validation & submission ──
+(function() {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+
+  const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  function validateField(fieldId, inputId, customCheck) {
+    const field = document.getElementById(fieldId);
+    const input = document.getElementById(inputId);
+    const valid = customCheck ? customCheck(input.value.trim()) : input.value.trim() !== '';
+    field.classList.toggle('has-error', !valid);
+    return valid;
+  }
+
+  ['name', 'email', 'org', 'message'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', function() {
+      const field = document.getElementById('field-' + id);
+      if (field) field.classList.remove('has-error');
+      document.getElementById('form-error-banner').style.display = 'none';
+    });
+  });
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const validName    = validateField('field-name',    'name');
+    const validEmail   = validateField('field-email',   'email',   v => EMAIL_REGEX.test(v));
+    const validOrg     = validateField('field-org',     'org');
+    const validMessage = validateField('field-message', 'message');
+
+    if (!validName || !validEmail || !validOrg || !validMessage) return;
+
+    const confirmed = confirm(t['form-confirm']);
+    if (!confirmed) return;
+
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.textContent = t['form-sending'];
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: '7c78fe94-7e16-4619-9da0-a0d1c301bb6c',
+          name:    document.getElementById('name').value.trim(),
+          email:   document.getElementById('email').value.trim(),
+          org:     document.getElementById('org').value.trim(),
+          message: document.getElementById('message').value.trim()
+        })
+      });
+
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      } else {
+        throw new Error('Server error');
+      }
+    } catch {
+      document.getElementById('form-error-banner').style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = t['form-submit'];
+    }
+  });
+})();
+</script>
+
+<!-- Start of HubSpot Embed Code -->
+<script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/148621712.js"></script>
+<!-- End of HubSpot Embed Code -->
+</body>
+</html>
