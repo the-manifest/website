@@ -213,7 +213,7 @@ nav .container {
 }
 
 .nav-logo-img {
-  height: 80px;
+  height: 68px;
   width: auto;
   transition: opacity 0.3s, filter 0.3s;
 }
@@ -224,10 +224,7 @@ nav.scrolled .nav-logo-img {
 }
 
 .nav-links {
-  display: flex;
-  gap: 28px;
-  list-style: none;
-  align-items: center;
+  display: none;
 }
 
 .nav-links li {
@@ -845,9 +842,8 @@ footer p {
   margin: 0;
 }
 
-/* ── Hamburger (hidden on desktop) ── */
 .hamburger {
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -875,9 +871,8 @@ footer p {
 .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* Mobile drawer */
 .mobile-drawer {
-  display: none;
+  display: flex;
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
   background: rgba(8,8,8,0.97);
@@ -939,11 +934,8 @@ footer p {
   html, body { overflow-x: hidden; width: 100%; }
 
   /* Nav */
-  .nav-links { display: none; }
-  .hamburger { display: flex; margin-top: 0; }
-  .mobile-drawer { display: flex; }
-  .nav-mobile-controls { display: flex; }
   nav .container { padding: 0 20px; }
+  .nav-logo-img { height: 52px; }
 
   /* Hero — full bleed, video fills screen, text overlaid */
   .hero {
@@ -1098,22 +1090,16 @@ footer p {
 <nav id="nav">
   <div class="container">
     <a href="/en" class="nav-logo" data-launch-link><img src="/assets/logo.png" alt="Manifest" class="nav-logo-img"></a>
-    <ul class="nav-links">
-      <li><div class="lang-toggle" id="lang-switcher-nav"></div></li>
-      <li><a href="#contact" class="nav-cta" data-i18n="nav-contact">Contact</a></li>
-    </ul>
-    <div class="nav-mobile-controls">
-      <div class="lang-toggle" id="lang-switcher-topbar"></div>
-      <button class="hamburger" id="hamburger" aria-label="Menu" style="position:relative;z-index:300;">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
-<!-- Mobile drawer -->
+<!-- Drawer (single menu on every viewport) -->
 <div class="mobile-drawer" id="mobile-drawer">
   <button class="drawer-close" id="drawer-close" aria-label="Close menu">&#x2715;</button>
+  <div class="lang-toggle" id="lang-switcher-drawer"></div>
   <a href="#contact" class="drawer-link drawer-cta" data-i18n="nav-contact">Contact</a>
 </div>
 
@@ -1535,7 +1521,7 @@ function updateLanguageSwitcher(lang) {
   const html = ['en', 'fr'].map(l =>
     `<a class="lang-opt${l === lang ? ' active' : ''}" data-lang="${l}" href="#">${l.toUpperCase()}</a>`
   ).join('');
-  ['lang-switcher-nav', 'lang-switcher-topbar'].forEach(id => {
+  ['lang-switcher-drawer'].forEach(id => {
     const el = document.getElementById(id);
     if (!el) return;
     el.innerHTML = html;
@@ -1682,8 +1668,8 @@ document.querySelectorAll('.drawer-link').forEach(a => {
 
 const navLogoImg = document.querySelector('.nav-logo-img');
 const navLogoEl  = document.querySelector('.nav-logo');
-const LOGO_MAX = 80;
-const LOGO_MIN = 44;
+const LOGO_MAX = 68;
+const LOGO_MIN = 40;
 const PAD_MAX  = 24;
 const SHRINK_OVER = 160;
 

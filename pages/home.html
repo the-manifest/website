@@ -89,16 +89,13 @@ nav .container {
 .nav-logo { text-decoration: none; display: flex; align-items: center; }
 
 .nav-logo-img {
-  height: 80px;
+  height: 68px;
   width: auto;
   filter: brightness(0);
 }
 
 .nav-links {
-  display: flex;
-  gap: 32px;
-  list-style: none;
-  align-items: center;
+  display: none;
 }
 .nav-links li { display: flex; align-items: center; }
 
@@ -489,7 +486,7 @@ footer .container {
 
 /* ── Hamburger / mobile drawer ── */
 .hamburger {
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -518,7 +515,7 @@ footer .container {
 .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 .mobile-drawer {
-  display: none;
+  display: flex;
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
   background: rgba(8,8,8,0.97);
@@ -573,11 +570,8 @@ footer .container {
 @media (max-width: 860px) {
   html, body { overflow-x: hidden; width: 100%; }
 
-  .nav-links { display: none; }
-  .hamburger { display: flex; margin-top: 0; }
-  .mobile-drawer { display: flex; }
   nav .container { padding: 0 20px; align-items: center; }
-  .nav-logo-img { height: 56px; }
+  .nav-logo-img { height: 52px; }
 
   .hero { min-height: 100svh; }
   .hero .container {
@@ -613,10 +607,6 @@ footer .container {
 <nav id="nav">
   <div class="container">
     <a class="nav-logo" data-link="home"><img src="/assets/logo.png" alt="Manifest" class="nav-logo-img"></a>
-    <ul class="nav-links">
-      <li><div class="lang-toggle" id="lang-switcher-nav"></div></li>
-      <li><a class="nav-cta" data-link="contact" data-i18n="nav-contact">Contact</a></li>
-    </ul>
     <button class="hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -853,7 +843,7 @@ function renderLangToggle(container) {
     });
   });
 }
-['lang-switcher-nav', 'lang-switcher-drawer'].forEach(id => {
+['lang-switcher-drawer'].forEach(id => {
   const el = document.getElementById(id);
   if (el) renderLangToggle(el);
 });
@@ -876,8 +866,8 @@ revealEls.forEach(el => obs.observe(el));
 const nav = document.getElementById('nav');
 const navLogoImg = document.querySelector('.nav-logo-img');
 const navLogoEl  = document.querySelector('.nav-logo');
-const LOGO_MAX = 80;
-const LOGO_MIN = 44;
+const LOGO_MAX = 68;
+const LOGO_MIN = 40;
 const SHRINK_OVER = 160;
 
 let rafPending = false;
