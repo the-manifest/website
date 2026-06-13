@@ -1251,14 +1251,15 @@ html { scroll-padding-top: 100px; }
   <h1 data-i18n="hero-title">Humanoids for European Defence</h1>
 </section>
 
-<section id="mission" style="min-height: 100vh; padding: 120px 0 60px; display: flex; align-items: center; justify-content: center;">
-  <div class="reveal">
-    <p class="mission-statement"><span style="display:block" data-i18n="mission-line1">Manifest is the First Humanoid Solution</span><span style="display:block" data-i18n="mission-line2">Purpose-Built for European Defence</span></p>
+<section id="mission" style="min-height: 100vh; padding-top: 100px; display: flex; flex-direction: column; box-sizing: border-box;">
+  <div style="padding: 32px 0; text-align: center;">
+    <div class="reveal">
+      <p class="mission-statement"><span style="display:block" data-i18n="mission-line1">Manifest is the First Humanoid Solution</span><span style="display:block" data-i18n="mission-line2">Purpose-Built for European Defence</span></p>
+    </div>
   </div>
-</section>
 
-<section id="value" style="background: var(--bg); min-height: 100vh; padding: 120px 0 60px; display: flex; align-items: center;">
-  <div class="container">
+  <div id="value" style="background: var(--bg); padding: 40px 0; flex: 1; display: flex; align-items: center;">
+    <div class="container">
 
     <!-- Heading left / pillars right — fits in one viewport -->
     <div class="reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
@@ -1291,6 +1292,7 @@ html { scroll-padding-top: 100px; }
       </div>
     </div>
 
+    </div>
   </div>
 </section>
 
@@ -1899,7 +1901,7 @@ if (contactSection && 'IntersectionObserver' in window) {
 // Sections that the user might currently be reading — used to detect if the
 // section they're in is taller than the viewport (in which case dots hide and
 // the wheel snap stops intercepting).
-const SNAP_SECTION_IDS = ['mission', 'value', 'inspection-job', 'partners', 'team', 'contact'];
+const SNAP_SECTION_IDS = ['mission', 'inspection-job', 'partners', 'team', 'contact'];
 const snapSections = [
   document.querySelector('.hero'),
   ...SNAP_SECTION_IDS.map(id => document.getElementById(id)),
@@ -1975,7 +1977,7 @@ if (navDots.length && 'IntersectionObserver' in window) {
   const reduced  = matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (isCoarse || reduced) return;
 
-  const SECTION_IDS = ['mission', 'value', 'inspection-job', 'partners', 'team', 'contact'];
+  const SECTION_IDS = ['mission', 'inspection-job', 'partners', 'team', 'contact'];
   const sections = [
     document.querySelector('.hero'),
     ...SECTION_IDS.map(id => document.getElementById(id)),
