@@ -380,14 +380,15 @@ h2.section-heading {
 }
 
 .item.is-current::before {
-  background: #a85a5a;
+  background: #b84a4a;
   box-shadow:
     0 0 0 3px var(--bg-soft),
-    0 0 0 5px #a85a5a,
+    0 0 0 5px #b84a4a,
     0 0 0 8px var(--bg-soft);
 }
 
-.item.is-current::after {
+.item.is-current::after,
+.item.is-current .pulse-ring {
   content: '';
   position: absolute;
   left: -49px;
@@ -396,12 +397,16 @@ h2.section-heading {
   height: 16px;
   box-sizing: border-box;
   border-radius: 50%;
-  border: 2px solid #a85a5a;
+  border: 2px solid #b84a4a;
   pointer-events: none;
   opacity: 0;
   z-index: 1;
   transform-origin: center center;
   animation: pip-pulse 2.8s ease-out infinite;
+}
+
+.item.is-current .pulse-ring {
+  animation-delay: 1.4s;
 }
 
 @keyframes pip-pulse {
@@ -411,7 +416,8 @@ h2.section-heading {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .item.is-current::after { animation: none; }
+  .item.is-current::after,
+  .item.is-current .pulse-ring { animation: none; }
 }
 
 .item-media {
@@ -1148,6 +1154,10 @@ backToTop.addEventListener('click', () => {
   }
   if (active < 0 || active >= items.length) return;
   items[active].classList.add('is-current');
+  const extra = document.createElement('span');
+  extra.className = 'pulse-ring';
+  extra.setAttribute('aria-hidden', 'true');
+  items[active].appendChild(extra);
 })();
 </script>
 
