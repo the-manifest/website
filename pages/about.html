@@ -1896,11 +1896,39 @@ if (contactSection && 'IntersectionObserver' in window) {
   contactObs.observe(contactSection);
 }
 
+// Sections that the user might currently be reading — used to detect if the
+// section they're in is taller than the viewport (in which case dots hide and
+// the wheel snap stops intercepting).
+const SNAP_SECTION_IDS = ['mission', 'value', 'inspection-job', 'partners', 'team', 'contact'];
+const snapSections = [
+  document.querySelector('.hero'),
+  ...SNAP_SECTION_IDS.map(id => document.getElementById(id)),
+].filter(Boolean);
+
+function currentSnapSection() {
+  const top = window.scrollY;
+  let best = snapSections[0];
+  let bestDist = Infinity;
+  snapSections.forEach(s => {
+    const d = Math.abs(s.offsetTop - top);
+    if (d < bestDist) { bestDist = d; best = s; }
+  });
+  return best;
+}
+
+function currentSectionTooTall() {
+  const s = currentSnapSection();
+  if (!s) return false;
+  return s.offsetHeight > window.innerHeight + 4;
+}
+
 function updateChrome() {
   const scrolled = window.scrollY > 320;
+  const tooTall = currentSectionTooTall();
   backToTop.classList.toggle('visible', scrolled);
-  if (sectionNav) sectionNav.classList.toggle('visible', scrolled && !nearContact);
+  if (sectionNav) sectionNav.classList.toggle('visible', scrolled && !nearContact && !tooTall);
 }
+window.addEventListener('resize', updateChrome);
 updateChrome();
 window.addEventListener('scroll', updateChrome, { passive: true });
 backToTop.addEventListener('click', () => {
@@ -2028,6 +2056,18 @@ if (navDots.length && 'IntersectionObserver' in window) {
 
     const dir = e.deltaY > 0 ? 1 : -1;
     const idx = currentIndex();
+    const cur = sections[idx];
+
+    // If the current section is taller than the viewport, let the user read it.
+    // Only intercept when they're already parked at the top/bottom edge.
+    const vh = window.innerHeight;
+    if (cur && cur.offsetHeight > vh + 4) {
+      const sTop = cur.offsetTop;
+      const sBot = sTop + cur.offsetHeight;
+      if (dir > 0 && (window.scrollY + vh) < (sBot - 12)) return;
+      if (dir < 0 && window.scrollY > (sTop + 12)) return;
+    }
+
     const next = idx + dir;
     if (next < 0 || next >= sections.length) return;
 
