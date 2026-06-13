@@ -320,14 +320,40 @@ h2.section-heading {
   color: var(--text-body);
   font-weight: 400;
   max-width: 62ch;
-  margin-bottom: 64px;
+  margin-bottom: 28px;
   font-size: 1.2rem;
   line-height: 1.7;
 }
 
-.campaign-items { display: flex; flex-direction: column; gap: 24px; }
+.campaign-intro::after {
+  content: '';
+  display: block;
+  width: 2px;
+  height: 36px;
+  background: rgba(0,0,0,0.12);
+  margin: 24px 0 0 23px;
+}
+
+.campaign-items {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
+  padding-left: 56px;
+}
+
+.campaign-items::before {
+  content: '';
+  position: absolute;
+  left: 23px;
+  top: 0;
+  bottom: 24px;
+  width: 2px;
+  background: rgba(0,0,0,0.12);
+}
 
 .item {
+  position: relative;
   display: grid;
   grid-template-columns: 260px 1fr;
   gap: 48px;
@@ -335,6 +361,19 @@ h2.section-heading {
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 16px;
+}
+
+.item::before {
+  content: '';
+  position: absolute;
+  left: -41px;
+  top: 64px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--text);
+  z-index: 1;
 }
 
 .item-media {
@@ -629,6 +668,10 @@ footer .container {
 
   section { padding: 64px 0; }
 
+  .campaign-items { padding-left: 40px; }
+  .campaign-items::before { left: 15px; }
+  .campaign-intro::after { margin-left: 15px; }
+  .item::before { left: -32px; top: 40px; width: 12px; height: 12px; }
   .item { grid-template-columns: 1fr; gap: 24px; padding: 28px; }
   .item-media { max-width: 320px; }
   .item .item-date { font-size: 1.3rem; gap: 8px 14px; }
@@ -637,6 +680,47 @@ footer .container {
   .footer-tagline { white-space: normal; text-align: center; }
   .footer-links { justify-content: center; }
   .footer-links span { display: none; }
+}
+
+/* ── Back-to-top button ── */
+.back-to-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.88);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 999px;
+  cursor: pointer;
+  padding: 0;
+  z-index: 200;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, background 0.2s, box-shadow 0.2s;
+}
+.back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.back-to-top:hover {
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+}
+.back-to-top svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--text);
+  fill: none;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 </style>
 <script>
@@ -759,6 +843,10 @@ footer .container {
     </div>
   </div>
 </footer>
+
+<button class="back-to-top" id="back-to-top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 14 12 8 18 14"></polyline></svg>
+</button>
 
 <script>
 // ── Translations ──
@@ -990,6 +1078,17 @@ hamburger.addEventListener('click', () => {
 
 drawer.addEventListener('click', (e) => { if (e.target === drawer) closeDrawer(); });
 drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
+
+// ── Back-to-top ──
+const backToTop = document.getElementById('back-to-top');
+function updateBackToTop() {
+  backToTop.classList.toggle('visible', window.scrollY > 320);
+}
+updateBackToTop();
+window.addEventListener('scroll', updateBackToTop, { passive: true });
+backToTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 </script>
 
 <!-- Start of HubSpot Embed Code -->

@@ -1079,6 +1079,47 @@ footer p {
   .footer-links { justify-content: center; }
   .footer-links span { display: none; }
 }
+
+/* ── Back-to-top button ── */
+.back-to-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.88);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 999px;
+  cursor: pointer;
+  padding: 0;
+  z-index: 200;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.16);
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, background 0.2s, box-shadow 0.2s;
+}
+.back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.back-to-top:hover {
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+}
+.back-to-top svg {
+  width: 16px;
+  height: 16px;
+  stroke: #1a1a1a;
+  fill: none;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 </style>
 <script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
@@ -1345,6 +1386,10 @@ footer p {
   </div>
 </footer>
 </div><!-- /.contact-footer-wrapper -->
+
+<button class="back-to-top" id="back-to-top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 14 12 8 18 14"></polyline></svg>
+</button>
 
 <script>
 // ── Translations ──
@@ -1751,6 +1796,17 @@ drawer.addEventListener('click', (e) => {
 
 drawer.querySelectorAll('a').forEach(a => {
   a.addEventListener('click', closeDrawer);
+});
+
+// ── Back-to-top ──
+const backToTop = document.getElementById('back-to-top');
+function updateBackToTop() {
+  backToTop.classList.toggle('visible', window.scrollY > 320);
+}
+updateBackToTop();
+window.addEventListener('scroll', updateBackToTop, { passive: true });
+backToTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
 // ── Contact Form Validation & Submission ──
