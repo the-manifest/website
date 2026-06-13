@@ -152,12 +152,14 @@ body {
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
-  z-index: 100;
+  z-index: 260;
   padding: 24px 0 14px;
   background: transparent;
   border: none;
   transition: none;
 }
+
+nav.drawer-open::before { display: none; }
 
 /* Smooth scrim — nav bar tint flowing into the page */
 nav::before {
@@ -1726,16 +1728,19 @@ window.addEventListener('scroll', () => {
 // ── Hamburger menu ──
 const hamburger = document.getElementById('hamburger');
 const drawer = document.getElementById('mobile-drawer');
+const navEl = document.getElementById('nav');
 
 function closeDrawer() {
   drawer.classList.remove('open');
   hamburger.classList.remove('open');
+  if (navEl) navEl.classList.remove('drawer-open');
   document.body.style.overflow = '';
 }
 
 hamburger.addEventListener('click', () => {
   const isOpen = drawer.classList.toggle('open');
   hamburger.classList.toggle('open', isOpen);
+  if (navEl) navEl.classList.toggle('drawer-open', isOpen);
   document.body.style.overflow = isOpen ? 'hidden' : '';
 });
 
