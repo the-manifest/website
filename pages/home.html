@@ -358,11 +358,12 @@ h2.section-heading {
   display: grid;
   grid-template-columns: 220px 1fr;
   gap: 36px;
-  padding: 32px;
+  padding: 28px;
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 16px;
   align-items: center;
+  min-height: 346px;
 }
 
 .item::before {
@@ -472,18 +473,26 @@ h2.section-heading {
 
 .item-body h3 {
   font-weight: 700;
-  font-size: 1.65rem;
+  font-size: 1.45rem;
   letter-spacing: -0.01em;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   line-height: 1.25;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .item-body p {
   color: var(--text-body);
   font-weight: 400;
-  font-size: 1.12rem;
-  line-height: 1.7;
+  font-size: 1.05rem;
+  line-height: 1.6;
   max-width: 58ch;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .item-body .btn { margin-top: 28px; }
