@@ -341,9 +341,9 @@ nav.scrolled .nav-cta:hover { opacity: 0.85; }
   z-index: 1;
 }
 
-.hero h1 {
+.hero-text {
   position: absolute;
-  bottom: 80px;
+  bottom: 72px;
   left: 0;
   right: 0;
   width: 100%;
@@ -351,13 +351,30 @@ nav.scrolled .nav-cta:hover { opacity: 0.85; }
   padding: 0 clamp(24px, 5vw, 80px);
   margin: 0 auto;
   z-index: 2;
+  animation: fadeUp 0.8s ease 0.15s both;
+}
+
+.hero h1 {
   color: #fff;
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
   font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin: 0 0 24px;
+  opacity: 0.85;
+  text-shadow: 0 1px 12px rgba(0,0,0,0.4);
+}
+
+.hero-mission {
+  color: #fff;
+  font-size: clamp(1.7rem, 3.4vw, 2.6rem);
+  font-weight: 700;
   line-height: 1.25;
   letter-spacing: -0.02em;
-  animation: fadeUp 0.8s ease 0.15s both;
-  text-shadow: 0 1px 12px rgba(0,0,0,0.4);
+  margin: 0;
+  text-shadow: 0 1px 14px rgba(0,0,0,0.45);
+  max-width: 26ch;
 }
 
 @keyframes fadeUp {
@@ -1249,46 +1266,44 @@ html { scroll-padding-top: 100px; }
     </video>
     <div class="hero-overlay"></div>
   </div>
-  <h1 data-i18n="hero-title">Humanoids for European Defence</h1>
+  <div class="hero-text">
+    <h1 data-i18n="hero-title">Humanoids for European Defence</h1>
+    <p class="hero-mission"><span style="display:block" data-i18n="mission-line1">Manifest is the First Humanoid Solution</span><span style="display:block" data-i18n="mission-line2">Purpose-Built for European Defence</span></p>
+  </div>
 </section>
 
-<section id="mission" style="min-height: 100vh; padding: 100px 0 60px; display: flex; flex-direction: column; justify-content: center; box-sizing: border-box; background: var(--bg-soft);">
-  <div class="container" style="text-align: center;">
-    <div class="reveal">
-      <p class="mission-statement" style="margin-bottom: 56px;"><span style="display:block" data-i18n="mission-line1">Manifest is the First Humanoid Solution</span><span style="display:block" data-i18n="mission-line2">Purpose-Built for European Defence</span></p>
-      <div style="width: 48px; height: 1px; background: var(--border); margin: 0 auto 40px;"></div>
-    </div>
-  </div>
+<section id="mission" style="min-height: 100vh; padding: 100px 0 60px; display: flex; align-items: center; box-sizing: border-box; background: var(--bg);">
+  <div class="container">
 
-  <div id="value" style="padding: 0; display: flex; align-items: center;">
-    <div class="container">
+    <!-- Heading left / pillars right — original Strategic Autonomy layout -->
+    <div class="reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
 
-    <!-- Heading top / pillars below — unified centered layout -->
-    <div class="reveal" style="display: flex; flex-direction: column; align-items: center; gap: 36px; text-align: center;">
+      <h2 style="font-size: min(3.5vw, 2.4rem); font-weight: 600; color: var(--text); letter-spacing: -0.02em; line-height: 1.5; margin: 0;" data-i18n="value-heading">Enabling Strategic Autonomy</h2>
 
-      <p class="section-kicker" style="color: var(--text-muted); margin: 0;" data-i18n="value-kicker">Enabling Strategic Autonomy</p>
-
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; width: 100%; max-width: 980px;">
+      <div style="display: flex; flex-direction: column; gap: 32px;">
 
         <div>
-          <div style="font-size: 1.05rem; font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin-bottom: 10px;" data-i18n="pillar1-title">Deploy Next Generation Military Forces</div>
-          <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7; margin: 0;" data-i18n="pillar1-desc">Increase defence readiness with humanoids built for dull, dirty, and dangerous work.</p>
+          <div style="font-size: 1.05rem; font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin-bottom: 8px;" data-i18n="pillar1-title">Deploy Next Generation Military Forces</div>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.75; margin: 0;" data-i18n="pillar1-desc">Increase defence readiness with humanoids built for dull, dirty, and dangerous work.</p>
         </div>
 
-        <div>
-          <div style="font-size: 1.05rem; font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin-bottom: 10px;" data-i18n="pillar2-title">Increase Defence Industrial Capacity</div>
-          <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7; margin: 0;" data-i18n="pillar2-desc">Meet rearmament goals with a workforce that delivers exceptional results around the clock.</p>
-        </div>
+        <div style="width: 100%; height: 1px; background: var(--border); opacity: 0.5;"></div>
 
         <div>
-          <div style="font-size: 1.05rem; font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin-bottom: 10px;" data-i18n="pillar3-title">Guarantee Compliance with Defence Standards</div>
-          <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7; margin: 0;" data-i18n="pillar3-desc">Implement humanoids designed to meet the rigorous standards of modern defence operations.</p>
+          <div style="font-size: 1.05rem; font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin-bottom: 8px;" data-i18n="pillar2-title">Increase Defence Industrial Capacity</div>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.75; margin: 0;" data-i18n="pillar2-desc">Meet rearmament goals with a workforce that delivers exceptional results around the clock.</p>
+        </div>
+
+        <div style="width: 100%; height: 1px; background: var(--border); opacity: 0.5;"></div>
+
+        <div>
+          <div style="font-size: 1.05rem; font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin-bottom: 8px;" data-i18n="pillar3-title">Guarantee Compliance with Defence Standards</div>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.75; margin: 0;" data-i18n="pillar3-desc">Implement humanoids designed to meet the rigorous standards of modern defence operations.</p>
         </div>
 
       </div>
     </div>
 
-    </div>
   </div>
 </section>
 
@@ -1483,7 +1498,7 @@ const TRANSLATIONS = {
     'hero-title': 'Humanoids for European Defence',
     'mission-line1': 'Manifest is the First Humanoid Solution',
     'mission-line2': 'Purpose-Built for European Defence',
-    'value-kicker': 'Enabling Strategic Autonomy',
+    'value-heading': 'Enabling Strategic Autonomy',
     'pillar1-title': 'Deploy Next Generation Military Forces',
     'pillar1-desc': 'Increase defence readiness with humanoids built for dull, dirty, and dangerous work.',
     'pillar2-title': 'Increase Defence Industrial Capacity',
@@ -1553,7 +1568,7 @@ const TRANSLATIONS = {
     'hero-title': 'Humanoïdes pour la Défense européenne',
     'mission-line1': 'Manifest conçoit la première solution de robots humanoïdes',
     'mission-line2': 'conçue pour répondre aux besoins de la défense européenne',
-    'value-kicker': 'Renforcer l\'autonomie stratégique',
+    'value-heading': 'Renforcer l\'autonomie stratégique',
     'pillar1-title': 'Déployer une nouvelle génération de capacités militaires',
     'pillar1-desc': 'Préserver les opérateurs humains en déployant des humanoïdes conçus pour les missions ingrates, insalubres ou dangereuses.',
     'pillar2-title': 'Soutenir l\'effort industriel de défense',
