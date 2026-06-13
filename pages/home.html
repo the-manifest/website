@@ -344,13 +344,33 @@ h2.section-heading {
   top: 0;
   bottom: 0;
   width: 2px;
-  background: linear-gradient(
-    to bottom,
-    transparent 0,
-    rgba(0,0,0,0.16) 56px,
-    rgba(0,0,0,0.16) calc(100% - 32px),
-    transparent 100%
-  );
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0,0,0,0.32) 50%,
+      transparent 100%
+    ),
+    linear-gradient(
+      to bottom,
+      transparent 0,
+      rgba(0,0,0,0.16) 56px,
+      rgba(0,0,0,0.16) calc(100% - 32px),
+      transparent 100%
+    );
+  background-repeat: no-repeat;
+  background-size: 100% 96px, 100% 100%;
+  background-position: 0 -96px, 0 0;
+  animation: rail-flow 5s linear infinite;
+}
+
+@keyframes rail-flow {
+  0%   { background-position: 0 -96px, 0 0; }
+  100% { background-position: 0 calc(100% + 96px), 0 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .campaign-items::before { animation: none; }
 }
 
 .item {
