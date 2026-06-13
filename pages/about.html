@@ -343,7 +343,12 @@ nav.scrolled .nav-cta:hover { opacity: 0.85; }
 .hero h1 {
   position: absolute;
   bottom: 80px;
-  left: 40px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: 1240px;
+  padding: 0 clamp(24px, 5vw, 80px);
+  margin: 0 auto;
   z-index: 2;
   color: #fff;
   font-size: clamp(1.6rem, 3vw, 2.2rem);
