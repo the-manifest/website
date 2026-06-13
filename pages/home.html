@@ -81,12 +81,10 @@ nav {
 nav .container {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   max-width: 1240px;
   padding: 0 clamp(24px, 5vw, 80px);
 }
-
-.nav-links, .hamburger { margin-top: 14px; }
 
 .nav-logo { text-decoration: none; display: flex; align-items: center; }
 
@@ -616,7 +614,6 @@ footer .container {
   <div class="container">
     <a class="nav-logo" data-link="home"><img src="/assets/logo.png" alt="Manifest" class="nav-logo-img"></a>
     <ul class="nav-links">
-      <li><a data-link="about" data-i18n="nav-about">About Us</a></li>
       <li><div class="lang-toggle" id="lang-switcher-nav"></div></li>
       <li><a class="nav-cta" data-link="contact" data-i18n="nav-contact">Contact</a></li>
     </ul>
@@ -881,7 +878,6 @@ const navLogoImg = document.querySelector('.nav-logo-img');
 const navLogoEl  = document.querySelector('.nav-logo');
 const LOGO_MAX = 80;
 const LOGO_MIN = 44;
-const PAD_MAX  = 24;
 const SHRINK_OVER = 160;
 
 let rafPending = false;
@@ -892,13 +888,10 @@ function updateNav() {
   const eased = 1 - Math.pow(1 - t, 3);
   const isMobile = window.innerWidth <= 860;
   if (!isMobile) {
-    const logoHeight   = LOGO_MAX - eased * (LOGO_MAX - LOGO_MIN);
-    const logoMarginTop = PAD_MAX - eased * PAD_MAX;
+    const logoHeight = LOGO_MAX - eased * (LOGO_MAX - LOGO_MIN);
     if (navLogoImg) navLogoImg.style.height = logoHeight + 'px';
-    if (navLogoEl)  navLogoEl.style.marginTop = logoMarginTop + 'px';
   } else {
     if (navLogoImg) navLogoImg.style.height = '';
-    if (navLogoEl)  navLogoEl.style.marginTop = '';
   }
 
   nav.classList.toggle('scrolled', scrollY > 20);

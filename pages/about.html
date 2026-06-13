@@ -201,14 +201,9 @@ nav.scrolled::before {
 nav .container {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   max-width: 1240px;
   padding: 0 clamp(24px, 5vw, 80px);
-}
-
-/* Keep nav links/hamburger vertically aligned at their original position */
-.nav-links, .hamburger {
-  margin-top: 14px;
 }
 
 .nav-logo {
@@ -1703,10 +1698,8 @@ function updateNav() {
   const scrollY = window.scrollY;
   const t = Math.min(1, scrollY / SHRINK_OVER);
   const eased = 1 - Math.pow(1 - t, 3);
-  const logoHeight   = LOGO_MAX - eased * (LOGO_MAX - LOGO_MIN);
-  const logoMarginTop = PAD_MAX - eased * PAD_MAX;
+  const logoHeight = LOGO_MAX - eased * (LOGO_MAX - LOGO_MIN);
   if (navLogoImg) navLogoImg.style.height = logoHeight + 'px';
-  if (navLogoEl)  navLogoEl.style.marginTop = logoMarginTop + 'px';
 
   if (scrollY > 20) {
     nav.classList.add('scrolled');
