@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="about-snap">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1186,17 +1186,10 @@ footer p {
   .section-nav { display: none; }
 }
 
-/* Slide-like scroll snap on About sections (excluding hero from being a forced target via stop) */
-html.about-snap { scroll-snap-type: y proximity; }
-.about-snap .hero,
-.about-snap #mission,
-.about-snap #inspection-job,
-.about-snap #partners,
-.about-snap #team,
-.about-snap #contact { scroll-snap-align: start; }
-
+/* Native scroll behavior; section jumps are driven by JS (search for 'section-snap'). */
+html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) {
-  html.about-snap { scroll-snap-type: none; }
+  html { scroll-behavior: auto; }
 }
 </style>
 <script>
@@ -1939,6 +1932,94 @@ if (navDots.length && 'IntersectionObserver' in window) {
 
   sectionsForDots.forEach(s => sectionObserver.observe(s));
 }
+
+// ── Section-snap: one scroll gesture -> jump to next/prev section ──
+(function () {
+  const isCoarse = matchMedia('(max-width: 860px)').matches;
+  const reduced  = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (isCoarse || reduced) return;
+
+  const SECTION_IDS = ['mission', 'inspection-job', 'partners', 'team', 'contact'];
+  const sections = [
+    document.querySelector('.hero'),
+    ...SECTION_IDS.map(id => document.getElementById(id)),
+  ].filter(Boolean);
+  if (sections.length < 2) return;
+
+  const SETTLE_MS = 750;           // lock window after a jump
+  const GESTURE_BREAK_MS = 140;    // a new gesture is a wheel event arriving after a quiet gap
+  const FORM_IDS = new Set(['contact', 'inspection-job']);
+
+  let locked = false;
+  let lastEventAt = 0;
+  let gestureConsumed = false;
+  let unlockTimer = null;
+
+  function currentIndex() {
+    const top = window.scrollY;
+    let bestI = 0;
+    let bestDist = Infinity;
+    sections.forEach((s, i) => {
+      const d = Math.abs(s.offsetTop - top);
+      if (d < bestDist) { bestDist = d; bestI = i; }
+    });
+    return bestI;
+  }
+
+  function snapTo(idx) {
+    const target = sections[idx];
+    if (!target) return;
+    locked = true;
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    clearTimeout(unlockTimer);
+    unlockTimer = setTimeout(() => { locked = false; gestureConsumed = false; }, SETTLE_MS);
+  }
+
+  window.addEventListener('wheel', (e) => {
+    // Let the user scroll naturally inside the contact form and inside the
+    // inspection card grid; only intercept when they're between sections.
+    let el = e.target;
+    while (el && el.nodeType === 1) {
+      if (el.id && FORM_IDS.has(el.id) && (el.scrollHeight > el.clientHeight)) return;
+      if (el.tagName === 'TEXTAREA' || el.tagName === 'INPUT' || el.tagName === 'SELECT') return;
+      el = el.parentElement;
+    }
+
+    const now = performance.now();
+    const newGesture = (now - lastEventAt) > GESTURE_BREAK_MS;
+    lastEventAt = now;
+
+    if (locked) { e.preventDefault(); return; }
+    if (!newGesture && gestureConsumed) { e.preventDefault(); return; }
+    if (Math.abs(e.deltaY) < 4) return;
+
+    const dir = e.deltaY > 0 ? 1 : -1;
+    const idx = currentIndex();
+    const next = idx + dir;
+    if (next < 0 || next >= sections.length) return;
+
+    e.preventDefault();
+    gestureConsumed = true;
+    snapTo(next);
+  }, { passive: false });
+
+  // Keyboard parity: arrows / PageUp / PageDown / Home / End.
+  window.addEventListener('keydown', (e) => {
+    if (locked) return;
+    const editing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement && document.activeElement.tagName);
+    if (editing) return;
+    let dir = 0;
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') dir = 1;
+    else if (e.key === 'ArrowUp' || e.key === 'PageUp') dir = -1;
+    else if (e.key === 'Home') { e.preventDefault(); snapTo(0); return; }
+    else if (e.key === 'End')  { e.preventDefault(); snapTo(sections.length - 1); return; }
+    if (!dir) return;
+    const next = currentIndex() + dir;
+    if (next < 0 || next >= sections.length) return;
+    e.preventDefault();
+    snapTo(next);
+  });
+})();
 
 // ── Contact Form Validation & Submission ──
 (function() {
