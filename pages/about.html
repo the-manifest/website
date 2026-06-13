@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Manifest — About Us</title>
+<title>Manifest</title>
 <script>
   window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
 </script>
@@ -14,14 +14,12 @@
 <style>
 :root {
   --bg: #ffffff;
-  --bg-soft: #f5f3ef;
-  --bg-warm: #ffffff;
-  --text: #1a1a1a;
-  --text-body: #3a3a3a;
+  --bg-soft: #f5f5f5;
+  --text: #111111;
+  --text-body: #333333;
   --text-secondary: #555555;
-  --text-muted: #7a7a7a;
-  --accent: #1a1a1a;
-  --border: #e2dfd8;
+  --text-muted: #888888;
+  --border: #e0e0e0;
   --font: 'Lexend', sans-serif;
 }
 
@@ -33,34 +31,23 @@ body {
   color: var(--text);
   font-family: var(--font);
   font-weight: 400;
-  font-size: 18px;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 }
 
 .container {
-  max-width: 1380px;
+  max-width: 1040px;
   margin: 0 auto;
-  padding: 0 clamp(24px, 4.5vw, 64px);
+  padding: 0 28px;
 }
 
 .reveal {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-  transition-delay: var(--reveal-delay, 0s);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 .reveal.hidden { opacity: 0; transform: translateY(16px); }
 .reveal.visible { opacity: 1; transform: translateY(0); }
-
-@media (prefers-reduced-motion: reduce) {
-  .reveal, .reveal.hidden, .reveal.visible {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-}
-
 
 /* ── Language Popup ── */
 .language-popup {
@@ -172,81 +159,132 @@ nav {
   transition: none;
 }
 
+/* Smooth scrim — nav bar tint flowing into the page */
+nav::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  bottom: -160px;
+  background: linear-gradient(
+    to bottom,
+    rgba(8,8,8,0.62) 0%,
+    rgba(8,8,8,0.58) 7%,
+    rgba(8,8,8,0.50) 14%,
+    rgba(8,8,8,0.39) 23%,
+    rgba(8,8,8,0.27) 34%,
+    rgba(8,8,8,0.16) 47%,
+    rgba(8,8,8,0.08) 60%,
+    rgba(8,8,8,0.03) 73%,
+    rgba(8,8,8,0.00) 86%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: -1;
+}
+
+nav.scrolled::before {
+  background: linear-gradient(
+    to bottom,
+    rgba(8,8,8,0.80) 0%,
+    rgba(8,8,8,0.75) 7%,
+    rgba(8,8,8,0.65) 14%,
+    rgba(8,8,8,0.51) 23%,
+    rgba(8,8,8,0.35) 34%,
+    rgba(8,8,8,0.20) 47%,
+    rgba(8,8,8,0.09) 60%,
+    rgba(8,8,8,0.03) 73%,
+    rgba(8,8,8,0.00) 86%,
+    transparent 100%
+  );
+}
+
 nav .container {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  max-width: 1520px;
-  padding: 0 clamp(20px, 4.5vw, 64px);
+  max-width: 100%;
+  padding: 0 40px;
 }
 
-.nav-links, .hamburger { margin-top: 14px; }
+/* Keep nav links/hamburger vertically aligned at their original position */
+.nav-links, .hamburger {
+  margin-top: 14px;
+}
 
-.nav-logo { text-decoration: none; display: flex; align-items: center; }
+.nav-logo {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
 
 .nav-logo-img {
   height: 80px;
   width: auto;
-  filter: brightness(0);
+  transition: opacity 0.3s, filter 0.3s;
+}
+
+nav.scrolled .nav-logo-img {
+  opacity: 1;
+  visibility: visible;
 }
 
 .nav-links {
   display: flex;
-  gap: 32px;
+  gap: 28px;
   list-style: none;
   align-items: center;
 }
-.nav-links li { display: flex; align-items: center; }
+
+.nav-links li {
+  display: flex;
+  align-items: center;
+}
 
 .nav-links a {
-  color: var(--text);
+  color: #ffffff;
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   font-weight: 500;
   letter-spacing: 0.01em;
   transition: opacity 0.2s;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.7);
+  opacity: 1;
 }
-.nav-links a:hover { opacity: 0.65; }
+.nav-links a:hover { opacity: 0.75; }
 
 .nav-cta {
   color: #fff !important;
-  background: var(--accent);
-  border: 1px solid var(--accent);
-  padding: 10px 24px;
-  border-radius: 8px;
-  font-weight: 600 !important;
-  transition: opacity 0.2s !important;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-weight: 500 !important;
+  transition: all 0.2s !important;
 }
-.nav-cta:hover { opacity: 0.88; }
+.nav-cta:hover { background: rgba(255,255,255,0.25); }
 
-.lang-toggle {
-  display: inline-flex;
-  background: rgba(0,0,0,0.05);
-  border: 1px solid rgba(0,0,0,0.08);
-  border-radius: 999px;
-  padding: 3px;
-  line-height: 1;
-}
-.lang-opt {
-  padding: 7px 14px;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
+.lang-switcher {
+  color: #ffffff;
   text-decoration: none;
-  color: var(--text-muted);
-  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
   cursor: pointer;
-  transition: background 0.25s, color 0.25s;
-  display: inline-flex;
+  transition: opacity 0.2s;
+  padding: 8px 14px;
+  display: flex;
   align-items: center;
+  gap: 5px;
+  background: rgba(255,255,255,0.13);
+  border: 1px solid rgba(255,255,255,0.28);
+  border-radius: 20px;
+  line-height: 1;
+  white-space: nowrap;
 }
-.lang-opt:not(.active):hover { color: var(--text); }
-.lang-opt.active {
-  background: var(--text);
-  color: #fff;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.18);
-}
+.lang-switcher:hover { opacity: 0.75; }
+.lang-switcher svg { flex-shrink: 0; }
 
+/* Mobile nav controls (lang + hamburger side by side) */
 .nav-mobile-controls {
   display: none;
   align-items: center;
@@ -254,6 +292,15 @@ nav .container {
   margin-top: 14px;
   flex-shrink: 0;
 }
+
+nav.scrolled .nav-links a { color: #ffffff; }
+nav.scrolled .nav-links a:hover { opacity: 0.75; }
+nav.scrolled .nav-cta {
+  color: #fff !important;
+  background: rgba(255,255,255,0.18);
+  border-color: rgba(255,255,255,0.35);
+}
+nav.scrolled .nav-cta:hover { opacity: 0.85; }
 
 /* ── Hero ── */
 .hero {
@@ -310,39 +357,21 @@ nav .container {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Page hero (light, warm) ── */
-.page-hero {
-  background: var(--bg-warm);
-  padding: clamp(140px, 18vh, 200px) 0 clamp(56px, 8vh, 100px);
-}
-.page-hero-kicker {
-  color: var(--accent);
-  font-size: 0.88rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  margin-bottom: 18px;
-}
-.page-hero h1 {
-  color: var(--text);
-  font-size: clamp(2rem, 4.4vw, 3.6rem);
-  font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  animation: fadeUp 0.8s ease 0.15s both;
-}
-
 /* ── Sections ── */
-section { padding: 72px 0; }
+section { padding: 100px 0; }
 
+/* Full-viewport sections */
 #inspection-job,
 #partners,
 #team {
-  padding: 72px 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 60px 0;
 }
-#inspection-job .container,
-#partners .container,
-#team .container { width: 100%; }
 
 
 .manifest-linkedin {
@@ -387,7 +416,7 @@ section { padding: 72px 0; }
 /* ── Mission ── */
 #mission {
   background: var(--bg-soft);
-  padding: 56px 0;
+  padding: 32px 0;
   text-align: center;
 }
 
@@ -744,25 +773,26 @@ section { padding: 72px 0; }
 .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
 .submit-btn {
-  padding: 14px 36px;
-  background: var(--accent);
+  padding: 13px 32px;
+  background: var(--text);
   color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   font-family: var(--font);
-  font-size: 0.98rem;
-  font-weight: 600;
+  font-size: 0.88rem;
+  font-weight: 500;
   cursor: pointer;
   transition: opacity 0.2s;
   align-self: flex-start;
   margin-top: 4px;
 }
-.submit-btn:hover { opacity: 0.88; }
+.submit-btn:hover { opacity: 0.85; }
 
 /* ── Footer ── */
 footer {
-  padding: 32px 0;
-  background: #1a1a1a;
+  padding: 24px 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  background: #111111;
 }
 footer .container {
   display: flex;
@@ -773,8 +803,8 @@ footer .container {
 }
 
 .footer-tagline {
-  font-size: 0.82rem;
-  color: rgba(255,255,255,0.55);
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.35);
   margin: 0;
   white-space: nowrap;
 }
@@ -782,26 +812,24 @@ footer .container {
 .footer-links {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 20px;
   flex-wrap: wrap;
   justify-content: flex-end;
 }
 
 .footer-links a {
-  color: rgba(255,255,255,0.78);
+  color: rgba(255,255,255,0.6);
   text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 500;
+  font-size: 0.72rem;
   transition: color 0.2s;
 }
 
 .footer-links a:hover {
-  color: #fff;
+  color: rgba(255,255,255,0.8);
 }
 
 .footer-links span {
-  color: rgba(255,255,255,0.4);
-  font-weight: 400;
+  color: rgba(255,255,255,0.3);
 }
 
 footer p {
@@ -817,10 +845,10 @@ footer p {
   justify-content: center;
   align-items: center;
   gap: 5px;
-  width: 44px;
-  height: 44px;
-  background: rgba(0,0,0,0.04);
-  border: 1px solid rgba(0,0,0,0.12);
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.25);
   border-radius: 8px;
   cursor: pointer;
   padding: 8px;
@@ -829,9 +857,9 @@ footer p {
 }
 .hamburger span {
   display: block;
-  width: 20px;
+  width: 18px;
   height: 2px;
-  background: var(--text);
+  background: #fff;
   border-radius: 2px;
   transition: transform 0.25s ease, opacity 0.25s ease;
   transform-origin: center;
@@ -1042,7 +1070,7 @@ footer p {
 <body>
 
 <!-- Language Selection Popup -->
-<div class="language-popup hidden" id="language-popup" style="display:none">
+<div class="language-popup hidden" id="language-popup">
   <div class="language-popup-card">
     <h2 class="language-popup-title">Language</h2>
     <div class="language-popup-buttons">
@@ -1062,10 +1090,14 @@ footer p {
 
 <nav id="nav">
   <div class="container">
-    <a class="nav-logo" data-link="home"><img src="/assets/logo.png" alt="Manifest" class="nav-logo-img"></a>
+    <a href="#" class="nav-logo"><img src="assets/logo.png" alt="Manifest" class="nav-logo-img"></a>
     <ul class="nav-links">
-      <li><div class="lang-toggle" id="lang-switcher-nav"></div></li>
-      <li><a class="nav-cta" data-link="contact" data-i18n="nav-contact">Contact</a></li>
+      <li><a href="#mission" data-i18n="nav-strategic-autonomy">Strategic Autonomy</a></li>
+      <li><a href="#inspection-job" data-i18n="nav-inspection">Inspection</a></li>
+      <li><a href="#partners" data-i18n="nav-partners">Partners</a></li>
+      <li><a href="#team" data-i18n="nav-team">Team</a></li>
+      <li><a class="lang-switcher" id="lang-switcher-nav" title="Switch language"></a></li>
+      <li><a href="#contact" class="nav-cta" data-i18n="nav-contact">Contact</a></li>
     </ul>
     <div class="nav-mobile-controls">
       <a class="lang-switcher" id="lang-switcher-topbar" title="Switch language"></a>
@@ -1079,25 +1111,31 @@ footer p {
 <!-- Mobile drawer -->
 <div class="mobile-drawer" id="mobile-drawer">
   <button class="drawer-close" id="drawer-close" aria-label="Close menu">&#x2715;</button>
-  <div class="lang-toggle" id="lang-switcher-drawer"></div>
-  <a class="drawer-cta" data-link="contact" data-i18n="nav-contact">Contact</a>
+  <a href="#mission" class="drawer-link" data-i18n="nav-strategic-autonomy">Strategic Autonomy</a>
+  <a href="#inspection-job" class="drawer-link" data-i18n="nav-inspection">Inspection</a>
+  <a href="#partners" class="drawer-link" data-i18n="nav-partners">Partners</a>
+  <a href="#team" class="drawer-link" data-i18n="nav-team">Team</a>
+  <a href="#contact" class="drawer-link drawer-cta" data-i18n="nav-contact">Contact</a>
 </div>
 
-<section class="page-hero">
-  <div class="container">
-    <p class="page-hero-kicker" data-i18n="about-kicker">About Manifest</p>
-    <h1 data-i18n="hero-title">Humanoids for European Defence</h1>
+<section class="hero">
+  <div class="hero-video-wrap">
+    <video autoplay muted loop playsinline id="hero-video">
+      <source id="hero-video-src" src="assets/video/hero.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
   </div>
+  <h1 data-i18n="hero-title">Humanoids for European Defence</h1>
 </section>
 
-<div>
-  <section id="mission">
+<div style="min-height: 100vh; display: flex; flex-direction: column;">
+  <section id="mission" style="padding: 40px 0;">
     <div class="reveal">
       <p class="mission-statement"><span style="display:block" data-i18n="mission-line1">Manifest is the First Humanoid Solution</span><span style="display:block" data-i18n="mission-line2">Purpose-Built for European Defence</span></p>
     </div>
   </section>
 
-  <section id="value" style="background: var(--bg);">
+  <section id="value" style="background: var(--bg); padding: 40px 0; flex: 1; display: flex; align-items: center;">
   <div class="container">
 
     <!-- Heading left / pillars right — fits in one viewport -->
@@ -1135,38 +1173,38 @@ footer p {
 </section>
 </div>
 
-<section id="inspection-job" style="background: var(--bg-warm);">
+<section id="inspection-job" style="background: #111111;">
   <div class="container">
 
     <!-- Hero: header left, image right -->
-    <div class="reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-bottom: 48px;">
+    <div class="reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-bottom: 64px;">
       <div>
-        <h2 style="font-size: clamp(1.6rem, 2.8vw, 2.2rem); font-weight: 700; color: var(--text); letter-spacing: -0.03em; line-height: 1.2; margin: 0;" data-i18n="inspection-title">20% of Defence is Inspection</h2>
+        <h2 style="font-size: clamp(1.8rem, 3.2vw, 2.6rem); font-weight: 700; color: #ffffff; letter-spacing: -0.03em; line-height: 1.2; margin: 0;" data-i18n="inspection-title">20% of Defence is Inspection</h2>
       </div>
-      <div style="border-radius: 14px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 6px 24px rgba(0,0,0,0.06);">
-        <img src="/assets/humanoid-inspecting.png" alt="Humanoid Inspector" style="width: 100%; display: block; object-fit: cover;">
+      <div style="border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 0 40px rgba(255,255,255,0.08), 0 8px 32px rgba(0,0,0,0.6);">
+        <img src="assets/humanoid-inspecting.png" alt="Humanoid Inspector" style="width: 100%; display: block; object-fit: cover;">
       </div>
     </div>
 
     <!-- Three columns -->
-    <div class="reveal" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px;">
+    <div class="reveal" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-bottom: 48px;">
 
       <!-- High Integrity -->
-      <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 26px 24px; display: flex; flex-direction: column; gap: 10px;">
-        <h3 style="font-size: 1.05rem; font-weight: 700; color: var(--text); margin: 0; line-height: 1.3;" data-i18n="integrity-title">High Integrity</h3>
-        <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6; margin: 0;" data-i18n="integrity-desc">Eliminates calibration drift, institutional pressure, and coercion.</p>
+      <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 36px 32px; display: flex; flex-direction: column; gap: 16px;">
+        <h3 style="font-size: 1.1rem; font-weight: 700; color: #ffffff; margin: 0; line-height: 1.3;" data-i18n="integrity-title">High Integrity</h3>
+        <p style="color: rgba(255,255,255,0.6); font-size: 0.93rem; line-height: 1.65; margin: 0;" data-i18n="integrity-desc">Eliminates calibration drift, institutional pressure, and coercion.</p>
       </div>
 
       <!-- Superior Quality -->
-      <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 26px 24px; display: flex; flex-direction: column; gap: 10px;">
-        <h3 style="font-size: 1.05rem; font-weight: 700; color: var(--text); margin: 0; line-height: 1.3;" data-i18n="quality-title">Superior Quality</h3>
-        <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6; margin: 0;" data-i18n="quality-desc">Detects elusive defects using advanced sensors and machine-level precision.</p>
+      <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 36px 32px; display: flex; flex-direction: column; gap: 16px;">
+        <h3 style="font-size: 1.1rem; font-weight: 700; color: #ffffff; margin: 0; line-height: 1.3;" data-i18n="quality-title">Superior Quality</h3>
+        <p style="color: rgba(255,255,255,0.6); font-size: 0.93rem; line-height: 1.65; margin: 0;" data-i18n="quality-desc">Detects elusive defects using advanced sensors and machine-level precision.</p>
       </div>
 
       <!-- On-Demand -->
-      <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 26px 24px; display: flex; flex-direction: column; gap: 10px;">
-        <h3 style="font-size: 1.05rem; font-weight: 700; color: var(--text); margin: 0; line-height: 1.3;" data-i18n="ondemand-title">On-Demand</h3>
-        <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6; margin: 0;" data-i18n="ondemand-desc">Available without recruitment cycles, security clearance delays, or training pipelines.</p>
+      <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 36px 32px; display: flex; flex-direction: column; gap: 16px;">
+        <h3 style="font-size: 1.1rem; font-weight: 700; color: #ffffff; margin: 0; line-height: 1.3;" data-i18n="ondemand-title">On-Demand</h3>
+        <p style="color: rgba(255,255,255,0.6); font-size: 0.93rem; line-height: 1.65; margin: 0;" data-i18n="ondemand-desc">Available without recruitment cycles, security clearance delays, or training pipelines.</p>
       </div>
 
     </div>
@@ -1182,32 +1220,32 @@ footer p {
     </div>
     <div class="partners-grid">
       <div class="partner-card reveal">
-        <div class="partner-logo"><img src="/assets/partners/nvidia.png?v=2" alt="NVIDIA"></div>
+        <div class="partner-logo"><img src="assets/partners/nvidia.png" alt="NVIDIA"></div>
         <p data-i18n="partner-0">Powering our open-source, French-hosted, defence-compliant humanoid brain with the world's leading AI computing platform.</p>
       </div>
       <div class="partner-card reveal">
-        <div class="partner-logo"><img src="/assets/partners/kickmaker.png?v=2" alt="Kickmaker"></div>
+        <div class="partner-logo"><img src="assets/partners/kickmaker.png" alt="Kickmaker"></div>
         <p data-i18n="partner-1">A partner to leading humanoid companies, helping us source top-tier suppliers, validate custom component designs, and advise on safety.</p>
       </div>
       <div class="partner-card reveal">
-        <div class="partner-logo"><img src="/assets/partners/aerospace-valley.png?v=2" alt="Aerospace Valley Member"></div>
+        <div class="partner-logo"><img src="assets/partners/aerospace-valley.png" alt="Aerospace Valley Member"></div>
         <p data-i18n="partner-2">Access to France and Europe's defence industrial network, supporting supply chain development and regulatory navigation.</p>
       </div>
       <div class="partner-card reveal">
-        <div class="partner-logo"><img src="/assets/partners/robotics-place.png?v=2" alt="Robotics Place"></div>
+        <div class="partner-logo"><img src="assets/partners/robotics-place.png" alt="Robotics Place"></div>
         <p data-i18n="partner-3">France's premier robotics cluster connects Manifest to robotics experts and technology partners across France and beyond.</p>
       </div>
       <div class="partner-card reveal">
-        <div class="partner-logo"><img src="/assets/partners/aktantis.png?v=2" alt="Aktantis Member"></div>
+        <div class="partner-logo"><img src="assets/partners/aktantis.png" alt="Aktantis Member"></div>
         <p data-i18n="partner-4">A leading deeptech cluster connecting Manifest to industrial partners, research institutions, and the French defence innovation ecosystem.</p>
       </div>
       <div class="partner-card reveal">
-        <div class="partner-logo"><img src="/assets/partners/manifest-ecosystem.png?v=2" alt="Manifest Ecosystem" style="height: 90px; max-width: 200px;"></div>
+        <div class="partner-logo"><img src="assets/partners/manifest-ecosystem.png" alt="Manifest Ecosystem" style="height: 90px; max-width: 200px;"></div>
         <p data-i18n="partner-5">A growing network of partners providing the services required to deploy and sustain humanoid capabilities at national scale.</p>
       </div>
     </div>
-    <div class="reveal" style="text-align: center; margin-top: 40px;">
-      <a data-link="contact" style="display: inline-flex; align-items: center; gap: 8px; color: var(--accent); font-size: 0.95rem; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(0,0,0,0.22); padding-bottom: 2px; transition: opacity 0.2s; cursor: pointer;" data-i18n="become-partner">
+    <div class="reveal" style="text-align: center; margin-top: 48px;">
+      <a href="#contact" style="display: inline-flex; align-items: center; gap: 8px; color: var(--text); font-size: 0.9rem; font-weight: 500; text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: opacity 0.2s;" data-i18n="become-partner">
         Become a partner <span style="font-size: 1rem;">→</span>
       </a>
     </div>
@@ -1220,10 +1258,66 @@ footer p {
       <h2 class="section-title" data-i18n="team-title">A Team Committed to European Safety &amp; Security</h2>
     </div>
     <div class="team-grid reveal" id="team-grid"></div>
-    <div class="reveal" style="text-align: center; margin-top: 40px;">
-      <a data-link="contact" style="display: inline-flex; align-items: center; gap: 8px; color: var(--accent); font-size: 0.95rem; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(0,0,0,0.22); padding-bottom: 2px; transition: opacity 0.2s; cursor: pointer;" data-i18n="join-team">
+    <div class="reveal" style="text-align: center; margin-top: 56px;">
+      <a href="#contact" style="display: inline-flex; align-items: center; gap: 8px; color: var(--text); font-size: 0.9rem; font-weight: 500; text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: opacity 0.2s;" data-i18n="join-team">
         Join the team <span style="font-size: 1rem;">→</span>
       </a>
+    </div>
+  </div>
+</section>
+
+<div class="contact-footer-wrapper">
+<section id="contact">
+  <div class="container">
+    <div class="contact-layout">
+      <div class="contact-info reveal">
+        <h2 class="section-title" data-i18n="contact-title">Get In Touch</h2>
+        <p class="section-body" data-i18n="contact-subtitle">Have a question or want to learn more about what we're building?</p>
+        <div class="contact-meta">
+          Hello@the-manifest.com<br>
+          7 Rue Saint Antoine du T, 31000 Toulouse, France
+        </div>
+        <a href="https://www.linkedin.com/company/humanoid-journey/posts/?feedView=all" class="manifest-linkedin" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="20" height="20">
+            <rect x="2" y="2" width="20" height="20" rx="4" fill="#0077B5"/>
+            <path d="M7 10h2v7H7zM8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM11 10h2v1h.03C13.4 10.4 14.2 10 15.2 10c2.1 0 2.8 1.4 2.8 3.2V17h-2v-3.5c0-.8-.3-1.5-1.1-1.5s-1.4.7-1.4 1.5V17h-2v-7z" fill="white"/>
+          </svg>
+          <span data-i18n="follow-linkedin">Follow Manifest on LinkedIn</span>
+        </a>
+      </div>
+      <div id="contact-form-wrapper">
+        <form class="contact-form reveal" id="contact-form" novalidate>
+          <div class="form-error-banner" id="form-error-banner" data-i18n="form-error-general">Something went wrong. Please try again or email us directly.</div>
+          <div class="form-row">
+            <div class="form-field" id="field-name">
+              <label for="name" data-i18n="form-label-name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" data-i18n-placeholder="form-placeholder-name">
+              <span class="field-error" data-i18n="form-error-name">Please enter your name.</span>
+            </div>
+            <div class="form-field" id="field-email">
+              <label for="email" data-i18n="form-label-email">Email</label>
+              <input type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email" data-i18n-placeholder="form-placeholder-email">
+              <span class="field-error" id="email-error" data-i18n="form-error-email">Please enter a valid email address.</span>
+            </div>
+          </div>
+          <div class="form-field" id="field-org">
+            <label for="org" data-i18n="form-label-org">Organization</label>
+            <input type="text" id="org" name="org" placeholder="Company or unit" data-i18n-placeholder="form-placeholder-org">
+            <span class="field-error" data-i18n="form-error-org">Please enter your organization.</span>
+          </div>
+          <div class="form-field" id="field-message">
+            <label for="message" data-i18n="form-label-message">Message</label>
+            <textarea id="message" name="message" placeholder="What would you like to discuss?" data-i18n-placeholder="form-placeholder-message"></textarea>
+            <span class="field-error" data-i18n="form-error-message">Please enter a message.</span>
+          </div>
+          <button type="submit" class="submit-btn" id="submit-btn" data-i18n="form-submit">Send Message</button>
+        </form>
+        <div class="form-success" id="form-success">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          <h3 data-i18n="form-success-title">Message sent!</h3>
+          <p data-i18n="form-success-message">We'll get back to you at hello@the-manifest.com</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1232,14 +1326,15 @@ footer p {
   <div class="container">
     <p class="footer-tagline" data-i18n="footer-tagline">Manifest: Humanoids for European Defence</p>
     <div class="footer-links">
-      <a data-link="legal" data-i18n="footer-legal-notice">Legal Notice</a>
+      <a href="pages/legal-notice.html" data-i18n="footer-legal-notice">Legal Notice</a>
       <span>|</span>
-      <a data-link="terms" data-i18n="footer-terms">Terms & Conditions</a>
+      <a href="pages/terms.html" data-i18n="footer-terms">Terms & Conditions</a>
       <span>|</span>
-      <a data-link="privacy" data-i18n="footer-privacy">Privacy Policy</a>
+      <a href="pages/privacy-policy.html" data-i18n="footer-privacy">Privacy Policy</a>
     </div>
   </div>
 </footer>
+</div><!-- /.contact-footer-wrapper -->
 
 <script>
 // ── Translations ──
@@ -1248,14 +1343,11 @@ const TRANSLATIONS = {
     'popup-title': 'Welcome / Bienvenue',
     'lang-english': 'English',
     'lang-french': 'Français',
-    'about-kicker': 'About Manifest',
-    'nav-humanoid-month': 'Humanoid Month',
-    'nav-about': 'About Us',
-    'nav-contact': 'Contact',
     'nav-strategic-autonomy': 'Strategic Autonomy',
     'nav-inspection': 'Inspection',
     'nav-partners': 'Partners',
     'nav-team': 'Team',
+    'nav-contact': 'Contact',
     'hero-title': 'Humanoids for European Defence',
     'mission-line1': 'Manifest is the First Humanoid Solution',
     'mission-line2': 'Purpose-Built for European Defence',
@@ -1319,14 +1411,11 @@ const TRANSLATIONS = {
     'popup-title': 'Bienvenue / Welcome',
     'lang-english': 'English',
     'lang-french': 'Français',
-    'about-kicker': 'À propos de Manifest',
-    'nav-humanoid-month': 'Mois Humanoïde',
-    'nav-about': 'À propos',
-    'nav-contact': 'Contact',
     'nav-strategic-autonomy': 'Autonomie stratégique',
     'nav-inspection': 'Inspection',
     'nav-partners': 'Partenaires',
     'nav-team': 'Équipe',
+    'nav-contact': 'Contact',
     'hero-title': 'Humanoïdes pour la Défense européenne',
     'mission-line1': 'Manifest conçoit la première solution de robots humanoïdes',
     'mission-line2': 'conçue pour répondre aux besoins de la défense européenne',
@@ -1388,66 +1477,61 @@ const TRANSLATIONS = {
   }
 };
 
-// ── URL routing / language detection ──
-const URL_MAP = {
-  home:     { en: '/en',                  fr: '/fr' },
-  campaign: { en: '/en#campaign',         fr: '/fr#campaign' },
-  about:    { en: '/en/about',            fr: '/fr/a-propos' },
-  contact:  { en: '/en/contact',          fr: '/fr/contact' },
-  legal:    { en: '/en/legal-notice',     fr: '/fr/mentions-legales' },
-  terms:    { en: '/en/terms',            fr: '/fr/conditions' },
-  privacy:  { en: '/en/privacy-policy',   fr: '/fr/confidentialite' },
-};
-const PAGE_ID = 'about';
-const currentLanguage = location.pathname.startsWith('/fr') ? 'fr' : 'en';
-localStorage.setItem('manifest-lang', currentLanguage);
-document.documentElement.lang = currentLanguage;
+// ── Language Management ──
+const _pathLang = location.pathname.replace(/^\//, '');
+let currentLanguage = (['en', 'fr'].includes(_pathLang) ? _pathLang : null) || localStorage.getItem('manifest-lang') || null;
 
-function applyLanguage(lang) {
+function setLanguage(lang, updateUrl = false) {
+  if (!['en', 'fr'].includes(lang)) return;
+
+  // If the user clicked the language switcher, jump to the localized About URL
+  if (updateUrl && lang !== currentLanguage) {
+    localStorage.setItem('manifest-lang', lang);
+    location.href = lang === 'fr' ? '/fr/a-propos' : '/en/about';
+    return;
+  }
+
+  currentLanguage = lang;
+  localStorage.setItem('manifest-lang', lang);
+  document.documentElement.lang = lang;
+
+  // Update all elements with data-i18n attributes
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) {
       el.textContent = TRANSLATIONS[lang][key];
     }
   });
+
+  // Update placeholders
   document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
     const key = el.getAttribute('data-i18n-placeholder');
     if (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) {
       el.placeholder = TRANSLATIONS[lang][key];
     }
   });
+
+  // Update team roles
   updateTeamRoles(lang);
+
+  // Update language switcher
   updateLanguageSwitcher(lang);
 
-  // Resolve every data-link to its language-correct URL
-  document.querySelectorAll('[data-link]').forEach(a => {
-    const target = a.dataset.link;
-    if (URL_MAP[target]) a.href = URL_MAP[target][lang];
-  });
-}
-
-// Legacy stub kept so any leftover callers don't throw
-function setLanguage(lang) {
-  if (lang === currentLanguage) return;
-  localStorage.setItem('manifest-lang', lang);
-  location.href = URL_MAP[PAGE_ID][lang];
+  // Hide popup if showing
+  const popup = document.getElementById('language-popup');
+  if (popup) {
+    popup.classList.add('hidden');
+  }
 }
 
 function updateLanguageSwitcher(lang) {
-  const html = ['en', 'fr'].map(l =>
-    `<a class="lang-opt${l === lang ? ' active' : ''}" data-lang="${l}" href="${URL_MAP[PAGE_ID][l]}">${l.toUpperCase()}</a>`
-  ).join('');
-  ['lang-switcher-nav', 'lang-switcher-topbar', 'lang-switcher-drawer'].forEach(id => {
+  const otherLang = lang === 'en' ? 'fr' : 'en';
+  const langCode = otherLang === 'en' ? 'EN' : 'FR';
+  const globeSVG = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`;
+  const html = globeSVG + langCode;
+  ['lang-switcher-nav', 'lang-switcher-topbar'].forEach(id => {
     const el = document.getElementById(id);
-    if (el) {
-      el.innerHTML = html;
-      el.querySelectorAll('.lang-opt').forEach(opt => {
-        opt.addEventListener('click', (e) => {
-          if (opt.dataset.lang === lang) { e.preventDefault(); return; }
-          localStorage.setItem('manifest-lang', opt.dataset.lang);
-        });
-      });
-    }
+    if (el) el.innerHTML = html;
   });
 }
 
@@ -1492,7 +1576,7 @@ const LI_SVG = `<svg viewBox="0 0 24 24" width="14" height="14" style="flex-shri
 
 function buildCard(m) {
   return `<div class="team-card">
-    <div class="team-avatar"><img src="/assets/team/${m.img}" alt="${m.name}" loading="lazy"></div>
+    <div class="team-avatar"><img src="assets/team/${m.img}" alt="${m.name}" loading="lazy"></div>
     <h3>${m.name}</h3>
     <div class="role" data-original-role="${m.role}">${m.role}</div>
     <a href="${m.url}" class="linkedin-link" target="_blank" rel="noopener">${LI_SVG}<span>LinkedIn</span></a>
@@ -1515,7 +1599,31 @@ function buildCard(m) {
 })();
 
 // ── Initialize Language on Page Load ──
-applyLanguage(currentLanguage);
+window.addEventListener('DOMContentLoaded', function() {
+  if (!currentLanguage) {
+    // Show language popup
+    const popup = document.getElementById('language-popup');
+    if (popup) {
+      popup.classList.remove('hidden');
+    }
+  } else {
+    // Apply stored language
+    setLanguage(currentLanguage);
+  }
+});
+
+// ── Language Popup Buttons ──
+document.getElementById('lang-btn-en').addEventListener('click', () => setLanguage('en', true));
+document.getElementById('lang-btn-fr').addEventListener('click', () => setLanguage('fr', true));
+
+// ── Language Switcher ──
+['lang-switcher-nav', 'lang-switcher-topbar'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('click', function(e) {
+    e.preventDefault();
+    setLanguage(currentLanguage === 'en' ? 'fr' : 'en', true);
+  });
+});
 
 // ── Scroll reveal ──
 const revealEls = document.querySelectorAll('.reveal');
@@ -1528,11 +1636,27 @@ const obs = new IntersectionObserver(entries => {
       e.target.classList.add('visible');
     }
   });
-}, { threshold: 0.18, rootMargin: '0px 0px -12% 0px' });
+}, { threshold: 0.08 });
 revealEls.forEach(el => obs.observe(el));
 
-
 const nav = document.getElementById('nav');
+
+// Swap hero video source based on viewport width
+(function() {
+  const video = document.getElementById('hero-video');
+  const src = document.getElementById('hero-video-src');
+  function loadHeroVideo() {
+    const isMobile = window.innerWidth <= 768;
+    const desired = isMobile ? 'assets/video/hero-phone.mp4' : 'assets/video/hero.mp4';
+    if (src.getAttribute('src') !== desired) {
+      src.setAttribute('src', desired);
+      video.load();
+      video.play();
+    }
+  }
+  loadHeroVideo();
+  window.addEventListener('resize', loadHeroVideo);
+})();
 
 document.querySelectorAll('.nav-links a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
