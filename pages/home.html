@@ -379,7 +379,13 @@ h2.section-heading {
   transition: background 0.3s ease;
 }
 
-.item.is-current::before { background: #a85a5a; }
+.item.is-current::before {
+  background: #a85a5a;
+  box-shadow:
+    0 0 0 3px var(--bg-soft),
+    0 0 0 5px #a85a5a,
+    0 0 0 8px var(--bg-soft);
+}
 
 .item.is-current::after {
   content: '';
