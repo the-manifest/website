@@ -313,12 +313,6 @@ h2.section-heading {
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 16px;
-  transition: box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1), transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s;
-}
-.item:hover {
-  box-shadow: 0 16px 44px rgba(0,0,0,0.08);
-  transform: translateY(-4px);
-  border-color: rgba(0,0,0,0.18);
 }
 
 .item-media {
@@ -327,9 +321,7 @@ h2.section-heading {
   object-fit: cover;
   border-radius: 12px;
   display: block;
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.item:hover .item-media { transform: scale(1.02); }
 
 .item .item-date {
   display: flex;
@@ -364,11 +356,6 @@ h2.section-heading {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   border: 1px solid rgba(0,0,0,0.12);
-  transition: background 0.25s, transform 0.25s;
-}
-.item:hover .item-date .item-place {
-  background: rgba(0,0,0,0.12);
-  transform: translateY(-1px);
 }
 
 .item-date .item-place::before {
