@@ -320,26 +320,17 @@ h2.section-heading {
   color: var(--text-body);
   font-weight: 400;
   max-width: 62ch;
-  margin-bottom: 28px;
+  margin-bottom: 48px;
   font-size: 1.2rem;
   line-height: 1.7;
-}
-
-.campaign-intro::after {
-  content: '';
-  display: block;
-  width: 2px;
-  height: 36px;
-  background: rgba(0,0,0,0.12);
-  margin: 24px 0 0 23px;
 }
 
 .campaign-items {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 32px;
   position: relative;
-  padding-left: 56px;
+  padding-left: 64px;
 }
 
 .campaign-items::before {
@@ -347,9 +338,15 @@ h2.section-heading {
   position: absolute;
   left: 23px;
   top: 0;
-  bottom: 24px;
+  bottom: 0;
   width: 2px;
-  background: rgba(0,0,0,0.12);
+  background: linear-gradient(
+    to bottom,
+    transparent 0,
+    rgba(0,0,0,0.16) 28px,
+    rgba(0,0,0,0.16) calc(100% - 28px),
+    transparent 100%
+  );
 }
 
 .item {
@@ -366,14 +363,14 @@ h2.section-heading {
 .item::before {
   content: '';
   position: absolute;
-  left: -41px;
-  top: 64px;
-  width: 14px;
-  height: 14px;
+  left: -49px;
+  top: 56px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
-  background: var(--bg);
-  border: 2px solid var(--text);
-  z-index: 1;
+  background: var(--text);
+  box-shadow: 0 0 0 4px var(--bg-soft);
+  z-index: 2;
 }
 
 .item-media {
@@ -668,10 +665,9 @@ footer .container {
 
   section { padding: 64px 0; }
 
-  .campaign-items { padding-left: 40px; }
+  .campaign-items { padding-left: 40px; gap: 24px; }
   .campaign-items::before { left: 15px; }
-  .campaign-intro::after { margin-left: 15px; }
-  .item::before { left: -32px; top: 40px; width: 12px; height: 12px; }
+  .item::before { left: -34px; top: 40px; width: 14px; height: 14px; box-shadow: 0 0 0 3px var(--bg-soft); }
   .item { grid-template-columns: 1fr; gap: 24px; padding: 28px; }
   .item-media { max-width: 320px; }
   .item .item-date { font-size: 1.3rem; gap: 8px 14px; }
@@ -714,8 +710,8 @@ footer .container {
   box-shadow: 0 4px 14px rgba(0,0,0,0.12);
 }
 .back-to-top svg {
-  width: 16px;
-  height: 16px;
+  width: 22px;
+  height: 22px;
   stroke: var(--text);
   fill: none;
   stroke-width: 2.2;
@@ -774,7 +770,7 @@ footer .container {
     <div class="reveal">
       <p class="section-kicker" data-i18n="campaign-kicker">June 22 — July 22 · Sponsored by Manifest</p>
       <h2 class="section-heading" data-i18n="campaign-title">Humanoid Month</h2>
-      <p class="campaign-intro" data-i18n="campaign-intro">Humanoids are about to change defence — and if you're an investor, a defence contractor, or a service member, you deserve a clear picture of what's coming.</p>
+      <p class="campaign-intro" data-i18n="campaign-intro">Humanoids are about to change defence. If you're an investor, a defence contractor, or a service member, you deserve a clear picture of what's coming.</p>
     </div>
 
     <div class="campaign-items">
@@ -866,7 +862,7 @@ const TRANSLATIONS = {
     'hero-caption': 'Pierre will gain legs and locomotion by December.',
     'campaign-kicker': 'June 22 — July 22 · Sponsored by Manifest',
     'campaign-title': 'Humanoid Month',
-    'campaign-intro': 'Humanoids are about to change defence — and if you\'re an investor, a defence contractor, or a service member, you deserve a clear picture of what\'s coming.',
+    'campaign-intro': 'Humanoids are about to change defence. If you\'re an investor, a defence contractor, or a service member, you deserve a clear picture of what\'s coming.',
     'item1-date': 'June 22 — July 3',
     'item1-place': 'Virtual',
     'item1-title': 'Get up to speed',
@@ -910,7 +906,7 @@ const TRANSLATIONS = {
     'hero-caption': 'Pierre sera doté de jambes et de la marche d\'ici décembre.',
     'campaign-kicker': '22 juin — 22 juillet · Sponsorisé par Manifest',
     'campaign-title': 'Mois Humanoïde',
-    'campaign-intro': 'Les humanoïdes vont transformer la défense — et que vous soyez investisseur, industriel de la défense ou militaire, vous méritez une vision claire de ce qui arrive.',
+    'campaign-intro': 'Les humanoïdes vont transformer la défense. Que vous soyez investisseur, industriel de la défense ou militaire, vous méritez une vision claire de ce qui arrive.',
     'item1-date': '22 juin — 3 juillet',
     'item1-place': 'En ligne',
     'item1-title': 'Se mettre à niveau',
