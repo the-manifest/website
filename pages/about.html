@@ -1190,9 +1190,9 @@ footer p {
 /* Section jumps are driven by JS (search for 'section-snap'); do NOT enable CSS
    smooth scroll, it would compose with the rAF loop and fight the easing. */
 
-/* Land scrollIntoView() jumps below the fixed nav so headings aren't tucked
-   behind the blurred scrim. JS snap mirrors this with NAV_OFFSET. */
-html { scroll-padding-top: 100px; }
+/* Snap sections bake their own 100px padding-top, so scrollIntoView() lands
+   at the section top (matches the JS wheel-snap landing position). */
+html { scroll-padding-top: 0; }
 </style>
 <script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
