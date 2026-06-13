@@ -1460,7 +1460,6 @@ footer p {
   <button class="section-nav-dot" data-target="inspection-job" data-label="Inspection"         aria-label="Inspection"></button>
   <button class="section-nav-dot" data-target="partners"       data-label="Partners"           aria-label="Partners"></button>
   <button class="section-nav-dot" data-target="team"           data-label="Team"               aria-label="Team"></button>
-  <button class="section-nav-dot" data-target="contact"        data-label="Contact"            aria-label="Contact"></button>
 </div>
 
 <button class="back-to-top" id="back-to-top" aria-label="Back to top">
@@ -1885,10 +1884,20 @@ const backToTop = document.getElementById('back-to-top');
 const sectionNav = document.getElementById('section-nav');
 const navDots = sectionNav ? Array.from(sectionNav.querySelectorAll('.section-nav-dot')) : [];
 
+let nearContact = false;
+const contactSection = document.getElementById('contact');
+if (contactSection && 'IntersectionObserver' in window) {
+  const contactObs = new IntersectionObserver((entries) => {
+    nearContact = entries[0].isIntersecting && entries[0].intersectionRatio >= 0.35;
+    updateChrome();
+  }, { threshold: [0, 0.35, 0.7] });
+  contactObs.observe(contactSection);
+}
+
 function updateChrome() {
-  const showing = window.scrollY > 320;
-  backToTop.classList.toggle('visible', showing);
-  if (sectionNav) sectionNav.classList.toggle('visible', showing);
+  const scrolled = window.scrollY > 320;
+  backToTop.classList.toggle('visible', scrolled);
+  if (sectionNav) sectionNav.classList.toggle('visible', scrolled && !nearContact);
 }
 updateChrome();
 window.addEventListener('scroll', updateChrome, { passive: true });
