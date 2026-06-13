@@ -341,9 +341,9 @@ nav.scrolled .nav-cta:hover { opacity: 0.85; }
   z-index: 1;
 }
 
-.hero-text {
+.hero h1 {
   position: absolute;
-  bottom: 72px;
+  bottom: 80px;
   left: 0;
   right: 0;
   width: 100%;
@@ -351,30 +351,14 @@ nav.scrolled .nav-cta:hover { opacity: 0.85; }
   padding: 0 clamp(24px, 5vw, 80px);
   margin: 0 auto;
   z-index: 2;
-  animation: fadeUp 0.8s ease 0.15s both;
-}
-
-.hero h1 {
   color: #fff;
   font-size: clamp(1.6rem, 3vw, 2.2rem);
   font-weight: 400;
   line-height: 1.25;
   letter-spacing: -0.02em;
-  margin: 0 0 14px;
+  animation: fadeUp 0.8s ease 0.15s both;
   text-shadow: 0 1px 12px rgba(0,0,0,0.4);
 }
-
-.hero-mission {
-  color: rgba(255,255,255,0.78);
-  font-size: clamp(0.85rem, 1.1vw, 0.98rem);
-  font-weight: 400;
-  line-height: 1.55;
-  letter-spacing: 0.005em;
-  margin: 0;
-  text-shadow: 0 1px 10px rgba(0,0,0,0.4);
-  max-width: 44ch;
-}
-.hero-mission span { display: block !important; }
 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(18px); }
@@ -1265,17 +1249,14 @@ html { scroll-padding-top: 100px; }
     </video>
     <div class="hero-overlay"></div>
   </div>
-  <div class="hero-text">
-    <h1 data-i18n="hero-title">Humanoids for European Defence</h1>
-    <p class="hero-mission"><span style="display:block" data-i18n="mission-line1">Manifest is the First Humanoid Solution</span><span style="display:block" data-i18n="mission-line2">Purpose-Built for European Defence</span></p>
-  </div>
+  <h1 data-i18n="hero-title">Humanoids for European Defence</h1>
 </section>
 
 <section id="mission" style="min-height: 100vh; padding: 100px 0 60px; display: flex; align-items: center; box-sizing: border-box; background: var(--bg);">
   <div class="container">
 
     <!-- Heading left / pillars right — original Strategic Autonomy layout -->
-    <div class="reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+    <div class="reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; text-align: left;">
 
       <h2 style="font-size: min(3.5vw, 2.4rem); font-weight: 600; color: var(--text); letter-spacing: -0.02em; line-height: 1.5; margin: 0;" data-i18n="value-heading">Enabling Strategic Autonomy</h2>
 
