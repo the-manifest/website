@@ -378,7 +378,7 @@ section { padding: 100px 0; }
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  padding: 60px 0;
+  padding: 120px 0 60px;
 }
 
 
@@ -1251,14 +1251,13 @@ html { scroll-padding-top: 100px; }
   <h1 data-i18n="hero-title">Humanoids for European Defence</h1>
 </section>
 
-<div style="min-height: 100vh; display: flex; flex-direction: column;">
-  <section id="mission" style="padding: 40px 0;">
-    <div class="reveal">
-      <p class="mission-statement"><span style="display:block" data-i18n="mission-line1">Manifest is the First Humanoid Solution</span><span style="display:block" data-i18n="mission-line2">Purpose-Built for European Defence</span></p>
-    </div>
-  </section>
+<section id="mission" style="min-height: 100vh; padding: 120px 0 60px; display: flex; align-items: center; justify-content: center;">
+  <div class="reveal">
+    <p class="mission-statement"><span style="display:block" data-i18n="mission-line1">Manifest is the First Humanoid Solution</span><span style="display:block" data-i18n="mission-line2">Purpose-Built for European Defence</span></p>
+  </div>
+</section>
 
-  <section id="value" style="background: var(--bg); padding: 40px 0; flex: 1; display: flex; align-items: center;">
+<section id="value" style="background: var(--bg); min-height: 100vh; padding: 120px 0 60px; display: flex; align-items: center;">
   <div class="container">
 
     <!-- Heading left / pillars right — fits in one viewport -->
@@ -1294,7 +1293,6 @@ html { scroll-padding-top: 100px; }
 
   </div>
 </section>
-</div>
 
 <section id="inspection-job" style="background: #111111;">
   <div class="container">
@@ -1949,7 +1947,7 @@ if (navDots.length && 'IntersectionObserver' in window) {
   const reduced  = matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (isCoarse || reduced) return;
 
-  const SECTION_IDS = ['mission', 'inspection-job', 'partners', 'team', 'contact'];
+  const SECTION_IDS = ['mission', 'value', 'inspection-job', 'partners', 'team', 'contact'];
   const sections = [
     document.querySelector('.hero'),
     ...SECTION_IDS.map(id => document.getElementById(id)),
@@ -1959,7 +1957,7 @@ if (navDots.length && 'IntersectionObserver' in window) {
   const SCROLL_MS = 1100;          // duration of the slide
   const SETTLE_MS = SCROLL_MS + 120; // lock window after a jump
   const GESTURE_BREAK_MS = 220;    // a new gesture is a wheel event arriving after a quiet gap
-  const NAV_OFFSET = 100;          // headroom below the fixed nav so headings clear it
+  const NAV_OFFSET = 0;            // each snap-target section bakes its own padding-top
   const FORM_IDS = new Set(['contact', 'inspection-job']);
 
   let locked = false;
