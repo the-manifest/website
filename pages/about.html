@@ -263,26 +263,43 @@ nav.scrolled .nav-logo-img {
 }
 .nav-cta:hover { background: rgba(255,255,255,0.25); }
 
-.lang-switcher {
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  cursor: pointer;
-  transition: opacity 0.2s;
-  padding: 8px 14px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  background: rgba(255,255,255,0.13);
-  border: 1px solid rgba(255,255,255,0.28);
-  border-radius: 20px;
+.lang-toggle {
+  display: inline-flex;
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.20);
+  border-radius: 999px;
+  padding: 3px;
   line-height: 1;
-  white-space: nowrap;
 }
-.lang-switcher:hover { opacity: 0.75; }
-.lang-switcher svg { flex-shrink: 0; }
+nav:not(.scrolled) .lang-toggle {
+  background: rgba(0,0,0,0.05);
+  border-color: rgba(0,0,0,0.08);
+}
+.lang-opt {
+  padding: 7px 14px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-decoration: none;
+  color: rgba(255,255,255,0.65);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s;
+  display: inline-flex;
+  align-items: center;
+}
+nav:not(.scrolled) .lang-opt { color: var(--text-muted); }
+.lang-opt:not(.active):hover { color: #fff; }
+nav:not(.scrolled) .lang-opt:not(.active):hover { color: var(--text); }
+.lang-opt.active {
+  background: #fff;
+  color: var(--text);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.22);
+}
+nav:not(.scrolled) .lang-opt.active {
+  background: var(--text);
+  color: #fff;
+}
 
 /* Mobile nav controls (lang + hamburger side by side) */
 .nav-mobile-controls {
@@ -1096,11 +1113,11 @@ footer p {
       <li><a href="#inspection-job" data-i18n="nav-inspection">Inspection</a></li>
       <li><a href="#partners" data-i18n="nav-partners">Partners</a></li>
       <li><a href="#team" data-i18n="nav-team">Team</a></li>
-      <li><a class="lang-switcher" id="lang-switcher-nav" title="Switch language"></a></li>
+      <li><div class="lang-toggle" id="lang-switcher-nav"></div></li>
       <li><a href="#contact" class="nav-cta" data-i18n="nav-contact">Contact</a></li>
     </ul>
     <div class="nav-mobile-controls">
-      <a class="lang-switcher" id="lang-switcher-topbar" title="Switch language"></a>
+      <div class="lang-toggle" id="lang-switcher-topbar"></div>
       <button class="hamburger" id="hamburger" aria-label="Menu" style="position:relative;z-index:300;">
         <span></span><span></span><span></span>
       </button>
@@ -1525,13 +1542,19 @@ function setLanguage(lang, updateUrl = false) {
 }
 
 function updateLanguageSwitcher(lang) {
-  const otherLang = lang === 'en' ? 'fr' : 'en';
-  const langCode = otherLang === 'en' ? 'EN' : 'FR';
-  const globeSVG = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`;
-  const html = globeSVG + langCode;
+  const html = ['en', 'fr'].map(l =>
+    `<a class="lang-opt${l === lang ? ' active' : ''}" data-lang="${l}" href="#">${l.toUpperCase()}</a>`
+  ).join('');
   ['lang-switcher-nav', 'lang-switcher-topbar'].forEach(id => {
     const el = document.getElementById(id);
-    if (el) el.innerHTML = html;
+    if (!el) return;
+    el.innerHTML = html;
+    el.querySelectorAll('.lang-opt').forEach(opt => {
+      opt.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (opt.dataset.lang !== lang) setLanguage(opt.dataset.lang, true);
+      });
+    });
   });
 }
 
@@ -1615,15 +1638,6 @@ window.addEventListener('DOMContentLoaded', function() {
 // ── Language Popup Buttons ──
 document.getElementById('lang-btn-en').addEventListener('click', () => setLanguage('en', true));
 document.getElementById('lang-btn-fr').addEventListener('click', () => setLanguage('fr', true));
-
-// ── Language Switcher ──
-['lang-switcher-nav', 'lang-switcher-topbar'].forEach(id => {
-  const el = document.getElementById(id);
-  if (el) el.addEventListener('click', function(e) {
-    e.preventDefault();
-    setLanguage(currentLanguage === 'en' ? 'fr' : 'en', true);
-  });
-});
 
 // ── Scroll reveal ──
 const revealEls = document.querySelectorAll('.reveal');
