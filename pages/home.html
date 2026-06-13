@@ -337,6 +337,10 @@ h2.section-heading {
 
 .campaign-intro + .item { margin-top: -16px; }
 
+.campaign-items {
+  --rail-progress: 0;
+}
+
 .campaign-items::before {
   content: '';
   position: absolute;
@@ -360,17 +364,14 @@ h2.section-heading {
     );
   background-repeat: no-repeat;
   background-size: 100% 96px, 100% 100%;
-  background-position: 0 -96px, 0 0;
-  animation: rail-flow 5s linear infinite;
-}
-
-@keyframes rail-flow {
-  0%   { background-position: 0 -96px, 0 0; }
-  100% { background-position: 0 calc(100% + 96px), 0 0; }
+  background-position:
+    0 calc((100% + 96px) * var(--rail-progress) - 96px),
+    0 0;
+  transition: background-position 0.08s linear;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .campaign-items::before { animation: none; }
+  .campaign-items::before { transition: none; }
 }
 
 .item {
@@ -1110,6 +1111,34 @@ window.addEventListener('scroll', updateBackToTop, { passive: true });
 backToTop.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
+
+// ── Timeline rail highlight tracks scroll position ──
+const railHost = document.querySelector('.campaign-items');
+if (railHost) {
+  let railPending = false;
+  function updateRail() {
+    const rect = railHost.getBoundingClientRect();
+    const vh = window.innerHeight;
+    // Map the viewport center crossing the rail to progress 0..1.
+    // Highlight enters as the rail top reaches the lower third of the viewport,
+    // exits as the rail bottom passes the upper third.
+    const lead = vh * 0.66;
+    const tail = vh * 0.34;
+    const total = rect.height + (lead - tail);
+    const traveled = lead - rect.top;
+    const p = Math.max(0, Math.min(1, traveled / total));
+    railHost.style.setProperty('--rail-progress', p.toFixed(4));
+    railPending = false;
+  }
+  window.addEventListener('scroll', () => {
+    if (!railPending) {
+      railPending = true;
+      requestAnimationFrame(updateRail);
+    }
+  }, { passive: true });
+  window.addEventListener('resize', updateRail);
+  updateRail();
+}
 </script>
 
 <!-- Start of HubSpot Embed Code -->
