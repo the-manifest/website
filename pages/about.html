@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="about-snap">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1120,6 +1120,84 @@ footer p {
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+
+/* ── Section navigator (vertical dots) ── */
+.section-nav {
+  position: fixed;
+  top: 50%;
+  right: 24px;
+  transform: translateY(calc(-50% + 8px));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 10px;
+  background: rgba(20,20,20,0.92);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 999px;
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+}
+.section-nav.visible {
+  opacity: 1;
+  transform: translateY(-50%);
+  pointer-events: auto;
+}
+.section-nav-dot {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.section-nav-dot:hover { background: rgba(255,255,255,0.75); }
+.section-nav-dot.active {
+  background: #ffffff;
+  transform: scale(1.18);
+}
+.section-nav-dot::after {
+  content: attr(data-label);
+  position: absolute;
+  right: calc(100% + 14px);
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 5px 10px;
+  background: rgba(20,20,20,0.92);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  border-radius: 999px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease;
+}
+.section-nav-dot:hover::after { opacity: 1; }
+
+@media (max-width: 860px) {
+  .section-nav { display: none; }
+}
+
+/* Slide-like scroll snap on About sections (excluding hero from being a forced target via stop) */
+html.about-snap { scroll-snap-type: y proximity; }
+.about-snap .hero,
+.about-snap #mission,
+.about-snap #inspection-job,
+.about-snap #partners,
+.about-snap #team,
+.about-snap #contact { scroll-snap-align: start; }
+
+@media (prefers-reduced-motion: reduce) {
+  html.about-snap { scroll-snap-type: none; }
+}
 </style>
 <script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
@@ -1386,6 +1464,14 @@ footer p {
   </div>
 </footer>
 </div><!-- /.contact-footer-wrapper -->
+
+<div class="section-nav" id="section-nav" role="navigation" aria-label="Section navigation">
+  <button class="section-nav-dot" data-target="mission"        data-label="Strategic Autonomy" aria-label="Strategic Autonomy"></button>
+  <button class="section-nav-dot" data-target="inspection-job" data-label="Inspection"         aria-label="Inspection"></button>
+  <button class="section-nav-dot" data-target="partners"       data-label="Partners"           aria-label="Partners"></button>
+  <button class="section-nav-dot" data-target="team"           data-label="Team"               aria-label="Team"></button>
+  <button class="section-nav-dot" data-target="contact"        data-label="Contact"            aria-label="Contact"></button>
+</div>
 
 <button class="back-to-top" id="back-to-top" aria-label="Back to top">
   <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 14 12 8 18 14"></polyline></svg>
@@ -1806,14 +1892,53 @@ drawer.querySelectorAll('a').forEach(a => {
 
 // ── Back-to-top ──
 const backToTop = document.getElementById('back-to-top');
-function updateBackToTop() {
-  backToTop.classList.toggle('visible', window.scrollY > 320);
+const sectionNav = document.getElementById('section-nav');
+const navDots = sectionNav ? Array.from(sectionNav.querySelectorAll('.section-nav-dot')) : [];
+
+function updateChrome() {
+  const showing = window.scrollY > 320;
+  backToTop.classList.toggle('visible', showing);
+  if (sectionNav) sectionNav.classList.toggle('visible', showing);
 }
-updateBackToTop();
-window.addEventListener('scroll', updateBackToTop, { passive: true });
+updateChrome();
+window.addEventListener('scroll', updateChrome, { passive: true });
 backToTop.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
+
+navDots.forEach(dot => {
+  dot.addEventListener('click', () => {
+    const target = document.getElementById(dot.dataset.target);
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+if (navDots.length && 'IntersectionObserver' in window) {
+  const sectionsForDots = navDots
+    .map(d => document.getElementById(d.dataset.target))
+    .filter(Boolean);
+  const dotByTarget = new Map(navDots.map(d => [d.dataset.target, d]));
+
+  const setActive = (id) => {
+    navDots.forEach(d => d.classList.toggle('active', d.dataset.target === id));
+  };
+
+  const visible = new Map();
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        visible.set(e.target.id, e.intersectionRatio);
+      } else {
+        visible.delete(e.target.id);
+      }
+    });
+    let bestId = null, bestRatio = 0;
+    visible.forEach((r, id) => { if (r > bestRatio) { bestRatio = r; bestId = id; } });
+    if (bestId && dotByTarget.has(bestId)) setActive(bestId);
+  }, { threshold: [0.25, 0.5, 0.75] });
+
+  sectionsForDots.forEach(s => sectionObserver.observe(s));
+}
 
 // ── Contact Form Validation & Submission ──
 (function() {
