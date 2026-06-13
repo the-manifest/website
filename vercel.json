@@ -4,8 +4,6 @@
     { "source": "/fr", "destination": "/pages/home.html" },
     { "source": "/en/about", "destination": "/pages/about.html" },
     { "source": "/fr/a-propos", "destination": "/pages/about.html" },
-    { "source": "/en/contact", "destination": "/pages/contact.html" },
-    { "source": "/fr/contact", "destination": "/pages/contact.html" },
     { "source": "/en/legal-notice", "destination": "/pages/legal-notice.html" },
     { "source": "/fr/mentions-legales", "destination": "/pages/legal-notice.html" },
     { "source": "/en/terms", "destination": "/pages/terms.html" },
@@ -15,7 +13,9 @@
   ],
   "redirects": [
     { "source": "/about", "destination": "/en/about", "permanent": false },
-    { "source": "/contact", "destination": "/en/contact", "permanent": false },
+    { "source": "/contact", "destination": "/en/about#contact", "permanent": false },
+    { "source": "/en/contact", "destination": "/en/about#contact", "permanent": false },
+    { "source": "/fr/contact", "destination": "/fr/a-propos#contact", "permanent": false },
     { "source": "/legal-notice", "destination": "/en/legal-notice", "permanent": false },
     { "source": "/terms", "destination": "/en/terms", "permanent": false },
     { "source": "/privacy-policy", "destination": "/en/privacy-policy", "permanent": false }

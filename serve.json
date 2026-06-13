@@ -4,13 +4,15 @@
     { "source": "/fr", "destination": "/pages/home.html" },
     { "source": "/en/about", "destination": "/pages/about.html" },
     { "source": "/fr/a-propos", "destination": "/pages/about.html" },
-    { "source": "/en/contact", "destination": "/pages/contact.html" },
-    { "source": "/fr/contact", "destination": "/pages/contact.html" },
     { "source": "/en/legal-notice", "destination": "/pages/legal-notice.html" },
     { "source": "/fr/mentions-legales", "destination": "/pages/legal-notice.html" },
     { "source": "/en/terms", "destination": "/pages/terms.html" },
     { "source": "/fr/conditions", "destination": "/pages/terms.html" },
     { "source": "/en/privacy-policy", "destination": "/pages/privacy-policy.html" },
     { "source": "/fr/confidentialite", "destination": "/pages/privacy-policy.html" }
+  ],
+  "redirects": [
+    { "source": "/en/contact", "destination": "/en/about#contact" },
+    { "source": "/fr/contact", "destination": "/fr/a-propos#contact" }
   ]
 }
