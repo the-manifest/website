@@ -265,15 +265,12 @@ nav.scrolled .nav-logo-img {
 
 .lang-toggle {
   display: inline-flex;
-  background: rgba(255,255,255,0.10);
-  border: 1px solid rgba(255,255,255,0.20);
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(255,255,255,0.95);
   border-radius: 999px;
   padding: 3px;
   line-height: 1;
-}
-nav:not(.scrolled) .lang-toggle {
-  background: rgba(0,0,0,0.05);
-  border-color: rgba(0,0,0,0.08);
+  box-shadow: 0 1px 6px rgba(0,0,0,0.10);
 }
 .lang-opt {
   padding: 7px 14px;
@@ -281,24 +278,18 @@ nav:not(.scrolled) .lang-toggle {
   font-weight: 700;
   letter-spacing: 0.14em;
   text-decoration: none;
-  color: rgba(255,255,255,0.65);
+  color: var(--text-muted);
   border-radius: 999px;
   cursor: pointer;
   transition: background 0.25s, color 0.25s;
   display: inline-flex;
   align-items: center;
 }
-nav:not(.scrolled) .lang-opt { color: var(--text-muted); }
-.lang-opt:not(.active):hover { color: #fff; }
-nav:not(.scrolled) .lang-opt:not(.active):hover { color: var(--text); }
+.lang-opt:not(.active):hover { color: var(--text); }
 .lang-opt.active {
-  background: #fff;
-  color: var(--text);
-  box-shadow: 0 1px 4px rgba(0,0,0,0.22);
-}
-nav:not(.scrolled) .lang-opt.active {
   background: var(--text);
   color: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.18);
 }
 
 /* Mobile nav controls (lang + hamburger side by side) */
