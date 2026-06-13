@@ -36,9 +36,9 @@ body {
 }
 
 .container {
-  max-width: 1240px;
+  max-width: 1040px;
   margin: 0 auto;
-  padding: 0 clamp(24px, 5vw, 80px);
+  padding: 0 28px;
 }
 
 .reveal {
@@ -160,6 +160,7 @@ nav {
 }
 
 nav.drawer-open::before { display: none; }
+nav.drawer-open .lang-toggle { opacity: 0; pointer-events: none; visibility: hidden; }
 
 /* Smooth scrim — nav bar tint flowing into the page */
 nav::before {
