@@ -1188,6 +1188,10 @@ footer p {
 
 /* Section jumps are driven by JS (search for 'section-snap'); do NOT enable CSS
    smooth scroll, it would compose with the rAF loop and fight the easing. */
+
+/* Land scrollIntoView() jumps below the fixed nav so headings aren't tucked
+   behind the blurred scrim. JS snap mirrors this with NAV_OFFSET. */
+html { scroll-padding-top: 100px; }
 </style>
 <script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
@@ -1955,6 +1959,7 @@ if (navDots.length && 'IntersectionObserver' in window) {
   const SCROLL_MS = 1100;          // duration of the slide
   const SETTLE_MS = SCROLL_MS + 120; // lock window after a jump
   const GESTURE_BREAK_MS = 220;    // a new gesture is a wheel event arriving after a quiet gap
+  const NAV_OFFSET = 100;          // headroom below the fixed nav so headings clear it
   const FORM_IDS = new Set(['contact', 'inspection-job']);
 
   let locked = false;
@@ -1963,12 +1968,15 @@ if (navDots.length && 'IntersectionObserver' in window) {
   let unlockTimer = null;
   let rafId = null;
 
+  function targetY(section) {
+    return Math.max(0, section.offsetTop - NAV_OFFSET);
+  }
   function currentIndex() {
     const top = window.scrollY;
     let bestI = 0;
     let bestDist = Infinity;
     sections.forEach((s, i) => {
-      const d = Math.abs(s.offsetTop - top);
+      const d = Math.abs(targetY(s) - top);
       if (d < bestDist) { bestDist = d; bestI = i; }
     });
     return bestI;
@@ -1997,7 +2005,7 @@ if (navDots.length && 'IntersectionObserver' in window) {
     const target = sections[idx];
     if (!target) return;
     locked = true;
-    smoothScrollTo(target.offsetTop, SCROLL_MS);
+    smoothScrollTo(targetY(target), SCROLL_MS);
     clearTimeout(unlockTimer);
     unlockTimer = setTimeout(() => { locked = false; gestureConsumed = false; }, SETTLE_MS);
   }
