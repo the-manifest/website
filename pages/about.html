@@ -1186,11 +1186,8 @@ footer p {
   .section-nav { display: none; }
 }
 
-/* Native scroll behavior; section jumps are driven by JS (search for 'section-snap'). */
-html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-}
+/* Section jumps are driven by JS (search for 'section-snap'); do NOT enable CSS
+   smooth scroll, it would compose with the rAF loop and fight the easing. */
 </style>
 <script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
@@ -1946,14 +1943,16 @@ if (navDots.length && 'IntersectionObserver' in window) {
   ].filter(Boolean);
   if (sections.length < 2) return;
 
-  const SETTLE_MS = 750;           // lock window after a jump
-  const GESTURE_BREAK_MS = 140;    // a new gesture is a wheel event arriving after a quiet gap
+  const SCROLL_MS = 1100;          // duration of the slide
+  const SETTLE_MS = SCROLL_MS + 120; // lock window after a jump
+  const GESTURE_BREAK_MS = 220;    // a new gesture is a wheel event arriving after a quiet gap
   const FORM_IDS = new Set(['contact', 'inspection-job']);
 
   let locked = false;
   let lastEventAt = 0;
   let gestureConsumed = false;
   let unlockTimer = null;
+  let rafId = null;
 
   function currentIndex() {
     const top = window.scrollY;
@@ -1966,11 +1965,30 @@ if (navDots.length && 'IntersectionObserver' in window) {
     return bestI;
   }
 
+  // Slow, eased slide. Native smooth-scroll is too fast for the slide feel.
+  function easeInOutCubic(t) {
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }
+  function smoothScrollTo(targetY, duration) {
+    if (rafId) cancelAnimationFrame(rafId);
+    const startY = window.scrollY;
+    const dist = targetY - startY;
+    if (Math.abs(dist) < 1) return;
+    const t0 = performance.now();
+    function step(now) {
+      const t = Math.min(1, (now - t0) / duration);
+      window.scrollTo({ top: startY + dist * easeInOutCubic(t), behavior: 'instant' });
+      if (t < 1) rafId = requestAnimationFrame(step);
+      else rafId = null;
+    }
+    rafId = requestAnimationFrame(step);
+  }
+
   function snapTo(idx) {
     const target = sections[idx];
     if (!target) return;
     locked = true;
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    smoothScrollTo(target.offsetTop, SCROLL_MS);
     clearTimeout(unlockTimer);
     unlockTimer = setTimeout(() => { locked = false; gestureConsumed = false; }, SETTLE_MS);
   }
@@ -1991,7 +2009,7 @@ if (navDots.length && 'IntersectionObserver' in window) {
 
     if (locked) { e.preventDefault(); return; }
     if (!newGesture && gestureConsumed) { e.preventDefault(); return; }
-    if (Math.abs(e.deltaY) < 4) return;
+    if (e.deltaY === 0) return;
 
     const dir = e.deltaY > 0 ? 1 : -1;
     const idx = currentIndex();
