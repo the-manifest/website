@@ -842,17 +842,18 @@ footer p {
   margin: 0;
 }
 
+.nav-right { display: flex; align-items: center; gap: 14px; }
+
 .hamburger {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 5px;
-  width: 40px;
-  height: 40px;
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.25);
-  border-radius: 8px;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: none;
   cursor: pointer;
   padding: 8px;
   z-index: 300;
@@ -860,9 +861,9 @@ footer p {
 }
 .hamburger span {
   display: block;
-  width: 18px;
+  width: 20px;
   height: 2px;
-  background: #fff;
+  background: var(--text);
   border-radius: 2px;
   transition: transform 0.25s ease, opacity 0.25s ease;
   transform-origin: center;
@@ -1090,16 +1091,22 @@ footer p {
 <nav id="nav">
   <div class="container">
     <a href="/en" class="nav-logo" data-launch-link><img src="/assets/logo.png" alt="Manifest" class="nav-logo-img"></a>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="nav-right">
+      <div class="lang-toggle" id="lang-switcher-nav"></div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </nav>
 
-<!-- Drawer (single menu on every viewport) -->
+<!-- Drawer -->
 <div class="mobile-drawer" id="mobile-drawer">
-  <button class="drawer-close" id="drawer-close" aria-label="Close menu">&#x2715;</button>
-  <div class="lang-toggle" id="lang-switcher-drawer"></div>
+  <a href="/en#campaign" data-launch-link data-launch-hash="#campaign" data-i18n="nav-humanoid-month">Humanoid Month</a>
+  <a href="#mission" class="drawer-link" data-i18n="nav-strategic-autonomy">Strategic Autonomy</a>
+  <a href="#inspection-job" class="drawer-link" data-i18n="nav-inspection">Inspection</a>
+  <a href="#partners" class="drawer-link" data-i18n="nav-partners">Partners</a>
+  <a href="#team" class="drawer-link" data-i18n="nav-team">Team</a>
   <a href="#contact" class="drawer-link drawer-cta" data-i18n="nav-contact">Contact</a>
 </div>
 
@@ -1521,7 +1528,7 @@ function updateLanguageSwitcher(lang) {
   const html = ['en', 'fr'].map(l =>
     `<a class="lang-opt${l === lang ? ' active' : ''}" data-lang="${l}" href="#">${l.toUpperCase()}</a>`
   ).join('');
-  ['lang-switcher-drawer'].forEach(id => {
+  ['lang-switcher-nav'].forEach(id => {
     const el = document.getElementById(id);
     if (!el) return;
     el.innerHTML = html;
@@ -1714,8 +1721,6 @@ hamburger.addEventListener('click', () => {
   hamburger.classList.toggle('open', isOpen);
   document.body.style.overflow = isOpen ? 'hidden' : '';
 });
-
-document.getElementById('drawer-close').addEventListener('click', closeDrawer);
 
 drawer.addEventListener('click', (e) => {
   if (e.target === drawer) closeDrawer();

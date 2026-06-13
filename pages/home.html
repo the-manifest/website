@@ -485,6 +485,8 @@ footer .container {
 }
 
 /* ── Hamburger / mobile drawer ── */
+.nav-right { display: flex; align-items: center; gap: 14px; }
+
 .hamburger {
   display: flex;
   flex-direction: column;
@@ -493,9 +495,8 @@ footer .container {
   gap: 5px;
   width: 44px;
   height: 44px;
-  background: rgba(0,0,0,0.04);
-  border: 1px solid rgba(0,0,0,0.12);
-  border-radius: 8px;
+  background: transparent;
+  border: none;
   cursor: pointer;
   padding: 8px;
   z-index: 300;
@@ -607,16 +608,22 @@ footer .container {
 <nav id="nav">
   <div class="container">
     <a class="nav-logo" data-link="home"><img src="/assets/logo.png" alt="Manifest" class="nav-logo-img"></a>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="nav-right">
+      <div class="lang-toggle" id="lang-switcher-nav"></div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </nav>
 
-<!-- Mobile drawer -->
+<!-- Drawer -->
 <div class="mobile-drawer" id="mobile-drawer">
-  <button class="drawer-close" id="drawer-close" aria-label="Close menu">&#x2715;</button>
-  <div class="lang-toggle" id="lang-switcher-drawer"></div>
+  <a href="#campaign" data-i18n="nav-humanoid-month">Humanoid Month</a>
+  <a data-link="mission" data-i18n="nav-strategic-autonomy">Strategic Autonomy</a>
+  <a data-link="inspection" data-i18n="nav-inspection">Inspection</a>
+  <a data-link="partners" data-i18n="nav-partners">Partners</a>
+  <a data-link="team" data-i18n="nav-team">Team</a>
   <a class="drawer-cta" data-link="contact" data-i18n="nav-contact">Contact</a>
 </div>
 
@@ -717,6 +724,10 @@ footer .container {
 const TRANSLATIONS = {
   en: {
     'nav-humanoid-month': 'Humanoid Month',
+    'nav-strategic-autonomy': 'Strategic Autonomy',
+    'nav-inspection': 'Inspection',
+    'nav-partners': 'Partners',
+    'nav-team': 'Team',
     'nav-about': 'About Us',
     'nav-contact': 'Contact',
     'hero-kicker': 'Humanoids for European Defence',
@@ -757,6 +768,10 @@ const TRANSLATIONS = {
   },
   fr: {
     'nav-humanoid-month': 'Mois Humanoïde',
+    'nav-strategic-autonomy': 'Autonomie stratégique',
+    'nav-inspection': 'Inspection',
+    'nav-partners': 'Partenaires',
+    'nav-team': 'Équipe',
     'nav-about': 'À propos',
     'nav-contact': 'Contact',
     'hero-kicker': 'Humanoïdes pour la Défense européenne',
@@ -799,13 +814,17 @@ const TRANSLATIONS = {
 
 // URL map: every navigable target's URL in each language
 const URL_MAP = {
-  home:     { en: '/en',                  fr: '/fr' },
-  campaign: { en: '/en#campaign',         fr: '/fr#campaign' },
-  about:    { en: '/en/about',            fr: '/fr/a-propos' },
-  contact:  { en: '/en/about#contact',    fr: '/fr/a-propos#contact' },
-  legal:    { en: '/en/legal-notice',     fr: '/fr/mentions-legales' },
-  terms:    { en: '/en/terms',            fr: '/fr/conditions' },
-  privacy:  { en: '/en/privacy-policy',   fr: '/fr/confidentialite' },
+  home:       { en: '/en',                       fr: '/fr' },
+  campaign:   { en: '/en#campaign',              fr: '/fr#campaign' },
+  about:      { en: '/en/about',                 fr: '/fr/a-propos' },
+  mission:    { en: '/en/about#mission',         fr: '/fr/a-propos#mission' },
+  inspection: { en: '/en/about#inspection-job',  fr: '/fr/a-propos#inspection-job' },
+  partners:   { en: '/en/about#partners',        fr: '/fr/a-propos#partners' },
+  team:       { en: '/en/about#team',            fr: '/fr/a-propos#team' },
+  contact:    { en: '/en/about#contact',         fr: '/fr/a-propos#contact' },
+  legal:      { en: '/en/legal-notice',          fr: '/fr/mentions-legales' },
+  terms:      { en: '/en/terms',                 fr: '/fr/conditions' },
+  privacy:    { en: '/en/privacy-policy',        fr: '/fr/confidentialite' },
 };
 const PAGE_ID = 'home';
 const currentLanguage = location.pathname.startsWith('/fr') ? 'fr' : 'en';
@@ -843,7 +862,7 @@ function renderLangToggle(container) {
     });
   });
 }
-['lang-switcher-drawer'].forEach(id => {
+['lang-switcher-nav'].forEach(id => {
   const el = document.getElementById(id);
   if (el) renderLangToggle(el);
 });
@@ -926,7 +945,6 @@ hamburger.addEventListener('click', () => {
   document.body.style.overflow = isOpen ? 'hidden' : '';
 });
 
-document.getElementById('drawer-close').addEventListener('click', closeDrawer);
 drawer.addEventListener('click', (e) => { if (e.target === drawer) closeDrawer(); });
 drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
 </script>
