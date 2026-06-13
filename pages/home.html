@@ -319,8 +319,8 @@ h2.section-heading {
 .campaign-intro {
   color: var(--text-body);
   font-weight: 400;
-  max-width: 62ch;
-  margin-bottom: 48px;
+  max-width: 60ch;
+  margin: 0 0 40px;
   font-size: 1.2rem;
   line-height: 1.7;
 }
@@ -343,8 +343,8 @@ h2.section-heading {
   background: linear-gradient(
     to bottom,
     transparent 0,
-    rgba(0,0,0,0.16) 28px,
-    rgba(0,0,0,0.16) calc(100% - 28px),
+    rgba(0,0,0,0.16) 56px,
+    rgba(0,0,0,0.16) calc(100% - 32px),
     transparent 100%
   );
 }
@@ -352,19 +352,20 @@ h2.section-heading {
 .item {
   position: relative;
   display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 48px;
-  padding: 40px;
+  grid-template-columns: 240px 1fr;
+  gap: 40px;
+  padding: 32px;
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 16px;
+  align-items: stretch;
 }
 
 .item::before {
   content: '';
   position: absolute;
   left: -49px;
-  top: 56px;
+  top: 48px;
   width: 16px;
   height: 16px;
   border-radius: 50%;
@@ -375,8 +376,10 @@ h2.section-heading {
 
 .item-media {
   width: 100%;
-  aspect-ratio: 1 / 1;
+  height: 100%;
+  min-height: 240px;
   object-fit: cover;
+  object-position: center 35%;
   border-radius: 12px;
   display: block;
 }
@@ -427,7 +430,7 @@ h2.section-heading {
           mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C7.6 2 4 5.6 4 10c0 6 8 12 8 12s8-6 8-12c0-4.4-3.6-8-8-8zm0 11a3 3 0 110-6 3 3 0 010 6z'/%3E%3C/svg%3E") no-repeat center / contain;
 }
 
-.item-body { align-self: center; }
+.item-body { align-self: center; min-width: 0; }
 
 .item-body h3 {
   font-weight: 700;
@@ -770,10 +773,10 @@ footer .container {
     <div class="reveal">
       <p class="section-kicker" data-i18n="campaign-kicker">June 22 — July 22 · Sponsored by Manifest</p>
       <h2 class="section-heading" data-i18n="campaign-title">Humanoid Month</h2>
-      <p class="campaign-intro" data-i18n="campaign-intro">Humanoids are about to change defence. If you're an investor, a defence contractor, or a service member, you deserve a clear picture of what's coming.</p>
     </div>
 
     <div class="campaign-items">
+      <p class="campaign-intro" data-i18n="campaign-intro">Humanoids are about to change defence. If you're an investor, a defence contractor, or a service member, you deserve a clear picture of what's coming.</p>
 
       <div class="item">
         <img class="item-media" src="/assets/campaign/pierre-gesturing.jpg" alt="Pierre gesturing while explaining">
