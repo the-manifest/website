@@ -217,9 +217,6 @@ nav .container {
   margin: 0;
   opacity: 0;
   animation: heroFigureIn 0.5s ease-out 0.1s forwards;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 14px 48px rgba(0,0,0,0.14), 0 2px 8px rgba(0,0,0,0.06);
 }
 
 @keyframes heroFigureIn {
@@ -227,12 +224,20 @@ nav .container {
   to   { opacity: 1; }
 }
 
+.hero-img {
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 14px 48px rgba(0,0,0,0.14), 0 2px 8px rgba(0,0,0,0.06);
+}
+
 .hero figure img {
   width: 100%;
-  max-height: 68vh;
+  max-height: 62vh;
   object-fit: cover;
-  object-position: center center;
+  object-position: center 45%;
   display: block;
+  transform: scale(1.12);
+  transform-origin: center 50%;
 }
 
 .hero figcaption {
@@ -652,7 +657,9 @@ footer .container {
       <p class="hero-sub" data-i18n-html="hero-sub-2">Today, Pierre is focused on <strong>inspection</strong>. In the future, he will take on roles in MRO, production, and operational missions.</p>
     </div>
     <figure>
-      <img src="/assets/campaign/pierre-at-table.jpg" alt="Pierre, the Manifest humanoid prototype, standing at a table">
+      <div class="hero-img">
+        <img src="/assets/campaign/pierre-at-table.jpg" alt="Pierre, the Manifest humanoid prototype, standing at a table">
+      </div>
       <figcaption data-i18n="hero-caption">Pierre will gain legs and locomotion by December.</figcaption>
     </figure>
   </div>
