@@ -376,35 +376,36 @@ h2.section-heading {
   background: var(--text);
   box-shadow: 0 0 0 4px var(--bg-soft);
   z-index: 2;
+  transition: background 0.3s ease;
 }
 
-.item::after {
+.item.is-current::before { background: #a85a5a; }
+
+.item.is-current::after {
   content: '';
   position: absolute;
   left: -49px;
   top: 48px;
   width: 16px;
   height: 16px;
+  box-sizing: border-box;
   border-radius: 50%;
-  border: 2px solid var(--text);
+  border: 2px solid #a85a5a;
   pointer-events: none;
   opacity: 0;
   z-index: 1;
-  animation: pip-pulse 3.6s ease-out infinite;
+  transform-origin: center center;
+  animation: pip-pulse 2.8s ease-out infinite;
 }
-.campaign-items .item:nth-of-type(1)::after { animation-delay: 0s; }
-.campaign-items .item:nth-of-type(2)::after { animation-delay: 0.9s; }
-.campaign-items .item:nth-of-type(3)::after { animation-delay: 1.8s; }
-.campaign-items .item:nth-of-type(4)::after { animation-delay: 2.7s; }
 
 @keyframes pip-pulse {
-  0%   { transform: scale(1);   opacity: 0.55; }
-  70%  { transform: scale(2.6); opacity: 0; }
+  0%   { transform: scale(1);   opacity: 0.5; }
+  80%  { transform: scale(2.6); opacity: 0; }
   100% { transform: scale(2.6); opacity: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .item::after { animation: none; }
+  .item.is-current::after { animation: none; }
 }
 
 .item-media {
@@ -1120,6 +1121,28 @@ backToTop.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
+// ── Mark the currently-active Humanoid Month item ──
+(function () {
+  const items = document.querySelectorAll('.campaign-items .item');
+  if (!items.length) return;
+  // Year-agnostic ranges: [startMonth, startDay, endMonth, endDay] (1-indexed months).
+  const ranges = [
+    [6, 22, 7, 3],   // Get up to speed
+    [7, 6,  7, 10],  // Private Demonstrations
+    [7, 14, 7, 14],  // Humanoids by the Numbers
+    [7, 16, 7, 16],  // Paris launch
+  ];
+  const now = new Date();
+  const today = (now.getMonth() + 1) * 100 + now.getDate(); // e.g. 613 for Jun 13
+  const key = (m, d) => m * 100 + d;
+  let active = -1;
+  for (let i = 0; i < ranges.length; i++) {
+    const [sm, sd, em, ed] = ranges[i];
+    if (today <= key(em, ed)) { active = i; break; }
+  }
+  if (active < 0 || active >= items.length) return;
+  items[active].classList.add('is-current');
+})();
 </script>
 
 <!-- Start of HubSpot Embed Code -->
