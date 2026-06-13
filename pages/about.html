@@ -1377,11 +1377,11 @@ footer p {
   <div class="container">
     <p class="footer-tagline" data-i18n="footer-tagline">Manifest: Humanoids for European Defence</p>
     <div class="footer-links">
-      <a href="pages/legal-notice.html" data-i18n="footer-legal-notice">Legal Notice</a>
+      <a href="/en/legal-notice" data-href-en="/en/legal-notice" data-href-fr="/fr/mentions-legales" data-i18n="footer-legal-notice">Legal Notice</a>
       <span>|</span>
-      <a href="pages/terms.html" data-i18n="footer-terms">Terms & Conditions</a>
+      <a href="/en/terms" data-href-en="/en/terms" data-href-fr="/fr/conditions" data-i18n="footer-terms">Terms & Conditions</a>
       <span>|</span>
-      <a href="pages/privacy-policy.html" data-i18n="footer-privacy">Privacy Policy</a>
+      <a href="/en/privacy-policy" data-href-en="/en/privacy-policy" data-href-fr="/fr/confidentialite" data-i18n="footer-privacy">Privacy Policy</a>
     </div>
   </div>
 </footer>
@@ -1558,6 +1558,12 @@ function setLanguage(lang, updateUrl = false) {
   document.querySelectorAll('[data-launch-link]').forEach(a => {
     const hash = a.dataset.launchHash || '';
     a.href = '/' + lang + hash;
+  });
+
+  // Point footer legal links at the language-matched route
+  document.querySelectorAll('[data-href-en][data-href-fr]').forEach(a => {
+    const target = lang === 'fr' ? a.dataset.hrefFr : a.dataset.hrefEn;
+    if (target) a.href = target;
   });
 
   // Update all elements with data-i18n attributes
