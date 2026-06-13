@@ -1125,21 +1125,21 @@ footer p {
 .section-nav {
   position: fixed;
   top: 50%;
-  right: 24px;
+  right: 34px;
   transform: translateY(calc(-50% + 8px));
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
-  padding: 14px 10px;
-  background: rgba(20,20,20,0.92);
-  border: 1px solid rgba(255,255,255,0.08);
+  gap: 11px;
+  padding: 10px 8px;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius: 999px;
   z-index: 200;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.25s ease, transform 0.25s ease;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.1);
 }
 .section-nav.visible {
   opacity: 1;
@@ -1148,19 +1148,19 @@ footer p {
 }
 .section-nav-dot {
   position: relative;
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   padding: 0;
   border: none;
   border-radius: 50%;
-  background: rgba(255,255,255,0.4);
+  background: rgba(0,0,0,0.32);
   cursor: pointer;
   transition: background 0.2s ease, transform 0.2s ease;
 }
-.section-nav-dot:hover { background: rgba(255,255,255,0.75); }
+.section-nav-dot:hover { background: rgba(0,0,0,0.65); }
 .section-nav-dot.active {
-  background: #ffffff;
-  transform: scale(1.18);
+  background: #1a1a1a;
+  transform: scale(1.22);
 }
 .section-nav-dot::after {
   content: attr(data-label);
