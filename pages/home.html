@@ -242,8 +242,13 @@ nav .container {
 }
 
 @keyframes heroFigureIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUpHero {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .hero-img {
@@ -703,22 +708,24 @@ footer .container {
 
   .hero { min-height: 100svh; display: flex; align-items: center; }
   .hero .container {
-    grid-template-columns: 1fr;
-    gap: 12px;
-    padding-top: 92px;
-    padding-bottom: 16px;
+    display: flex !important;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 96px;
+    padding-bottom: 12px;
     min-height: 100svh;
     box-sizing: border-box;
-    justify-content: center;
-    align-content: start;
+    justify-content: flex-start;
   }
-  .hero-kicker { margin-bottom: 4px; }
-  .hero h1 { font-size: clamp(1.5rem, 5.8vw, 2.1rem); line-height: 1.2; margin-bottom: 4px; }
-  .hero-sub { font-size: 0.92rem; line-height: 1.5; margin: 0; }
-  .hero figure { max-width: 260px; margin: 8px auto 0; width: 100%; }
-  .hero-img { aspect-ratio: 1 / 1; max-height: 38svh; }
+  .hero .container > div:first-child { order: 2; display: flex; flex-direction: column; gap: 12px; }
+  .hero .container > figure { order: 1; max-width: 320px; margin: 0 auto; width: 100%; opacity: 0; animation: heroFigureIn 0.5s ease-out 0.05s forwards; }
+  .hero-img { aspect-ratio: 1 / 1; max-height: 42svh; }
   .hero figure img { max-height: 100%; width: 100%; height: 100%; object-fit: cover; }
   .hero figcaption { font-size: 0.72rem; margin-top: 6px; }
+  .hero-kicker { order: 2; margin: 8px 0 0; opacity: 0; animation: fadeUpHero 0.6s ease 0.18s both; }
+  .hero h1 { order: 3; font-size: clamp(1.45rem, 5.6vw, 2.05rem); line-height: 1.2; margin: 0; opacity: 0; animation: fadeUpHero 0.6s ease 0.26s both; }
+  .hero-sub { order: 4; font-size: 0.92rem; line-height: 1.5; margin: 0; opacity: 0; animation: fadeUpHero 0.6s ease 0.34s both; }
+  .hero-sub + .hero-sub { order: 5; margin-top: 0; animation-delay: 0.42s; }
 
   section { padding: 64px 0; }
 
@@ -727,6 +734,13 @@ footer .container {
   .item::before { left: -31px; top: 40px; width: 14px; height: 14px; box-shadow: 0 0 0 3px var(--bg-soft); }
   .item.is-current::after,
   .item.is-current .pulse-ring { left: -31px; top: 40px; width: 14px; height: 14px; }
+  .item .item-date {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    flex-wrap: nowrap;
+  }
+  .item-date .item-place { margin-left: 0; }
   .item { grid-template-columns: 1fr; gap: 24px; padding: 28px; }
   .item-media { max-width: 320px; }
   .item .item-date { font-size: 1.3rem; gap: 8px 14px; }
