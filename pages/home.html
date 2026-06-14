@@ -723,7 +723,9 @@ footer .container {
 
   .campaign-items { padding-left: 40px; gap: 24px; }
   .campaign-items::before { left: 15px; }
-  .item::before { left: -34px; top: 40px; width: 14px; height: 14px; box-shadow: 0 0 0 3px var(--bg-soft); }
+  .item::before { left: -31px; top: 40px; width: 14px; height: 14px; box-shadow: 0 0 0 3px var(--bg-soft); }
+  .item.is-current::after,
+  .item.is-current .pulse-ring { left: -31px; top: 40px; width: 14px; height: 14px; }
   .item { grid-template-columns: 1fr; gap: 24px; padding: 28px; }
   .item-media { max-width: 320px; }
   .item .item-date { font-size: 1.3rem; gap: 8px 14px; }
