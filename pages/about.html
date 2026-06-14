@@ -955,7 +955,7 @@ footer p {
 
   /* Nav */
   nav .container { padding: 0 20px; }
-  .nav-logo-img { height: 52px; }
+  /* Logo height is driven by the scroll-shrink JS (updateNav). */
 
   /* Hero — full bleed, video fills screen, text overlaid */
   .hero {
@@ -1844,7 +1844,11 @@ function updateNav() {
   const t = Math.min(1, scrollY / SHRINK_OVER);
   const eased = 1 - Math.pow(1 - t, 3);
   const logoHeight = LOGO_MAX - eased * (LOGO_MAX - LOGO_MIN);
-  if (navLogoImg) navLogoImg.style.height = logoHeight + 'px';
+  if (navLogoImg) {
+    navLogoImg.style.setProperty('height', logoHeight + 'px', 'important');
+    navLogoImg.style.setProperty('min-height', logoHeight + 'px', 'important');
+  }
+  if (navLogoEl) navLogoEl.style.height = logoHeight + 'px';
 
   if (scrollY > 20) {
     nav.classList.add('scrolled');

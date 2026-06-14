@@ -705,7 +705,9 @@ footer .container {
   html, body { overflow-x: hidden; width: 100%; }
 
   nav .container { padding: 0 20px; align-items: center; }
-  .nav-logo-img { height: 52px; }
+  /* Logo height is fully driven by the scroll-shrink JS (updateNav).
+     Keeping a static CSS height: 52px here was constraining the JS-set
+     inline value, so the animation never actually engaged on mobile. */
 
   .hero { min-height: 100svh; display: flex; align-items: center; }
   .hero .container {
@@ -1094,13 +1096,12 @@ function updateNav() {
   const scrollY = window.scrollY;
   const t = Math.min(1, scrollY / SHRINK_OVER);
   const eased = 1 - Math.pow(1 - t, 3);
-  const isMobile = window.innerWidth <= 860;
-  if (!isMobile) {
-    const logoHeight = LOGO_MAX - eased * (LOGO_MAX - LOGO_MIN);
-    if (navLogoImg) navLogoImg.style.height = logoHeight + 'px';
-  } else {
-    if (navLogoImg) navLogoImg.style.height = '';
+  const logoHeight = LOGO_MAX - eased * (LOGO_MAX - LOGO_MIN);
+  if (navLogoImg) {
+    navLogoImg.style.setProperty('height', logoHeight + 'px', 'important');
+    navLogoImg.style.setProperty('min-height', logoHeight + 'px', 'important');
   }
+  if (navLogoEl) navLogoEl.style.height = logoHeight + 'px';
 
   nav.classList.toggle('scrolled', scrollY > 20);
 
