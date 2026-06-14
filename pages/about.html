@@ -1032,17 +1032,20 @@ footer p {
   #inspection-job [style*="padding: 0 40px"] { padding: 0 !important; }
   #inspection-job [style*="font-size: clamp(3rem"] { font-size: clamp(2.2rem, 11vw, 3.2rem) !important; }
 
-  /* Value */
-  #value [style*="grid-template-columns: 2fr 3fr"],
-  #value [style*="grid-template-columns: 1fr 1fr"] {
+  /* Strategic Autonomy (mission section) — stack heading + pillars */
+  #mission .reveal[style*="grid-template-columns"] {
     display: flex !important;
     flex-direction: column !important;
-    gap: 40px !important;
+    gap: 28px !important;
+    align-items: flex-start !important;
   }
-  #value [style*="position: sticky"] { position: static !important; }
-
-  /* Value heading font size */
-  #value h2[style] { font-size: clamp(1.4rem, 6vw, 2rem) !important; }
+  #mission h2[style] {
+    font-size: clamp(1.45rem, 6.5vw, 2rem) !important;
+    line-height: 1.25 !important;
+  }
+  #mission [data-i18n^="pillar"][data-i18n$="-title"],
+  #mission [style*="font-size: 1.05rem"] { font-size: 1rem !important; }
+  #mission [style*="font-size: 0.9rem"] { font-size: 0.9rem !important; line-height: 1.65 !important; }
 
   /* Partners */
   .partners-grid { grid-template-columns: 1fr; }
@@ -1064,10 +1067,23 @@ footer p {
   .contact-form select { font-size: 0.85rem; }
   .submit-btn { font-size: 0.85rem; width: 100%; }
 
-  /* Sections */
+  /* Sections — release the desktop height: 100vh + overflow: hidden constraint
+     so cards/teammates can flow and the page scrolls naturally on phones. */
   section { padding: 48px 0; }
-  #mission { padding: 28px 0; }
-  #inspection-job, #value, #partners, #team { min-height: auto; padding: 48px 0; }
+  #mission {
+    height: auto !important;
+    min-height: auto !important;
+    padding: 88px 0 48px !important;
+    display: block !important;
+  }
+  #inspection-job,
+  #partners,
+  #team {
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+    padding: 64px 0 !important;
+  }
   #contact { padding: 48px 0; }
 
   /* Footer */
