@@ -118,6 +118,7 @@ nav .container {
   height: 68px;
   width: auto;
   filter: brightness(0);
+  transition: opacity 0.3s, filter 0.3s, height 0.25s ease;
 }
 
 .nav-links {
@@ -717,8 +718,8 @@ footer .container {
     box-sizing: border-box;
     justify-content: flex-start;
   }
-  .hero .container > div:first-child { order: 2; display: flex; flex-direction: column; gap: 12px; }
-  .hero .container > figure { order: 1; max-width: 320px; margin: 0 auto; width: 100%; opacity: 0; animation: heroFigureIn 0.5s ease-out 0.05s forwards; }
+  .hero .container > div:first-child { order: 1; display: flex; flex-direction: column; gap: 12px; }
+  .hero .container > figure { order: 2; max-width: 320px; margin: 0 auto; width: 100%; opacity: 0; animation: heroFigureIn 0.5s ease-out 0.05s forwards; }
   .hero-img { aspect-ratio: 1 / 1; max-height: 42svh; }
   .hero figure img { max-height: 100%; width: 100%; height: 100%; object-fit: cover; }
   .hero figcaption { font-size: 0.72rem; margin-top: 6px; }
