@@ -1,30 +1,37 @@
 {
   "rewrites": [
-    { "source": "/en", "destination": "/index.html" },
-    { "source": "/fr", "destination": "/index.html" },
-    { "source": "/team", "destination": "/pages/team.html" },
-    { "source": "/legal-notice", "destination": "/pages/legal-notice.html" },
-    { "source": "/terms", "destination": "/pages/terms.html" },
-    { "source": "/privacy-policy", "destination": "/pages/privacy-policy.html" }
+    { "source": "/en", "destination": "/pages/home.html" },
+    { "source": "/fr", "destination": "/pages/home.html" },
+    { "source": "/en/about", "destination": "/pages/about.html" },
+    { "source": "/fr/a-propos", "destination": "/pages/about.html" },
+    { "source": "/en/legal-notice", "destination": "/pages/legal-notice.html" },
+    { "source": "/fr/mentions-legales", "destination": "/pages/legal-notice.html" },
+    { "source": "/en/terms", "destination": "/pages/terms.html" },
+    { "source": "/fr/conditions", "destination": "/pages/terms.html" },
+    { "source": "/en/privacy-policy", "destination": "/pages/privacy-policy.html" },
+    { "source": "/fr/confidentialite", "destination": "/pages/privacy-policy.html" }
+  ],
+  "redirects": [
+    { "source": "/about", "destination": "/en/about", "permanent": false },
+    { "source": "/contact", "destination": "/en/about#contact", "permanent": false },
+    { "source": "/en/contact", "destination": "/en/about#contact", "permanent": false },
+    { "source": "/fr/contact", "destination": "/fr/a-propos#contact", "permanent": false },
+    { "source": "/legal-notice", "destination": "/en/legal-notice", "permanent": false },
+    { "source": "/terms", "destination": "/en/terms", "permanent": false },
+    { "source": "/privacy-policy", "destination": "/en/privacy-policy", "permanent": false }
   ],
   "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
     {
       "source": "/assets/video/(.*)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" },
         { "key": "Accept-Ranges", "value": "bytes" }
-      ]
-    },
-    {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
-      ]
-    },
-    {
-      "source": "/index.html",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]
     }
   ]
