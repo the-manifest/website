@@ -4,6 +4,8 @@
     { "source": "/fr", "destination": "/pages/home.html" },
     { "source": "/en/about", "destination": "/pages/about.html" },
     { "source": "/fr/a-propos", "destination": "/pages/about.html" },
+    { "source": "/en/home", "destination": "/pages/about.html" },
+    { "source": "/fr/home", "destination": "/pages/about.html" },
     { "source": "/en/legal-notice", "destination": "/pages/legal-notice.html" },
     { "source": "/fr/mentions-legales", "destination": "/pages/legal-notice.html" },
     { "source": "/en/terms", "destination": "/pages/terms.html" },
