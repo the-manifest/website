@@ -237,7 +237,8 @@ nav .container {
 .hero-sub strong { color: var(--text); font-weight: 600; }
 
 .hero figure {
-  margin: 0;
+  margin: 0 0 0 auto;
+  width: min(100%, calc(76vh * 5 / 8));
   opacity: 0;
   animation: heroFigureIn 0.5s ease-out 0.1s forwards;
 }
@@ -254,11 +255,10 @@ nav .container {
 
 .hero-img {
   aspect-ratio: 5 / 8;
+  width: 100%;
   border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 14px 48px rgba(0,0,0,0.14), 0 2px 8px rgba(0,0,0,0.06);
-  max-height: 76vh;
-  margin-left: auto;
 }
 
 .hero figure img {
