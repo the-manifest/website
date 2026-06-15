@@ -822,11 +822,11 @@ body.no-scroll { overflow: hidden; }
 .form-modal__backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(20, 20, 20, 0.62);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background: rgba(20, 20, 20, 0.55);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
   cursor: pointer;
-  animation: form-modal-fade 0.2s ease;
+  animation: form-modal-fade 0.18s ease-out;
 }
 .form-modal__dialog {
   position: relative;
@@ -840,15 +840,19 @@ body.no-scroll { overflow: hidden; }
   display: flex;
   flex-direction: column;
   box-shadow: 0 24px 80px rgba(0,0,0,0.35);
-  animation: form-modal-pop 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  animation: form-modal-rise 0.22s ease-out;
 }
 @keyframes form-modal-fade {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
-@keyframes form-modal-pop {
-  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+@keyframes form-modal-rise {
+  from { opacity: 0; transform: translateY(4px); }
   to   { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .form-modal__backdrop,
+  .form-modal__dialog { animation: none; }
 }
 .form-modal__close {
   position: absolute;
