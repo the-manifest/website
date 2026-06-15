@@ -386,9 +386,12 @@ h2.section-heading {
 }
 
 .item.is-current::before { background: #b84a4a; }
+.item.is-live::before    { background: #2f9156; }
 
 .item.is-current::after,
-.item.is-current .pulse-ring {
+.item.is-current .pulse-ring,
+.item.is-live::after,
+.item.is-live .pulse-ring {
   content: '';
   position: absolute;
   left: -49px;
@@ -405,7 +408,11 @@ h2.section-heading {
   animation: pip-pulse 2.8s ease-out infinite;
 }
 
-.item.is-current .pulse-ring {
+.item.is-live::after,
+.item.is-live .pulse-ring { border-color: #2f9156; }
+
+.item.is-current .pulse-ring,
+.item.is-live .pulse-ring {
   animation-delay: 1.4s;
 }
 
@@ -1180,7 +1187,9 @@ backToTop.addEventListener('click', () => {
     if (today <= key(em, ed)) { active = i; break; }
   }
   if (active < 0 || active >= items.length) return;
-  items[active].classList.add('is-current');
+  const [sm, sd] = ranges[active];
+  const isLive = today >= key(sm, sd);
+  items[active].classList.add(isLive ? 'is-live' : 'is-current');
   const extra = document.createElement('span');
   extra.className = 'pulse-ring';
   extra.setAttribute('aria-hidden', 'true');
