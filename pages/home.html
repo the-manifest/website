@@ -991,7 +991,7 @@ body.no-scroll { overflow: hidden; }
           <p class="item-date"><span class="date-text" data-i18n="item1-date">June 22 — July 3</span><span class="item-place" data-i18n="item1-place">Virtual</span></p>
           <h3 data-i18n="item1-title">Get up to speed</h3>
           <p data-i18n="item1-body">Two weeks of articles and videos that make humanoids make sense — a working understanding of the technology, market, economics of a fleet, and what it means for your mission. No jargon, no hype. Just the grounding you need to think clearly about what's next.</p>
-          <a class="btn" href="mailto:hello@the-manifest.com?subject=Request%20Access%20%E2%80%94%20Humanoid%20Month%20Articles%20%26%20Videos" data-i18n="item1-cta">Request Access</a>
+          <button class="btn" type="button" data-open-form data-form-src="https://2ghh8w.share-eu1.hsforms.com/2NKpMXeMORyiZAshu7R73NQ" data-i18n="item1-cta">Request Access</button>
         </div>
       </div>
 
@@ -1343,16 +1343,19 @@ document.addEventListener('DOMContentLoaded', function () {
   const backdrop = modal.querySelector('.form-modal__backdrop');
   const closers = modal.querySelectorAll('[data-form-close]');
   const closeBtn = modal.querySelector('.form-modal__close');
-  const FORM_SRC = 'https://docs.google.com/forms/d/e/1FAIpQLScs4cPPlBfbT76qhvw1T1MkfX14fI0RY5iZkJGSg9WPUjqmZA/viewform?embedded=true';
+  const DEFAULT_FORM_SRC = 'https://docs.google.com/forms/d/e/1FAIpQLScs4cPPlBfbT76qhvw1T1MkfX14fI0RY5iZkJGSg9WPUjqmZA/viewform?embedded=true';
   let loadCount = 0;
   let lastFocus = null;
+  let currentHost = '';
 
   function openModal(trigger) {
     lastFocus = trigger || document.activeElement;
+    const src = (trigger && trigger.getAttribute('data-form-src')) || DEFAULT_FORM_SRC;
+    try { currentHost = new URL(src).host; } catch (e) { currentHost = ''; }
     loadCount = 0;
     iframe.hidden = false;
     success.hidden = true;
-    iframe.src = FORM_SRC;
+    iframe.src = src;
     modal.hidden = false;
     modal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('no-scroll');
@@ -1368,7 +1371,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   iframe.addEventListener('load', () => {
-    if (!iframe.src || iframe.src.indexOf('docs.google.com') === -1) return;
+    if (!iframe.src || !currentHost || iframe.src.indexOf(currentHost) === -1) return;
     loadCount++;
     if (loadCount >= 2) {
       iframe.hidden = true;
