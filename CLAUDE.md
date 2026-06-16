@@ -30,6 +30,18 @@ URL → file mapping is in [vercel.json](vercel.json) (production) and [serve.js
 
 The nav, mobile drawer, scroll-shrink logo, and form-validation script are duplicated across pages — when changing them, change every page that has them.
 
+### HubSpot embed (every page)
+
+Every HTML page must include the HubSpot loader just before `</body>`. When adding a new page, paste it verbatim:
+
+```html
+<!-- Start of HubSpot Embed Code -->
+<script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/148621712.js"></script>
+<!-- End of HubSpot Embed Code -->
+```
+
+Currently present on `index.html` and all `pages/*.html`.
+
 ### Homepage hero is full-viewport
 
 The homepage hero ("Meet Pierre") is the single full-screen entry section: dark background, `min-height: 100vh / 100svh`, two-column grid with headline + intro on the left and Pierre's photo on the right (stacks on mobile). The hero **is** the Meet Pierre section — they were merged, so don't reintroduce a separate `#pierre` section below it. Subsequent sections (Humanoid Month, About teaser) scroll in beneath.
