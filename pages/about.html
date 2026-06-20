@@ -7,9 +7,9 @@
 <script>
   window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
 </script>
-<script defer src="/_vercel/speed-insights/script.js"></script>
-<link rel="icon" type="image/png" href="/favicon-dark.png" media="(prefers-color-scheme: light)">
-<link rel="icon" type="image/png" href="/favicon-light.png" media="(prefers-color-scheme: dark)">
+<script defer src="../_vercel/speed-insights/script.js"></script>
+<link rel="icon" type="image/png" href="../favicon-dark.png" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/png" href="../favicon-light.png" media="(prefers-color-scheme: dark)">
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -658,145 +658,6 @@ section { padding: 100px 0; }
   line-height: 1.4;
 }
 
-/* ── Contact + Footer ── */
-.contact-footer-wrapper {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-#contact {
-  flex: 1;
-  background: #ffffff;
-  padding: 48px 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.contact-layout {
-  display: grid;
-  grid-template-columns: 1fr 1.3fr;
-  gap: 48px;
-  align-items: start;
-}
-
-.contact-info .contact-meta {
-  margin-top: 20px;
-  color: var(--text-muted);
-  font-size: 0.82rem;
-  line-height: 1.7;
-}
-
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-.contact-form label {
-  font-size: 0.78rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-  margin-bottom: 6px;
-  display: block;
-}
-
-.contact-form input,
-.contact-form textarea,
-.contact-form select {
-  width: 100%;
-  padding: 12px 16px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  font-family: var(--font);
-  font-size: 0.88rem;
-  font-weight: 400;
-  color: var(--text);
-  background: var(--bg);
-  transition: border-color 0.2s;
-  outline: none;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus,
-.contact-form select:focus {
-  border-color: var(--text-secondary);
-}
-
-.contact-form textarea {
-  resize: vertical;
-  min-height: 88px;
-}
-
-.contact-form select {
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  padding-right: 36px;
-}
-
-.form-field { display: flex; flex-direction: column; }
-
-.form-field .field-error {
-  color: #ff6b6b;
-  font-size: 0.75rem;
-  margin-top: 4px;
-  display: none;
-}
-.form-field.has-error input,
-.form-field.has-error textarea {
-  border-color: #ff6b6b !important;
-  outline: none;
-}
-.form-field.has-error .field-error { display: block; }
-
-.form-success {
-  display: none;
-  text-align: center;
-  padding: 40px 24px;
-  color: #ffffff;
-}
-.form-success svg { margin-bottom: 16px; }
-.form-success h3 { font-size: 1.2rem; font-weight: 600; margin: 0 0 8px; }
-.form-success p { color: rgba(255,255,255,0.6); font-size: 0.9rem; margin: 0; }
-
-.form-error-banner {
-  display: none;
-  background: rgba(255,107,107,0.12);
-  border: 1px solid rgba(255,107,107,0.4);
-  border-radius: 6px;
-  padding: 10px 14px;
-  color: #ff6b6b;
-  font-size: 0.82rem;
-  margin-bottom: 12px;
-}
-
-.submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-
-.submit-btn {
-  padding: 13px 32px;
-  background: var(--text);
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  font-family: var(--font);
-  font-size: 0.88rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: opacity 0.2s;
-  align-self: flex-start;
-  margin-top: 4px;
-}
-.submit-btn:hover { opacity: 0.85; }
-
 /* ── Footer ── */
 footer {
   padding: 14px 0;
@@ -1058,13 +919,6 @@ footer p {
   .team-card h3 { font-size: 0.82rem; }
   .team-card .role { font-size: 0.68rem; }
 
-  /* Contact */
-  .contact-layout { grid-template-columns: 1fr; gap: 40px; }
-  .form-row { grid-template-columns: 1fr; }
-  .contact-form label { font-size: 0.75rem; }
-  .contact-form input,
-  .contact-form textarea,
-  .contact-form select { font-size: 0.85rem; }
   .submit-btn { font-size: 0.85rem; width: 100%; }
 
   /* Sections — release the desktop height: 100vh + overflow: hidden constraint
@@ -1084,7 +938,6 @@ footer p {
     overflow: visible !important;
     padding: 64px 0 !important;
   }
-  #contact { padding: 48px 0; }
 
   /* Footer */
   footer .container {
@@ -1138,82 +991,11 @@ footer p {
   stroke-linejoin: round;
 }
 
-/* ── Section navigator (vertical dots) ── */
-.section-nav {
-  position: fixed;
-  top: 50%;
-  right: 34px;
-  transform: translateY(calc(-50% + 8px));
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 11px;
-  padding: 10px 8px;
-  background: rgba(255,255,255,0.92);
-  border: 1px solid rgba(0,0,0,0.08);
-  border-radius: 999px;
-  z-index: 200;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease, transform 0.25s ease;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.1);
-}
-.section-nav.visible {
-  opacity: 1;
-  transform: translateY(-50%);
-  pointer-events: auto;
-}
-.section-nav-dot {
-  position: relative;
-  width: 8px;
-  height: 8px;
-  padding: 0;
-  border: none;
-  border-radius: 50%;
-  background: rgba(0,0,0,0.32);
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-.section-nav-dot:hover { background: rgba(0,0,0,0.65); }
-.section-nav-dot.active {
-  background: #1a1a1a;
-  transform: scale(1.22);
-}
-.section-nav-dot::after {
-  content: attr(data-label);
-  position: absolute;
-  right: calc(100% + 14px);
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 5px 10px;
-  background: rgba(20,20,20,0.92);
-  color: #fff;
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  border-radius: 999px;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.18s ease;
-}
-.section-nav-dot:hover::after { opacity: 1; }
-
-@media (max-width: 860px) {
-  .section-nav { display: none; }
-}
-
-/* Section jumps are driven by JS (search for 'section-snap'); do NOT enable CSS
-   smooth scroll, it would compose with the rAF loop and fight the easing. */
-
-/* Snap sections bake their own 100px padding-top, so scrollIntoView() lands
-   at the section top (matches the JS wheel-snap landing position). */
-html { scroll-padding-top: 0; }
 </style>
 <script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script>
-<script defer src="/_vercel/insights/script.js"></script>
+<script defer src="../_vercel/insights/script.js"></script>
 </head>
 <body>
 
@@ -1238,7 +1020,7 @@ html { scroll-padding-top: 0; }
 
 <nav id="nav">
   <div class="container">
-    <a href="/en" class="nav-logo" data-launch-link><img src="/assets/logo.png" alt="Manifest" class="nav-logo-img"></a>
+    <a href="/en" class="nav-logo" data-launch-link><img src="../assets/logo.png" alt="Manifest" class="nav-logo-img"></a>
     <div class="nav-right">
       <div class="lang-toggle" id="lang-switcher-nav"></div>
       <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -1250,18 +1032,17 @@ html { scroll-padding-top: 0; }
 
 <!-- Drawer -->
 <div class="mobile-drawer" id="mobile-drawer">
-  <a href="/en#campaign" data-launch-link data-launch-hash="#campaign" data-i18n="nav-humanoid-month">Humanoid Month</a>
   <a href="#mission" class="drawer-link" data-i18n="nav-strategic-autonomy">Strategic Autonomy</a>
   <a href="#inspection-job" class="drawer-link" data-i18n="nav-inspection">Inspection</a>
   <a href="#partners" class="drawer-link" data-i18n="nav-partners">Partners</a>
   <a href="#team" class="drawer-link" data-i18n="nav-team">Team</a>
-  <a href="#contact" class="drawer-link drawer-cta" data-i18n="nav-contact">Contact</a>
+  <a href="/en#contact" data-launch-link data-launch-hash="#contact" class="drawer-cta" data-i18n="nav-contact">Contact</a>
 </div>
 
 <section class="hero">
   <div class="hero-video-wrap">
     <video autoplay muted loop playsinline id="hero-video">
-      <source id="hero-video-src" src="/assets/video/hero.mp4" type="video/mp4">
+      <source id="hero-video-src" src="../assets/video/hero.mp4" type="video/mp4">
     </video>
     <div class="hero-overlay"></div>
   </div>
@@ -1312,7 +1093,7 @@ html { scroll-padding-top: 0; }
         <h2 style="font-size: clamp(1.8rem, 3.2vw, 2.6rem); font-weight: 700; color: #ffffff; letter-spacing: -0.03em; line-height: 1.2; margin: 0;" data-i18n="inspection-title">20% of Defence is Inspection</h2>
       </div>
       <div style="border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 0 40px rgba(255,255,255,0.08), 0 8px 32px rgba(0,0,0,0.6);">
-        <img src="/assets/humanoid-inspecting.png" alt="Humanoid Inspector" style="width: 100%; display: block; object-fit: cover;">
+        <img src="../assets/humanoid-inspecting.png" alt="Humanoid Inspector" style="width: 100%; display: block; object-fit: cover;">
       </div>
     </div>
 
@@ -1350,32 +1131,32 @@ html { scroll-padding-top: 0; }
     </div>
     <div class="partners-grid">
       <div class="partner-card reveal">
-        <div class="partner-logo"><img src="/assets/partners/nvidia.png" alt="NVIDIA"></div>
+        <div class="partner-logo"><img src="../assets/partners/nvidia.png" alt="NVIDIA"></div>
         <p data-i18n="partner-0">Powering our open-source, French-hosted, defence-compliant humanoid brain with the world's leading AI computing platform.</p>
       </div>
       <div class="partner-card reveal">
-        <div class="partner-logo"><img src="/assets/partners/kickmaker.png" alt="Kickmaker"></div>
+        <div class="partner-logo"><img src="../assets/partners/kickmaker.png" alt="Kickmaker"></div>
         <p data-i18n="partner-1">A partner to leading humanoid companies, helping us source top-tier suppliers, validate custom component designs, and advise on safety.</p>
       </div>
       <div class="partner-card reveal">
-        <div class="partner-logo"><img src="/assets/partners/aerospace-valley.png" alt="Aerospace Valley Member"></div>
+        <div class="partner-logo"><img src="../assets/partners/aerospace-valley.png" alt="Aerospace Valley Member"></div>
         <p data-i18n="partner-2">Access to France and Europe's defence industrial network, supporting supply chain development and regulatory navigation.</p>
       </div>
       <div class="partner-card reveal">
-        <div class="partner-logo"><img src="/assets/partners/robotics-place.png" alt="Robotics Place"></div>
+        <div class="partner-logo"><img src="../assets/partners/robotics-place.png" alt="Robotics Place"></div>
         <p data-i18n="partner-3">France's premier robotics cluster connects Manifest to robotics experts and technology partners across France and beyond.</p>
       </div>
       <div class="partner-card reveal">
-        <div class="partner-logo"><img src="/assets/partners/aktantis.png" alt="Aktantis Member"></div>
+        <div class="partner-logo"><img src="../assets/partners/aktantis.png" alt="Aktantis Member"></div>
         <p data-i18n="partner-4">A leading deeptech cluster connecting Manifest to industrial partners, research institutions, and the French defence innovation ecosystem.</p>
       </div>
       <div class="partner-card reveal">
-        <div class="partner-logo"><img src="/assets/partners/manifest-ecosystem.png" alt="Manifest Ecosystem" style="height: 90px; max-width: 200px;"></div>
+        <div class="partner-logo"><img src="../assets/partners/manifest-ecosystem.png" alt="Manifest Ecosystem" style="height: 90px; max-width: 200px;"></div>
         <p data-i18n="partner-5">A growing network of partners providing the services required to deploy and sustain humanoid capabilities at national scale.</p>
       </div>
     </div>
     <div class="reveal" style="text-align: center; margin-top: 28px;">
-      <a href="#contact" style="display: inline-flex; align-items: center; gap: 8px; color: var(--text); font-size: 0.9rem; font-weight: 500; text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: opacity 0.2s;" data-i18n="become-partner">
+      <a href="/en#contact" data-launch-link data-launch-hash="#contact" style="display: inline-flex; align-items: center; gap: 8px; color: var(--text); font-size: 0.9rem; font-weight: 500; text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: opacity 0.2s;" data-i18n="become-partner">
         Become a partner <span style="font-size: 1rem;">→</span>
       </a>
     </div>
@@ -1389,68 +1170,13 @@ html { scroll-padding-top: 0; }
     </div>
     <div class="team-grid reveal" id="team-grid"></div>
     <div class="reveal" style="text-align: center; margin-top: 28px;">
-      <a href="#contact" style="display: inline-flex; align-items: center; gap: 8px; color: var(--text); font-size: 0.9rem; font-weight: 500; text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: opacity 0.2s;" data-i18n="join-team">
+      <a href="/en#contact" data-launch-link data-launch-hash="#contact" style="display: inline-flex; align-items: center; gap: 8px; color: var(--text); font-size: 0.9rem; font-weight: 500; text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: opacity 0.2s;" data-i18n="join-team">
         Join the team <span style="font-size: 1rem;">→</span>
       </a>
     </div>
   </div>
 </section>
 
-<div class="contact-footer-wrapper">
-<section id="contact">
-  <div class="container">
-    <div class="contact-layout">
-      <div class="contact-info reveal">
-        <h2 class="section-title" data-i18n="contact-title">Get In Touch</h2>
-        <p class="section-body" data-i18n="contact-subtitle">Have a question or want to learn more about what we're building?</p>
-        <div class="contact-meta">
-          Hello@the-manifest.com<br>
-          7 Rue Saint Antoine du T, 31000 Toulouse, France
-        </div>
-        <a href="https://www.linkedin.com/company/humanoid-journey/posts/?feedView=all" class="manifest-linkedin" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" width="20" height="20">
-            <rect x="2" y="2" width="20" height="20" rx="4" fill="#0077B5"/>
-            <path d="M7 10h2v7H7zM8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM11 10h2v1h.03C13.4 10.4 14.2 10 15.2 10c2.1 0 2.8 1.4 2.8 3.2V17h-2v-3.5c0-.8-.3-1.5-1.1-1.5s-1.4.7-1.4 1.5V17h-2v-7z" fill="white"/>
-          </svg>
-          <span data-i18n="follow-linkedin">Follow Manifest on LinkedIn</span>
-        </a>
-      </div>
-      <div id="contact-form-wrapper">
-        <form class="contact-form reveal" id="contact-form" novalidate>
-          <div class="form-error-banner" id="form-error-banner" data-i18n="form-error-general">Something went wrong. Please try again or email us directly.</div>
-          <div class="form-row">
-            <div class="form-field" id="field-name">
-              <label for="name" data-i18n="form-label-name">Name</label>
-              <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" data-i18n-placeholder="form-placeholder-name">
-              <span class="field-error" data-i18n="form-error-name">Please enter your name.</span>
-            </div>
-            <div class="form-field" id="field-email">
-              <label for="email" data-i18n="form-label-email">Email</label>
-              <input type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email" data-i18n-placeholder="form-placeholder-email">
-              <span class="field-error" id="email-error" data-i18n="form-error-email">Please enter a valid email address.</span>
-            </div>
-          </div>
-          <div class="form-field" id="field-org">
-            <label for="org" data-i18n="form-label-org">Organization</label>
-            <input type="text" id="org" name="org" placeholder="Company or unit" data-i18n-placeholder="form-placeholder-org">
-            <span class="field-error" data-i18n="form-error-org">Please enter your organization.</span>
-          </div>
-          <div class="form-field" id="field-message">
-            <label for="message" data-i18n="form-label-message">Message</label>
-            <textarea id="message" name="message" placeholder="What would you like to discuss?" data-i18n-placeholder="form-placeholder-message"></textarea>
-            <span class="field-error" data-i18n="form-error-message">Please enter a message.</span>
-          </div>
-          <button type="submit" class="submit-btn" id="submit-btn" data-i18n="form-submit">Send Message</button>
-        </form>
-        <div class="form-success" id="form-success">
-          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-          <h3 data-i18n="form-success-title">Message sent!</h3>
-          <p data-i18n="form-success-message">We'll get back to you at hello@the-manifest.com</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <footer>
   <div class="container">
@@ -1464,14 +1190,6 @@ html { scroll-padding-top: 0; }
     </div>
   </div>
 </footer>
-</div><!-- /.contact-footer-wrapper -->
-
-<div class="section-nav" id="section-nav" role="navigation" aria-label="Section navigation">
-  <button class="section-nav-dot" data-target="mission"        data-label="Strategic Autonomy" aria-label="Strategic Autonomy"></button>
-  <button class="section-nav-dot" data-target="inspection-job" data-label="Inspection"         aria-label="Inspection"></button>
-  <button class="section-nav-dot" data-target="partners"       data-label="Partners"           aria-label="Partners"></button>
-  <button class="section-nav-dot" data-target="team"           data-label="Team"               aria-label="Team"></button>
-</div>
 
 <button class="back-to-top" id="back-to-top" aria-label="Back to top">
   <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 14 12 8 18 14"></polyline></svg>
@@ -1484,7 +1202,6 @@ const TRANSLATIONS = {
     'popup-title': 'Welcome / Bienvenue',
     'lang-english': 'English',
     'lang-french': 'Français',
-    'nav-humanoid-month': 'Humanoid Month',
     'nav-about': 'About Us',
     'nav-strategic-autonomy': 'Strategic Autonomy',
     'nav-inspection': 'Inspection',
@@ -1554,7 +1271,6 @@ const TRANSLATIONS = {
     'popup-title': 'Bienvenue / Welcome',
     'lang-english': 'English',
     'lang-french': 'Français',
-    'nav-humanoid-month': 'Mois Humanoïde',
     'nav-about': 'À propos',
     'nav-strategic-autonomy': 'Autonomie stratégique',
     'nav-inspection': 'Inspection',
@@ -1624,7 +1340,22 @@ const TRANSLATIONS = {
 
 // ── Language Management ──
 const _pathLang = (location.pathname.match(/^\/(en|fr)(\/|$)/) || [])[1] || null;
-let currentLanguage = _pathLang || localStorage.getItem('manifest-lang') || null;
+const _queryLang = new URLSearchParams(location.search).get('lang');
+let currentLanguage = _pathLang || _queryLang || localStorage.getItem('manifest-lang') || null;
+
+function routeFor(lang, hash = '') {
+  if (location.protocol === 'file:') {
+    return `home.html?lang=${lang}${hash}`;
+  }
+  return '/' + lang + hash;
+}
+
+function aboutRouteFor(lang) {
+  if (location.protocol === 'file:') {
+    return `about.html?lang=${lang}`;
+  }
+  return lang === 'fr' ? '/fr/a-propos' : '/en/about';
+}
 
 function setLanguage(lang, updateUrl = false) {
   if (!['en', 'fr'].includes(lang)) return;
@@ -1632,7 +1363,7 @@ function setLanguage(lang, updateUrl = false) {
   // If the user clicked the language switcher, jump to the localized About URL
   if (updateUrl && lang !== currentLanguage) {
     localStorage.setItem('manifest-lang', lang);
-    location.href = lang === 'fr' ? '/fr/a-propos' : '/en/about';
+    location.href = aboutRouteFor(lang);
     return;
   }
 
@@ -1640,10 +1371,10 @@ function setLanguage(lang, updateUrl = false) {
   localStorage.setItem('manifest-lang', lang);
   document.documentElement.lang = lang;
 
-  // Point every launch-link (logo, Humanoid Month) at the right localized URL
+  // Point every homepage link at the right localized URL.
   document.querySelectorAll('[data-launch-link]').forEach(a => {
     const hash = a.dataset.launchHash || '';
-    a.href = '/' + lang + hash;
+    a.href = routeFor(lang, hash);
   });
 
   // Point footer legal links at the language-matched route
@@ -1727,6 +1458,7 @@ const TEAM = [
   { row: 1, img: 'charles.jpg',      name: 'Charles-Henri',  role: 'CEO & Founder',     url: 'https://www.linkedin.com/in/charlesblanchet/' },
   { row: 1, img: 'oussama.jpg',      name: 'Oussama',        role: 'Founding Engineer', url: 'https://www.linkedin.com/in/oussamala/' },
   { row: 1, img: 'clement.jpg',      name: 'Clément',        role: 'Founding Engineer', url: 'https://www.linkedin.com/in/clement-guigon/' },
+  { row: 1, img: 'thomas.png',       name: 'Thomas',         role: 'Founding Engineer', url: 'https://www.linkedin.com/in/thomas-bousquet/' },
   { row: 1, img: 'nick.jpg',         name: 'Nick',           role: 'Financial Services',url: 'https://www.linkedin.com/in/maceynick/' },
   { row: 2, img: 'christophe.jpg',   name: 'Christophe',     role: 'Advisor',           url: 'https://www.linkedin.com/in/christophe-camperi-ginestet-1b15932/' },
   { row: 2, img: 'tom.jpg',          name: 'Tom',            role: 'Advisor & Investor',url: 'https://www.linkedin.com/in/tomspengler/' },
@@ -1738,11 +1470,14 @@ const TEAM = [
 const LI_SVG = `<svg viewBox="0 0 24 24" width="14" height="14" style="flex-shrink:0"><rect x="2" y="2" width="20" height="20" rx="4" fill="#0077B5"/><path d="M7 10h2v7H7zM8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM11 10h2v1h.03C13.4 10.4 14.2 10 15.2 10c2.1 0 2.8 1.4 2.8 3.2V17h-2v-3.5c0-.8-.3-1.5-1.1-1.5s-1.4.7-1.4 1.5V17h-2v-7z" fill="white"/></svg>`;
 
 function buildCard(m) {
+  const linkedIn = m.url
+    ? `<a href="${m.url}" class="linkedin-link" target="_blank" rel="noopener">${LI_SVG}<span>LinkedIn</span></a>`
+    : '';
   return `<div class="team-card">
-    <div class="team-avatar"><img src="/assets/team/${m.img}" alt="${m.name}" loading="lazy"></div>
+    <div class="team-avatar"><img src="../assets/team/${m.img}" alt="${m.name}" loading="lazy"></div>
     <h3>${m.name}</h3>
     <div class="role" data-original-role="${m.role}">${m.role}</div>
-    <a href="${m.url}" class="linkedin-link" target="_blank" rel="noopener">${LI_SVG}<span>LinkedIn</span></a>
+    ${linkedIn}
   </div>`;
 }
 
@@ -1801,7 +1536,7 @@ const nav = document.getElementById('nav');
   const src = document.getElementById('hero-video-src');
   function loadHeroVideo() {
     const isMobile = window.innerWidth <= 768;
-    const desired = isMobile ? '/assets/video/hero-phone.mp4' : '/assets/video/hero.mp4';
+    const desired = isMobile ? '../assets/video/hero-phone.mp4' : '../assets/video/hero.mp4';
     if (src.getAttribute('src') !== desired) {
       src.setAttribute('src', desired);
       video.load();
@@ -1896,285 +1631,16 @@ drawer.querySelectorAll('a').forEach(a => {
 
 // ── Back-to-top ──
 const backToTop = document.getElementById('back-to-top');
-const sectionNav = document.getElementById('section-nav');
-const navDots = sectionNav ? Array.from(sectionNav.querySelectorAll('.section-nav-dot')) : [];
-
-let nearContact = false;
-const contactSection = document.getElementById('contact');
-if (contactSection && 'IntersectionObserver' in window) {
-  const contactObs = new IntersectionObserver((entries) => {
-    nearContact = entries[0].isIntersecting && entries[0].intersectionRatio >= 0.35;
-    updateChrome();
-  }, { threshold: [0, 0.35, 0.7] });
-  contactObs.observe(contactSection);
-}
-
-// Sections that the user might currently be reading — used to detect if the
-// section they're in is taller than the viewport (in which case dots hide and
-// the wheel snap stops intercepting).
-const SNAP_SECTION_IDS = ['mission', 'inspection-job', 'partners', 'team', 'contact'];
-const snapSections = [
-  document.querySelector('.hero'),
-  ...SNAP_SECTION_IDS.map(id => document.getElementById(id)),
-].filter(Boolean);
-
-function currentSnapSection() {
-  const top = window.scrollY;
-  let best = snapSections[0];
-  let bestDist = Infinity;
-  snapSections.forEach(s => {
-    const d = Math.abs(s.offsetTop - top);
-    if (d < bestDist) { bestDist = d; best = s; }
-  });
-  return best;
-}
-
-function currentSectionTooTall() {
-  const s = currentSnapSection();
-  if (!s) return false;
-  return s.offsetHeight > window.innerHeight + 4;
-}
-
-function updateChrome() {
+function updateBackToTop() {
   const scrolled = window.scrollY > 320;
-  const tooTall = currentSectionTooTall();
   backToTop.classList.toggle('visible', scrolled);
-  if (sectionNav) sectionNav.classList.toggle('visible', scrolled && !nearContact && !tooTall);
 }
-window.addEventListener('resize', updateChrome);
-updateChrome();
-window.addEventListener('scroll', updateChrome, { passive: true });
+updateBackToTop();
+window.addEventListener('scroll', updateBackToTop, { passive: true });
 backToTop.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-navDots.forEach(dot => {
-  dot.addEventListener('click', () => {
-    const target = document.getElementById(dot.dataset.target);
-    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-});
-
-if (navDots.length && 'IntersectionObserver' in window) {
-  const sectionsForDots = navDots
-    .map(d => document.getElementById(d.dataset.target))
-    .filter(Boolean);
-  const dotByTarget = new Map(navDots.map(d => [d.dataset.target, d]));
-
-  const setActive = (id) => {
-    navDots.forEach(d => d.classList.toggle('active', d.dataset.target === id));
-  };
-
-  const visible = new Map();
-  const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        visible.set(e.target.id, e.intersectionRatio);
-      } else {
-        visible.delete(e.target.id);
-      }
-    });
-    let bestId = null, bestRatio = 0;
-    visible.forEach((r, id) => { if (r > bestRatio) { bestRatio = r; bestId = id; } });
-    if (bestId && dotByTarget.has(bestId)) setActive(bestId);
-  }, { threshold: [0.25, 0.5, 0.75] });
-
-  sectionsForDots.forEach(s => sectionObserver.observe(s));
-}
-
-// ── Section-snap: one scroll gesture -> jump to next/prev section ──
-(function () {
-  const isCoarse = matchMedia('(max-width: 860px)').matches;
-  const reduced  = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (isCoarse || reduced) return;
-
-  const SECTION_IDS = ['mission', 'inspection-job', 'partners', 'team', 'contact'];
-  const sections = [
-    document.querySelector('.hero'),
-    ...SECTION_IDS.map(id => document.getElementById(id)),
-  ].filter(Boolean);
-  if (sections.length < 2) return;
-
-  const SCROLL_MS = 1100;          // duration of the slide
-  const SETTLE_MS = SCROLL_MS + 120; // lock window after a jump
-  const GESTURE_BREAK_MS = 220;    // a new gesture is a wheel event arriving after a quiet gap
-  const NAV_OFFSET = 0;            // each snap-target section bakes its own padding-top
-  const FORM_IDS = new Set(['contact', 'inspection-job']);
-
-  let locked = false;
-  let lastEventAt = 0;
-  let gestureConsumed = false;
-  let unlockTimer = null;
-  let rafId = null;
-
-  function targetY(section) {
-    return Math.max(0, section.offsetTop - NAV_OFFSET);
-  }
-  function currentIndex() {
-    const top = window.scrollY;
-    let bestI = 0;
-    let bestDist = Infinity;
-    sections.forEach((s, i) => {
-      const d = Math.abs(targetY(s) - top);
-      if (d < bestDist) { bestDist = d; bestI = i; }
-    });
-    return bestI;
-  }
-
-  // Slow, eased slide. Native smooth-scroll is too fast for the slide feel.
-  function easeInOutCubic(t) {
-    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-  }
-  function smoothScrollTo(targetY, duration) {
-    if (rafId) cancelAnimationFrame(rafId);
-    const startY = window.scrollY;
-    const dist = targetY - startY;
-    if (Math.abs(dist) < 1) return;
-    const t0 = performance.now();
-    function step(now) {
-      const t = Math.min(1, (now - t0) / duration);
-      window.scrollTo({ top: startY + dist * easeInOutCubic(t), behavior: 'instant' });
-      if (t < 1) rafId = requestAnimationFrame(step);
-      else rafId = null;
-    }
-    rafId = requestAnimationFrame(step);
-  }
-
-  function snapTo(idx) {
-    const target = sections[idx];
-    if (!target) return;
-    locked = true;
-    smoothScrollTo(targetY(target), SCROLL_MS);
-    clearTimeout(unlockTimer);
-    unlockTimer = setTimeout(() => { locked = false; gestureConsumed = false; }, SETTLE_MS);
-  }
-
-  window.addEventListener('wheel', (e) => {
-    // Let the user scroll naturally inside the contact form and inside the
-    // inspection card grid; only intercept when they're between sections.
-    let el = e.target;
-    while (el && el.nodeType === 1) {
-      if (el.id && FORM_IDS.has(el.id) && (el.scrollHeight > el.clientHeight)) return;
-      if (el.tagName === 'TEXTAREA' || el.tagName === 'INPUT' || el.tagName === 'SELECT') return;
-      el = el.parentElement;
-    }
-
-    const now = performance.now();
-    const newGesture = (now - lastEventAt) > GESTURE_BREAK_MS;
-    lastEventAt = now;
-
-    if (locked) { e.preventDefault(); return; }
-    if (!newGesture && gestureConsumed) { e.preventDefault(); return; }
-    if (e.deltaY === 0) return;
-
-    const dir = e.deltaY > 0 ? 1 : -1;
-    const idx = currentIndex();
-    const cur = sections[idx];
-
-    // If the current section is taller than the viewport, let the user read it.
-    // Only intercept when they're already parked at the top/bottom edge.
-    const vh = window.innerHeight;
-    if (cur && cur.offsetHeight > vh + 4) {
-      const sTop = cur.offsetTop;
-      const sBot = sTop + cur.offsetHeight;
-      if (dir > 0 && (window.scrollY + vh) < (sBot - 12)) return;
-      if (dir < 0 && window.scrollY > (sTop + 12)) return;
-    }
-
-    const next = idx + dir;
-    if (next < 0 || next >= sections.length) return;
-
-    e.preventDefault();
-    gestureConsumed = true;
-    snapTo(next);
-  }, { passive: false });
-
-  // Keyboard parity: arrows / PageUp / PageDown / Home / End.
-  window.addEventListener('keydown', (e) => {
-    if (locked) return;
-    const editing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement && document.activeElement.tagName);
-    if (editing) return;
-    let dir = 0;
-    if (e.key === 'ArrowDown' || e.key === 'PageDown') dir = 1;
-    else if (e.key === 'ArrowUp' || e.key === 'PageUp') dir = -1;
-    else if (e.key === 'Home') { e.preventDefault(); snapTo(0); return; }
-    else if (e.key === 'End')  { e.preventDefault(); snapTo(sections.length - 1); return; }
-    if (!dir) return;
-    const next = currentIndex() + dir;
-    if (next < 0 || next >= sections.length) return;
-    e.preventDefault();
-    snapTo(next);
-  });
-})();
-
-// ── Contact Form Validation & Submission ──
-(function() {
-  const form = document.getElementById('contact-form');
-  if (!form) return;
-
-  const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  function validateField(fieldId, inputId, customCheck) {
-    const field = document.getElementById(fieldId);
-    const input = document.getElementById(inputId);
-    const valid = customCheck ? customCheck(input.value.trim()) : input.value.trim() !== '';
-    field.classList.toggle('has-error', !valid);
-    return valid;
-  }
-
-  ['name', 'email', 'org', 'message'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.addEventListener('input', function() {
-      const field = document.getElementById('field-' + id);
-      if (field) field.classList.remove('has-error');
-      document.getElementById('form-error-banner').style.display = 'none';
-    });
-  });
-
-  form.addEventListener('submit', async function(e) {
-    e.preventDefault();
-
-    const validName    = validateField('field-name',    'name');
-    const validEmail   = validateField('field-email',   'email',   v => EMAIL_REGEX.test(v));
-    const validOrg     = validateField('field-org',     'org');
-    const validMessage = validateField('field-message', 'message');
-
-    if (!validName || !validEmail || !validOrg || !validMessage) return;
-
-    const confirmMsg = TRANSLATIONS[currentLanguage || 'en']['form-confirm'] || 'Ready to send your message to Manifest?';
-    const confirmed = confirm(confirmMsg);
-    if (!confirmed) return;
-
-    const btn = document.getElementById('submit-btn');
-    btn.disabled = true;
-    btn.textContent = currentLanguage === 'fr' ? 'Envoi...' : 'Sending…';
-
-    try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          access_key: '7c78fe94-7e16-4619-9da0-a0d1c301bb6c',
-          name:    document.getElementById('name').value.trim(),
-          email:   document.getElementById('email').value.trim(),
-          org:     document.getElementById('org').value.trim(),
-          message: document.getElementById('message').value.trim()
-        })
-      });
-
-      if (res.ok) {
-        form.style.display = 'none';
-        document.getElementById('form-success').style.display = 'block';
-      } else {
-        throw new Error('Server error');
-      }
-    } catch {
-      document.getElementById('form-error-banner').style.display = 'block';
-      btn.disabled = false;
-      btn.textContent = TRANSLATIONS[currentLanguage || 'en']['form-submit'] || 'Send Message';
-    }
-  });
-})();
 </script>
 
 <!-- Start of HubSpot Embed Code -->

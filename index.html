@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Manifest — Humanoids for European Defence</title>
 <meta name="description" content="Manifest is releasing a humanoid prototype on July 7th. Meet Pierre, our European Defence humanoid focused on inspection work.">
-<link rel="icon" type="image/png" href="/favicon-dark.png" media="(prefers-color-scheme: light)">
-<link rel="icon" type="image/png" href="/favicon-light.png" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/png" href="favicon-dark.png" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/png" href="favicon-light.png" media="(prefers-color-scheme: dark)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -15,7 +15,10 @@
   (function() {
     var stored = localStorage.getItem('manifest-lang');
     if (stored === 'en' || stored === 'fr') {
-      window.location.replace('/' + stored);
+      var target = window.location.protocol === 'file:'
+        ? 'pages/home.html?lang=' + stored
+        : '/' + stored;
+      window.location.replace(target);
     }
   })();
 </script>
@@ -111,7 +114,7 @@
 </head>
 <body>
   <main class="picker">
-    <img src="/assets/logo.png" alt="Manifest">
+    <img src="assets/logo.png" alt="Manifest">
     <div class="buttons">
       <a class="lang-btn" href="/en" data-lang="en">
         <span class="code">EN</span>
@@ -124,6 +127,11 @@
     </div>
   </main>
   <script>
+    if (window.location.protocol === 'file:') {
+      document.querySelector('[data-lang="en"]').href = 'pages/home.html?lang=en';
+      document.querySelector('[data-lang="fr"]').href = 'pages/home.html?lang=fr';
+    }
+
     document.querySelectorAll('.lang-btn').forEach(function(btn) {
       btn.addEventListener('click', function() {
         localStorage.setItem('manifest-lang', btn.dataset.lang);

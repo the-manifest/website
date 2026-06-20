@@ -8,9 +8,9 @@
 <script>
   window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
 </script>
-<script defer src="/_vercel/speed-insights/script.js"></script>
-<link rel="icon" type="image/png" href="/favicon-dark.png" media="(prefers-color-scheme: light)">
-<link rel="icon" type="image/png" href="/favicon-light.png" media="(prefers-color-scheme: dark)">
+<script defer src="../_vercel/speed-insights/script.js"></script>
+<link rel="icon" type="image/png" href="../favicon-dark.png" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/png" href="../favicon-light.png" media="(prefers-color-scheme: dark)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -326,187 +326,6 @@ h2.section-heading {
   margin-bottom: 28px;
 }
 
-/* ── Campaign ── */
-.campaign { background: var(--bg-soft); }
-
-.campaign-intro {
-  color: var(--text-body);
-  font-weight: 400;
-  max-width: none;
-  margin: 0;
-  font-size: 1.2rem;
-  line-height: 1.7;
-}
-
-.campaign-items {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  position: relative;
-  padding-left: 64px;
-}
-
-.campaign-intro + .item { margin-top: -16px; }
-
-.campaign-items::before {
-  content: '';
-  position: absolute;
-  left: 23px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(
-    to bottom,
-    transparent 0,
-    rgba(0,0,0,0.18) 56px,
-    rgba(0,0,0,0.18) calc(100% - 32px),
-    transparent 100%
-  );
-}
-
-.item {
-  position: relative;
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 36px;
-  padding: 28px;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  align-items: center;
-  min-height: 346px;
-}
-
-.item::before {
-  content: '';
-  position: absolute;
-  left: -49px;
-  top: 48px;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--text);
-  box-shadow: 0 0 0 4px var(--bg-soft);
-  z-index: 2;
-  transition: background 0.3s ease;
-}
-
-.item.is-current::before { background: #b84a4a; }
-.item.is-live::before    { background: #2f9156; }
-
-.item.is-current::after,
-.item.is-current .pulse-ring,
-.item.is-live::after,
-.item.is-live .pulse-ring {
-  content: '';
-  position: absolute;
-  left: -49px;
-  top: 48px;
-  width: 16px;
-  height: 16px;
-  box-sizing: border-box;
-  border-radius: 50%;
-  border: 2px solid #b84a4a;
-  pointer-events: none;
-  opacity: 0;
-  z-index: 1;
-  transform-origin: center center;
-  animation: pip-pulse 2.8s ease-out infinite;
-}
-
-.item.is-live::after,
-.item.is-live .pulse-ring { border-color: #2f9156; }
-
-.item.is-current .pulse-ring,
-.item.is-live .pulse-ring {
-  animation-delay: 1.4s;
-}
-
-@keyframes pip-pulse {
-  0%   { transform: scale(1);   opacity: 0.5; }
-  80%  { transform: scale(2.6); opacity: 0; }
-  100% { transform: scale(2.6); opacity: 0; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .item.is-current::after,
-  .item.is-current .pulse-ring { animation: none; }
-}
-
-.item-media {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border-radius: 12px;
-  display: block;
-}
-
-.item .item-date {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px 14px;
-  margin-bottom: 22px;
-  max-width: none;
-  line-height: 1.2;
-  font-weight: 400;
-}
-.item-date .item-place { margin-left: auto; }
-
-.item-date .date-text {
-  font-weight: 700;
-  font-size: 1.55rem;
-  letter-spacing: -0.005em;
-  color: var(--text);
-}
-
-.item-date .item-place {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(0,0,0,0.06);
-  color: var(--accent);
-  font-weight: 700;
-  font-size: 0.82rem;
-  padding: 6px 14px;
-  border-radius: 999px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  border: 1px solid rgba(0,0,0,0.12);
-}
-
-.item-date .item-place::before {
-  content: '';
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  flex-shrink: 0;
-  background: currentColor;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C7.6 2 4 5.6 4 10c0 6 8 12 8 12s8-6 8-12c0-4.4-3.6-8-8-8zm0 11a3 3 0 110-6 3 3 0 010 6z'/%3E%3C/svg%3E") no-repeat center / contain;
-          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C7.6 2 4 5.6 4 10c0 6 8 12 8 12s8-6 8-12c0-4.4-3.6-8-8-8zm0 11a3 3 0 110-6 3 3 0 010 6z'/%3E%3C/svg%3E") no-repeat center / contain;
-}
-
-.item-body { align-self: center; min-width: 0; }
-
-.item-body h3 {
-  font-weight: 700;
-  font-size: 1.45rem;
-  letter-spacing: -0.01em;
-  margin-bottom: 14px;
-  line-height: 1.25;
-}
-
-.item-body p {
-  color: var(--text-body);
-  font-weight: 400;
-  font-size: 1.05rem;
-  line-height: 1.6;
-  max-width: 58ch;
-}
-
-.item-body .btn { margin-top: 28px; }
-
 /* ── About teaser ── */
 .about-teaser {
   background: #1a1a1a;
@@ -566,6 +385,140 @@ h2.section-heading {
   color: #fff;
   border-color: #fff;
 }
+
+
+/* -- Contact -- */
+#contact {
+  background: #ffffff;
+  padding: clamp(72px, 9vw, 120px) 0;
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.contact-info .contact-meta {
+  margin-top: 20px;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+
+.manifest-linkedin {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 22px;
+  color: var(--text);
+  font-size: 0.84rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.manifest-linkedin:hover { opacity: 0.7; }
+.manifest-linkedin svg { flex-shrink: 0; }
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.contact-form label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+  display: block;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: var(--font);
+  font-size: 0.88rem;
+  font-weight: 400;
+  color: var(--text);
+  background: var(--bg);
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--text-secondary);
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 88px;
+}
+
+.form-field { display: flex; flex-direction: column; }
+
+.form-field .field-error {
+  color: #b42318;
+  font-size: 0.75rem;
+  margin-top: 4px;
+  display: none;
+}
+.form-field.has-error input,
+.form-field.has-error textarea {
+  border-color: #b42318 !important;
+  outline: none;
+}
+.form-field.has-error .field-error { display: block; }
+
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 40px 24px;
+  color: var(--text);
+}
+.form-success svg { margin-bottom: 16px; }
+.form-success h3 { font-size: 1.2rem; font-weight: 600; margin: 0 0 8px; }
+.form-success p { color: var(--text-muted); font-size: 0.9rem; margin: 0; }
+
+.form-error-banner {
+  display: none;
+  background: rgba(180,35,24,0.08);
+  border: 1px solid rgba(180,35,24,0.28);
+  border-radius: 6px;
+  padding: 10px 14px;
+  color: #b42318;
+  font-size: 0.82rem;
+  margin-bottom: 12px;
+}
+
+.submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.submit-btn {
+  padding: 13px 32px;
+  background: var(--text);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-family: var(--font);
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  align-self: flex-start;
+  margin-top: 4px;
+}
+.submit-btn:hover { opacity: 0.85; }
 
 /* ── Footer ── */
 footer {
@@ -736,21 +689,11 @@ footer .container {
 
   section { padding: 64px 0; }
 
-  .campaign-items { padding-left: 40px; gap: 24px; }
-  .campaign-items::before { left: 15px; }
-  .item::before { left: -31px; top: 40px; width: 14px; height: 14px; box-shadow: 0 0 0 3px var(--bg-soft); }
-  .item.is-current::after,
-  .item.is-current .pulse-ring { left: -31px; top: 40px; width: 14px; height: 14px; }
-  .item .item-date {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    flex-wrap: nowrap;
-  }
-  .item-date .item-place { margin-left: 0; }
-  .item { grid-template-columns: 1fr; gap: 24px; padding: 28px; }
-  .item-media { max-width: 320px; }
-  .item .item-date { font-size: 1.3rem; gap: 8px 14px; }
+  .contact-layout { grid-template-columns: 1fr; gap: 40px; }
+  .form-row { grid-template-columns: 1fr; }
+  .contact-form label { font-size: 0.75rem; }
+  .contact-form input,
+  .contact-form textarea { font-size: 0.85rem; }
 
   footer .container { flex-direction: column; align-items: center; gap: 12px; }
   .footer-tagline { white-space: normal; text-align: center; }
@@ -799,142 +742,17 @@ footer .container {
   stroke-linejoin: round;
 }
 
-/* ── Form modal (Humanoid Month sign-up) ── */
-body.no-scroll { overflow: hidden; }
-.form-modal[hidden] { display: none; }
-.form-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-.form-modal__backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(20, 20, 20, 0.55);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  cursor: pointer;
-  animation: form-modal-fade 0.18s ease-out;
-}
-.form-modal__dialog {
-  position: relative;
-  background: var(--bg);
-  border-radius: 16px;
-  width: 100%;
-  max-width: 720px;
-  max-height: 90vh;
-  max-height: 90svh;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 24px 80px rgba(0,0,0,0.35);
-  animation: form-modal-rise 0.22s ease-out;
-}
-@keyframes form-modal-fade {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-@keyframes form-modal-rise {
-  from { opacity: 0; transform: translateY(4px); }
-  to   { opacity: 1; transform: none; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .form-modal__backdrop,
-  .form-modal__dialog { animation: none; }
-}
-.form-modal__close {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 36px;
-  height: 36px;
-  border: none;
-  background: rgba(255, 255, 255, 0.92);
-  color: var(--text);
-  border-radius: 50%;
-  font-size: 22px;
-  line-height: 1;
-  cursor: pointer;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: inherit;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-.form-modal__close:hover {
-  background: #fff;
-  transform: scale(1.05);
-}
-.form-modal__body {
-  flex: 1;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  min-height: 0;
-}
-.form-modal__frame {
-  display: block;
-  width: 100%;
-  height: 80vh;
-  height: 80svh;
-  border: 0;
-  background: #fff;
-}
-.form-modal__success {
-  padding: 72px 32px;
-  text-align: center;
-}
-.form-modal__success h3 {
-  font-size: 1.8rem;
-  margin: 0 0 14px;
-  color: var(--text);
-}
-.form-modal__success p {
-  margin: 0 0 32px;
-  color: var(--text-body);
-  font-size: 1.02rem;
-  line-height: 1.5;
-}
-.form-modal__sr {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-@media (max-width: 600px) {
-  .form-modal { padding: 0; }
-  .form-modal__dialog {
-    border-radius: 0;
-    max-height: 100vh;
-    max-height: 100svh;
-    height: 100%;
-  }
-  .form-modal__frame {
-    height: 100svh;
-  }
-}
 </style>
 <script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script>
-<script defer src="/_vercel/insights/script.js"></script>
+<script defer src="../_vercel/insights/script.js"></script>
 </head>
 <body>
 
 <nav id="nav">
   <div class="container">
-    <a class="nav-logo" data-link="home"><img src="/assets/logo.png" alt="Manifest" class="nav-logo-img"></a>
+    <a class="nav-logo" data-link="home"><img src="../assets/logo.png" alt="Manifest" class="nav-logo-img"></a>
     <div class="nav-right">
       <div class="lang-toggle" id="lang-switcher-nav"></div>
       <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -946,7 +764,6 @@ body.no-scroll { overflow: hidden; }
 
 <!-- Drawer -->
 <div class="mobile-drawer" id="mobile-drawer">
-  <a href="#campaign" data-i18n="nav-humanoid-month">Humanoid Month</a>
   <a data-link="mission" data-i18n="nav-strategic-autonomy">Strategic Autonomy</a>
   <a data-link="inspection" data-i18n="nav-inspection">Inspection</a>
   <a data-link="partners" data-i18n="nav-partners">Partners</a>
@@ -964,63 +781,65 @@ body.no-scroll { overflow: hidden; }
     </div>
     <figure>
       <div class="hero-img">
-        <img src="/assets/campaign/pierre-at-table.png" alt="Pierre, the Manifest humanoid prototype, standing at a table">
+        <img src="../assets/campaign/pierre-at-table.png" alt="Pierre, the Manifest humanoid prototype, standing at a table">
       </div>
       <figcaption data-i18n="hero-caption">Pierre will gain legs and locomotion by December.</figcaption>
     </figure>
   </div>
 </header>
 
-<section class="campaign" id="campaign">
+<section id="contact">
   <div class="container">
-    <div class="reveal">
-      <p class="section-kicker" data-i18n="campaign-kicker">June 22 — July 22 · Sponsored by Manifest</p>
-      <h2 class="section-heading" data-i18n="campaign-title">Humanoid Month</h2>
-    </div>
-
-    <div class="campaign-items">
-      <p class="campaign-intro" data-i18n="campaign-intro">Humanoids are about to change defence. If you're an investor, a defence contractor, or a service member, you deserve a clear picture of what's coming.</p>
-
-      <div class="item">
-        <img class="item-media" src="/assets/campaign/pierre.png" alt="Pierre gesturing while explaining">
-        <div class="item-body">
-          <p class="item-date"><span class="date-text" data-i18n="item1-date">June 22 — July 3</span><span class="item-place" data-i18n="item1-place">Virtual</span></p>
-          <h3 data-i18n="item1-title">Get up to speed</h3>
-          <p data-i18n="item1-body">Two weeks of articles and videos that make humanoids make sense — A working understanding of the technology, market, economics of a fleet, and what it means for your mission. No jargon, no hype. A practical foundation for understanding humanoids and defence.</p>
-          <button class="btn" type="button" data-open-form data-form-src="https://2ghh8w.share-eu1.hsforms.com/2NKpMXeMORyiZAshu7R73NQ" data-i18n="item1-cta">Request Access</button>
+    <div class="contact-layout">
+      <div class="contact-info reveal">
+        <p class="section-kicker" data-i18n="contact-kicker">Contact</p>
+        <h2 class="section-heading" data-i18n="contact-title">Get In Touch</h2>
+        <p class="section-body" data-i18n="contact-subtitle">Have a question or want to learn more about what we're building?</p>
+        <div class="contact-meta">
+          Hello@the-manifest.com<br>
+          7 Rue Saint Antoine du T, 31000 Toulouse, France
+        </div>
+        <a href="https://www.linkedin.com/company/humanoid-journey/posts/?feedView=all" class="manifest-linkedin" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="4" fill="#0077B5"/>
+            <path d="M7 10h2v7H7zM8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM11 10h2v1h.03C13.4 10.4 14.2 10 15.2 10c2.1 0 2.8 1.4 2.8 3.2V17h-2v-3.5c0-.8-.3-1.5-1.1-1.5s-1.4.7-1.4 1.5V17h-2v-7z" fill="white"/>
+          </svg>
+          <span data-i18n="follow-linkedin">Follow Manifest on LinkedIn</span>
+        </a>
+      </div>
+      <div id="contact-form-wrapper">
+        <form class="contact-form reveal" id="contact-form" novalidate>
+          <div class="form-error-banner" id="form-error-banner" data-i18n="form-error-general">Something went wrong. Please try again or email us directly.</div>
+          <div class="form-row">
+            <div class="form-field" id="field-name">
+              <label for="name" data-i18n="form-label-name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" data-i18n-placeholder="form-placeholder-name">
+              <span class="field-error" data-i18n="form-error-name">Please enter your name.</span>
+            </div>
+            <div class="form-field" id="field-email">
+              <label for="email" data-i18n="form-label-email">Email</label>
+              <input type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email" data-i18n-placeholder="form-placeholder-email">
+              <span class="field-error" id="email-error" data-i18n="form-error-email">Please enter a valid email address.</span>
+            </div>
+          </div>
+          <div class="form-field" id="field-org">
+            <label for="org" data-i18n="form-label-org">Organization</label>
+            <input type="text" id="org" name="org" placeholder="Company or unit" data-i18n-placeholder="form-placeholder-org">
+            <span class="field-error" data-i18n="form-error-org">Please enter your organization.</span>
+          </div>
+          <div class="form-field" id="field-message">
+            <label for="message" data-i18n="form-label-message">Message</label>
+            <textarea id="message" name="message" placeholder="What would you like to discuss?" data-i18n-placeholder="form-placeholder-message"></textarea>
+            <span class="field-error" data-i18n="form-error-message">Please enter a message.</span>
+          </div>
+          <button type="submit" class="submit-btn" id="submit-btn" data-i18n="form-submit">Send Message</button>
+        </form>
+        <div class="form-success" id="form-success">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.65)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          <h3 data-i18n="form-success-title">Message sent!</h3>
+          <p data-i18n="form-success-message">We'll get back to you at hello@the-manifest.com</p>
         </div>
       </div>
-
-      <div class="item">
-        <img class="item-media" src="/assets/campaign/pierre-chess.png" alt="Pierre playing chess with a military officer">
-        <div class="item-body">
-          <p class="item-date"><span class="date-text" data-i18n="item2-date">July 6 — 10</span><span class="item-place" data-i18n="item2-place">Toulouse</span></p>
-          <h3 data-i18n="item2-title">Private Demonstrations</h3>
-          <p data-i18n="item2-body">Service members, defence contractors, and investors are invited to a private demonstration of our humanoid performing inspection tasks and engaging in a game of chess.</p>
-          <button class="btn" type="button" data-open-form data-i18n="item2-cta">Request Demo</button>
-        </div>
-      </div>
-
-      <div class="item">
-        <img class="item-media" src="/assets/campaign/pierre-lloyds-of-london.png" alt="Pierre standing in front of the Lloyd's of London building">
-        <div class="item-body">
-          <p class="item-date"><span class="date-text" data-i18n="item3-date">July 14</span><span class="item-place" data-i18n="item3-place">London</span></p>
-          <h3 data-i18n="item3-title">Humanoids by the Numbers</h3>
-          <p data-i18n="item3-body">How does a humanoid fleet actually pencil out? Join us in London to dig into insurance, leasing, and our Robots-as-a-Service model. Explore the virtuous cycle that is created by integrating product development, financial services, and top-of-the-value-chain services.</p>
-          <button class="btn" type="button" data-open-form data-i18n="item3-cta">Request Invitation</button>
-        </div>
-      </div>
-
-      <div class="item">
-        <img class="item-media" src="/assets/campaign/pierre-inspection.png" alt="Pierre inspecting a crate of munitions">
-        <div class="item-body">
-          <p class="item-date"><span class="date-text" data-i18n="item4-date">July 16</span><span class="item-place" data-i18n="item4-place">Paris</span></p>
-          <h3 data-i18n="item4-title">Humanoids in the Defence Industrial Base, and Militaries</h3>
-          <p data-i18n="item4-body">Humanoid Month culminates in Paris, where we officially launch our product. Be in the room when European defence meets its newest workforce.</p>
-          <button class="btn" type="button" data-open-form data-i18n="item4-cta">Request Invitation</button>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -1054,7 +873,6 @@ body.no-scroll { overflow: hidden; }
 // ── Translations ──
 const TRANSLATIONS = {
   en: {
-    'nav-humanoid-month': 'Humanoid Month',
     'nav-strategic-autonomy': 'Strategic Autonomy',
     'nav-inspection': 'Inspection',
     'nav-partners': 'Partners',
@@ -1066,29 +884,6 @@ const TRANSLATIONS = {
     'hero-sub-1': 'Meet <strong>Pierre</strong> — the first humanoid purpose-built for European defence, and our first step toward delivering a <strong>continental network of humanoids</strong> available to militaries and the defence industrial base.',
     'hero-sub-2': 'Today, Pierre is focused on <strong>inspection</strong>. In the future, he will take on roles in MRO, production, and operational missions.',
     'hero-caption': 'Pierre will gain legs and locomotion by December.',
-    'campaign-kicker': 'June 22 — July 22 · Sponsored by Manifest',
-    'campaign-title': 'Humanoid Month',
-    'campaign-intro': 'Humanoids are about to change defence. If you\'re an investor, a defence contractor, or a service member, you deserve a clear picture of what\'s coming.',
-    'item1-date': 'June 22 — July 3',
-    'item1-place': 'Virtual',
-    'item1-title': 'Get up to speed',
-    'item1-body': 'Two weeks of articles and videos that make humanoids make sense — A working understanding of the technology, market, economics of a fleet, and what it means for your mission. No jargon, no hype. A practical foundation for understanding humanoids and defence.',
-    'item1-cta': 'Request Access',
-    'item2-date': 'July 6 — 10',
-    'item2-place': 'Toulouse',
-    'item2-title': 'Private Demonstrations',
-    'item2-body': 'Service members, defence contractors, and investors are invited to a private demonstration of our humanoid performing inspection tasks and engaging in a game of chess.',
-    'item2-cta': 'Request Demo',
-    'item3-date': 'July 14',
-    'item3-place': 'London',
-    'item3-title': 'Humanoids by the Numbers',
-    'item3-body': 'How does a humanoid fleet actually pencil out? Join us in London to dig into insurance, leasing, and our Robots-as-a-Service model. Explore the virtuous cycle that is created by integrating product development, financial services, and top-of-the-value-chain services.',
-    'item3-cta': 'Request Invitation',
-    'item4-date': 'July 16',
-    'item4-place': 'Paris',
-    'item4-title': 'Humanoids in the Defence Industrial Base, and Militaries',
-    'item4-body': 'Humanoid Month culminates in Paris, where we officially launch our product. Be in the room when European defence meets its newest workforce.',
-    'item4-cta': 'Request Invitation',
     'teaser-kicker': 'About Manifest',
     'teaser-title': 'The First Humanoid Solution Purpose-Built<br>for European Defence',
     'teaser-cta': 'Learn more about us',
@@ -1096,14 +891,29 @@ const TRANSLATIONS = {
     'footer-legal': 'Legal Notice',
     'footer-terms': 'Terms & Conditions',
     'footer-privacy': 'Privacy Policy',
-    'form-success-title': "You're in",
-    'form-success-body': "Thanks — we'll be in touch shortly.",
-    'form-success-back': 'Back to site',
-    'form-close-label': 'Close',
-    'form-dialog-title': 'Join Humanoid Month',
+    'contact-kicker': 'Contact',
+    'contact-title': 'Get In Touch',
+    'contact-subtitle': 'Have a question or want to learn more about what we\'re building?',
+    'follow-linkedin': 'Follow Manifest on LinkedIn',
+    'form-label-name': 'Name',
+    'form-placeholder-name': 'Your name',
+    'form-label-email': 'Email',
+    'form-placeholder-email': 'you@company.com',
+    'form-label-org': 'Organization',
+    'form-placeholder-org': 'Company or unit',
+    'form-label-message': 'Message',
+    'form-placeholder-message': 'What would you like to discuss?',
+    'form-submit': 'Send Message',
+    'form-error-name': 'Please enter your name.',
+    'form-error-email': 'Please enter a valid email address.',
+    'form-error-org': 'Please enter your organization.',
+    'form-error-message': 'Please enter a message.',
+    'form-error-general': 'Something went wrong. Please try again or email us directly.',
+    'form-confirm': 'Ready to send your message to Manifest?',
+    'form-success-title': 'Message sent!',
+    'form-success-message': 'We\'ll get back to you at hello@the-manifest.com',
   },
   fr: {
-    'nav-humanoid-month': 'Mois Humanoïde',
     'nav-strategic-autonomy': 'Autonomie stratégique',
     'nav-inspection': 'Inspection',
     'nav-partners': 'Partenaires',
@@ -1115,29 +925,6 @@ const TRANSLATIONS = {
     'hero-sub-1': 'Découvrez <strong>Pierre</strong> — le premier humanoïde conçu pour la défense européenne, et notre première étape vers un <strong>réseau continental d\'humanoïdes</strong> à disposition des militaires et de la base industrielle de défense.',
     'hero-sub-2': 'Aujourd\'hui, Pierre se concentre sur l\'<strong>inspection</strong>. Demain, il prendra en charge des missions de MRO, de production et d\'opérations.',
     'hero-caption': 'Pierre sera doté de jambes et de la marche d\'ici décembre.',
-    'campaign-kicker': '22 juin — 22 juillet · Sponsorisé par Manifest',
-    'campaign-title': 'Mois Humanoïde',
-    'campaign-intro': 'Les humanoïdes vont transformer la défense. Que vous soyez investisseur, industriel de la défense ou militaire, vous méritez une vision claire de ce qui arrive.',
-    'item1-date': '22 juin — 3 juillet',
-    'item1-place': 'En ligne',
-    'item1-title': 'Se mettre à niveau',
-    'item1-body': 'Deux semaines d\'articles et de vidéos pour donner du sens aux humanoïdes — une compréhension concrète de la technologie, du marché, de l\'économie d\'une flotte et de ce que tout cela signifie pour votre mission. Sans jargon ni emballement. Une base concrète pour comprendre les humanoïdes et la défense.',
-    'item1-cta': 'Demander l\'accès',
-    'item2-date': '6 — 10 juillet',
-    'item2-place': 'Toulouse',
-    'item2-title': 'Démonstrations privées',
-    'item2-body': 'Militaires, industriels de la défense et investisseurs sont invités à une démonstration privée de notre humanoïde en inspection et en partie d\'échecs.',
-    'item2-cta': 'Demander une démo',
-    'item3-date': '14 juillet',
-    'item3-place': 'Londres',
-    'item3-title': 'Les Humanoïdes en chiffres',
-    'item3-body': 'Comment rentabilise-t-on une flotte d\'humanoïdes ? Rejoignez-nous à Londres pour explorer l\'assurance, le leasing et notre modèle Robots-as-a-Service. Découvrez le cercle vertueux créé en intégrant développement produit, services financiers et services à forte valeur ajoutée.',
-    'item3-cta': 'Demander une invitation',
-    'item4-date': '16 juillet',
-    'item4-place': 'Paris',
-    'item4-title': 'Les Humanoïdes dans la base industrielle et les armées',
-    'item4-body': 'Le Mois Humanoïde culmine à Paris, où nous lançons officiellement notre produit. Soyez présent quand la défense européenne rencontre sa nouvelle force de travail.',
-    'item4-cta': 'Demander une invitation',
     'teaser-kicker': 'À propos de Manifest',
     'teaser-title': 'La première solution humanoïde conçue<br>pour la défense européenne',
     'teaser-cta': 'En savoir plus sur nous',
@@ -1145,30 +932,61 @@ const TRANSLATIONS = {
     'footer-legal': 'Mentions légales',
     'footer-terms': 'Conditions générales',
     'footer-privacy': 'Politique de confidentialité',
-    'form-success-title': 'C\'est noté',
-    'form-success-body': 'Merci — nous reviendrons vers vous très vite.',
-    'form-success-back': 'Retour au site',
-    'form-close-label': 'Fermer',
-    'form-dialog-title': 'Rejoindre le Mois Humanoïde',
+    'contact-kicker': 'Contact',
+    'contact-title': 'Nous contacter',
+    'contact-subtitle': 'Envie d\'en savoir plus sur ce que nous construisons ?',
+    'follow-linkedin': 'Suivez Manifest sur LinkedIn',
+    'form-label-name': 'Nom',
+    'form-placeholder-name': 'Votre nom',
+    'form-label-email': 'Email',
+    'form-placeholder-email': 'vous@entreprise.com',
+    'form-label-org': 'Organisation',
+    'form-placeholder-org': 'Entreprise ou unité',
+    'form-label-message': 'Message',
+    'form-placeholder-message': 'De quoi souhaitez-vous discuter ?',
+    'form-submit': 'Envoyer le message',
+    'form-error-name': 'Veuillez entrer votre nom.',
+    'form-error-email': 'Veuillez entrer une adresse email valide.',
+    'form-error-org': 'Veuillez entrer votre organisation.',
+    'form-error-message': 'Veuillez entrer un message.',
+    'form-error-general': 'Une erreur s\'est produite. Veuillez réessayer ou nous écrire directement.',
+    'form-confirm': 'Prêt à envoyer votre message à Manifest ?',
+    'form-success-title': 'Message envoyé !',
+    'form-success-message': 'Nous vous répondrons à hello@the-manifest.com',
   }
 };
 
 // URL map: every navigable target's URL in each language
 const URL_MAP = {
   home:       { en: '/en',                       fr: '/fr' },
-  campaign:   { en: '/en#campaign',              fr: '/fr#campaign' },
   about:      { en: '/en/about',                 fr: '/fr/a-propos' },
   mission:    { en: '/en/about#mission',         fr: '/fr/a-propos#mission' },
   inspection: { en: '/en/about#inspection-job',  fr: '/fr/a-propos#inspection-job' },
   partners:   { en: '/en/about#partners',        fr: '/fr/a-propos#partners' },
   team:       { en: '/en/about#team',            fr: '/fr/a-propos#team' },
-  contact:    { en: '/en/about#contact',         fr: '/fr/a-propos#contact' },
+  contact:    { en: '/en#contact',               fr: '/fr#contact' },
   legal:      { en: '/en/legal-notice',          fr: '/fr/mentions-legales' },
   terms:      { en: '/en/terms',                 fr: '/fr/conditions' },
   privacy:    { en: '/en/privacy-policy',        fr: '/fr/confidentialite' },
 };
+const FILE_URL_MAP = {
+  home:       { en: 'home.html?lang=en',          fr: 'home.html?lang=fr' },
+  about:      { en: 'about.html?lang=en',         fr: 'about.html?lang=fr' },
+  mission:    { en: 'about.html?lang=en#mission', fr: 'about.html?lang=fr#mission' },
+  inspection: { en: 'about.html?lang=en#inspection-job', fr: 'about.html?lang=fr#inspection-job' },
+  partners:   { en: 'about.html?lang=en#partners', fr: 'about.html?lang=fr#partners' },
+  team:       { en: 'about.html?lang=en#team',    fr: 'about.html?lang=fr#team' },
+  contact:    { en: 'home.html?lang=en#contact', fr: 'home.html?lang=fr#contact' },
+  legal:      { en: 'legal-notice.html',          fr: 'legal-notice.html' },
+  terms:      { en: 'terms.html',                 fr: 'terms.html' },
+  privacy:    { en: 'privacy-policy.html',        fr: 'privacy-policy.html' },
+};
 const PAGE_ID = 'home';
-const currentLanguage = location.pathname.startsWith('/fr') ? 'fr' : 'en';
+const filePreviewLang = location.protocol === 'file:'
+  ? new URLSearchParams(location.search).get('lang') || localStorage.getItem('manifest-lang')
+  : null;
+const currentLanguage = filePreviewLang === 'fr' || location.pathname.startsWith('/fr') ? 'fr' : 'en';
+const ACTIVE_URL_MAP = location.protocol === 'file:' ? FILE_URL_MAP : URL_MAP;
 localStorage.setItem('manifest-lang', currentLanguage);
 document.documentElement.lang = currentLanguage;
 
@@ -1183,16 +1001,21 @@ document.querySelectorAll('[data-i18n-html]').forEach(el => {
   if (t[key]) el.innerHTML = t[key];
 });
 
+document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+  const key = el.getAttribute('data-i18n-placeholder');
+  if (t[key]) el.placeholder = t[key];
+});
+
 // Resolve data-link → href in current language
 document.querySelectorAll('[data-link]').forEach(a => {
   const target = a.dataset.link;
-  if (URL_MAP[target]) a.href = URL_MAP[target][currentLanguage];
+  if (ACTIVE_URL_MAP[target]) a.href = ACTIVE_URL_MAP[target][currentLanguage];
 });
 
 // Language toggle (segmented control with both EN/FR visible)
 function renderLangToggle(container) {
   container.innerHTML = ['en', 'fr'].map(lang =>
-    `<a class="lang-opt${lang === currentLanguage ? ' active' : ''}" data-lang="${lang}" href="${URL_MAP[PAGE_ID][lang]}">${lang.toUpperCase()}</a>`
+    `<a class="lang-opt${lang === currentLanguage ? ' active' : ''}" data-lang="${lang}" href="${ACTIVE_URL_MAP[PAGE_ID][lang]}">${lang.toUpperCase()}</a>`
   ).join('');
   container.querySelectorAll('.lang-opt').forEach(el => {
     el.addEventListener('click', (e) => {
@@ -1301,110 +1124,77 @@ backToTop.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// ── Mark the currently-active Humanoid Month item ──
-(function () {
-  const items = document.querySelectorAll('.campaign-items .item');
-  if (!items.length) return;
-  // Year-agnostic ranges: [startMonth, startDay, endMonth, endDay] (1-indexed months).
-  const ranges = [
-    [6, 22, 7, 3],   // Get up to speed
-    [7, 6,  7, 10],  // Private Demonstrations
-    [7, 14, 7, 14],  // Humanoids by the Numbers
-    [7, 16, 7, 16],  // Paris launch
-  ];
-  const now = new Date();
-  const today = (now.getMonth() + 1) * 100 + now.getDate(); // e.g. 613 for Jun 13
-  const key = (m, d) => m * 100 + d;
-  let active = -1;
-  for (let i = 0; i < ranges.length; i++) {
-    const [sm, sd, em, ed] = ranges[i];
-    if (today <= key(em, ed)) { active = i; break; }
-  }
-  if (active < 0 || active >= items.length) return;
-  const [sm, sd] = ranges[active];
-  const isLive = today >= key(sm, sd);
-  items[active].classList.add(isLive ? 'is-live' : 'is-current');
-  const extra = document.createElement('span');
-  extra.className = 'pulse-ring';
-  extra.setAttribute('aria-hidden', 'true');
-  items[active].appendChild(extra);
-})();
 
-// ── Humanoid Month sign-up modal ──
-document.addEventListener('DOMContentLoaded', function () {
-  const modal = document.getElementById('form-modal');
-  if (!modal) return;
-  const iframe = modal.querySelector('.form-modal__frame');
-  const success = modal.querySelector('.form-modal__success');
-  const backdrop = modal.querySelector('.form-modal__backdrop');
-  const closers = modal.querySelectorAll('[data-form-close]');
-  const closeBtn = modal.querySelector('.form-modal__close');
-  const DEFAULT_FORM_SRC = 'https://docs.google.com/forms/d/e/1FAIpQLScs4cPPlBfbT76qhvw1T1MkfX14fI0RY5iZkJGSg9WPUjqmZA/viewform?embedded=true';
-  let loadCount = 0;
-  let lastFocus = null;
-  let currentHost = '';
+// -- Contact Form Validation & Submission --
+(function() {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
 
-  function openModal(trigger) {
-    lastFocus = trigger || document.activeElement;
-    const src = (trigger && trigger.getAttribute('data-form-src')) || DEFAULT_FORM_SRC;
-    try { currentHost = new URL(src).host; } catch (e) { currentHost = ''; }
-    loadCount = 0;
-    iframe.hidden = false;
-    success.hidden = true;
-    iframe.src = src;
-    modal.hidden = false;
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('no-scroll');
-    setTimeout(() => closeBtn && closeBtn.focus(), 80);
+  const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  function validateField(fieldId, inputId, customCheck) {
+    const field = document.getElementById(fieldId);
+    const input = document.getElementById(inputId);
+    const valid = customCheck ? customCheck(input.value.trim()) : input.value.trim() !== '';
+    field.classList.toggle('has-error', !valid);
+    return valid;
   }
 
-  function closeModal() {
-    modal.hidden = true;
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('no-scroll');
-    iframe.src = 'about:blank';
-    if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
-  }
-
-  iframe.addEventListener('load', () => {
-    if (!iframe.src || !currentHost || iframe.src.indexOf(currentHost) === -1) return;
-    loadCount++;
-    if (loadCount >= 2) {
-      iframe.hidden = true;
-      success.hidden = false;
-    }
-  });
-
-  document.querySelectorAll('[data-open-form]').forEach(el => {
-    el.addEventListener('click', e => {
-      e.preventDefault();
-      openModal(el);
+  ['name', 'email', 'org', 'message'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', function() {
+      const field = document.getElementById('field-' + id);
+      if (field) field.classList.remove('has-error');
+      document.getElementById('form-error-banner').style.display = 'none';
     });
   });
 
-  closers.forEach(el => el.addEventListener('click', closeModal));
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && !modal.hidden) closeModal();
-  });
-});
-</script>
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
 
-<!-- Humanoid Month sign-up modal -->
-<div class="form-modal" id="form-modal" hidden aria-hidden="true">
-  <div class="form-modal__backdrop" data-form-close></div>
-  <div class="form-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="form-modal-title">
-    <button class="form-modal__close" data-form-close type="button" aria-label="Close" data-i18n-aria="form-close-label">&times;</button>
-    <h2 id="form-modal-title" class="form-modal__sr" data-i18n="form-dialog-title">Join Humanoid Month</h2>
-    <div class="form-modal__body">
-      <iframe class="form-modal__frame" title="Sign-up form" loading="lazy"></iframe>
-      <div class="form-modal__success" hidden>
-        <h3 data-i18n="form-success-title">You're in</h3>
-        <p data-i18n="form-success-body">Thanks — we'll be in touch shortly.</p>
-        <button class="btn" type="button" data-form-close data-i18n="form-success-back">Back to site</button>
-      </div>
-    </div>
-  </div>
-</div>
+    const validName    = validateField('field-name',    'name');
+    const validEmail   = validateField('field-email',   'email',   v => EMAIL_REGEX.test(v));
+    const validOrg     = validateField('field-org',     'org');
+    const validMessage = validateField('field-message', 'message');
+
+    if (!validName || !validEmail || !validOrg || !validMessage) return;
+
+    const confirmMsg = TRANSLATIONS[currentLanguage || 'en']['form-confirm'] || 'Ready to send your message to Manifest?';
+    const confirmed = confirm(confirmMsg);
+    if (!confirmed) return;
+
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.textContent = currentLanguage === 'fr' ? 'Envoi...' : 'Sending...';
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: '7c78fe94-7e16-4619-9da0-a0d1c301bb6c',
+          name:    document.getElementById('name').value.trim(),
+          email:   document.getElementById('email').value.trim(),
+          org:     document.getElementById('org').value.trim(),
+          message: document.getElementById('message').value.trim()
+        })
+      });
+
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      } else {
+        throw new Error('Server error');
+      }
+    } catch {
+      document.getElementById('form-error-banner').style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = TRANSLATIONS[currentLanguage || 'en']['form-submit'] || 'Send Message';
+    }
+  });
+})();
+
+</script>
 
 <!-- Start of HubSpot Embed Code -->
 <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/148621712.js"></script>

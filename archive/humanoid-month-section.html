@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manifest - Humanoid Month Archive Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #ffffff;
+  --bg-soft: #f5f3ef;
+  --text: #1a1a1a;
+  --text-body: #3a3a3a;
+  --text-muted: #7a7a7a;
+  --accent: #1a1a1a;
+  --border: #e2dfd8;
+  --font: 'Lexend', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg-soft);
+  color: var(--text);
+  font-family: var(--font);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+section { padding: 120px 0; }
+
+.section-kicker {
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+h2.section-heading {
+  font-weight: 800;
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 28px;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 14px 32px;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+}
+.btn:hover {
+  background: transparent;
+  color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.18);
+}
+
+.archive-note {
+  background: #1a1a1a;
+  color: rgba(255,255,255,0.78);
+  font-size: 0.78rem;
+  padding: 10px 28px;
+  text-align: center;
+}
+
+.archive-note strong { color: #fff; font-weight: 600; }
+
+.campaign { background: var(--bg-soft); }
+
+.campaign-intro {
+  color: var(--text-body);
+  font-weight: 400;
+  max-width: none;
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.7;
+}
+
+.campaign-items {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  position: relative;
+  padding-left: 64px;
+}
+
+.campaign-intro + .item { margin-top: -16px; }
+
+.campaign-items::before {
+  content: '';
+  position: absolute;
+  left: 23px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0,
+    rgba(0,0,0,0.18) 56px,
+    rgba(0,0,0,0.18) calc(100% - 32px),
+    transparent 100%
+  );
+}
+
+.item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 36px;
+  padding: 28px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  align-items: center;
+  min-height: 346px;
+}
+
+.item::before {
+  content: '';
+  position: absolute;
+  left: -49px;
+  top: 48px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--text);
+  box-shadow: 0 0 0 4px var(--bg-soft);
+  z-index: 2;
+}
+
+.item-media {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+}
+
+.item .item-date {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  margin-bottom: 22px;
+  max-width: none;
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+.item-date .item-place { margin-left: auto; }
+
+.item-date .date-text {
+  font-weight: 700;
+  font-size: 1.55rem;
+  letter-spacing: -0.005em;
+  color: var(--text);
+}
+
+.item-date .item-place {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0,0,0,0.06);
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 6px 14px;
+  border-radius: 999px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: 1px solid rgba(0,0,0,0.12);
+}
+
+.item-date .item-place::before {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C7.6 2 4 5.6 4 10c0 6 8 12 8 12s8-6 8-12c0-4.4-3.6-8-8-8zm0 11a3 3 0 110-6 3 3 0 010 6z'/%3E%3C/svg%3E") no-repeat center / contain;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C7.6 2 4 5.6 4 10c0 6 8 12 8 12s8-6 8-12c0-4.4-3.6-8-8-8zm0 11a3 3 0 110-6 3 3 0 010 6z'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+
+.item-body { align-self: center; min-width: 0; }
+
+.item-body h3 {
+  font-weight: 700;
+  font-size: 1.45rem;
+  letter-spacing: -0.01em;
+  margin-bottom: 14px;
+  line-height: 1.25;
+}
+
+.item-body p {
+  color: var(--text-body);
+  font-weight: 400;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  max-width: 58ch;
+}
+
+.item-body .btn { margin-top: 28px; }
+
+@media (max-width: 860px) {
+  section { padding: 64px 0; }
+  .campaign-items { padding-left: 40px; gap: 24px; }
+  .campaign-items::before { left: 15px; }
+  .item::before { left: -31px; top: 40px; width: 14px; height: 14px; box-shadow: 0 0 0 3px var(--bg-soft); }
+  .item .item-date {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    flex-wrap: nowrap;
+  }
+  .item-date .item-place { margin-left: 0; }
+  .item { grid-template-columns: 1fr; gap: 24px; padding: 28px; }
+  .item-media { max-width: 320px; }
+  .item .item-date { font-size: 1.3rem; gap: 8px 14px; }
+}
+</style>
+</head>
+<body>
+<div class="archive-note"><strong>Archived preview.</strong> Removed from the live /en page on 2026-06-20 and kept here for restoration if needed.</div>
+
+<section class="campaign" id="campaign">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-kicker" data-i18n="campaign-kicker">June 22 - July 22 · Sponsored by Manifest</p>
+      <h2 class="section-heading" data-i18n="campaign-title">Humanoid Month</h2>
+    </div>
+
+    <div class="campaign-items">
+      <p class="campaign-intro" data-i18n="campaign-intro">Humanoids are about to change defence. If you're an investor, a defence contractor, or a service member, you deserve a clear picture of what's coming.</p>
+
+      <div class="item">
+        <img class="item-media" src="../assets/campaign/pierre.png" alt="Pierre gesturing while explaining">
+        <div class="item-body">
+          <p class="item-date"><span class="date-text" data-i18n="item1-date">June 22 - July 3</span><span class="item-place" data-i18n="item1-place">Virtual</span></p>
+          <h3 data-i18n="item1-title">Get up to speed</h3>
+          <p data-i18n="item1-body">Two weeks of articles and videos that make humanoids make sense - A working understanding of the technology, market, economics of a fleet, and what it means for your mission. No jargon, no hype. A practical foundation for understanding humanoids and defence.</p>
+          <button class="btn" type="button">Request Access</button>
+        </div>
+      </div>
+
+      <div class="item">
+        <img class="item-media" src="../assets/campaign/pierre-chess.png" alt="Pierre playing chess with a military officer">
+        <div class="item-body">
+          <p class="item-date"><span class="date-text" data-i18n="item2-date">July 6 - 10</span><span class="item-place" data-i18n="item2-place">Toulouse</span></p>
+          <h3 data-i18n="item2-title">Private Demonstrations</h3>
+          <p data-i18n="item2-body">Service members, defence contractors, and investors are invited to a private demonstration of our humanoid performing inspection tasks and engaging in a game of chess.</p>
+          <button class="btn" type="button">Request Demo</button>
+        </div>
+      </div>
+
+      <div class="item">
+        <img class="item-media" src="../assets/campaign/pierre-lloyds-of-london.png" alt="Pierre standing in front of the Lloyd's of London building">
+        <div class="item-body">
+          <p class="item-date"><span class="date-text" data-i18n="item3-date">July 14</span><span class="item-place" data-i18n="item3-place">London</span></p>
+          <h3 data-i18n="item3-title">Humanoids by the Numbers</h3>
+          <p data-i18n="item3-body">How does a humanoid fleet actually pencil out? Join us in London to dig into insurance, leasing, and our Robots-as-a-Service model. Explore the virtuous cycle that is created by integrating product development, financial services, and top-of-the-value-chain services.</p>
+          <button class="btn" type="button">Request Invitation</button>
+        </div>
+      </div>
+
+      <div class="item">
+        <img class="item-media" src="../assets/campaign/pierre-inspection.png" alt="Pierre inspecting a crate of munitions">
+        <div class="item-body">
+          <p class="item-date"><span class="date-text" data-i18n="item4-date">July 16</span><span class="item-place" data-i18n="item4-place">Paris</span></p>
+          <h3 data-i18n="item4-title">Humanoids in the Defence Industrial Base, and Militaries</h3>
+          <p data-i18n="item4-body">Humanoid Month culminates in Paris, where we officially launch our product. Be in the room when European defence meets its newest workforce.</p>
+          <button class="btn" type="button">Request Invitation</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>
