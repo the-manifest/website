@@ -1049,15 +1049,16 @@ footer p {
   <h1 data-i18n="hero-title">Humanoids for European Defence</h1>
 </section>
 
-<section id="mission" style="min-height: 100vh; padding: 100px 0 60px; display: flex; align-items: center; box-sizing: border-box; background: var(--bg);">
-  <div class="container">
+<section id="mission" style="min-height: 100vh; padding: 100px 0 60px; display: flex; flex-direction: column; box-sizing: border-box; background: var(--bg);">
 
-    <div class="reveal" style="margin-bottom: 64px;">
-      <p class="mission-statement"><span style="display:block" data-i18n="mission-line1">Manifest is the First Humanoid Solution</span><span style="display:block" data-i18n="mission-line2">Purpose-Built for European Defence</span></p>
-    </div>
+  <div class="container reveal">
+    <p class="mission-statement"><span style="display:block" data-i18n="mission-line1">Manifest is the First Humanoid Solution</span><span style="display:block" data-i18n="mission-line2">Purpose-Built for European Defence</span></p>
+  </div>
+
+  <div class="container" style="flex: 1; display: flex; align-items: center;">
 
     <!-- Heading left / pillars right — original Strategic Autonomy layout -->
-    <div class="reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; text-align: left;">
+    <div class="reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; text-align: left; width: 100%;">
 
       <h2 style="font-size: min(3.5vw, 2.4rem); font-weight: 600; color: var(--text); letter-spacing: -0.02em; line-height: 1.5; margin: 0;" data-i18n="value-heading">Enabling Strategic Autonomy</h2>
 
