@@ -893,20 +893,20 @@ footer p {
   #inspection-job [style*="padding: 0 40px"] { padding: 0 !important; }
   #inspection-job [style*="font-size: clamp(3rem"] { font-size: clamp(2.2rem, 11vw, 3.2rem) !important; }
 
-  /* Strategic Autonomy (mission section) — stack heading + pillars */
-  #mission .reveal[style*="grid-template-columns"] {
+  /* Strategic Autonomy — stack heading + pillars */
+  #value .reveal[style*="grid-template-columns"] {
     display: flex !important;
     flex-direction: column !important;
     gap: 48px !important;
     align-items: flex-start !important;
   }
-  #mission h2[style] {
+  #value h2[style] {
     font-size: clamp(1.45rem, 6.5vw, 2rem) !important;
     line-height: 1.25 !important;
   }
-  #mission [data-i18n^="pillar"][data-i18n$="-title"],
-  #mission [style*="font-size: 1.05rem"] { font-size: 1rem !important; }
-  #mission [style*="font-size: 0.9rem"] { font-size: 0.9rem !important; line-height: 1.65 !important; }
+  #value [data-i18n^="pillar"][data-i18n$="-title"],
+  #value [style*="font-size: 1.05rem"] { font-size: 1rem !important; }
+  #value [style*="font-size: 0.9rem"] { font-size: 0.9rem !important; line-height: 1.65 !important; }
 
   /* Partners */
   .partners-grid { grid-template-columns: 1fr; }
@@ -924,10 +924,10 @@ footer p {
   /* Sections — release the desktop height: 100vh + overflow: hidden constraint
      so cards/teammates can flow and the page scrolls naturally on phones. */
   section { padding: 48px 0; }
-  #mission {
+  #value {
     height: auto !important;
     min-height: auto !important;
-    padding: 88px 0 88px !important;
+    padding: 64px 0 !important;
     display: block !important;
   }
   #inspection-job,
@@ -1032,7 +1032,7 @@ footer p {
 
 <!-- Drawer -->
 <div class="mobile-drawer" id="mobile-drawer">
-  <a href="#mission" class="drawer-link" data-i18n="nav-strategic-autonomy">Strategic Autonomy</a>
+  <a href="#value" class="drawer-link" data-i18n="nav-strategic-autonomy">Strategic Autonomy</a>
   <a href="#inspection-job" class="drawer-link" data-i18n="nav-inspection">Inspection</a>
   <a href="#partners" class="drawer-link" data-i18n="nav-partners">Partners</a>
   <a href="#team" class="drawer-link" data-i18n="nav-team">Team</a>
@@ -1049,16 +1049,17 @@ footer p {
   <h1 data-i18n="hero-title">Humanoids for European Defence</h1>
 </section>
 
-<section id="mission" style="min-height: 100vh; padding: 100px 0 60px; display: flex; flex-direction: column; box-sizing: border-box; background: var(--bg);">
-
+<section id="mission">
   <div class="container reveal">
     <p class="mission-statement"><span style="display:block" data-i18n="mission-line1">Manifest is the First Humanoid Solution</span><span style="display:block" data-i18n="mission-line2">Purpose-Built for European Defence</span></p>
   </div>
+</section>
 
-  <div class="container" style="flex: 1; display: flex; align-items: center;">
+<section id="value">
+  <div class="container">
 
-    <!-- Heading left / pillars right — original Strategic Autonomy layout -->
-    <div class="reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; text-align: left; width: 100%;">
+    <!-- Heading left / pillars right — Strategic Autonomy -->
+    <div class="reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; text-align: left;">
 
       <h2 style="font-size: min(3.5vw, 2.4rem); font-weight: 600; color: var(--text); letter-spacing: -0.02em; line-height: 1.5; margin: 0;" data-i18n="value-heading">Enabling Strategic Autonomy</h2>
 
