@@ -1036,7 +1036,6 @@ const TRANSLATIONS = {
     'form-error-segment-other': 'Please tell us what segment you belong to.',
     'form-error-message': 'Please enter a message.',
     'form-error-general': 'Something went wrong. Please try again or email us directly.',
-    'form-confirm': 'Ready to send your message to Manifest?',
     'form-success-title': 'Message sent!',
     'form-success-message': 'We\'ll get back to you at hello@the-manifest.com',
   },
@@ -1087,7 +1086,6 @@ const TRANSLATIONS = {
     'form-error-segment-other': 'Veuillez indiquer à quel segment vous appartenez.',
     'form-error-message': 'Veuillez entrer un message.',
     'form-error-general': 'Une erreur s\'est produite. Veuillez réessayer ou nous écrire directement.',
-    'form-confirm': 'Prêt à envoyer votre message à Manifest ?',
     'form-success-title': 'Message envoyé !',
     'form-success-message': 'Nous vous répondrons à hello@the-manifest.com',
   }
@@ -1460,10 +1458,6 @@ backToTop.addEventListener('click', () => {
     const validMessage = validateField('field-message', 'message');
 
     if (!validName || !validEmail || !validOrg || !validSegment || !validSegmentOther || !validMessage) return;
-
-    const confirmMsg = TRANSLATIONS[currentLanguage || 'en']['form-confirm'] || 'Ready to send your message to Manifest?';
-    const confirmed = confirm(confirmMsg);
-    if (!confirmed) return;
 
     const btn = document.getElementById('submit-btn');
     btn.disabled = true;
