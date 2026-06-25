@@ -914,7 +914,7 @@ footer .container {
           </div>
           <div class="form-field" id="field-segment">
             <label for="segment" data-i18n="form-label-segment">I am a</label>
-            <select id="segment" name="segment" class="native-segment-select" required tabindex="-1" aria-hidden="true">
+            <select id="segment" name="segment" class="native-segment-select" tabindex="-1" aria-hidden="true">
               <option value="" data-i18n="form-segment-placeholder">Select your segment</option>
               <option value="investor" data-i18n="form-segment-investor">Investor</option>
               <option value="military" data-i18n="form-segment-military">Military</option>
@@ -1417,26 +1417,32 @@ backToTop.addEventListener('click', () => {
     btn.textContent = currentLanguage === 'fr' ? 'Envoi...' : 'Sending...';
 
     try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 12000);
+      const formData = new FormData();
+      formData.append('access_key', '7c78fe94-7e16-4619-9da0-a0d1c301bb6c');
+      formData.append('name', document.getElementById('name').value.trim());
+      formData.append('email', document.getElementById('email').value.trim());
+      formData.append('org', document.getElementById('org').value.trim());
+      formData.append('segment', selectedSegmentLabel());
+      formData.append('segment_value', segmentSelect.value);
+      formData.append('segment_other', segmentOtherInput.value.trim());
+      formData.append('message', document.getElementById('message').value.trim());
+
       const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          access_key: '7c78fe94-7e16-4619-9da0-a0d1c301bb6c',
-          name:    document.getElementById('name').value.trim(),
-          email:   document.getElementById('email').value.trim(),
-          org:     document.getElementById('org').value.trim(),
-          segment: selectedSegmentLabel(),
-          segment_value: segmentSelect.value,
-          segment_other: segmentOtherInput.value.trim(),
-          message: document.getElementById('message').value.trim()
-        })
+        headers: { 'Accept': 'application/json' },
+        body: formData,
+        signal: controller.signal
       });
+      clearTimeout(timeout);
 
-      if (res.ok) {
+      const result = await res.json().catch(() => ({}));
+      if (res.ok && result.success !== false) {
         form.style.display = 'none';
         document.getElementById('form-success').style.display = 'block';
       } else {
-        throw new Error('Server error');
+        throw new Error(result.message || 'Server error');
       }
     } catch {
       document.getElementById('form-error-banner').style.display = 'block';
