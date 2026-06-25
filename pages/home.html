@@ -897,6 +897,7 @@ footer .container {
         <form class="contact-form reveal" id="contact-form" action="https://api.web3forms.com/submit" method="POST" target="form-submit-frame" novalidate>
           <input type="hidden" name="access_key" value="7c78fe94-7e16-4619-9da0-a0d1c301bb6c">
           <input type="hidden" name="segment" id="segment-label" value="">
+          <input type="hidden" name="redirect" id="form-redirect" value="">
           <div class="form-error-banner" id="form-error-banner" data-i18n="form-error-general">Something went wrong. Please try again or email us directly.</div>
           <div class="form-row">
             <div class="form-field" id="field-name">
@@ -1276,6 +1277,7 @@ backToTop.addEventListener('click', () => {
   const segmentOtherField = document.getElementById('field-segment-other');
   const segmentOtherInput = document.getElementById('segment-other');
   const segmentLabelInput = document.getElementById('segment-label');
+  const formRedirectInput = document.getElementById('form-redirect');
   const submitFrame = document.getElementById('form-submit-frame');
 
   function validateField(fieldId, inputId, customCheck) {
@@ -1320,14 +1322,26 @@ backToTop.addEventListener('click', () => {
         return;
       }
 
+      const successUrl = new URL(location.href);
+      successUrl.searchParams.set('contact_status', 'sent');
+      successUrl.hash = 'contact';
+      if (formRedirectInput) formRedirectInput.value = successUrl.toString();
+
       const timeout = setTimeout(() => {
         submitFrame.removeEventListener('load', onLoad);
         reject(new Error('Form submission timed out'));
       }, 15000);
 
       function onLoad() {
-        clearTimeout(timeout);
-        resolve();
+        try {
+          const frameUrl = submitFrame.contentWindow.location.href;
+          if (frameUrl.includes('contact_status=sent')) {
+            clearTimeout(timeout);
+            resolve();
+          }
+        } catch {
+          // Cross-origin Web3Forms responses are not readable; wait for the same-origin redirect.
+        }
       }
 
       submitFrame.addEventListener('load', onLoad, { once: true });
