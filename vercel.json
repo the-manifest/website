@@ -15,9 +15,9 @@
   ],
   "redirects": [
     { "source": "/about", "destination": "/en/about", "permanent": false },
-    { "source": "/contact", "destination": "/en/about#contact", "permanent": false },
-    { "source": "/en/contact", "destination": "/en/about#contact", "permanent": false },
-    { "source": "/fr/contact", "destination": "/fr/a-propos#contact", "permanent": false },
+    { "source": "/contact", "destination": "/en#contact", "permanent": false },
+    { "source": "/en/contact", "destination": "/en#contact", "permanent": false },
+    { "source": "/fr/contact", "destination": "/fr#contact", "permanent": false },
     { "source": "/legal-notice", "destination": "/en/legal-notice", "permanent": false },
     { "source": "/terms", "destination": "/en/terms", "permanent": false },
     { "source": "/privacy-policy", "destination": "/en/privacy-policy", "permanent": false }

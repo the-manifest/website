@@ -389,14 +389,18 @@ h2.section-heading {
 
 /* -- Contact -- */
 #contact {
-  background: #ffffff;
-  padding: clamp(72px, 9vw, 120px) 0;
+  background:
+    linear-gradient(180deg, rgba(13,13,13,0.07) 0, rgba(13,13,13,0) 56px),
+    #f4f2ec;
+  border-top: 1px solid #ded9cf;
+  border-bottom: 1px solid #ded9cf;
+  padding: clamp(92px, 11vw, 152px) 0;
 }
 
 .contact-layout {
   display: grid;
-  grid-template-columns: 1fr 1.3fr;
-  gap: 48px;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.45fr);
+  gap: clamp(52px, 7vw, 88px);
   align-items: start;
 }
 
@@ -424,7 +428,12 @@ h2.section-heading {
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
+  background: #ffffff;
+  border: 1px solid #e1ddd4;
+  border-radius: 8px;
+  box-shadow: 0 18px 44px rgba(26,26,26,0.08);
+  padding: clamp(24px, 4vw, 40px);
 }
 
 .form-row {
@@ -442,7 +451,8 @@ h2.section-heading {
 }
 
 .contact-form input,
-.contact-form textarea {
+.contact-form textarea,
+.segment-trigger {
   width: 100%;
   padding: 12px 16px;
   border: 1px solid var(--border);
@@ -451,22 +461,95 @@ h2.section-heading {
   font-size: 0.88rem;
   font-weight: 400;
   color: var(--text);
-  background: var(--bg);
+  background-color: var(--bg);
   transition: border-color 0.2s;
   outline: none;
 }
 
 .contact-form input:focus,
-.contact-form textarea:focus {
+.contact-form textarea:focus,
+.segment-trigger:focus-visible,
+.segment-picker.open .segment-trigger {
   border-color: var(--text-secondary);
+}
+
+.native-segment-select {
+  position: absolute;
+  width: 1px;
+  height: 44px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.segment-picker {
+  position: relative;
+}
+
+.segment-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  height: 44px;
+  padding: 11px 16px;
+  text-align: left;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.segment-trigger.is-placeholder { color: var(--text-muted); }
+.segment-trigger svg {
+  flex: 0 0 auto;
+  color: var(--text-secondary);
+  transition: transform 0.18s ease;
+}
+.segment-picker.open .segment-trigger svg {
+  transform: rotate(180deg);
+}
+
+.segment-menu {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 6px);
+  z-index: 25;
+  display: grid;
+  gap: 2px;
+  padding: 6px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-shadow: 0 16px 36px rgba(26,26,26,0.12);
+}
+.segment-menu[hidden] { display: none; }
+
+.segment-option {
+  width: 100%;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 0.86rem;
+  font-weight: 400;
+  text-align: left;
+  cursor: pointer;
+}
+.segment-option:hover,
+.segment-option:focus-visible,
+.segment-option[aria-selected="true"] {
+  background: #f4f2ec;
+  outline: none;
 }
 
 .contact-form textarea {
   resize: vertical;
-  min-height: 88px;
+  min-height: 112px;
 }
 
 .form-field { display: flex; flex-direction: column; }
+.form-field[hidden] { display: none; }
 
 .form-field .field-error {
   color: #b42318;
@@ -475,6 +558,7 @@ h2.section-heading {
   display: none;
 }
 .form-field.has-error input,
+.form-field.has-error .segment-trigger,
 .form-field.has-error textarea {
   border-color: #b42318 !important;
   outline: none;
@@ -693,6 +777,7 @@ footer .container {
   .form-row { grid-template-columns: 1fr; }
   .contact-form label { font-size: 0.75rem; }
   .contact-form input,
+  .segment-trigger,
   .contact-form textarea { font-size: 0.85rem; }
 
   footer .container { flex-direction: column; align-items: center; gap: 12px; }
@@ -827,6 +912,34 @@ footer .container {
             <input type="text" id="org" name="org" placeholder="Company or unit" data-i18n-placeholder="form-placeholder-org">
             <span class="field-error" data-i18n="form-error-org">Please enter your organization.</span>
           </div>
+          <div class="form-field" id="field-segment">
+            <label for="segment" data-i18n="form-label-segment">I am a</label>
+            <select id="segment" name="segment" class="native-segment-select" required tabindex="-1" aria-hidden="true">
+              <option value="" data-i18n="form-segment-placeholder">Select your segment</option>
+              <option value="investor" data-i18n="form-segment-investor">Investor</option>
+              <option value="military" data-i18n="form-segment-military">Military</option>
+              <option value="defence_contractor" data-i18n="form-segment-defence-contractor">Defence contractor</option>
+              <option value="other" data-i18n="form-segment-other">Other</option>
+            </select>
+            <div class="segment-picker" id="segment-picker">
+              <button type="button" class="segment-trigger is-placeholder" id="segment-trigger" aria-haspopup="listbox" aria-expanded="false" aria-controls="segment-menu">
+                <span id="segment-selected" data-i18n="form-segment-placeholder">Select your segment</span>
+                <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <div class="segment-menu" id="segment-menu" role="listbox" hidden>
+                <button type="button" class="segment-option" role="option" data-value="investor" data-i18n="form-segment-investor">Investor</button>
+                <button type="button" class="segment-option" role="option" data-value="military" data-i18n="form-segment-military">Military</button>
+                <button type="button" class="segment-option" role="option" data-value="defence_contractor" data-i18n="form-segment-defence-contractor">Defence contractor</button>
+                <button type="button" class="segment-option" role="option" data-value="other" data-i18n="form-segment-other">Other</button>
+              </div>
+            </div>
+            <span class="field-error" data-i18n="form-error-segment">Please select the segment that best describes you.</span>
+          </div>
+          <div class="form-field" id="field-segment-other" hidden>
+            <label for="segment-other" data-i18n="form-label-segment-other">Please specify</label>
+            <input type="text" id="segment-other" name="segment_other" placeholder="Tell us where you fit" data-i18n-placeholder="form-placeholder-segment-other">
+            <span class="field-error" data-i18n="form-error-segment-other">Please tell us what segment you belong to.</span>
+          </div>
           <div class="form-field" id="field-message">
             <label for="message" data-i18n="form-label-message">Message</label>
             <textarea id="message" name="message" placeholder="What would you like to discuss?" data-i18n-placeholder="form-placeholder-message"></textarea>
@@ -901,12 +1014,22 @@ const TRANSLATIONS = {
     'form-placeholder-email': 'you@company.com',
     'form-label-org': 'Organization',
     'form-placeholder-org': 'Company or unit',
+    'form-label-segment': 'I am a',
+    'form-segment-placeholder': 'Select your segment',
+    'form-segment-investor': 'Investor',
+    'form-segment-military': 'Military',
+    'form-segment-defence-contractor': 'Defence contractor',
+    'form-segment-other': 'Other',
+    'form-label-segment-other': 'Please specify',
+    'form-placeholder-segment-other': 'Tell us where you fit',
     'form-label-message': 'Message',
     'form-placeholder-message': 'What would you like to discuss?',
     'form-submit': 'Send Message',
     'form-error-name': 'Please enter your name.',
     'form-error-email': 'Please enter a valid email address.',
     'form-error-org': 'Please enter your organization.',
+    'form-error-segment': 'Please select the segment that best describes you.',
+    'form-error-segment-other': 'Please tell us what segment you belong to.',
     'form-error-message': 'Please enter a message.',
     'form-error-general': 'Something went wrong. Please try again or email us directly.',
     'form-confirm': 'Ready to send your message to Manifest?',
@@ -942,12 +1065,22 @@ const TRANSLATIONS = {
     'form-placeholder-email': 'vous@entreprise.com',
     'form-label-org': 'Organisation',
     'form-placeholder-org': 'Entreprise ou unité',
+    'form-label-segment': 'Je suis',
+    'form-segment-placeholder': 'Sélectionnez votre segment',
+    'form-segment-investor': 'Investisseur',
+    'form-segment-military': 'Militaire',
+    'form-segment-defence-contractor': 'Industriel de la défense',
+    'form-segment-other': 'Autre',
+    'form-label-segment-other': 'Veuillez préciser',
+    'form-placeholder-segment-other': 'Indiquez votre profil',
     'form-label-message': 'Message',
     'form-placeholder-message': 'De quoi souhaitez-vous discuter ?',
     'form-submit': 'Envoyer le message',
     'form-error-name': 'Veuillez entrer votre nom.',
     'form-error-email': 'Veuillez entrer une adresse email valide.',
     'form-error-org': 'Veuillez entrer votre organisation.',
+    'form-error-segment': 'Veuillez sélectionner le segment qui vous décrit le mieux.',
+    'form-error-segment-other': 'Veuillez indiquer à quel segment vous appartenez.',
     'form-error-message': 'Veuillez entrer un message.',
     'form-error-general': 'Une erreur s\'est produite. Veuillez réessayer ou nous écrire directement.',
     'form-confirm': 'Prêt à envoyer votre message à Manifest ?',
@@ -1131,6 +1264,14 @@ backToTop.addEventListener('click', () => {
   if (!form) return;
 
   const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const segmentSelect = document.getElementById('segment');
+  const segmentPicker = document.getElementById('segment-picker');
+  const segmentTrigger = document.getElementById('segment-trigger');
+  const segmentMenu = document.getElementById('segment-menu');
+  const segmentSelected = document.getElementById('segment-selected');
+  const segmentOptions = Array.from(document.querySelectorAll('.segment-option'));
+  const segmentOtherField = document.getElementById('field-segment-other');
+  const segmentOtherInput = document.getElementById('segment-other');
 
   function validateField(fieldId, inputId, customCheck) {
     const field = document.getElementById(fieldId);
@@ -1140,7 +1281,56 @@ backToTop.addEventListener('click', () => {
     return valid;
   }
 
-  ['name', 'email', 'org', 'message'].forEach(id => {
+  function syncSegmentOther() {
+    const showOther = segmentSelect && segmentSelect.value === 'other';
+    if (segmentOtherField) segmentOtherField.hidden = !showOther;
+    if (!showOther && segmentOtherInput) {
+      segmentOtherInput.value = '';
+      if (segmentOtherField) segmentOtherField.classList.remove('has-error');
+    }
+  }
+
+  function selectedSegmentLabel() {
+    if (!segmentSelect) return '';
+    const selected = segmentSelect.options[segmentSelect.selectedIndex];
+    return selected && selected.value ? selected.textContent.trim() : '';
+  }
+
+  function closeSegmentMenu() {
+    if (!segmentPicker || !segmentTrigger || !segmentMenu) return;
+    segmentPicker.classList.remove('open');
+    segmentTrigger.setAttribute('aria-expanded', 'false');
+    segmentMenu.hidden = true;
+  }
+
+  function openSegmentMenu() {
+    if (!segmentPicker || !segmentTrigger || !segmentMenu) return;
+    segmentPicker.classList.add('open');
+    segmentTrigger.setAttribute('aria-expanded', 'true');
+    segmentMenu.hidden = false;
+  }
+
+  function updateSegmentDisplay() {
+    if (!segmentSelect || !segmentTrigger || !segmentSelected) return;
+    const value = segmentSelect.value;
+    const selected = segmentSelect.options[segmentSelect.selectedIndex];
+    const placeholder = TRANSLATIONS[currentLanguage || 'en']['form-segment-placeholder'] || 'Select your segment';
+    segmentSelected.textContent = value && selected ? selected.textContent.trim() : placeholder;
+    segmentTrigger.classList.toggle('is-placeholder', !value);
+    segmentOptions.forEach(option => {
+      option.setAttribute('aria-selected', option.dataset.value === value ? 'true' : 'false');
+    });
+  }
+
+  function setSegmentValue(value) {
+    if (!segmentSelect) return;
+    segmentSelect.value = value;
+    segmentSelect.dispatchEvent(new Event('change'));
+    updateSegmentDisplay();
+    closeSegmentMenu();
+  }
+
+  ['name', 'email', 'org', 'segment', 'segment-other', 'message'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.addEventListener('input', function() {
       const field = document.getElementById('field-' + id);
@@ -1148,6 +1338,61 @@ backToTop.addEventListener('click', () => {
       document.getElementById('form-error-banner').style.display = 'none';
     });
   });
+  if (segmentSelect) {
+    segmentSelect.addEventListener('change', function() {
+      document.getElementById('field-segment').classList.remove('has-error');
+      document.getElementById('form-error-banner').style.display = 'none';
+      syncSegmentOther();
+      updateSegmentDisplay();
+    });
+    if (segmentTrigger) {
+      segmentTrigger.addEventListener('click', function() {
+        if (segmentMenu && segmentMenu.hidden) {
+          openSegmentMenu();
+        } else {
+          closeSegmentMenu();
+        }
+      });
+      segmentTrigger.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openSegmentMenu();
+          const selectedOption = segmentOptions.find(option => option.dataset.value === segmentSelect.value) || segmentOptions[0];
+          if (selectedOption) selectedOption.focus();
+        }
+      });
+    }
+    segmentOptions.forEach(option => {
+      option.addEventListener('click', function() {
+        setSegmentValue(option.dataset.value);
+        if (segmentTrigger) segmentTrigger.focus();
+      });
+      option.addEventListener('keydown', function(e) {
+        const currentIndex = segmentOptions.indexOf(option);
+        if (e.key === 'Escape') {
+          closeSegmentMenu();
+          if (segmentTrigger) segmentTrigger.focus();
+        } else if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          const next = segmentOptions[(currentIndex + 1) % segmentOptions.length];
+          if (next) next.focus();
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          const prev = segmentOptions[(currentIndex - 1 + segmentOptions.length) % segmentOptions.length];
+          if (prev) prev.focus();
+        } else if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          setSegmentValue(option.dataset.value);
+          if (segmentTrigger) segmentTrigger.focus();
+        }
+      });
+    });
+    document.addEventListener('click', function(e) {
+      if (segmentPicker && !segmentPicker.contains(e.target)) closeSegmentMenu();
+    });
+    syncSegmentOther();
+    updateSegmentDisplay();
+  }
 
   form.addEventListener('submit', async function(e) {
     e.preventDefault();
@@ -1155,9 +1400,13 @@ backToTop.addEventListener('click', () => {
     const validName    = validateField('field-name',    'name');
     const validEmail   = validateField('field-email',   'email',   v => EMAIL_REGEX.test(v));
     const validOrg     = validateField('field-org',     'org');
+    const validSegment = validateField('field-segment', 'segment');
+    const validSegmentOther = segmentSelect.value === 'other'
+      ? validateField('field-segment-other', 'segment-other')
+      : true;
     const validMessage = validateField('field-message', 'message');
 
-    if (!validName || !validEmail || !validOrg || !validMessage) return;
+    if (!validName || !validEmail || !validOrg || !validSegment || !validSegmentOther || !validMessage) return;
 
     const confirmMsg = TRANSLATIONS[currentLanguage || 'en']['form-confirm'] || 'Ready to send your message to Manifest?';
     const confirmed = confirm(confirmMsg);
@@ -1176,6 +1425,9 @@ backToTop.addEventListener('click', () => {
           name:    document.getElementById('name').value.trim(),
           email:   document.getElementById('email').value.trim(),
           org:     document.getElementById('org').value.trim(),
+          segment: selectedSegmentLabel(),
+          segment_value: segmentSelect.value,
+          segment_other: segmentOtherInput.value.trim(),
           message: document.getElementById('message').value.trim()
         })
       });

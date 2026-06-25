@@ -14,7 +14,7 @@
     { "source": "/fr/confidentialite", "destination": "/pages/privacy-policy.html" }
   ],
   "redirects": [
-    { "source": "/en/contact", "destination": "/en/about#contact" },
-    { "source": "/fr/contact", "destination": "/fr/a-propos#contact" }
+    { "source": "/en/contact", "destination": "/en#contact" },
+    { "source": "/fr/contact", "destination": "/fr#contact" }
   ]
 }
