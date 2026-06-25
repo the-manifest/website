@@ -565,6 +565,14 @@ h2.section-heading {
 }
 .form-field.has-error .field-error { display: block; }
 
+.captcha-field {
+  min-height: 78px;
+}
+
+.captcha-field .h-captcha {
+  min-height: 78px;
+}
+
 .form-success {
   display: none;
   text-align: center;
@@ -948,6 +956,10 @@ footer .container {
             <textarea id="message" name="message" placeholder="What would you like to discuss?" data-i18n-placeholder="form-placeholder-message"></textarea>
             <span class="field-error" data-i18n="form-error-message">Please enter a message.</span>
           </div>
+          <div class="form-field captcha-field" id="field-captcha">
+            <div class="h-captcha" data-captcha="true" data-callback="onContactCaptchaSuccess" data-expired-callback="onContactCaptchaExpired"></div>
+            <span class="field-error" data-i18n="form-error-captcha">Please complete the captcha.</span>
+          </div>
           <button type="submit" class="submit-btn" id="submit-btn" data-i18n="form-submit">Send Message</button>
         </form>
         <div class="form-success" id="form-success">
@@ -1034,6 +1046,7 @@ const TRANSLATIONS = {
     'form-error-segment': 'Please select the segment that best describes you.',
     'form-error-segment-other': 'Please tell us what segment you belong to.',
     'form-error-message': 'Please enter a message.',
+    'form-error-captcha': 'Please complete the captcha.',
     'form-error-general': 'Something went wrong. Please try again or email us directly.',
     'form-success-title': 'Message sent!',
     'form-success-message': 'We\'ll get back to you at hello@the-manifest.com',
@@ -1084,6 +1097,7 @@ const TRANSLATIONS = {
     'form-error-segment': 'Veuillez sélectionner le segment qui vous décrit le mieux.',
     'form-error-segment-other': 'Veuillez indiquer à quel segment vous appartenez.',
     'form-error-message': 'Veuillez entrer un message.',
+    'form-error-captcha': 'Veuillez compléter le captcha.',
     'form-error-general': 'Une erreur s\'est produite. Veuillez réessayer ou nous écrire directement.',
     'form-success-title': 'Message envoyé !',
     'form-success-message': 'Nous vous répondrons à hello@the-manifest.com',
@@ -1275,6 +1289,7 @@ backToTop.addEventListener('click', () => {
   const segmentOtherInput = document.getElementById('segment-other');
   const segmentLabelInput = document.getElementById('segment-label');
   const formRedirectInput = document.getElementById('form-redirect');
+  const captchaField = document.getElementById('field-captcha');
 
   function validateField(fieldId, inputId, customCheck) {
     const field = document.getElementById(fieldId);
@@ -1303,6 +1318,22 @@ backToTop.addEventListener('click', () => {
     form.style.display = 'none';
     document.getElementById('form-success').style.display = 'block';
   }
+
+  function validateCaptcha() {
+    const captchaResponse = form.querySelector('textarea[name="h-captcha-response"]');
+    const valid = !!captchaResponse && captchaResponse.value.trim() !== '';
+    if (captchaField) captchaField.classList.toggle('has-error', !valid);
+    return valid;
+  }
+
+  window.onContactCaptchaSuccess = function() {
+    if (captchaField) captchaField.classList.remove('has-error');
+    document.getElementById('form-error-banner').style.display = 'none';
+  };
+
+  window.onContactCaptchaExpired = function() {
+    if (captchaField) captchaField.classList.add('has-error');
+  };
 
   function closeSegmentMenu() {
     if (!segmentPicker || !segmentTrigger || !segmentMenu) return;
@@ -1418,8 +1449,9 @@ backToTop.addEventListener('click', () => {
       ? validateField('field-segment-other', 'segment-other')
       : true;
     const validMessage = validateField('field-message', 'message');
+    const validCaptcha = validateCaptcha();
 
-    if (!validName || !validEmail || !validOrg || !validSegment || !validSegmentOther || !validMessage) return;
+    if (!validName || !validEmail || !validOrg || !validSegment || !validSegmentOther || !validMessage || !validCaptcha) return;
 
     const btn = document.getElementById('submit-btn');
     btn.disabled = true;
@@ -1438,6 +1470,7 @@ backToTop.addEventListener('click', () => {
 </script>
 
 <!-- Start of HubSpot Embed Code -->
+<script src="https://web3forms.com/client/script.js" async defer></script>
 <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/148621712.js"></script>
 <!-- End of HubSpot Embed Code -->
 </body>
