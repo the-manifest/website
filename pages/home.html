@@ -911,7 +911,6 @@ footer .container {
         <form class="contact-form reveal" id="contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
           <input type="hidden" name="access_key" value="7c78fe94-7e16-4619-9da0-a0d1c301bb6c">
           <input type="hidden" name="segment" id="segment-label" value="">
-          <input type="hidden" name="redirect" id="form-redirect" value="">
           <div class="form-error-banner" id="form-error-banner" data-i18n="form-error-general">Something went wrong. Please try again or email us directly.</div>
           <div class="form-row">
             <div class="form-field" id="field-name">
@@ -1295,7 +1294,6 @@ backToTop.addEventListener('click', () => {
   const segmentOtherField = document.getElementById('field-segment-other');
   const segmentOtherInput = document.getElementById('segment-other');
   const segmentLabelInput = document.getElementById('segment-label');
-  const formRedirectInput = document.getElementById('form-redirect');
   const captchaField = document.getElementById('field-captcha');
   const formWrapper = document.getElementById('contact-form-wrapper');
 
@@ -1347,15 +1345,20 @@ backToTop.addEventListener('click', () => {
   }
 
   function showFormSuccess() {
-    const storedHeight = Number(sessionStorage.getItem('manifest-contact-form-height')) || 0;
     const currentHeight = form.offsetHeight || 0;
-    const successHeight = Math.max(storedHeight, currentHeight);
+    const successHeight = Math.max(currentHeight, 420);
     if (formWrapper && successHeight) formWrapper.style.minHeight = successHeight + 'px';
     form.style.display = 'none';
     const success = document.getElementById('form-success');
     if (successHeight) success.style.minHeight = successHeight + 'px';
     success.style.display = 'flex';
-    sessionStorage.removeItem('manifest-contact-form-height');
+  }
+
+  function showFormError() {
+    document.getElementById('form-error-banner').style.display = 'block';
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = false;
+    btn.textContent = TRANSLATIONS[currentLanguage || 'en']['form-submit'] || 'Send Message';
   }
 
   function validateCaptcha() {
@@ -1475,12 +1478,7 @@ backToTop.addEventListener('click', () => {
     syncCaptchaVisibility();
   }
 
-  if (new URLSearchParams(location.search).get('contact_status') === 'sent') {
-    showFormSuccess();
-    window.history.replaceState({}, document.title, location.pathname + location.hash);
-  }
-
-  form.addEventListener('submit', function(e) {
+  form.addEventListener('submit', async function(e) {
     e.preventDefault();
 
     const validName    = validateField('field-name',    'name');
@@ -1499,14 +1497,27 @@ backToTop.addEventListener('click', () => {
     btn.disabled = true;
     btn.textContent = currentLanguage === 'fr' ? 'Envoi...' : 'Sending...';
     if (segmentLabelInput) segmentLabelInput.value = selectedSegmentLabel();
-    sessionStorage.setItem('manifest-contact-form-height', String(form.offsetHeight || 0));
 
-    const successUrl = new URL(location.href);
-    successUrl.searchParams.set('contact_status', 'sent');
-    successUrl.hash = 'contact';
-    if (formRedirectInput) formRedirectInput.value = successUrl.toString();
+    try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 15000);
+      const res = await fetch(form.action, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form),
+        signal: controller.signal
+      });
+      clearTimeout(timeout);
 
-    HTMLFormElement.prototype.submit.call(form);
+      const result = await res.json().catch(() => ({}));
+      if (res.ok && result.success !== false) {
+        showFormSuccess();
+      } else {
+        throw new Error(result.message || 'Server error');
+      }
+    } catch {
+      showFormError();
+    }
   });
 })();
 
