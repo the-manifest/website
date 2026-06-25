@@ -893,8 +893,7 @@ footer .container {
         </a>
       </div>
       <div id="contact-form-wrapper">
-        <iframe class="form-submit-frame" id="form-submit-frame" name="form-submit-frame" title="Contact form submission" hidden></iframe>
-        <form class="contact-form reveal" id="contact-form" action="https://api.web3forms.com/submit" method="POST" target="form-submit-frame" novalidate>
+        <form class="contact-form reveal" id="contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
           <input type="hidden" name="access_key" value="7c78fe94-7e16-4619-9da0-a0d1c301bb6c">
           <input type="hidden" name="segment" id="segment-label" value="">
           <input type="hidden" name="redirect" id="form-redirect" value="">
@@ -1276,7 +1275,6 @@ backToTop.addEventListener('click', () => {
   const segmentOtherInput = document.getElementById('segment-other');
   const segmentLabelInput = document.getElementById('segment-label');
   const formRedirectInput = document.getElementById('form-redirect');
-  const submitFrame = document.getElementById('form-submit-frame');
 
   function validateField(fieldId, inputId, customCheck) {
     const field = document.getElementById(fieldId);
@@ -1304,47 +1302,6 @@ backToTop.addEventListener('click', () => {
   function showFormSuccess() {
     form.style.display = 'none';
     document.getElementById('form-success').style.display = 'block';
-  }
-
-  function showFormError() {
-    document.getElementById('form-error-banner').style.display = 'block';
-    const btn = document.getElementById('submit-btn');
-    btn.disabled = false;
-    btn.textContent = TRANSLATIONS[currentLanguage || 'en']['form-submit'] || 'Send Message';
-  }
-
-  function submitViaFrame() {
-    return new Promise((resolve, reject) => {
-      if (!submitFrame) {
-        reject(new Error('Missing form frame'));
-        return;
-      }
-
-      const successUrl = new URL(location.href);
-      successUrl.searchParams.set('contact_status', 'sent');
-      successUrl.hash = 'contact';
-      if (formRedirectInput) formRedirectInput.value = successUrl.toString();
-
-      const timeout = setTimeout(() => {
-        submitFrame.removeEventListener('load', onLoad);
-        reject(new Error('Form submission timed out'));
-      }, 15000);
-
-      function onLoad() {
-        try {
-          const frameUrl = submitFrame.contentWindow.location.href;
-          if (frameUrl.includes('contact_status=sent')) {
-            clearTimeout(timeout);
-            resolve();
-          }
-        } catch {
-          // Cross-origin Web3Forms responses are not readable; wait for the same-origin redirect.
-        }
-      }
-
-      submitFrame.addEventListener('load', onLoad, { once: true });
-      HTMLFormElement.prototype.submit.call(form);
-    });
   }
 
   function closeSegmentMenu() {
@@ -1445,7 +1402,12 @@ backToTop.addEventListener('click', () => {
     updateSegmentDisplay();
   }
 
-  form.addEventListener('submit', async function(e) {
+  if (new URLSearchParams(location.search).get('contact_status') === 'sent') {
+    showFormSuccess();
+    window.history.replaceState({}, document.title, location.pathname + location.hash);
+  }
+
+  form.addEventListener('submit', function(e) {
     e.preventDefault();
 
     const validName    = validateField('field-name',    'name');
@@ -1464,41 +1426,12 @@ backToTop.addEventListener('click', () => {
     btn.textContent = currentLanguage === 'fr' ? 'Envoi...' : 'Sending...';
     if (segmentLabelInput) segmentLabelInput.value = selectedSegmentLabel();
 
-    try {
-      const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), 8000);
-      const formData = new FormData();
-      formData.append('access_key', '7c78fe94-7e16-4619-9da0-a0d1c301bb6c');
-      formData.append('name', document.getElementById('name').value.trim());
-      formData.append('email', document.getElementById('email').value.trim());
-      formData.append('org', document.getElementById('org').value.trim());
-      formData.append('segment', selectedSegmentLabel());
-      formData.append('segment_value', segmentSelect.value);
-      formData.append('segment_other', segmentOtherInput.value.trim());
-      formData.append('message', document.getElementById('message').value.trim());
+    const successUrl = new URL(location.href);
+    successUrl.searchParams.set('contact_status', 'sent');
+    successUrl.hash = 'contact';
+    if (formRedirectInput) formRedirectInput.value = successUrl.toString();
 
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: formData,
-        signal: controller.signal
-      });
-      clearTimeout(timeout);
-
-      const result = await res.json().catch(() => ({}));
-      if (res.ok && result.success !== false) {
-        showFormSuccess();
-      } else {
-        throw new Error(result.message || 'Server error');
-      }
-    } catch (error) {
-      try {
-        await submitViaFrame();
-        showFormSuccess();
-      } catch {
-        showFormError();
-      }
-    }
+    HTMLFormElement.prototype.submit.call(form);
   });
 })();
 
