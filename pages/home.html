@@ -575,9 +575,16 @@ h2.section-heading {
 
 .form-success {
   display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   text-align: center;
   padding: 40px 24px;
   color: var(--text);
+  background: #ffffff;
+  border: 1px solid #e1ddd4;
+  border-radius: 8px;
+  box-shadow: 0 18px 44px rgba(26,26,26,0.08);
 }
 .form-success svg { margin-bottom: 16px; }
 .form-success h3 { font-size: 1.2rem; font-weight: 600; margin: 0 0 8px; }
@@ -956,7 +963,7 @@ footer .container {
             <textarea id="message" name="message" placeholder="What would you like to discuss?" data-i18n-placeholder="form-placeholder-message"></textarea>
             <span class="field-error" data-i18n="form-error-message">Please enter a message.</span>
           </div>
-          <div class="form-field captcha-field" id="field-captcha">
+          <div class="form-field captcha-field" id="field-captcha" hidden>
             <div class="h-captcha" data-captcha="true" data-callback="onContactCaptchaSuccess" data-expired-callback="onContactCaptchaExpired"></div>
             <span class="field-error" data-i18n="form-error-captcha">Please complete the captcha.</span>
           </div>
@@ -965,7 +972,7 @@ footer .container {
         <div class="form-success" id="form-success">
           <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.65)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
           <h3 data-i18n="form-success-title">Message sent!</h3>
-          <p data-i18n="form-success-message">We'll get back to you at hello@the-manifest.com</p>
+          <p data-i18n="form-success-message">We'll get back to you soon.</p>
         </div>
       </div>
     </div>
@@ -1049,7 +1056,7 @@ const TRANSLATIONS = {
     'form-error-captcha': 'Please complete the captcha.',
     'form-error-general': 'Something went wrong. Please try again or email us directly.',
     'form-success-title': 'Message sent!',
-    'form-success-message': 'We\'ll get back to you at hello@the-manifest.com',
+    'form-success-message': 'We\'ll get back to you soon.',
   },
   fr: {
     'nav-strategic-autonomy': 'Autonomie stratégique',
@@ -1100,7 +1107,7 @@ const TRANSLATIONS = {
     'form-error-captcha': 'Veuillez compléter le captcha.',
     'form-error-general': 'Une erreur s\'est produite. Veuillez réessayer ou nous écrire directement.',
     'form-success-title': 'Message envoyé !',
-    'form-success-message': 'Nous vous répondrons à hello@the-manifest.com',
+    'form-success-message': 'Nous vous répondrons bientôt.',
   }
 };
 
@@ -1290,6 +1297,7 @@ backToTop.addEventListener('click', () => {
   const segmentLabelInput = document.getElementById('segment-label');
   const formRedirectInput = document.getElementById('form-redirect');
   const captchaField = document.getElementById('field-captcha');
+  const formWrapper = document.getElementById('contact-form-wrapper');
 
   function validateField(fieldId, inputId, customCheck) {
     const field = document.getElementById(fieldId);
@@ -1314,9 +1322,40 @@ backToTop.addEventListener('click', () => {
     return selected && selected.value ? selected.textContent.trim() : '';
   }
 
+  function requiredFieldsComplete() {
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const org = document.getElementById('org').value.trim();
+    const message = document.getElementById('message').value.trim();
+    const segment = segmentSelect ? segmentSelect.value : '';
+    const other = segmentOtherInput ? segmentOtherInput.value.trim() : '';
+    return Boolean(
+      name &&
+      EMAIL_REGEX.test(email) &&
+      org &&
+      segment &&
+      (segment !== 'other' || other) &&
+      message
+    );
+  }
+
+  function syncCaptchaVisibility() {
+    if (!captchaField) return;
+    const shouldShow = requiredFieldsComplete();
+    captchaField.hidden = !shouldShow;
+    if (!shouldShow) captchaField.classList.remove('has-error');
+  }
+
   function showFormSuccess() {
+    const storedHeight = Number(sessionStorage.getItem('manifest-contact-form-height')) || 0;
+    const currentHeight = form.offsetHeight || 0;
+    const successHeight = Math.max(storedHeight, currentHeight);
+    if (formWrapper && successHeight) formWrapper.style.minHeight = successHeight + 'px';
     form.style.display = 'none';
-    document.getElementById('form-success').style.display = 'block';
+    const success = document.getElementById('form-success');
+    if (successHeight) success.style.minHeight = successHeight + 'px';
+    success.style.display = 'flex';
+    sessionStorage.removeItem('manifest-contact-form-height');
   }
 
   function validateCaptcha() {
@@ -1375,6 +1414,7 @@ backToTop.addEventListener('click', () => {
       const field = document.getElementById('field-' + id);
       if (field) field.classList.remove('has-error');
       document.getElementById('form-error-banner').style.display = 'none';
+      syncCaptchaVisibility();
     });
   });
   if (segmentSelect) {
@@ -1383,6 +1423,7 @@ backToTop.addEventListener('click', () => {
       document.getElementById('form-error-banner').style.display = 'none';
       syncSegmentOther();
       updateSegmentDisplay();
+      syncCaptchaVisibility();
     });
     if (segmentTrigger) {
       segmentTrigger.addEventListener('click', function() {
@@ -1431,6 +1472,7 @@ backToTop.addEventListener('click', () => {
     });
     syncSegmentOther();
     updateSegmentDisplay();
+    syncCaptchaVisibility();
   }
 
   if (new URLSearchParams(location.search).get('contact_status') === 'sent') {
@@ -1457,6 +1499,7 @@ backToTop.addEventListener('click', () => {
     btn.disabled = true;
     btn.textContent = currentLanguage === 'fr' ? 'Envoi...' : 'Sending...';
     if (segmentLabelInput) segmentLabelInput.value = selectedSegmentLabel();
+    sessionStorage.setItem('manifest-contact-form-height', String(form.offsetHeight || 0));
 
     const successUrl = new URL(location.href);
     successUrl.searchParams.set('contact_status', 'sent');
