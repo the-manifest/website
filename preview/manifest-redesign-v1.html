@@ -878,19 +878,6 @@
       width: 100%;
       height: 100%;
     }
-    .hero-video-frame h1 {
-      position: absolute;
-      z-index: 2;
-      top: clamp(132px, 16vh, 176px);
-      left: clamp(28px, 5vw, 76px);
-      margin: 0;
-      font-size: clamp(4.2rem, 8.2vw, 8.8rem);
-      font-weight: 500;
-      letter-spacing: -0.07em;
-      line-height: 0.95;
-      text-shadow: 0 4px 34px rgba(0,0,0,0.28);
-      pointer-events: none;
-    }
     .hero-video-frame {
       position: relative;
       overflow: hidden;
@@ -943,6 +930,54 @@
     .video-sound-toggle:focus-visible {
       outline: 3px solid rgba(255,255,255,0.72);
       outline-offset: 4px;
+    }
+    .video-sound-cursor {
+      position: absolute;
+      z-index: 4;
+      top: 50%;
+      left: 50%;
+      width: auto;
+      height: auto;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      color: var(--white);
+      background: transparent;
+      box-shadow: none;
+      backdrop-filter: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      line-height: 1;
+      text-align: center;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.72);
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, -50%) scale(0.86);
+      transition: opacity 140ms ease, transform 180ms ease;
+    }
+    .video-sound-cursor svg {
+      width: 19px;
+      height: 19px;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.7;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.72));
+    }
+    .video-sound-cursor.is-visible { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    @media (pointer: fine) {
+      .hero-video-frame.is-muted { cursor: none; }
+      .hero-video-frame.is-muted .video-sound-toggle { opacity: 0; pointer-events: none; }
+    }
+    @media (pointer: coarse) {
+      .video-sound-cursor { display: none; }
     }
 
     #article,
@@ -1040,33 +1075,11 @@
     }
     .article-booklet-cover img {
       width: 100%;
-      height: 48%;
+      height: 100%;
       display: block;
       object-fit: cover;
       object-position: center center;
       filter: saturate(0.88) contrast(1.05);
-    }
-    .article-booklet-copy {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 22px 24px 20px;
-    }
-    .article-booklet-title {
-      max-width: 220px;
-      margin: 0;
-      font-size: clamp(1.8rem, 3vw, 2.45rem);
-      font-weight: 500;
-      letter-spacing: -0.055em;
-      line-height: 0.96;
-    }
-    .article-booklet-subtitle {
-      max-width: 220px;
-      margin: 12px 0 0;
-      color: rgba(255,255,255,0.72);
-      font-size: 0.66rem;
-      line-height: 1.4;
     }
     .article-preview-body {
       display: flex;
@@ -1176,29 +1189,30 @@
       align-items: center;
       justify-content: flex-start;
       padding: 12px 19px;
-      border: 1px solid rgba(16,16,16,0.12);
+      border: 1px solid var(--ink);
       border-radius: 999px;
-      color: var(--ink-soft);
-      background: rgba(255,255,255,0.64);
-      box-shadow: 0 6px 20px rgba(30,24,12,0.025);
+      color: var(--white);
+      background: var(--ink);
+      box-shadow: 0 8px 22px rgba(16,16,16,0.09);
       font-size: 0.82rem;
       text-align: left;
       cursor: pointer;
       transition: color 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease, transform 180ms ease;
     }
     .audience-choice:hover {
-      color: var(--ink);
-      border-color: rgba(16,16,16,0.28);
-      background: rgba(255,255,255,0.94);
-      box-shadow: 0 10px 26px rgba(30,24,12,0.06);
+      color: var(--white);
+      border-color: #2c2c2c;
+      background: #2c2c2c;
+      box-shadow: 0 12px 30px rgba(16,16,16,0.15);
       transform: translateY(-1px);
     }
     .audience-choice[aria-pressed="true"] {
       color: var(--white);
-      background: var(--ink);
-      border-color: var(--ink);
-      box-shadow: 0 12px 28px rgba(16,16,16,0.14);
+      background: #000;
+      border-color: #000;
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,0.72), 0 12px 28px rgba(16,16,16,0.18);
     }
+    .audience-choice:last-child:nth-child(odd) { grid-column: 1 / -1; }
     .audience-choice:focus-visible {
       outline: 3px solid rgba(16,16,16,0.18);
       outline-offset: 3px;
@@ -1330,7 +1344,6 @@
         height: 100%;
         aspect-ratio: auto;
       }
-      .hero-video-frame h1 { font-size: clamp(3.2rem, 10vw, 5.8rem); }
       .article-preview-card {
         grid-template-columns: 1fr;
         min-height: 0;
@@ -1369,11 +1382,6 @@
         height: 100%;
         aspect-ratio: auto;
       }
-      .hero-video-frame h1 {
-        top: 120px;
-        left: 18px;
-        font-size: clamp(2.4rem, 12vw, 3.4rem);
-      }
       .video-sound-toggle { right: 18px; bottom: 18px; }
       .article-preview-section { padding: 64px 0; }
       .article-preview-section > .container { width: calc(100% - 32px); }
@@ -1388,6 +1396,7 @@
       .engagement-section { padding: 68px 0; }
       .engagement-intro { margin-bottom: 0; }
       .audience-choices { grid-template-columns: 1fr; }
+      .audience-choice:last-child:nth-child(odd) { grid-column: auto; }
       .captcha-field { padding: 9px; overflow: hidden; }
       .submit-button { width: 100%; min-width: 0; }
       .minimal-footer-inner { align-items: flex-start; flex-direction: column; }
@@ -1421,19 +1430,22 @@
   </header>
 
   <main id="main">
-    <section class="minimal-hero" id="top" aria-labelledby="hero-title">
+    <section class="minimal-hero" id="top" aria-label="Meet Pierre film" data-i18n-aria-label="videoSectionLabel">
       <div class="container minimal-hero-inner">
         <div class="hero-video-frame">
           <video id="pierre-video" autoplay muted loop playsinline preload="auto" poster="../assets/video/evening-fall-img-3.png">
             <source src="../assets/video/meet-pierre.mp4" type="video/mp4">
             Your browser does not support HTML video. <a href="../assets/video/meet-pierre.mp4">Download the film</a>.
           </video>
-          <h1 id="hero-title" data-i18n="heroTitle">Meet Pierre.</h1>
           <button class="video-sound-toggle" id="pierre-video-sound" type="button" aria-label="Turn sound on" aria-pressed="false">
             <svg class="sound-off-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"/><path d="m16 9 5 6m0-6-5 6"/></svg>
             <svg class="sound-on-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"/><path d="M15 9.5a4 4 0 0 1 0 5M17.5 7a7.5 7.5 0 0 1 0 10"/></svg>
             <span id="pierre-video-sound-label">Sound on</span>
           </button>
+          <div class="video-sound-cursor" id="pierre-video-sound-cursor" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"/><path d="M15 9.5a4 4 0 0 1 0 5M17.5 7a7.5 7.5 0 0 1 0 10"/></svg>
+            <span data-i18n="soundCursorLabel">Sound</span>
+          </div>
         </div>
       </div>
     </section>
@@ -1445,17 +1457,13 @@
             <div class="article-booklet">
               <div class="article-booklet-cover">
                 <img src="../assets/campaign/meet-manifest-inspecting.png" width="1672" height="941" alt="" decoding="async">
-                <div class="article-booklet-copy">
-                  <strong class="article-booklet-title" data-i18n="articleCoverTitle">Meet Manifest</strong>
-                  <span class="article-booklet-subtitle" data-i18n="articleCoverSubtitle">Humanoids for European Defense</span>
-                </div>
               </div>
             </div>
           </div>
           <div class="article-preview-body">
             <div class="article-preview-copy">
               <h2 data-i18n="articleTitle">Meet Manifest Article</h2>
-              <p class="article-summary" data-i18n="articleSummary">A view into our strategic decision-making, our vision, and how we intend to achieve it.</p>
+              <p class="article-summary" data-i18n="articleSummary">A detailed view into our strategic decision-making, vision, and plan to achieve our vision.</p>
             </div>
             <div class="article-preview-meta">
               <span class="article-preview-cta"><span data-i18n="articleRead">Read the full article on LinkedIn</span> <span aria-hidden="true">↗</span></span>
@@ -1487,20 +1495,18 @@
               <label id="audience-select-label" data-i18n="audienceLabel">I am:</label>
               <select class="audience-native-select" id="audience-select" name="audience_selection" tabindex="-1" aria-hidden="true">
                 <option value="">Choose one</option>
-                <option value="investor">Investment</option>
-                <option value="deployment">Evaluate or deploy Pierre</option>
-                <option value="military">Military or public sector</option>
-                <option value="partner">Partnership</option>
-                <option value="talent">Join the team</option>
-                <option value="other">Press, research, or other</option>
+                <option value="investor">Institutional Investor</option>
+                <option value="deployment">Individual Investor</option>
+                <option value="military">Military</option>
+                <option value="partner">Defence contractor</option>
+                <option value="other">Other</option>
               </select>
               <div class="audience-choices" id="audience-choices" role="group" aria-labelledby="audience-select-label">
-                <button class="audience-choice" type="button" data-value="investor" aria-pressed="false">Investment</button>
-                <button class="audience-choice" type="button" data-value="deployment" aria-pressed="false">Evaluate or deploy Pierre</button>
-                <button class="audience-choice" type="button" data-value="military" aria-pressed="false">Military or public sector</button>
-                <button class="audience-choice" type="button" data-value="partner" aria-pressed="false">Partnership</button>
-                <button class="audience-choice" type="button" data-value="talent" aria-pressed="false">Join the team</button>
-                <button class="audience-choice" type="button" data-value="other" aria-pressed="false">Press, research, or other</button>
+                <button class="audience-choice" type="button" data-value="investor" aria-pressed="false">Institutional Investor</button>
+                <button class="audience-choice" type="button" data-value="deployment" aria-pressed="false">Individual Investor</button>
+                <button class="audience-choice" type="button" data-value="military" aria-pressed="false">Military</button>
+                <button class="audience-choice" type="button" data-value="partner" aria-pressed="false">Defence contractor</button>
+                <button class="audience-choice" type="button" data-value="other" aria-pressed="false">Other</button>
               </div>
             </div>
             <p class="audience-error" id="audience-error" data-i18n="audienceError">Please choose the path that best matches your interest.</p>
@@ -1592,28 +1598,26 @@
         brandHomeLabel: 'Manifest home',
         languageLabel: 'Language',
         skipLink: 'Skip to content',
-        heroTitle: 'Meet Pierre.',
+        videoSectionLabel: 'Meet Pierre film',
         soundOnLabel: 'Sound on',
         soundOffLabel: 'Sound off',
         soundOnAria: 'Turn sound on',
         soundOffAria: 'Turn sound off',
+        soundCursorLabel: 'Sound',
         articleSectionLabel: 'LinkedIn article',
-        articleCoverTitle: 'Meet Manifest',
-        articleCoverSubtitle: 'Humanoids for European Defense',
         articleTitle: 'Meet Manifest Article',
-        articleSummary: 'A view into our strategic decision-making, our vision, and how we intend to achieve it.',
+        articleSummary: 'A detailed view into our strategic decision-making, vision, and plan to achieve our vision.',
         articleRead: 'Read the full article on LinkedIn',
         contactTitle: 'Register your interest.',
         audienceLabel: 'I am:',
         audiencePlaceholder: 'Choose one',
         audienceError: 'Please choose the path that best matches your interest.',
         audiences: {
-          investor: 'Investment',
-          deployment: 'Evaluate or deploy Pierre',
-          military: 'Military or public sector',
-          partner: 'Partnership',
-          talent: 'Join the team',
-          other: 'Press, research, or other'
+          investor: 'Institutional Investor',
+          deployment: 'Individual Investor',
+          military: 'Military',
+          partner: 'Defence contractor',
+          other: 'Other'
         },
         formError: 'Something went wrong. Please try again.',
         nameLabel: 'Name',
@@ -1648,28 +1652,26 @@
         brandHomeLabel: 'Accueil Manifest',
         languageLabel: 'Langue',
         skipLink: 'Aller au contenu',
-        heroTitle: 'Découvrez Pierre.',
+        videoSectionLabel: 'Film de présentation de Pierre',
         soundOnLabel: 'Activer le son',
         soundOffLabel: 'Couper le son',
         soundOnAria: 'Activer le son de la vidéo',
         soundOffAria: 'Couper le son de la vidéo',
+        soundCursorLabel: 'Son',
         articleSectionLabel: 'Article LinkedIn',
-        articleCoverTitle: 'Meet Manifest',
-        articleCoverSubtitle: 'Des humanoïdes pour la défense européenne',
         articleTitle: 'Article Meet Manifest',
-        articleSummary: 'Un aperçu de nos décisions stratégiques, de notre vision et de la manière dont nous comptons la concrétiser.',
+        articleSummary: 'Une vue détaillée de nos décisions stratégiques, de notre vision et du plan prévu pour la concrétiser.',
         articleRead: 'Lire l’article complet sur LinkedIn',
         contactTitle: 'Manifestez votre intérêt.',
         audienceLabel: 'Je suis :',
         audiencePlaceholder: 'Sélectionnez une option',
         audienceError: 'Veuillez sélectionner l’option qui correspond le mieux à votre demande.',
         audiences: {
-          investor: 'Investissement',
-          deployment: 'Évaluer ou déployer Pierre',
-          military: 'Militaire ou secteur public',
-          partner: 'Partenariat',
-          talent: 'Rejoindre l’équipe',
-          other: 'Presse, recherche ou autre'
+          investor: 'Investisseur institutionnel',
+          deployment: 'Investisseur individuel',
+          military: 'Militaire',
+          partner: 'Industriel de la défense',
+          other: 'Autre'
         },
         formError: 'Une erreur s’est produite. Veuillez réessayer.',
         nameLabel: 'Nom',
@@ -1704,10 +1706,10 @@
     const branchConfigsByLanguage = {
       en: {
       investor: {
-        label: 'Investor enquiry',
-        subject: 'Investor enquiry — Manifest website',
-        submit: 'Request investor information',
-        success: 'Your investor enquiry has been sent to Manifest.',
+        label: 'Institutional investor enquiry',
+        subject: 'Institutional investor enquiry — Manifest website',
+        submit: 'Request institutional investor information',
+        success: 'Your institutional investor enquiry has been sent to Manifest.',
         fields: `
           <div class="field">
             <label for="investor-next-step">What would you like next?</label>
@@ -1721,29 +1723,27 @@
           </div>`
       },
       deployment: {
-        label: 'Pierre evaluation or deployment',
-        subject: 'Pierre evaluation enquiry — Manifest website',
-        submit: 'Discuss a Pierre deployment',
-        success: 'Your Pierre evaluation enquiry has been sent to Manifest.',
+        label: 'Individual investor enquiry',
+        subject: 'Individual investor enquiry — Manifest website',
+        submit: 'Request investor information',
+        success: 'Your individual investor enquiry has been sent to Manifest.',
         fields: `
           <div class="field">
-            <label for="use-case">Primary use case</label>
-            <select id="use-case" name="primary_use_case" required>
+            <label for="individual-investor-next-step">What would you like next?</label>
+            <select id="individual-investor-next-step" name="requested_next_step" required>
               <option value="">Select one</option>
-              <option>Inspection</option>
-              <option>MRO</option>
-              <option>Production</option>
-              <option>Research or demonstration</option>
-              <option>Other</option>
+              <option>Schedule an introductory call</option>
+              <option>Receive investor updates</option>
+              <option>Express investment interest</option>
             </select>
-            <p class="field-error">Please select a primary use case.</p>
+            <p class="field-error">Please choose a next step.</p>
           </div>`
       },
       military: {
-        label: 'Military or public-sector collaboration',
-        subject: 'Military or public-sector enquiry — Manifest website',
-        submit: 'Send institutional enquiry',
-        success: 'Your institutional enquiry has been sent to Manifest.',
+        label: 'Military enquiry',
+        subject: 'Military enquiry — Manifest website',
+        submit: 'Send military enquiry',
+        success: 'Your military enquiry has been sent to Manifest.',
         fields: `
           <div class="field">
             <label for="collaboration-type">Collaboration interest</label>
@@ -1758,10 +1758,10 @@
           </div>`
       },
       partner: {
-        label: 'Technology or industrial partnership',
-        subject: 'Partnership enquiry — Manifest website',
-        submit: 'Propose a partnership',
-        success: 'Your partnership enquiry has been sent to Manifest.',
+        label: 'Defence contractor enquiry',
+        subject: 'Defence contractor enquiry — Manifest website',
+        submit: 'Discuss contractor collaboration',
+        success: 'Your defence contractor enquiry has been sent to Manifest.',
         fields: `
           <div class="field">
             <label for="partnership-type">Partnership type</label>
@@ -1774,18 +1774,6 @@
               <option>Research partnership</option>
             </select>
             <p class="field-error">Please select a partnership type.</p>
-          </div>`
-      },
-      talent: {
-        label: 'Talent enquiry',
-        subject: 'Talent enquiry — Manifest website',
-        submit: 'Introduce yourself',
-        success: 'Your profile has been sent to Manifest.',
-        fields: `
-          <div class="field">
-            <label for="profile-url">LinkedIn or portfolio</label>
-            <input id="profile-url" name="profile_url" type="url" placeholder="https://" required>
-            <p class="field-error">Please enter a valid profile URL.</p>
           </div>`
       },
       other: {
@@ -1810,10 +1798,10 @@
       },
       fr: {
         investor: {
-          label: 'Demande d’investisseur',
-          subject: 'Demande d’investisseur — site de Manifest',
+          label: 'Demande d’investisseur institutionnel',
+          subject: 'Demande d’investisseur institutionnel — site de Manifest',
           submit: 'Recevoir les informations investisseurs',
-          success: 'Votre demande d’investisseur a bien été envoyée à Manifest.',
+          success: 'Votre demande d’investisseur institutionnel a bien été envoyée à Manifest.',
           fields: `
             <div class="field">
               <label for="investor-next-step">Que souhaitez-vous faire ensuite ?</label>
@@ -1827,29 +1815,27 @@
             </div>`
         },
         deployment: {
-          label: 'Évaluation ou déploiement de Pierre',
-          subject: 'Demande d’évaluation de Pierre — site de Manifest',
-          submit: 'Discuter d’un déploiement de Pierre',
-          success: 'Votre demande concernant Pierre a bien été envoyée à Manifest.',
+          label: 'Demande d’investisseur individuel',
+          subject: 'Demande d’investisseur individuel — site de Manifest',
+          submit: 'Recevoir les informations investisseurs',
+          success: 'Votre demande d’investisseur individuel a bien été envoyée à Manifest.',
           fields: `
             <div class="field">
-              <label for="use-case">Cas d’usage principal</label>
-              <select id="use-case" name="primary_use_case" required>
+              <label for="individual-investor-next-step">Que souhaitez-vous faire ensuite ?</label>
+              <select id="individual-investor-next-step" name="requested_next_step" required>
                 <option value="">Sélectionnez une option</option>
-                <option>Inspection</option>
-                <option>Maintenance, réparation et révision</option>
-                <option>Production</option>
-                <option>Recherche ou démonstration</option>
-                <option>Autre</option>
+                <option>Planifier un appel de présentation</option>
+                <option>Recevoir les actualités investisseurs</option>
+                <option>Exprimer un intérêt d’investissement</option>
               </select>
-              <p class="field-error">Veuillez sélectionner un cas d’usage principal.</p>
+              <p class="field-error">Veuillez sélectionner une prochaine étape.</p>
             </div>`
         },
         military: {
-          label: 'Collaboration militaire ou secteur public',
-          subject: 'Demande militaire ou secteur public — site de Manifest',
-          submit: 'Envoyer la demande institutionnelle',
-          success: 'Votre demande institutionnelle a bien été envoyée à Manifest.',
+          label: 'Demande militaire',
+          subject: 'Demande militaire — site de Manifest',
+          submit: 'Envoyer la demande militaire',
+          success: 'Votre demande militaire a bien été envoyée à Manifest.',
           fields: `
             <div class="field">
               <label for="collaboration-type">Type de collaboration</label>
@@ -1864,10 +1850,10 @@
             </div>`
         },
         partner: {
-          label: 'Partenariat technologique ou industriel',
-          subject: 'Demande de partenariat — site de Manifest',
-          submit: 'Proposer un partenariat',
-          success: 'Votre demande de partenariat a bien été envoyée à Manifest.',
+          label: 'Demande d’industriel de la défense',
+          subject: 'Demande d’industriel de la défense — site de Manifest',
+          submit: 'Discuter d’une collaboration',
+          success: 'Votre demande d’industriel de la défense a bien été envoyée à Manifest.',
           fields: `
             <div class="field">
               <label for="partnership-type">Type de partenariat</label>
@@ -1880,18 +1866,6 @@
                 <option>Partenariat de recherche</option>
               </select>
               <p class="field-error">Veuillez sélectionner un type de partenariat.</p>
-            </div>`
-        },
-        talent: {
-          label: 'Candidature',
-          subject: 'Candidature — site de Manifest',
-          submit: 'Présentez-vous',
-          success: 'Votre profil a bien été envoyé à Manifest.',
-          fields: `
-            <div class="field">
-              <label for="profile-url">LinkedIn ou portfolio</label>
-              <input id="profile-url" name="profile_url" type="url" placeholder="https://" required>
-              <p class="field-error">Veuillez saisir une URL de profil valide.</p>
             </div>`
         },
         other: {
@@ -2019,22 +1993,43 @@
       link.addEventListener('click', () => track('meet_manifest_article_click', { location: link.closest('section')?.id || 'header' }));
     });
     const pierreVideo = document.getElementById('pierre-video');
+    const pierreVideoFrame = pierreVideo.closest('.hero-video-frame');
     const pierreVideoSound = document.getElementById('pierre-video-sound');
     const pierreVideoSoundLabel = document.getElementById('pierre-video-sound-label');
+    const pierreVideoSoundCursor = document.getElementById('pierre-video-sound-cursor');
 
     pierreVideo.muted = true;
     pierreVideo.controls = false;
     pierreVideo.play().catch(() => {});
 
-    pierreVideoSound.addEventListener('click', async () => {
-      const shouldUnmute = pierreVideo.muted;
-      pierreVideo.muted = !shouldUnmute;
-      pierreVideoSound.classList.toggle('is-unmuted', shouldUnmute);
-      pierreVideoSound.setAttribute('aria-pressed', String(shouldUnmute));
-      pierreVideoSound.setAttribute('aria-label', shouldUnmute ? copy.soundOffAria : copy.soundOnAria);
-      pierreVideoSoundLabel.textContent = shouldUnmute ? copy.soundOffLabel : copy.soundOnLabel;
-      if (shouldUnmute && pierreVideo.paused) await pierreVideo.play().catch(() => {});
-      track('meet_pierre_video_sound', { enabled: shouldUnmute });
+    async function setPierreSound(enabled) {
+      pierreVideo.muted = !enabled;
+      pierreVideoFrame.classList.toggle('is-muted', !enabled);
+      pierreVideoSound.classList.toggle('is-unmuted', enabled);
+      pierreVideoSound.setAttribute('aria-pressed', String(enabled));
+      pierreVideoSound.setAttribute('aria-label', enabled ? copy.soundOffAria : copy.soundOnAria);
+      pierreVideoSoundLabel.textContent = enabled ? copy.soundOffLabel : copy.soundOnLabel;
+      if (enabled && pierreVideo.paused) await pierreVideo.play().catch(() => {});
+      if (enabled) pierreVideoSoundCursor.classList.remove('is-visible');
+      track('meet_pierre_video_sound', { enabled });
+    }
+
+    pierreVideoFrame.classList.add('is-muted');
+    pierreVideoFrame.addEventListener('pointermove', event => {
+      if (!pierreVideo.muted || event.pointerType === 'touch') return;
+      const frameRect = pierreVideoFrame.getBoundingClientRect();
+      pierreVideoSoundCursor.style.left = `${event.clientX - frameRect.left}px`;
+      pierreVideoSoundCursor.style.top = `${event.clientY - frameRect.top}px`;
+      pierreVideoSoundCursor.classList.add('is-visible');
+    });
+    pierreVideoFrame.addEventListener('pointerleave', () => pierreVideoSoundCursor.classList.remove('is-visible'));
+    pierreVideoFrame.addEventListener('click', event => {
+      if (event.target.closest('.video-sound-toggle') || !pierreVideo.muted) return;
+      setPierreSound(true);
+    });
+
+    pierreVideoSound.addEventListener('click', () => {
+      setPierreSound(pierreVideo.muted);
     });
 
     pierreVideo.addEventListener('play', () => track('meet_pierre_video_play'), { once: true });
