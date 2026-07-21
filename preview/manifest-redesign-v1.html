@@ -1419,8 +1419,8 @@
       </a>
       <div class="header-actions">
         <div class="lang-toggle" id="lang-toggle" role="group" aria-label="Language" data-i18n-aria-label="languageLabel">
-          <a class="lang-opt active" data-lang="en" href="?lang=en" lang="en" aria-current="true">EN</a>
-          <a class="lang-opt" data-lang="fr" href="?lang=fr" lang="fr">FR</a>
+          <a class="lang-opt active" data-lang="en" href="/en" lang="en" aria-current="true">EN</a>
+          <a class="lang-opt" data-lang="fr" href="/fr" lang="fr">FR</a>
         </div>
       </div>
     </div>
@@ -1584,7 +1584,8 @@
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 
     const pageParams = new URLSearchParams(window.location.search);
-    const currentLanguage = pageParams.get('lang') === 'fr' ? 'fr' : 'en';
+    const routeLanguage = window.location.pathname.split('/').filter(Boolean)[0];
+    const currentLanguage = routeLanguage === 'fr' || pageParams.get('lang') === 'fr' ? 'fr' : 'en';
     document.documentElement.lang = currentLanguage;
 
     const uiTranslations = {
@@ -1942,8 +1943,17 @@
 
     document.querySelectorAll('.lang-opt').forEach(link => {
       const isCurrent = link.dataset.lang === currentLanguage;
-      const languageUrl = new URL(window.location.href);
-      languageUrl.searchParams.set('lang', link.dataset.lang);
+      const languageUrl = window.location.protocol === 'file:'
+        ? new URL(window.location.href)
+        : new URL(`/${link.dataset.lang}`, window.location.origin);
+      if (window.location.protocol === 'file:') {
+        languageUrl.searchParams.set('lang', link.dataset.lang);
+      } else {
+        pageParams.forEach((value, key) => {
+          if (key !== 'lang') languageUrl.searchParams.append(key, value);
+        });
+      }
+      languageUrl.hash = window.location.hash;
       link.href = languageUrl.href;
       link.classList.toggle('active', isCurrent);
       if (isCurrent) link.setAttribute('aria-current', 'true');

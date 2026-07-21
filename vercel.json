@@ -1,7 +1,7 @@
 {
   "rewrites": [
-    { "source": "/en", "destination": "/pages/home.html" },
-    { "source": "/fr", "destination": "/pages/home.html" },
+    { "source": "/en", "destination": "/preview/manifest-redesign-v1.html" },
+    { "source": "/fr", "destination": "/preview/manifest-redesign-v1.html" },
     { "source": "/en/about", "destination": "/pages/about.html" },
     { "source": "/fr/a-propos", "destination": "/pages/about.html" },
     { "source": "/en/home", "destination": "/pages/about.html" },
@@ -14,7 +14,7 @@
     { "source": "/fr/confidentialite", "destination": "/pages/privacy-policy.html" }
   ],
   "redirects": [
-    { "source": "/", "destination": "/preview/manifest-redesign-v1.html", "permanent": false },
+    { "source": "/", "destination": "/en", "permanent": false },
     { "source": "/about", "destination": "/en/about", "permanent": false },
     { "source": "/contact", "destination": "/en#contact", "permanent": false },
     { "source": "/en/contact", "destination": "/en#contact", "permanent": false },
