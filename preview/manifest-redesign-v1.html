@@ -680,15 +680,6 @@
       flex: 0 0 auto;
       accent-color: var(--ink);
     }
-    .sensitivity-note {
-      margin: 2px 0 20px;
-      padding: 12px 14px;
-      border-left: 3px solid var(--ink);
-      color: var(--muted);
-      background: rgba(16,16,16,0.04);
-      font-size: 0.65rem;
-      line-height: 1.55;
-    }
     .captcha-field {
       margin: 18px 0;
       padding: 16px;
@@ -1020,66 +1011,58 @@
       transform: translateY(-4px);
       box-shadow: 0 38px 110px rgba(44,35,18,0.18);
     }
-    .article-booklet-stage {
+    .article-document-stage {
       min-width: 0;
       display: grid;
       place-items: center;
       padding: 12px 20px 22px;
-      perspective: 1000px;
     }
-    .article-booklet {
+    .article-document {
       position: relative;
-      width: min(300px, 100%);
-      aspect-ratio: 3 / 4;
-      transform: rotateY(-7deg) rotateZ(-1.2deg);
-      transform-origin: right center;
+      width: min(310px, 100%);
+      aspect-ratio: 0.72;
+      transform: rotate(-1deg);
       transition: transform 420ms cubic-bezier(.2,.7,.2,1);
     }
-    .article-preview-card:hover .article-booklet { transform: rotateY(-3deg) rotateZ(-0.5deg) translateY(-5px); }
-    .article-booklet::before {
+    .article-preview-card:hover .article-document { transform: rotate(-0.35deg) translateY(-5px); }
+    .article-document::before,
+    .article-document::after {
       content: '';
       position: absolute;
-      z-index: -1;
-      top: 4px;
-      bottom: 4px;
-      left: -14px;
-      width: 16px;
-      border-radius: 4px 0 0 4px;
-      background: linear-gradient(90deg, #050706, #242720 56%, #090b09);
-      box-shadow: -8px 8px 18px rgba(0,0,0,0.18);
+      inset: 0;
+      border: 1px solid rgba(16,16,16,0.15);
+      border-radius: 2px;
+      background: #f8f6f0;
+      box-shadow: 0 12px 24px rgba(30,24,12,0.08);
     }
-    .article-booklet::after {
-      content: '';
-      position: absolute;
-      z-index: -2;
-      right: -9px;
-      bottom: -9px;
-      left: 7px;
-      height: 12px;
-      border-radius: 0 0 4px 5px;
-      background: repeating-linear-gradient(180deg, #f5f0e5 0 2px, #d6cfc1 2px 3px);
-      box-shadow: 7px 8px 16px rgba(0,0,0,0.16);
-      transform: skewX(-34deg);
-      transform-origin: left top;
-    }
-    .article-booklet-cover {
+    .article-document::before { z-index: -1; transform: translate(9px, 9px) rotate(1.1deg); }
+    .article-document::after { z-index: -2; transform: translate(17px, 17px) rotate(1.8deg); }
+    .article-document-page {
       height: 100%;
       display: flex;
       flex-direction: column;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.14);
-      border-radius: 3px 10px 10px 3px;
-      color: var(--white);
-      background: #111510;
-      box-shadow: 14px 22px 42px rgba(0,0,0,0.28);
+      padding: 28px 24px 24px;
+      border: 1px solid rgba(16,16,16,0.18);
+      border-radius: 2px;
+      color: var(--ink);
+      background: #fff;
+      box-shadow: 0 24px 48px rgba(30,24,12,0.17);
     }
-    .article-booklet-cover img {
+    .article-document-title {
+      margin: 0 0 20px;
+      font-size: clamp(1.55rem, 2.5vw, 2rem);
+      font-weight: 600;
+      letter-spacing: -0.045em;
+      line-height: 1;
+    }
+    .article-document-page img {
       width: 100%;
-      height: 100%;
+      min-height: 0;
+      flex: 1;
       display: block;
       object-fit: cover;
-      object-position: center center;
-      filter: saturate(0.88) contrast(1.05);
+      object-position: 43% center;
+      filter: saturate(0.9) contrast(1.04);
     }
     .article-preview-body {
       display: flex;
@@ -1159,11 +1142,11 @@
     }
     .audience-select-wrap label {
       display: block;
-      margin-bottom: 12px;
-      color: var(--muted);
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+      color: var(--ink);
+      font-size: 1.08rem;
+      font-weight: 650;
+      letter-spacing: -0.025em;
     }
     .audience-native-select {
       position: absolute !important;
@@ -1240,8 +1223,22 @@
     .form-details select { min-height: 56px; padding-inline: 16px; }
     .form-details textarea { min-height: 116px; padding: 16px; }
     .consent-row { margin: 6px 0 22px; }
-    .consent-label { max-width: 620px; }
-    .sensitivity-note[hidden] { display: none; }
+    .form-details .consent-label {
+      max-width: 620px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .form-details .consent-label input {
+      width: 18px;
+      height: 18px;
+      min-height: 18px;
+      padding: 0;
+      margin: 2px 0 0;
+      flex: 0 0 18px;
+      background: var(--white);
+      box-shadow: none;
+    }
     .submit-button {
       width: auto;
       min-width: 220px;
@@ -1350,7 +1347,7 @@
         gap: 40px;
         padding: 44px;
       }
-      .article-booklet { width: min(270px, 100%); }
+      .article-document { width: min(280px, 100%); }
       .article-preview-body { align-items: center; padding: 0; text-align: center; }
       .article-preview-copy h2,
       .article-summary { margin-inline: auto; }
@@ -1387,8 +1384,10 @@
       .article-preview-section > .container { width: calc(100% - 32px); }
       .article-preview-card { gap: 34px; padding: 34px 22px 30px; border-radius: 18px; }
       .article-preview-card::before { inset: 10px; border-radius: 13px; }
-      .article-booklet-stage { padding: 8px 20px 18px; }
-      .article-booklet { width: min(235px, 100%); }
+      .article-document-stage { padding: 8px 20px 18px; }
+      .article-document { width: min(240px, 100%); }
+      .article-document-page { padding: 22px 18px 18px; }
+      .article-document-title { margin-bottom: 16px; }
       .article-preview-body { gap: 28px; padding: 0; }
       .article-preview-copy h2 { font-size: clamp(1.9rem, 9vw, 2.8rem); }
       .article-preview-meta { align-items: flex-start; flex-direction: column; }
@@ -1453,9 +1452,10 @@
     <section class="article-preview-section" id="article" aria-label="LinkedIn article" data-i18n-aria-label="articleSectionLabel">
       <div class="container">
         <a class="article-preview-card article-link" href="https://www.linkedin.com/pulse/meet-manifest-humanoids-for-european-defense-evoie/" target="_blank" rel="noopener noreferrer">
-          <div class="article-booklet-stage" aria-hidden="true">
-            <div class="article-booklet">
-              <div class="article-booklet-cover">
+          <div class="article-document-stage" aria-hidden="true">
+            <div class="article-document">
+              <div class="article-document-page">
+                <strong class="article-document-title" data-i18n="articleDocumentTitle">Meet Manifest</strong>
                 <img src="../assets/campaign/meet-manifest-inspecting.png" width="1672" height="941" alt="" decoding="async">
               </div>
             </div>
@@ -1541,8 +1541,6 @@
                 <textarea id="message" name="message" placeholder="Add context that will help us prepare a useful response." data-i18n-placeholder="messagePlaceholder"></textarea>
               </div>
 
-              <p class="sensitivity-note" id="sensitivity-note" hidden><strong data-i18n="securityLabel">Security note:</strong> <span data-i18n="securityCopy">Do not submit classified, export-controlled, or operationally sensitive information through this form.</span></p>
-
               <div class="consent-row" id="consent-row">
                 <label class="consent-label" for="consent">
                   <input id="consent" name="consent" type="checkbox" value="yes" required>
@@ -1605,6 +1603,7 @@
         soundOffAria: 'Turn sound off',
         soundCursorLabel: 'Sound',
         articleSectionLabel: 'LinkedIn article',
+        articleDocumentTitle: 'Meet Manifest',
         articleTitle: 'Meet Manifest Article',
         articleSummary: 'A detailed view into our strategic decision-making, vision, and plan to achieve our vision.',
         articleRead: 'Read the full article on LinkedIn',
@@ -1632,8 +1631,6 @@
         messageLabel: 'Anything else?',
         optionalLabel: 'Optional',
         messagePlaceholder: 'Add context that will help us prepare a useful response.',
-        securityLabel: 'Security note:',
-        securityCopy: 'Do not submit classified, export-controlled, or operationally sensitive information through this form.',
         consentCopy: 'I agree that Manifest may use this information to respond to my request. See the',
         privacyPolicy: 'Privacy Policy',
         consentError: 'Please confirm that we may respond to your request.',
@@ -1659,6 +1656,7 @@
         soundOffAria: 'Couper le son de la vidéo',
         soundCursorLabel: 'Son',
         articleSectionLabel: 'Article LinkedIn',
+        articleDocumentTitle: 'Meet Manifest',
         articleTitle: 'Article Meet Manifest',
         articleSummary: 'Une vue détaillée de nos décisions stratégiques, de notre vision et du plan prévu pour la concrétiser.',
         articleRead: 'Lire l’article complet sur LinkedIn',
@@ -1686,8 +1684,6 @@
         messageLabel: 'Autre chose ?',
         optionalLabel: 'Facultatif',
         messagePlaceholder: 'Ajoutez tout contexte qui nous aidera à préparer une réponse utile.',
-        securityLabel: 'Note de sécurité :',
-        securityCopy: 'Ne transmettez aucune information classifiée, soumise au contrôle des exportations ou sensible sur le plan opérationnel via ce formulaire.',
         consentCopy: 'J’accepte que Manifest utilise ces informations pour répondre à ma demande. Consultez la',
         privacyPolicy: 'Politique de confidentialité',
         consentError: 'Veuillez confirmer que nous pouvons répondre à votre demande.',
@@ -1907,7 +1903,6 @@
     const submitButton = document.getElementById('submit-button');
     const submitLabel = document.getElementById('submit-label');
     const successMessage = document.getElementById('success-message');
-    const sensitivityNote = document.getElementById('sensitivity-note');
     let selectedAudience = '';
 
     function applyTranslations() {
@@ -2063,7 +2058,6 @@
       branchFields.innerHTML = config.fields;
       submitLabel.textContent = config.submit;
       successMessage.textContent = config.success;
-      sensitivityNote.hidden = type !== 'military';
       audienceError.classList.remove('visible');
       formDetails.hidden = false;
       captchaField.hidden = true;
@@ -2080,7 +2074,6 @@
         audienceOptions.forEach(option => option.setAttribute('aria-pressed', 'false'));
         formDetails.hidden = true;
         captchaField.hidden = true;
-        sensitivityNote.hidden = true;
         submitLabel.textContent = copy.defaultSubmit;
         return;
       }
