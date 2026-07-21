@@ -983,72 +983,109 @@
     #article,
     #contact { scroll-margin-top: 80px; }
 
-    .article-preview-section { padding: clamp(84px, 8.2vw, 124px) 0; }
+    .article-preview-section {
+      padding: clamp(68px, 7vw, 96px) 0;
+      background: var(--paper);
+    }
+    .article-preview-section > .container { width: min(1040px, calc(100% - 64px)); }
     .article-preview-card {
-      overflow: hidden;
-      min-height: clamp(560px, 52vw, 650px);
       display: grid;
-      grid-template-columns: minmax(0, 1.12fr) minmax(340px, 0.88fr);
-      border: 1px solid var(--line);
-      border-radius: 24px;
+      grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr);
+      overflow: hidden;
+      border: 1px solid rgba(16,16,16,0.11);
+      border-radius: 22px;
       color: var(--ink);
-      background: rgba(255,255,255,0.78);
+      background: var(--white);
+      box-shadow: 0 20px 64px rgba(25,20,10,0.08);
       text-decoration: none;
-      box-shadow: 0 22px 70px rgba(25, 20, 10, 0.08);
-      backdrop-filter: blur(10px);
-      transition: transform 180ms ease, box-shadow 180ms ease;
+      transition: transform 220ms ease, box-shadow 220ms ease;
     }
     .article-preview-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 28px 80px rgba(25, 20, 10, 0.15);
+      box-shadow: 0 32px 96px rgba(25,20,10,0.14);
     }
-    .article-preview-copy {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-      padding: clamp(48px, 5.4vw, 76px);
+    .article-preview-image {
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      background: #d5d2ca;
     }
-    .article-source {
-      margin-bottom: 28px;
-      color: #716c63;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-    .article-preview-card h2 {
-      max-width: 720px;
-      margin: 0;
-      font-size: clamp(2.2rem, 4.6vw, 4.8rem);
-      font-weight: 500;
-      letter-spacing: -0.06em;
-      line-height: 1.02;
-    }
-    .article-preview-card p {
-      max-width: 620px;
-      margin: 26px 0 0;
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.65;
-    }
-    .article-read {
-      display: inline-flex;
-      gap: 8px;
-      margin-top: 38px;
-      padding-bottom: 5px;
-      border-bottom: 1px solid currentColor;
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-    .article-preview-card > img {
+    .article-preview-image img {
       width: 100%;
       height: 100%;
       display: block;
-      object-fit: contain;
-      background: #d9d4ca;
-      filter: saturate(0.84) contrast(1.03);
+      object-fit: cover;
+      transition: transform 600ms cubic-bezier(.2,.7,.2,1);
     }
+    .article-preview-card:hover .article-preview-image img { transform: scale(1.012); }
+    .article-preview-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 24px;
+      padding: clamp(28px, 3vw, 34px);
+    }
+    .article-source {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      color: #0a66c2;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .article-source-mark {
+      width: 28px;
+      height: 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      color: var(--white);
+      background: #0a66c2;
+      font-family: Arial, sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+    }
+    .article-source-brand { color: #0a66c2; }
+    .article-preview-copy h2 {
+      margin: 0;
+      font-size: clamp(1.9rem, 2.55vw, 2.55rem);
+      font-weight: 500;
+      letter-spacing: -0.045em;
+      line-height: 1.05;
+    }
+    .article-summary {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+    .article-preview-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .article-publisher { color: var(--muted); font-size: 0.8rem; }
+    .article-preview-cta {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 15px;
+      border-radius: 999px;
+      color: var(--white);
+      background: #0a66c2;
+      font-size: 0.78rem;
+      font-weight: 700;
+      white-space: nowrap;
+      box-shadow: 0 8px 20px rgba(10,102,194,0.18);
+      transition: transform 180ms ease, background 180ms ease;
+    }
+    .article-preview-card:hover .article-preview-cta { background: #004182; transform: translateY(-1px); }
 
     .engagement-section {
       padding: clamp(92px, 9vw, 132px) 0;
@@ -1261,10 +1298,13 @@
     .minimal-footer a:hover { color: var(--white); }
     .audience-card strong { margin: 0; }
     .audience-dropdown-trigger:focus-visible,
-    .lang-opt:focus-visible,
-    .article-preview-card:focus-visible {
+    .lang-opt:focus-visible {
       outline: 3px solid rgba(255, 255, 255, 0.55);
       outline-offset: 3px;
+    }
+    .article-preview-card:focus-visible {
+      outline: 3px solid rgba(16,16,16,0.24);
+      outline-offset: 4px;
     }
 
     @media (max-width: 1140px) {
@@ -1336,13 +1376,7 @@
         aspect-ratio: auto;
       }
       .hero-video-frame h1 { font-size: clamp(3.2rem, 10vw, 5.8rem); }
-      .article-preview-card { min-height: 0; grid-template-columns: 1fr; }
-      .article-preview-card > img {
-        height: auto;
-        aspect-ratio: 3 / 4;
-        object-fit: cover;
-        grid-row: 1;
-      }
+      .article-preview-card { grid-template-columns: 1fr; }
       .engagement-card { padding: 0; border-radius: 0; }
       .engagement-layout { gap: 42px; }
       .engagement-intro { position: static; }
@@ -1383,11 +1417,13 @@
       .video-start-icon svg { width: 22px; height: 22px; }
       .video-start-copy { left: 18px; right: 18px; bottom: 16px; }
       .article-preview-section { padding: 64px 0; }
-      .article-preview-card { min-height: 0; border-radius: 20px; }
-      .article-preview-copy { padding: 34px 24px; }
-      .article-source { margin-bottom: 20px; }
-      .article-preview-card p { margin-top: 18px; }
-      .article-read { margin-top: 28px; }
+      .article-preview-section > .container { width: calc(100% - 32px); }
+      .article-preview-card { border-radius: 18px; }
+      .article-preview-body { gap: 28px; padding: 26px 24px; }
+      .article-source { margin-bottom: 16px; }
+      .article-preview-copy h2 { font-size: clamp(1.9rem, 9vw, 2.8rem); }
+      .article-preview-meta { align-items: flex-start; flex-direction: column; }
+      .article-preview-cta { width: 100%; }
       .engagement-section { padding: 68px 0; }
       .engagement-intro { margin-bottom: 0; }
       .captcha-field { padding: 9px; overflow: hidden; }
@@ -1443,16 +1479,26 @@
       </div>
     </section>
 
-    <section class="article-preview-section" id="article" aria-labelledby="article-title">
+    <section class="article-preview-section" id="article" aria-label="LinkedIn article" data-i18n-aria-label="articleSectionLabel">
       <div class="container">
         <a class="article-preview-card article-link" href="https://www.linkedin.com/pulse/meet-manifest-humanoids-for-european-defense-evoie/" target="_blank" rel="noopener noreferrer">
-          <div class="article-preview-copy">
-            <span class="article-source" data-i18n="articleSource">LinkedIn article</span>
-            <h2 id="article-title" data-i18n="articleTitle">Meet Manifest: Humanoids for European Defense</h2>
-            <p data-i18n="articleSummary">Manifest is building humanoids for European defence, starting with inspection.</p>
-            <span class="article-read"><span data-i18n="articleRead">Read the full article</span> <span aria-hidden="true">↗</span></span>
+          <div class="article-preview-image">
+            <img src="../assets/campaign/meet-manifest-linkedin-cover.png" width="1279" height="720" alt="Manifest humanoid Pierre beside the Manifest logo" data-i18n-alt="articleImageAlt" decoding="async">
           </div>
-          <img src="../assets/campaign/pierre-at-table.png" alt="Pierre seated at a table" data-i18n-alt="articleImageAlt">
+          <div class="article-preview-body">
+            <div class="article-preview-copy">
+              <span class="article-source">
+                <span class="article-source-mark" aria-hidden="true">in</span>
+                <span class="article-source-brand" data-i18n="articleSource">LinkedIn article</span>
+              </span>
+              <h2 data-i18n="articleTitle">Meet Manifest: Humanoids for European Defense</h2>
+              <p class="article-summary" data-i18n="articleSummary">Manifest’s mission, product strategy, and plans for building humanoids for European defence.</p>
+            </div>
+            <div class="article-preview-meta">
+              <span class="article-publisher" data-i18n="articlePublisher">Published by Manifest</span>
+              <span class="article-preview-cta"><span data-i18n="articleRead">Read the full article on LinkedIn</span> <span aria-hidden="true">↗</span></span>
+            </div>
+          </div>
         </a>
       </div>
     </section>
@@ -1460,7 +1506,7 @@
     <section class="engagement-section" id="contact">
       <div class="container engagement-layout">
         <div class="engagement-intro">
-          <h2 data-i18n="contactTitle">Contact Manifest.</h2>
+          <h2 data-i18n="contactTitle">Manifest your interest.</h2>
         </div>
 
         <div class="engagement-card" id="engagement-card">
@@ -1592,12 +1638,14 @@
         skipLink: 'Skip to content',
         heroTitle: 'Meet Pierre.',
         videoPlayLabel: 'Play Meet Pierre film',
+        articleSectionLabel: 'LinkedIn article',
         articleSource: 'LinkedIn article',
         articleTitle: 'Meet Manifest: Humanoids for European Defense',
-        articleSummary: 'Manifest is building humanoids for European defence, starting with inspection.',
-        articleRead: 'Read the full article',
-        articleImageAlt: 'Pierre seated at a table',
-        contactTitle: 'Contact Manifest.',
+        articleSummary: 'Manifest’s mission, product strategy, and plans for building humanoids for European defence.',
+        articlePublisher: 'Published by Manifest',
+        articleRead: 'Read the full article on LinkedIn',
+        articleImageAlt: 'Manifest humanoid Pierre beside the Manifest logo',
+        contactTitle: 'Manifest your interest.',
         audienceLabel: 'Reason for contact',
         audiencePlaceholder: 'Choose one',
         audienceError: 'Please choose the path that best matches your interest.',
@@ -1644,12 +1692,14 @@
         skipLink: 'Aller au contenu',
         heroTitle: 'Découvrez Pierre.',
         videoPlayLabel: 'Lire le film de présentation de Pierre',
+        articleSectionLabel: 'Article LinkedIn',
         articleSource: 'Article LinkedIn',
         articleTitle: 'Découvrez Manifest : des humanoïdes pour la défense européenne',
-        articleSummary: 'Manifest développe des humanoïdes pour la défense européenne, en commençant par l’inspection.',
-        articleRead: 'Lire l’article complet',
-        articleImageAlt: 'Pierre assis à une table',
-        contactTitle: 'Contacter Manifest.',
+        articleSummary: 'La mission, la stratégie produit et les projets de Manifest pour développer des humanoïdes pour la défense européenne.',
+        articlePublisher: 'Publié par Manifest',
+        articleRead: 'Lire l’article complet sur LinkedIn',
+        articleImageAlt: 'L’humanoïde Pierre à côté du logo Manifest',
+        contactTitle: 'Manifestez votre intérêt.',
         audienceLabel: 'Motif du contact',
         audiencePlaceholder: 'Sélectionnez une option',
         audienceError: 'Veuillez sélectionner l’option qui correspond le mieux à votre demande.',
@@ -1948,7 +1998,6 @@
         const value = copy[element.dataset.i18nAlt];
         if (typeof value === 'string') element.alt = value;
       });
-
       audienceSelect.options[0].textContent = copy.audiencePlaceholder;
       audienceOptions.forEach(option => {
         const translatedLabel = copy.audiences[option.dataset.value];
