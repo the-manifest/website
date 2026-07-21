@@ -10,18 +10,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<script>
-  // Redirect returning visitors instantly — runs before the body paints so they never see the picker flash
-  (function() {
-    var stored = localStorage.getItem('manifest-lang');
-    if (stored === 'en' || stored === 'fr') {
-      var target = window.location.protocol === 'file:'
-        ? 'pages/home.html?lang=' + stored
-        : '/' + stored;
-      window.location.replace(target);
-    }
-  })();
-</script>
 <style>
   :root {
     --bg-warm: #ffffff;
