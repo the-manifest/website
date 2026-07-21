@@ -14,6 +14,7 @@
     { "source": "/fr/confidentialite", "destination": "/pages/privacy-policy.html" }
   ],
   "redirects": [
+    { "source": "/", "destination": "/preview/manifest-redesign-v1.html", "permanent": false },
     { "source": "/about", "destination": "/en/about", "permanent": false },
     { "source": "/contact", "destination": "/en#contact", "permanent": false },
     { "source": "/en/contact", "destination": "/en#contact", "permanent": false },
