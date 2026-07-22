@@ -620,9 +620,9 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 14px;
     }
+    .form-row.single-field { grid-template-columns: 1fr; }
     .field { margin-bottom: 16px; }
-    .field label,
-    .consent-label {
+    .field label {
       display: block;
       margin-bottom: 8px;
       color: var(--ink-soft);
@@ -662,24 +662,7 @@
       color: var(--danger);
       font-size: 0.64rem;
     }
-    .is-invalid + .field-error,
-    .consent-row.invalid .field-error { display: block; }
-    .consent-row { margin: 3px 0 18px; }
-    .consent-label {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      line-height: 1.55;
-      cursor: pointer;
-    }
-    .consent-label input {
-      width: 16px;
-      min-height: 16px;
-      height: 16px;
-      margin: 2px 0 0;
-      flex: 0 0 auto;
-      accent-color: var(--ink);
-    }
+    .is-invalid + .field-error { display: block; }
     .captcha-field {
       margin: 18px 0;
       padding: 16px;
@@ -1220,23 +1203,6 @@
     .form-details input,
     .form-details select { min-height: 56px; padding-inline: 16px; }
     .form-details textarea { min-height: 116px; padding: 16px; }
-    .consent-row { margin: 6px 0 22px; }
-    .form-details .consent-label {
-      max-width: 620px;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-    }
-    .form-details .consent-label input {
-      width: 18px;
-      height: 18px;
-      min-height: 18px;
-      padding: 0;
-      margin: 2px 0 0;
-      flex: 0 0 18px;
-      background: var(--white);
-      box-shadow: none;
-    }
     .submit-button {
       width: auto;
       min-width: 220px;
@@ -1519,8 +1485,8 @@
                   <p class="field-error" data-i18n="nameError">Please enter your name.</p>
                 </div>
                 <div class="field">
-                  <label for="email" data-i18n="emailLabel">Work email</label>
-                  <input id="email" name="email" type="email" autocomplete="email" placeholder="you@company.com" data-i18n-placeholder="emailPlaceholder" required>
+                  <label for="email" data-i18n="emailLabel">Email</label>
+                  <input id="email" name="email" type="email" autocomplete="email" placeholder="you@email.com" data-i18n-placeholder="emailPlaceholder" required>
                   <p class="field-error" data-i18n="emailError">Please enter a valid email address.</p>
                 </div>
               </div>
@@ -1539,20 +1505,12 @@
                 <textarea id="message" name="message" placeholder="Add context that will help us prepare a useful response." data-i18n-placeholder="messagePlaceholder"></textarea>
               </div>
 
-              <div class="consent-row" id="consent-row">
-                <label class="consent-label" for="consent">
-                  <input id="consent" name="consent" type="checkbox" value="yes" required>
-                  <span><span data-i18n="consentCopy">I agree that Manifest may use this information to respond to my request. See the</span> <a href="../pages/privacy-policy.html" data-i18n="privacyPolicy">Privacy Policy</a>.</span>
-                </label>
-                <p class="field-error" data-i18n="consentError">Please confirm that we may respond to your request.</p>
-              </div>
-
               <div class="captcha-field" id="captcha-field" hidden>
                 <div class="h-captcha" data-captcha="true" data-callback="onManifestCaptchaSuccess" data-expired-callback="onManifestCaptchaExpired"></div>
                 <p class="field-error" data-i18n="captchaError">Please complete the captcha.</p>
               </div>
 
-              <button class="button submit-button" id="submit-button" type="submit"><span id="submit-label">Send enquiry</span> <span aria-hidden="true">→</span></button>
+              <button class="button submit-button" id="submit-button" type="submit"><span id="submit-label">Submit</span> <span aria-hidden="true">→</span></button>
             </div>
           </form>
 
@@ -1621,8 +1579,8 @@
         nameLabel: 'Name',
         namePlaceholder: 'Your name',
         nameError: 'Please enter your name.',
-        emailLabel: 'Work email',
-        emailPlaceholder: 'you@company.com',
+        emailLabel: 'Email',
+        emailPlaceholder: 'you@email.com',
         emailError: 'Please enter a valid email address.',
         organizationLabel: 'Organization',
         organizationPlaceholder: 'Company, fund, or institution',
@@ -1630,12 +1588,9 @@
         messageLabel: 'Anything else?',
         optionalLabel: 'Optional',
         messagePlaceholder: 'Add context that will help us prepare a useful response.',
-        consentCopy: 'I agree that Manifest may use this information to respond to my request. See the',
-        privacyPolicy: 'Privacy Policy',
-        consentError: 'Please confirm that we may respond to your request.',
         captchaError: 'Please complete the captcha.',
         defaultSubject: 'Manifest website enquiry',
-        defaultSubmit: 'Send enquiry',
+        defaultSubmit: 'Submit',
         thankYou: 'Thank you.',
         defaultSuccess: 'Your message has been sent to Manifest.',
         legalLinksLabel: 'Legal links',
@@ -1674,8 +1629,8 @@
         nameLabel: 'Nom',
         namePlaceholder: 'Votre nom',
         nameError: 'Veuillez saisir votre nom.',
-        emailLabel: 'Email professionnel',
-        emailPlaceholder: 'vous@entreprise.com',
+        emailLabel: 'Email',
+        emailPlaceholder: 'vous@email.com',
         emailError: 'Veuillez saisir une adresse email valide.',
         organizationLabel: 'Organisation',
         organizationPlaceholder: 'Entreprise, fonds ou institution',
@@ -1683,12 +1638,9 @@
         messageLabel: 'Autre chose ?',
         optionalLabel: 'Facultatif',
         messagePlaceholder: 'Ajoutez tout contexte qui nous aidera à préparer une réponse utile.',
-        consentCopy: 'J’accepte que Manifest utilise ces informations pour répondre à ma demande. Consultez la',
-        privacyPolicy: 'Politique de confidentialité',
-        consentError: 'Veuillez confirmer que nous pouvons répondre à votre demande.',
         captchaError: 'Veuillez compléter le captcha.',
         defaultSubject: 'Demande depuis le site de Manifest',
-        defaultSubmit: 'Envoyer la demande',
+        defaultSubmit: 'Envoyer',
         thankYou: 'Merci.',
         defaultSuccess: 'Votre message a bien été envoyé à Manifest.',
         legalLinksLabel: 'Liens juridiques',
@@ -1703,7 +1655,7 @@
       investor: {
         label: 'Institutional investor enquiry',
         subject: 'Institutional investor enquiry — Manifest website',
-        submit: 'Request institutional investor information',
+        submit: 'Submit',
         success: 'Your institutional investor enquiry has been sent to Manifest.',
         fields: `
           <div class="field">
@@ -1720,7 +1672,7 @@
       deployment: {
         label: 'Individual investor enquiry',
         subject: 'Individual investor enquiry — Manifest website',
-        submit: 'Request investor information',
+        submit: 'Submit',
         success: 'Your individual investor enquiry has been sent to Manifest.',
         fields: `
           <div class="field">
@@ -1737,7 +1689,7 @@
       military: {
         label: 'Military enquiry',
         subject: 'Military enquiry — Manifest website',
-        submit: 'Send military enquiry',
+        submit: 'Submit',
         success: 'Your military enquiry has been sent to Manifest.',
         fields: `
           <div class="field">
@@ -1755,7 +1707,7 @@
       partner: {
         label: 'Defence contractor enquiry',
         subject: 'Defence contractor enquiry — Manifest website',
-        submit: 'Discuss contractor collaboration',
+        submit: 'Submit',
         success: 'Your defence contractor enquiry has been sent to Manifest.',
         fields: `
           <div class="field">
@@ -1774,28 +1726,16 @@
       other: {
         label: 'Press, research, or general enquiry',
         subject: 'General enquiry — Manifest website',
-        submit: 'Send enquiry',
+        submit: 'Submit',
         success: 'Your enquiry has been sent to Manifest.',
-        fields: `
-          <div class="field">
-            <label for="enquiry-type">Enquiry type</label>
-            <select id="enquiry-type" name="enquiry_type" required>
-              <option value="">Select one</option>
-              <option>Press or media</option>
-              <option>Academic research</option>
-              <option>Event or speaking request</option>
-              <option>Community</option>
-              <option>Other</option>
-            </select>
-            <p class="field-error">Please select an enquiry type.</p>
-          </div>`
+        fields: ''
       }
       },
       fr: {
         investor: {
           label: 'Demande d’investisseur institutionnel',
           subject: 'Demande d’investisseur institutionnel — site de Manifest',
-          submit: 'Recevoir les informations investisseurs',
+          submit: 'Envoyer',
           success: 'Votre demande d’investisseur institutionnel a bien été envoyée à Manifest.',
           fields: `
             <div class="field">
@@ -1812,7 +1752,7 @@
         deployment: {
           label: 'Demande d’investisseur individuel',
           subject: 'Demande d’investisseur individuel — site de Manifest',
-          submit: 'Recevoir les informations investisseurs',
+          submit: 'Envoyer',
           success: 'Votre demande d’investisseur individuel a bien été envoyée à Manifest.',
           fields: `
             <div class="field">
@@ -1829,7 +1769,7 @@
         military: {
           label: 'Demande militaire',
           subject: 'Demande militaire — site de Manifest',
-          submit: 'Envoyer la demande militaire',
+          submit: 'Envoyer',
           success: 'Votre demande militaire a bien été envoyée à Manifest.',
           fields: `
             <div class="field">
@@ -1847,7 +1787,7 @@
         partner: {
           label: 'Demande d’industriel de la défense',
           subject: 'Demande d’industriel de la défense — site de Manifest',
-          submit: 'Discuter d’une collaboration',
+          submit: 'Envoyer',
           success: 'Votre demande d’industriel de la défense a bien été envoyée à Manifest.',
           fields: `
             <div class="field">
@@ -1866,21 +1806,9 @@
         other: {
           label: 'Presse, recherche ou demande générale',
           subject: 'Demande générale — site de Manifest',
-          submit: 'Envoyer la demande',
+          submit: 'Envoyer',
           success: 'Votre demande a bien été envoyée à Manifest.',
-          fields: `
-            <div class="field">
-              <label for="enquiry-type">Type de demande</label>
-              <select id="enquiry-type" name="enquiry_type" required>
-                <option value="">Sélectionnez une option</option>
-                <option>Presse ou médias</option>
-                <option>Recherche universitaire</option>
-                <option>Événement ou prise de parole</option>
-                <option>Communauté</option>
-                <option>Autre</option>
-              </select>
-              <p class="field-error">Veuillez sélectionner un type de demande.</p>
-            </div>`
+          fields: ''
         }
       }
     };
@@ -1897,7 +1825,6 @@
     const formDetails = document.getElementById('form-details');
     const branchFields = document.getElementById('branch-fields');
     const captchaField = document.getElementById('captcha-field');
-    const consentRow = document.getElementById('consent-row');
     const errorBanner = document.getElementById('form-error-banner');
     const submitButton = document.getElementById('submit-button');
     const submitLabel = document.getElementById('submit-label');
@@ -2040,7 +1967,6 @@
     function clearInvalidState(input) {
       input.classList.remove('is-invalid');
       input.removeAttribute('aria-invalid');
-      if (input.id === 'consent') consentRow.classList.remove('invalid');
       errorBanner.classList.remove('visible');
     }
 
@@ -2064,6 +1990,7 @@
       audienceChoices.removeAttribute('aria-invalid');
       form.querySelector('input[name="subject"]').value = config.subject;
       branchFields.innerHTML = config.fields;
+      branchFields.closest('.form-row').classList.toggle('single-field', !config.fields.trim());
       submitLabel.textContent = config.submit;
       successMessage.textContent = config.success;
       audienceError.classList.remove('visible');
@@ -2094,9 +2021,8 @@
 
     function requiredFieldsComplete() {
       if (!selectedAudience) return false;
-      const required = Array.from(formDetails.querySelectorAll('[required]')).filter(input => input.id !== 'consent');
-      const inputsValid = required.every(input => input.value.trim() && input.checkValidity());
-      return inputsValid && document.getElementById('consent').checked;
+      const required = Array.from(formDetails.querySelectorAll('[required]'));
+      return required.every(input => input.value.trim() && input.checkValidity());
     }
 
     function syncCaptchaVisibility() {
@@ -2108,15 +2034,11 @@
     function validateInputs() {
       let valid = true;
       formDetails.querySelectorAll('[required]').forEach(input => {
-        const fieldValid = input.type === 'checkbox' ? input.checked : input.checkValidity() && input.value.trim() !== '';
+        const fieldValid = input.checkValidity() && input.value.trim() !== '';
         if (!fieldValid) {
           valid = false;
-          if (input.type === 'checkbox') {
-            consentRow.classList.add('invalid');
-          } else {
-            input.classList.add('is-invalid');
-            input.setAttribute('aria-invalid', 'true');
-          }
+          input.classList.add('is-invalid');
+          input.setAttribute('aria-invalid', 'true');
         }
       });
       return valid;
