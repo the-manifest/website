@@ -1187,7 +1187,6 @@
       border-radius: 18px;
       box-shadow: 0 0 0 2px rgba(142,45,45,0.26);
     }
-    #branch-fields { display: contents; }
     .form-details {
       margin-top: 32px;
       padding-top: 32px;
@@ -1491,13 +1490,12 @@
                 </div>
               </div>
 
-              <div class="form-row">
+              <div class="form-row single-field">
                 <div class="field">
                   <label for="organization" data-i18n="organizationLabel">Organization</label>
                   <input id="organization" name="organization" type="text" autocomplete="organization" placeholder="Company, fund, or institution" data-i18n-placeholder="organizationPlaceholder" required>
                   <p class="field-error" data-i18n="organizationError">Please enter your organization.</p>
                 </div>
-                <div id="branch-fields"></div>
               </div>
 
               <div class="field">
@@ -1656,79 +1654,31 @@
         label: 'Institutional investor enquiry',
         subject: 'Institutional investor enquiry — Manifest website',
         submit: 'Submit',
-        success: 'Your institutional investor enquiry has been sent to Manifest.',
-        fields: `
-          <div class="field">
-            <label for="investor-next-step">What would you like next?</label>
-            <select id="investor-next-step" name="requested_next_step" required>
-              <option value="">Select one</option>
-              <option>Request data room access</option>
-              <option>Schedule an introductory call</option>
-              <option>Receive investor updates</option>
-            </select>
-            <p class="field-error">Please choose a next step.</p>
-          </div>`
+        success: 'Your institutional investor enquiry has been sent to Manifest.'
       },
       deployment: {
         label: 'Individual investor enquiry',
         subject: 'Individual investor enquiry — Manifest website',
         submit: 'Submit',
-        success: 'Your individual investor enquiry has been sent to Manifest.',
-        fields: `
-          <div class="field">
-            <label for="individual-investor-next-step">What would you like next?</label>
-            <select id="individual-investor-next-step" name="requested_next_step" required>
-              <option value="">Select one</option>
-              <option>Schedule an introductory call</option>
-              <option>Receive investor updates</option>
-              <option>Express investment interest</option>
-            </select>
-            <p class="field-error">Please choose a next step.</p>
-          </div>`
+        success: 'Your individual investor enquiry has been sent to Manifest.'
       },
       military: {
         label: 'Military enquiry',
         subject: 'Military enquiry — Manifest website',
         submit: 'Submit',
-        success: 'Your military enquiry has been sent to Manifest.',
-        fields: `
-          <div class="field">
-            <label for="collaboration-type">Collaboration interest</label>
-            <select id="collaboration-type" name="collaboration_interest" required>
-              <option value="">Select one</option>
-              <option>R&amp;D partnership</option>
-              <option>Operational experimentation</option>
-              <option>Private demonstration</option>
-              <option>Procurement or policy discussion</option>
-            </select>
-            <p class="field-error">Please select an area of interest.</p>
-          </div>`
+        success: 'Your military enquiry has been sent to Manifest.'
       },
       partner: {
         label: 'Defence contractor enquiry',
         subject: 'Defence contractor enquiry — Manifest website',
         submit: 'Submit',
-        success: 'Your defence contractor enquiry has been sent to Manifest.',
-        fields: `
-          <div class="field">
-            <label for="partnership-type">Partnership type</label>
-            <select id="partnership-type" name="partnership_type" required>
-              <option value="">Select one</option>
-              <option>Technology or components</option>
-              <option>Manufacturing or supply chain</option>
-              <option>Services or deployment support</option>
-              <option>Distribution or integration</option>
-              <option>Research partnership</option>
-            </select>
-            <p class="field-error">Please select a partnership type.</p>
-          </div>`
+        success: 'Your defence contractor enquiry has been sent to Manifest.'
       },
       other: {
         label: 'Press, research, or general enquiry',
         subject: 'General enquiry — Manifest website',
         submit: 'Submit',
-        success: 'Your enquiry has been sent to Manifest.',
-        fields: ''
+        success: 'Your enquiry has been sent to Manifest.'
       }
       },
       fr: {
@@ -1736,79 +1686,31 @@
           label: 'Demande d’investisseur institutionnel',
           subject: 'Demande d’investisseur institutionnel — site de Manifest',
           submit: 'Envoyer',
-          success: 'Votre demande d’investisseur institutionnel a bien été envoyée à Manifest.',
-          fields: `
-            <div class="field">
-              <label for="investor-next-step">Que souhaitez-vous faire ensuite ?</label>
-              <select id="investor-next-step" name="requested_next_step" required>
-                <option value="">Sélectionnez une option</option>
-                <option>Demander l’accès à la data room</option>
-                <option>Planifier un appel de présentation</option>
-                <option>Recevoir les actualités investisseurs</option>
-              </select>
-              <p class="field-error">Veuillez sélectionner une prochaine étape.</p>
-            </div>`
+          success: 'Votre demande d’investisseur institutionnel a bien été envoyée à Manifest.'
         },
         deployment: {
           label: 'Demande d’investisseur individuel',
           subject: 'Demande d’investisseur individuel — site de Manifest',
           submit: 'Envoyer',
-          success: 'Votre demande d’investisseur individuel a bien été envoyée à Manifest.',
-          fields: `
-            <div class="field">
-              <label for="individual-investor-next-step">Que souhaitez-vous faire ensuite ?</label>
-              <select id="individual-investor-next-step" name="requested_next_step" required>
-                <option value="">Sélectionnez une option</option>
-                <option>Planifier un appel de présentation</option>
-                <option>Recevoir les actualités investisseurs</option>
-                <option>Exprimer un intérêt d’investissement</option>
-              </select>
-              <p class="field-error">Veuillez sélectionner une prochaine étape.</p>
-            </div>`
+          success: 'Votre demande d’investisseur individuel a bien été envoyée à Manifest.'
         },
         military: {
           label: 'Demande militaire',
           subject: 'Demande militaire — site de Manifest',
           submit: 'Envoyer',
-          success: 'Votre demande militaire a bien été envoyée à Manifest.',
-          fields: `
-            <div class="field">
-              <label for="collaboration-type">Type de collaboration</label>
-              <select id="collaboration-type" name="collaboration_interest" required>
-                <option value="">Sélectionnez une option</option>
-                <option>Partenariat R&amp;D</option>
-                <option>Expérimentation opérationnelle</option>
-                <option>Démonstration privée</option>
-                <option>Échange sur les achats ou les politiques publiques</option>
-              </select>
-              <p class="field-error">Veuillez sélectionner un type de collaboration.</p>
-            </div>`
+          success: 'Votre demande militaire a bien été envoyée à Manifest.'
         },
         partner: {
           label: 'Demande d’industriel de la défense',
           subject: 'Demande d’industriel de la défense — site de Manifest',
           submit: 'Envoyer',
-          success: 'Votre demande d’industriel de la défense a bien été envoyée à Manifest.',
-          fields: `
-            <div class="field">
-              <label for="partnership-type">Type de partenariat</label>
-              <select id="partnership-type" name="partnership_type" required>
-                <option value="">Sélectionnez une option</option>
-                <option>Technologie ou composants</option>
-                <option>Fabrication ou chaîne d’approvisionnement</option>
-                <option>Services ou soutien au déploiement</option>
-                <option>Distribution ou intégration</option>
-                <option>Partenariat de recherche</option>
-              </select>
-              <p class="field-error">Veuillez sélectionner un type de partenariat.</p>
-            </div>`
+          success: 'Votre demande d’industriel de la défense a bien été envoyée à Manifest.'
         },
         other: {
           label: 'Presse, recherche ou demande générale',
           subject: 'Demande générale — site de Manifest',
           submit: 'Envoyer',
-          success: 'Votre demande a bien été envoyée à Manifest.',
-          fields: ''
+          success: 'Votre demande a bien été envoyée à Manifest.'
         }
       }
     };
@@ -1823,7 +1725,6 @@
     const audienceError = document.getElementById('audience-error');
     const visitorType = document.getElementById('visitor-type');
     const formDetails = document.getElementById('form-details');
-    const branchFields = document.getElementById('branch-fields');
     const captchaField = document.getElementById('captcha-field');
     const errorBanner = document.getElementById('form-error-banner');
     const submitButton = document.getElementById('submit-button');
@@ -1886,7 +1787,13 @@
       if (isCurrent) link.setAttribute('aria-current', 'true');
       else link.removeAttribute('aria-current');
       link.addEventListener('click', event => {
-        if (isCurrent) event.preventDefault();
+        if (isCurrent) {
+          event.preventDefault();
+          return;
+        }
+        try {
+          localStorage.setItem('manifest-lang', link.dataset.lang);
+        } catch (_) {}
       });
     });
     document.getElementById('page-url').value = window.location.href;
@@ -1989,8 +1896,6 @@
       audienceOptions.forEach(option => option.setAttribute('aria-pressed', String(option.dataset.value === type)));
       audienceChoices.removeAttribute('aria-invalid');
       form.querySelector('input[name="subject"]').value = config.subject;
-      branchFields.innerHTML = config.fields;
-      branchFields.closest('.form-row').classList.toggle('single-field', !config.fields.trim());
       submitLabel.textContent = config.submit;
       successMessage.textContent = config.success;
       audienceError.classList.remove('visible');

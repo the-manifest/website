@@ -10,6 +10,21 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  (function() {
+    try {
+      var savedLanguage = localStorage.getItem('manifest-lang');
+      if (savedLanguage !== 'en' && savedLanguage !== 'fr') return;
+
+      var destination = window.location.protocol === 'file:'
+        ? 'preview/manifest-redesign-v1.html?lang=' + savedLanguage
+        : '/' + savedLanguage;
+      window.location.replace(destination);
+    } catch (_) {
+      // If browser storage is unavailable, keep showing the language picker.
+    }
+  })();
+</script>
 <style>
   :root {
     --bg-warm: #ffffff;
@@ -116,8 +131,8 @@
   </main>
   <script>
     if (window.location.protocol === 'file:') {
-      document.querySelector('[data-lang="en"]').href = 'pages/home.html?lang=en';
-      document.querySelector('[data-lang="fr"]').href = 'pages/home.html?lang=fr';
+      document.querySelector('[data-lang="en"]').href = 'preview/manifest-redesign-v1.html?lang=en';
+      document.querySelector('[data-lang="fr"]').href = 'preview/manifest-redesign-v1.html?lang=fr';
     }
 
     document.querySelectorAll('.lang-btn').forEach(function(btn) {
