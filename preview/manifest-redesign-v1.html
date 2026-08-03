@@ -1210,60 +1210,6 @@
       margin-top: 32px;
       padding-top: 32px;
     }
-    .form-context {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      margin-bottom: 16px;
-      padding: 16px 18px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: rgba(247,245,239,0.72);
-    }
-    .form-context-copy { min-width: 0; }
-    .form-context-eyebrow {
-      display: block;
-      color: var(--muted);
-      font-size: 0.64rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    .form-context strong {
-      display: block;
-      margin-top: 4px;
-      font-size: 0.86rem;
-      font-weight: 650;
-    }
-    .form-change-button {
-      flex: 0 0 auto;
-      min-height: 38px;
-      padding: 8px 15px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      color: var(--ink);
-      background: var(--white);
-      font-size: 0.68rem;
-      font-weight: 650;
-      cursor: pointer;
-      transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
-    }
-    .form-change-button:hover {
-      border-color: var(--ink);
-      background: #faf9f6;
-      transform: translateY(-1px);
-    }
-    .form-change-button:focus-visible {
-      outline: 3px solid rgba(16,16,16,0.16);
-      outline-offset: 3px;
-    }
-    .form-guidance {
-      margin: 0 0 24px;
-      color: var(--muted);
-      font-size: 0.7rem;
-      line-height: 1.6;
-    }
     .form-details .form-row { gap: 18px; }
     .form-details .field { margin-bottom: 22px; }
     .form-details input,
@@ -1460,8 +1406,6 @@
         scroll-margin-top: 92px;
       }
       .captcha-field { width: 100%; padding: 9px; overflow: hidden; }
-      .form-context { align-items: flex-start; gap: 14px; padding: 14px; }
-      .form-guidance { margin-bottom: 20px; }
       .form-actions { align-items: stretch; flex-direction: column; }
       .form-actions .captcha-field { flex-basis: auto; }
       .submit-button { width: 100%; min-width: 0; }
@@ -1589,17 +1533,8 @@
             </div>
             <p class="audience-error" id="audience-error" data-i18n="audienceError">Please choose the path that best matches your interest.</p>
 
-            <div class="form-details" id="form-details" aria-describedby="form-guidance" hidden>
+            <div class="form-details" id="form-details" hidden>
               <div class="form-error-banner" id="form-error-banner" role="alert" tabindex="-1" data-i18n="formError">Something went wrong. Please try again.</div>
-
-              <div class="form-context">
-                <div class="form-context-copy">
-                  <span class="form-context-eyebrow" data-i18n="selectedAudienceLabel">Selected</span>
-                  <strong id="selected-audience-label"></strong>
-                </div>
-                <button class="form-change-button" id="change-audience" type="button" data-i18n="changeAudience">Change</button>
-              </div>
-              <p class="form-guidance" id="form-guidance" data-i18n="formGuidance">Name, email and organization are required. Verification appears once all three are complete.</p>
 
               <div class="form-row">
                 <div class="field">
@@ -1692,9 +1627,6 @@
         audienceLabel: 'I am',
         audiencePlaceholder: 'Choose one',
         audienceError: 'Please choose the path that best matches your interest.',
-        selectedAudienceLabel: 'Selected',
-        changeAudience: 'Change',
-        formGuidance: 'Name, email and organization are required. Verification appears once all three are complete.',
         audiences: {
           investor: 'Institutional Investor',
           deployment: 'Individual Investor',
@@ -1745,9 +1677,6 @@
         audienceLabel: 'Je suis',
         audiencePlaceholder: 'Sélectionnez une option',
         audienceError: 'Veuillez sélectionner l’option qui correspond le mieux à votre demande.',
-        selectedAudienceLabel: 'Sélection',
-        changeAudience: 'Modifier',
-        formGuidance: 'Le nom, l’email et l’organisation sont obligatoires. La vérification apparaît lorsque les trois champs sont remplis.',
         audiences: {
           investor: 'Investisseur institutionnel',
           deployment: 'Investisseur individuel',
@@ -1857,8 +1786,6 @@
     const audienceError = document.getElementById('audience-error');
     const visitorType = document.getElementById('visitor-type');
     const formDetails = document.getElementById('form-details');
-    const selectedAudienceLabel = document.getElementById('selected-audience-label');
-    const changeAudienceButton = document.getElementById('change-audience');
     const captchaField = document.getElementById('captcha-field');
     const errorBanner = document.getElementById('form-error-banner');
     const submitButton = document.getElementById('submit-button');
@@ -2098,7 +2025,6 @@
       form.querySelector('input[name="subject"]').value = config.subject;
       submitLabel.textContent = config.submit;
       successMessage.textContent = config.success;
-      selectedAudienceLabel.textContent = copy.audiences[type];
       audienceError.classList.remove('visible');
       formDetails.hidden = false;
       captchaField.classList.remove('invalid');
@@ -2107,12 +2033,6 @@
       track('visitor_path_selected', { type });
       if (options.focus) revealFormDetails(true);
     }
-
-    changeAudienceButton.addEventListener('click', () => {
-      const selectedOption = audienceOptions.find(option => option.dataset.value === selectedAudience);
-      audienceChoices.scrollIntoView({ behavior: preferredScrollBehavior(), block: 'center' });
-      requestAnimationFrame(() => selectedOption?.focus({ preventScroll: true }));
-    });
 
     audienceSelect.addEventListener('change', () => {
       if (!audienceSelect.value) {
