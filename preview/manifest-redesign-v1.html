@@ -1412,12 +1412,12 @@
     <section class="minimal-hero" id="top" aria-label="Meet Pierre film" data-i18n-aria-label="videoSectionLabel">
       <div class="container minimal-hero-inner">
         <div class="hero-video-frame">
-          <video class="hero-video-foreground" id="pierre-video" autoplay muted loop playsinline preload="auto" poster="../assets/video/evening-fall-img-3.png">
+          <video class="hero-video-foreground" id="pierre-video" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="../assets/video/evening-fall-img-3.png">
             <source media="(max-width: 768px)" src="../assets/video/meet-pierre-phone.mp4" type="video/mp4">
             <source src="../assets/video/meet-pierre.mp4" type="video/mp4">
             Your browser does not support HTML video. <a href="../assets/video/meet-pierre.mp4">Download the film</a>.
           </video>
-          <video class="hero-video-background" id="pierre-video-background" muted loop playsinline preload="none" poster="../assets/video/evening-fall-img-3.png" aria-hidden="true" tabindex="-1"></video>
+          <video class="hero-video-background" id="pierre-video-background" muted loop playsinline webkit-playsinline preload="none" poster="../assets/video/evening-fall-img-3.png" aria-hidden="true" tabindex="-1"></video>
           <button class="video-sound-toggle" id="pierre-video-sound" type="button" aria-label="Turn sound on" aria-pressed="false">
             <svg class="sound-off-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"/><path d="m16 9 5 6m0-6-5 6"/></svg>
             <svg class="sound-on-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"/><path d="M15 9.5a4 4 0 0 1 0 5M17.5 7a7.5 7.5 0 0 1 0 10"/></svg>
@@ -1886,9 +1886,20 @@
     pierreVideo.addEventListener('pause', syncPierreVideoBackground);
     pierreVideo.addEventListener('seeking', syncPierreVideoBackground);
     pierreVideo.addEventListener('timeupdate', syncPierreVideoBackground);
+
+    function ensurePierreVideoPlayback() {
+      if (pierreVideo.paused) pierreVideo.play().catch(() => {});
+    }
+
+    pierreVideo.addEventListener('loadeddata', ensurePierreVideoPlayback, { once: true });
+    pierreVideo.addEventListener('canplay', ensurePierreVideoPlayback);
+    window.addEventListener('pageshow', ensurePierreVideoPlayback);
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) ensurePierreVideoPlayback();
+    });
     if (pierreVideo.readyState >= 3) initializePierreVideoBackground();
     else pierreVideo.addEventListener('canplay', initializePierreVideoBackground, { once: true });
-    pierreVideo.play().catch(() => {});
+    ensurePierreVideoPlayback();
 
     async function setPierreSound(enabled) {
       pierreVideo.muted = !enabled;
