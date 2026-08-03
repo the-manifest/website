@@ -1376,9 +1376,31 @@
       .engagement-intro { margin-bottom: 0; }
       .audience-choices { grid-template-columns: 1fr; }
       .audience-choice:last-child:nth-child(odd) { grid-column: auto; }
-      .captcha-field { padding: 9px; overflow: hidden; }
+      .engagement-card,
+      .form-details,
+      .captcha-field {
+        min-width: 0;
+        max-width: 100%;
+      }
+      .form-details { scroll-margin-top: 92px; }
+      .form-details input,
+      .form-details select,
+      .form-details textarea {
+        font-size: 16px;
+        scroll-margin-top: 92px;
+      }
+      .captcha-field { width: 100%; padding: 9px; overflow: hidden; }
       .submit-button { width: 100%; min-width: 0; }
       .minimal-footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+
+    @media (max-width: 340px) {
+      .captcha-field .h-captcha {
+        width: 303px;
+        margin-bottom: -9px;
+        transform: scale(0.88);
+        transform-origin: top left;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1966,7 +1988,18 @@
       captchaField.classList.remove('invalid');
       attachFieldListeners();
       track('visitor_path_selected', { type });
-      if (options.focus) document.getElementById('name').focus({ preventScroll: true });
+      if (options.focus) {
+        const isMobileForm = window.matchMedia('(max-width: 560px)').matches;
+        if (isMobileForm) {
+          const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          requestAnimationFrame(() => formDetails.scrollIntoView({
+            behavior: prefersReducedMotion ? 'auto' : 'smooth',
+            block: 'start'
+          }));
+        } else {
+          document.getElementById('name').focus({ preventScroll: true });
+        }
+      }
     }
 
     audienceSelect.addEventListener('change', () => {
