@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
   <title>Manifest — Humanoids for European Defence</title>
-  <meta name="description" content="Meet Manifest and Pierre, the inspection humanoid purpose-built for European defence.">
+  <meta name="description" content="Manifest is the first humanoid solution purpose built for European defence.">
+  <meta property="og:description" content="Manifest is the first humanoid solution purpose built for European defence.">
+  <meta name="twitter:description" content="Manifest is the first humanoid solution purpose built for European defence.">
   <link rel="icon" type="image/png" href="../favicon-dark.png" media="(prefers-color-scheme: light)">
   <link rel="icon" type="image/png" href="../favicon-light.png" media="(prefers-color-scheme: dark)">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1608,7 +1610,7 @@
     const uiTranslations = {
       en: {
         pageTitle: 'Manifest — Humanoids for European Defence',
-        pageDescription: 'Meet Manifest and Pierre, the inspection humanoid purpose-built for European defence.',
+        pageDescription: 'Manifest is the first humanoid solution purpose built for European defence.',
         brandHomeLabel: 'Manifest home',
         languageLabel: 'Language',
         skipLink: 'Skip to content',
@@ -1796,6 +1798,8 @@
     function applyTranslations() {
       document.title = copy.pageTitle;
       document.querySelector('meta[name="description"]').content = copy.pageDescription;
+      document.querySelector('meta[property="og:description"]').content = copy.pageDescription;
+      document.querySelector('meta[name="twitter:description"]').content = copy.pageDescription;
       document.querySelectorAll('[data-i18n]').forEach(element => {
         const value = copy[element.dataset.i18n];
         if (typeof value === 'string') element.textContent = value;
