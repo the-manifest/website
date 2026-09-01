@@ -812,6 +812,7 @@
       transition: height 220ms ease, filter 220ms ease, opacity 180ms ease;
     }
     .site-header.scrolled .brand img { filter: invert(1); }
+    .site-header.on-dark .brand img { filter: none; }
     .header-actions { display: flex; align-items: center; }
     .lang-toggle {
       display: inline-flex;
@@ -1113,6 +1114,34 @@
     }
     .article-preview-card:hover .article-preview-cta { background: #004182; transform: translateY(-1px); }
 
+    .feature-film-section {
+      padding: clamp(56px, 7vw, 96px) 0;
+      background: var(--ink);
+    }
+    .feature-film-section > .container { width: min(1180px, calc(100% - 64px)); }
+    .feature-film-heading {
+      margin: 0 0 clamp(28px, 4vw, 44px);
+      color: var(--white);
+      font-size: clamp(2.8rem, 5.5vw, 5.5rem);
+      font-weight: 500;
+      letter-spacing: -0.06em;
+      line-height: 0.98;
+    }
+    .feature-film-frame {
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 28px;
+      background: #000;
+      box-shadow: 0 30px 90px rgba(0,0,0,0.36);
+    }
+    .feature-film-frame video {
+      width: 100%;
+      display: block;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      background: #000;
+    }
+
     .engagement-section {
       padding: clamp(92px, 9vw, 132px) 0;
       border-top: 1px solid var(--line);
@@ -1365,6 +1394,8 @@
       .site-header.scrolled .header-inner { min-height: 40px; }
       .brand img { width: auto; height: 58px; }
       .lang-opt { padding: 7px 11px; font-size: 0.7rem; }
+      .feature-film-frame { max-width: 430px; margin: 0 auto; }
+      .feature-film-frame video { aspect-ratio: 9 / 16; }
     }
 
     @media (max-width: 560px) {
@@ -1390,6 +1421,9 @@
       .article-preview-copy h2 { font-size: clamp(1.9rem, 9vw, 2.8rem); }
       .article-preview-meta { align-items: flex-start; flex-direction: column; }
       .article-preview-cta { width: 100%; }
+      .feature-film-section { padding: 48px 0; }
+      .feature-film-section > .container { width: calc(100% - 32px); }
+      .feature-film-frame { border-radius: 16px; }
       .engagement-section { padding: 68px 0; }
       .engagement-intro { margin-bottom: 0; }
       .audience-choices { grid-template-columns: 1fr; }
@@ -1451,7 +1485,7 @@
   </header>
 
   <main id="main">
-    <section class="minimal-hero" id="top" aria-label="Meet Pierre film" data-i18n-aria-label="videoSectionLabel">
+    <section class="minimal-hero" id="top" aria-label="Meet Pierre film" data-i18n-aria-label="videoSectionLabel" data-header-theme="dark">
       <div class="container minimal-hero-inner">
         <div class="hero-video-frame">
           <video class="hero-video-foreground" id="pierre-video" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="../assets/video/evening-fall-img-3.png">
@@ -1494,6 +1528,19 @@
             </div>
           </div>
         </a>
+      </div>
+    </section>
+
+    <section class="feature-film-section" id="feature-film" aria-label="Manifest film" data-i18n-aria-label="featureFilmLabel" data-header-theme="dark">
+      <div class="container">
+        <h2 class="feature-film-heading" data-i18n="featureFilmTitle">Meet the team</h2>
+        <div class="feature-film-frame">
+          <video id="feature-film-video" controls playsinline webkit-playsinline preload="metadata" poster="../assets/video/manifest-website-03-poster.jpg" data-desktop-poster="../assets/video/manifest-website-03-poster.jpg" data-mobile-poster="../assets/video/manifest-website-03-mobile-poster.jpg">
+            <source media="(max-width: 720px)" src="../assets/video/manifest-website-03-mobile.mp4" type="video/mp4">
+            <source src="../assets/video/manifest-website-03.mp4" type="video/mp4">
+            Your browser does not support HTML video. <a href="../assets/video/manifest-website-03.mp4">Download the film</a>.
+          </video>
+        </div>
       </div>
     </section>
 
@@ -1588,7 +1635,7 @@
 
   </main>
 
-  <footer class="minimal-footer">
+  <footer class="minimal-footer" data-header-theme="dark">
     <div class="container minimal-footer-inner">
       <span>© 2026 Manifest Forge</span>
       <nav aria-label="Legal links" data-i18n-aria-label="legalLinksLabel">
@@ -1625,6 +1672,8 @@
         articleTitle: 'Meet Manifest Article',
         articleSummary: 'A detailed view into our strategic decision-making, vision, and plan to achieve our vision.',
         articleRead: 'Read the full article on LinkedIn',
+        featureFilmLabel: 'Manifest film',
+        featureFilmTitle: 'Meet the team',
         contactTitle: 'Register your interest.',
         audienceLabel: 'I am',
         audiencePlaceholder: 'Choose one',
@@ -1675,6 +1724,8 @@
         articleTitle: 'Article Meet Manifest',
         articleSummary: 'Une vue détaillée de nos décisions stratégiques, de notre vision et du plan prévu pour la concrétiser.',
         articleRead: 'Lire l’article complet sur LinkedIn',
+        featureFilmLabel: 'Film Manifest',
+        featureFilmTitle: 'Rencontrez l’équipe',
         contactTitle: 'Manifestez votre intérêt.',
         audienceLabel: 'Je suis',
         audiencePlaceholder: 'Sélectionnez une option',
@@ -1781,6 +1832,7 @@
 
     const header = document.getElementById('site-header');
     const brandLogo = header.querySelector('.brand img');
+    const darkHeaderSections = Array.from(document.querySelectorAll('[data-header-theme="dark"]'));
     const form = document.getElementById('engagement-form');
     const audienceSelect = document.getElementById('audience-select');
     const audienceChoices = document.getElementById('audience-choices');
@@ -1834,6 +1886,16 @@
 
     applyTranslations();
 
+    const featureFilmVideo = document.getElementById('feature-film-video');
+    const featureFilmMobileQuery = window.matchMedia('(max-width: 720px)');
+    function syncFeatureFilmPoster() {
+      featureFilmVideo.poster = featureFilmMobileQuery.matches
+        ? featureFilmVideo.dataset.mobilePoster
+        : featureFilmVideo.dataset.desktopPoster;
+    }
+    syncFeatureFilmPoster();
+    featureFilmMobileQuery.addEventListener('change', syncFeatureFilmPoster);
+
     document.querySelectorAll('.lang-opt').forEach(link => {
       const isCurrent = link.dataset.lang === currentLanguage;
       const languageUrl = window.location.protocol === 'file:'
@@ -1875,6 +1937,12 @@
       brandLogo.style.height = `${logoMax - ((logoMax - logoMin) * easedProgress)}px`;
       const lightSectionStart = document.getElementById('article').offsetTop - header.offsetHeight;
       header.classList.toggle('scrolled', window.scrollY >= lightSectionStart);
+      const headerProbeY = header.offsetHeight / 2;
+      const isOnDark = darkHeaderSections.some(section => {
+        const sectionRect = section.getBoundingClientRect();
+        return headerProbeY >= sectionRect.top && headerProbeY < sectionRect.bottom;
+      });
+      header.classList.toggle('on-dark', isOnDark);
     }
     updateHeader();
     window.addEventListener('scroll', updateHeader, { passive: true });
