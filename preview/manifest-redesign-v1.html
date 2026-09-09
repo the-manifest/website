@@ -1554,13 +1554,6 @@
           <form id="engagement-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
             <input type="hidden" name="access_key" value="7c78fe94-7e16-4619-9da0-a0d1c301bb6c">
             <input type="hidden" name="subject" value="Manifest website enquiry">
-            <input type="hidden" name="source" value="Manifest redesign v1">
-            <input type="hidden" name="visitor_type" id="visitor-type" value="">
-            <input type="hidden" name="page_url" id="page-url" value="">
-            <input type="hidden" name="referrer" id="referrer" value="">
-            <input type="hidden" name="utm_source" id="utm-source" value="">
-            <input type="hidden" name="utm_medium" id="utm-medium" value="">
-            <input type="hidden" name="utm_campaign" id="utm-campaign" value="">
 
             <div class="audience-select-wrap">
               <label id="audience-select-label" data-i18n="audienceLabel">I am</label>
@@ -1838,7 +1831,6 @@
     const audienceChoices = document.getElementById('audience-choices');
     const audienceOptions = Array.from(audienceChoices.querySelectorAll('.audience-choice'));
     const audienceError = document.getElementById('audience-error');
-    const visitorType = document.getElementById('visitor-type');
     const formDetails = document.getElementById('form-details');
     const captchaField = document.getElementById('captcha-field');
     const errorBanner = document.getElementById('form-error-banner');
@@ -1923,12 +1915,6 @@
         } catch (_) {}
       });
     });
-    document.getElementById('page-url').value = window.location.href;
-    document.getElementById('referrer').value = document.referrer;
-    document.getElementById('utm-source').value = pageParams.get('utm_source') || '';
-    document.getElementById('utm-medium').value = pageParams.get('utm_medium') || '';
-    document.getElementById('utm-campaign').value = pageParams.get('utm_campaign') || '';
-
     function updateHeader() {
       const logoMax = window.innerWidth <= 720 ? 58 : 68;
       const logoMin = 40;
@@ -2090,7 +2076,6 @@
       const config = branchConfigs[type];
       if (!config) return;
       selectedAudience = type;
-      visitorType.value = type;
       audienceSelect.value = type;
       audienceOptions.forEach(option => option.setAttribute('aria-pressed', String(option.dataset.value === type)));
       audienceChoices.removeAttribute('aria-invalid');
@@ -2109,7 +2094,6 @@
     audienceSelect.addEventListener('change', () => {
       if (!audienceSelect.value) {
         selectedAudience = '';
-        visitorType.value = '';
         audienceOptions.forEach(option => option.setAttribute('aria-pressed', 'false'));
         formDetails.hidden = true;
         captchaField.hidden = true;
