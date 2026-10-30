@@ -979,6 +979,28 @@
     #article,
     #contact { scroll-margin-top: 80px; }
 
+    .statement-section {
+      padding: clamp(72px, 9vw, 132px) 0;
+      background: var(--white);
+    }
+    .statement-section > .container {
+      width: min(1180px, calc(100% - 64px));
+      container-type: inline-size;
+    }
+    .statement-heading {
+      margin: 0;
+      color: var(--ink);
+      font-size: calc((100vw - 64px) / 15);
+      font-size: min(6.9cqi, 6rem); /* longest line (FR) is ~14.2em wide */
+      font-weight: 500;
+      letter-spacing: -0.06em;
+      line-height: 1;
+    }
+    .statement-heading span {
+      display: block;
+      white-space: nowrap;
+    }
+
     .article-preview-section {
       padding: clamp(72px, 8vw, 108px) 0;
       background:
@@ -1379,6 +1401,8 @@
         aspect-ratio: auto;
       }
       .video-sound-toggle { right: 18px; bottom: 18px; }
+      .statement-section { padding: 64px 0; }
+      .statement-section > .container { width: calc(100% - 32px); }
       .article-preview-section { padding: 64px 0; }
       .article-preview-section > .container { width: calc(100% - 32px); }
       .article-preview-card { gap: 34px; padding: 34px 22px 30px; border-radius: 18px; }
@@ -1470,6 +1494,16 @@
             <span data-i18n="soundCursorLabel">Sound</span>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="statement-section" id="statement">
+      <div class="container">
+        <h2 class="statement-heading">
+          <span data-i18n="statementLine1">The First Humanoid Solution</span>
+          <span data-i18n="statementLine2">Purpose Built</span>
+          <span data-i18n="statementLine3">For European Defence.</span>
+        </h2>
       </div>
     </section>
 
@@ -1613,6 +1647,9 @@
         soundOnAria: 'Turn sound on',
         soundOffAria: 'Turn sound off',
         soundCursorLabel: 'Sound',
+        statementLine1: 'The First Humanoid Solution',
+        statementLine2: 'Purpose Built',
+        statementLine3: 'For European Defence.',
         articleSectionLabel: 'LinkedIn article',
         articleDocumentTitle: 'Meet Manifest',
         articleTitle: 'Meet Manifest Article',
@@ -1663,6 +1700,9 @@
         soundOnAria: 'Activer le son de la vidéo',
         soundOffAria: 'Couper le son de la vidéo',
         soundCursorLabel: 'Son',
+        statementLine1: 'La première solution humanoïde',
+        statementLine2: 'conçue pour',
+        statementLine3: 'la défense européenne.',
         articleSectionLabel: 'Article LinkedIn',
         articleDocumentTitle: 'Meet Manifest',
         articleTitle: 'Article Meet Manifest',
