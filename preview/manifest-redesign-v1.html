@@ -1114,34 +1114,6 @@
     }
     .article-preview-card:hover .article-preview-cta { background: #004182; transform: translateY(-1px); }
 
-    .feature-film-section {
-      padding: clamp(56px, 7vw, 96px) 0;
-      background: var(--ink);
-    }
-    .feature-film-section > .container { width: min(1180px, calc(100% - 64px)); }
-    .feature-film-heading {
-      margin: 0 0 clamp(28px, 4vw, 44px);
-      color: var(--white);
-      font-size: clamp(2.8rem, 5.5vw, 5.5rem);
-      font-weight: 500;
-      letter-spacing: -0.06em;
-      line-height: 0.98;
-    }
-    .feature-film-frame {
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 28px;
-      background: #000;
-      box-shadow: 0 30px 90px rgba(0,0,0,0.36);
-    }
-    .feature-film-frame video {
-      width: 100%;
-      display: block;
-      aspect-ratio: 16 / 9;
-      object-fit: cover;
-      background: #000;
-    }
-
     .engagement-section {
       padding: clamp(92px, 9vw, 132px) 0;
       border-top: 1px solid var(--line);
@@ -1394,8 +1366,6 @@
       .site-header.scrolled .header-inner { min-height: 40px; }
       .brand img { width: auto; height: 58px; }
       .lang-opt { padding: 7px 11px; font-size: 0.7rem; }
-      .feature-film-frame { max-width: 430px; margin: 0 auto; }
-      .feature-film-frame video { aspect-ratio: 9 / 16; }
     }
 
     @media (max-width: 560px) {
@@ -1421,9 +1391,6 @@
       .article-preview-copy h2 { font-size: clamp(1.9rem, 9vw, 2.8rem); }
       .article-preview-meta { align-items: flex-start; flex-direction: column; }
       .article-preview-cta { width: 100%; }
-      .feature-film-section { padding: 48px 0; }
-      .feature-film-section > .container { width: calc(100% - 32px); }
-      .feature-film-frame { border-radius: 16px; }
       .engagement-section { padding: 68px 0; }
       .engagement-intro { margin-bottom: 0; }
       .audience-choices { grid-template-columns: 1fr; }
@@ -1488,12 +1455,11 @@
     <section class="minimal-hero" id="top" aria-label="Meet Pierre film" data-i18n-aria-label="videoSectionLabel" data-header-theme="dark">
       <div class="container minimal-hero-inner">
         <div class="hero-video-frame">
-          <video class="hero-video-foreground" id="pierre-video" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="../assets/video/evening-fall-img-3.png">
-            <source media="(max-width: 768px)" src="../assets/video/meet-pierre-phone.mp4" type="video/mp4">
-            <source src="../assets/video/meet-pierre.mp4" type="video/mp4">
-            Your browser does not support HTML video. <a href="../assets/video/meet-pierre.mp4">Download the film</a>.
+          <video class="hero-video-foreground" id="pierre-video" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="../assets/video/robot-enters-room-poster.jpg">
+            <source src="../assets/video/robot-enters-room.mp4" type="video/mp4">
+            Your browser does not support HTML video. <a href="../assets/video/robot-enters-room.mp4">Download the film</a>.
           </video>
-          <video class="hero-video-background" id="pierre-video-background" muted loop playsinline webkit-playsinline preload="none" poster="../assets/video/evening-fall-img-3.png" aria-hidden="true" tabindex="-1"></video>
+          <video class="hero-video-background" id="pierre-video-background" muted loop playsinline webkit-playsinline preload="none" poster="../assets/video/robot-enters-room-poster.jpg" aria-hidden="true" tabindex="-1"></video>
           <button class="video-sound-toggle" id="pierre-video-sound" type="button" aria-label="Turn sound on" aria-pressed="false">
             <svg class="sound-off-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"/><path d="m16 9 5 6m0-6-5 6"/></svg>
             <svg class="sound-on-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"/><path d="M15 9.5a4 4 0 0 1 0 5M17.5 7a7.5 7.5 0 0 1 0 10"/></svg>
@@ -1528,19 +1494,6 @@
             </div>
           </div>
         </a>
-      </div>
-    </section>
-
-    <section class="feature-film-section" id="feature-film" aria-label="Manifest film" data-i18n-aria-label="featureFilmLabel" data-header-theme="dark">
-      <div class="container">
-        <h2 class="feature-film-heading" data-i18n="featureFilmTitle">Meet the team</h2>
-        <div class="feature-film-frame">
-          <video id="feature-film-video" controls playsinline webkit-playsinline preload="metadata" poster="../assets/video/manifest-website-03-poster.jpg" data-desktop-poster="../assets/video/manifest-website-03-poster.jpg" data-mobile-poster="../assets/video/manifest-website-03-mobile-poster.jpg">
-            <source media="(max-width: 720px)" src="../assets/video/manifest-website-03-mobile.mp4" type="video/mp4">
-            <source src="../assets/video/manifest-website-03.mp4" type="video/mp4">
-            Your browser does not support HTML video. <a href="../assets/video/manifest-website-03.mp4">Download the film</a>.
-          </video>
-        </div>
       </div>
     </section>
 
@@ -1665,8 +1618,6 @@
         articleTitle: 'Meet Manifest Article',
         articleSummary: 'A detailed view into our strategic decision-making, vision, and plan to achieve our vision.',
         articleRead: 'Read the full article on LinkedIn',
-        featureFilmLabel: 'Manifest film',
-        featureFilmTitle: 'Meet the team',
         contactTitle: 'Register your interest.',
         audienceLabel: 'I am',
         audiencePlaceholder: 'Choose one',
@@ -1717,8 +1668,6 @@
         articleTitle: 'Article Meet Manifest',
         articleSummary: 'Une vue détaillée de nos décisions stratégiques, de notre vision et du plan prévu pour la concrétiser.',
         articleRead: 'Lire l’article complet sur LinkedIn',
-        featureFilmLabel: 'Film Manifest',
-        featureFilmTitle: 'Rencontrez l’équipe',
         contactTitle: 'Manifestez votre intérêt.',
         audienceLabel: 'Je suis',
         audiencePlaceholder: 'Sélectionnez une option',
@@ -1877,16 +1826,6 @@
     }
 
     applyTranslations();
-
-    const featureFilmVideo = document.getElementById('feature-film-video');
-    const featureFilmMobileQuery = window.matchMedia('(max-width: 720px)');
-    function syncFeatureFilmPoster() {
-      featureFilmVideo.poster = featureFilmMobileQuery.matches
-        ? featureFilmVideo.dataset.mobilePoster
-        : featureFilmVideo.dataset.desktopPoster;
-    }
-    syncFeatureFilmPoster();
-    featureFilmMobileQuery.addEventListener('change', syncFeatureFilmPoster);
 
     document.querySelectorAll('.lang-opt').forEach(link => {
       const isCurrent = link.dataset.lang === currentLanguage;
